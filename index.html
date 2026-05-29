@@ -1131,9 +1131,40 @@
       <span data-i18n="cta.h2.line1">Turn your brand</span><br><span data-i18n="cta.h2.line2">into a system.</span>
     </h2>
     <p class="cta-sub" data-reveal data-d="2" data-i18n="cta.sub">The first step is a conversation. Free.</p>
-    <a href="mailto:hello@nomadesagency.com" class="cta-btn" data-reveal data-d="3" data-i18n="cta.btn">
-      Apply &nbsp;&rarr;
-    </a>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Victor Furrier" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-brand">Brand</label>
+          <input type="text" id="cf-brand" name="brand" placeholder="Brand Name" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-instagram">Instagram</label>
+          <input type="text" id="cf-instagram" name="instagram" placeholder="@username" required>
+        </div>
+      </div>
+      <div class="cf-field cf-field--full">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="3" placeholder="Your message" required></textarea>
+      </div>
+      <div class="cf-actions"><button type="submit" class="cf-submit">Apply &nbsp;&rarr;</button></div>
+    </form>
+    <div class="cf-success" id="cf-success" hidden>
+      <div class="cf-success-icon">&#10003;</div>
+      <p class="cf-success-title">Signal received.</p>
+      <p class="cf-success-sub">We'll be in touch shortly.</p>
+    </div>
+
   </div>
 </section>
 
