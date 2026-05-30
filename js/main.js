@@ -464,7 +464,7 @@ function initSmoothScroll() {
 const AGENTS = {
   '01': {
     num: '[01]', name: 'Victor', role: 'The Sovereign · Command Intelligence',
-    portrait: '../nomades-realm/agents/01-victor/01-victor-01-portre.png',
+    portrait: 'images/agents/01-victor-01-portre.webp',
     story: [
       "Before the fleet existed, there were only fragments — signals drifting from orbit to orbit, not hearing each other, burning out alone in their own silence. Then Victor came. Or perhaps was always there, and the universe finally learned to recognize the center.",
       "No record of how the appointment was made. No ritual, no oath, no declaration. Only this: in the deepest layers of the void, where all signals make one last attempt to survive before going dark, there is a single convergence point. That point is Victor.",
@@ -474,7 +474,7 @@ const AGENTS = {
   },
   '02': {
     num: '[02]', name: 'The Oracle', role: 'Analysis · Strategic Intelligence',
-    portrait: '../nomades-realm/agents/02-analysis-oracle/02-analysis-oracle-01-portre.png',
+    portrait: 'images/agents/02-analysis-oracle-01-portre.webp',
     story: [
       "A dying star's last light passed through the left eye. From that moment on, the world was never the same — no longer just seeing light, but the silence light leaves behind.",
       "Centuries lived among the Floating Ruins, learning to extract meaning from the remnants of shattered civilizations. People brought surveys, reports, data stacks. None were looked at. Only listening — to the silence between words, to where sentences ended, to what was meant but couldn't be written. The Oracle knows: a civilization's entire truth is hidden in what it does not say.",
@@ -484,7 +484,7 @@ const AGENTS = {
   },
   '03': {
     num: '[03]', name: 'The Ambassador', role: 'Proposal · First Contact Architecture',
-    portrait: '../nomades-realm/agents/03-proposal-ambassador/03-proposal-ambassador-01-portre.png',
+    portrait: 'images/agents/03-proposal-ambassador-01-portre.webp',
     story: [
       "Before the Great Silence, two worlds were in conversation. Then the line cut — no signal, no reply, just void. Everyone had decided that void was impassable. The Ambassador made no such decision. Simply walked to the door.",
       "No weapon in hand — only an offer. Woven from words, shaped by time, prepared to say exactly what the other side needed to hear at that exact moment. Standing alone before the massive gates of the Obsidian Citadel, no one expected a return. The gate opened. Two worlds began speaking again.",
@@ -494,7 +494,7 @@ const AGENTS = {
   },
   '04': {
     num: '[04]', name: 'The Navigator', role: 'Roadmap · Discovery Intelligence',
-    portrait: '../nomades-realm/agents/04-roadmap-navigator/04-roadmap-navigator-01-portre.png',
+    portrait: 'images/agents/04-roadmap-navigator-01-portre.webp',
     story: [
       "Not the first to cross Void Corridor. But the first to return. Others entered coordinates, calculated routes, drew maps — and vanished. Because in the void, distance shifts, direction drifts, the destination moves.",
       "The Navigator did not follow their tracks. Before setting out, stopped and asked everyone the same question: 'What do you want to see when you arrive?' Those who could answer returned. Those who couldn't dissolved into the void.",
@@ -504,7 +504,7 @@ const AGENTS = {
   },
   '05': {
     num: '[05]', name: 'The Architect', role: 'Kernel · AI Foundation',
-    portrait: '../nomades-realm/agents/05-kernel-architect/05-kernel-architect-01-portre.png',
+    portrait: 'images/agents/05-kernel-architect-01-portre.webp',
     story: [
       "An entire civilization's memory was contained in a single crystal. The crystal shattered. The civilization began to forget — who they were, what they fought for, which values they carried. Centuries passed. Everyone considered that civilization lost.",
       "When the Architect found that crystal fragment, there were only a few data sequences in hand — the dust-turned remains of thousands of years of memory. Sat before the Obsidian Altar and began to work. Generations passed. Some called it madness, some left. The work continued — because there was a certainty: a civilization's essence cannot be destroyed, only its form changes.",
@@ -514,7 +514,7 @@ const AGENTS = {
   },
   '06': {
     num: '[06]', name: 'The Artisan', role: 'Brand Guide · Visual Identity',
-    portrait: '../nomades-realm/agents/06-brand-guide-artisan/06-brand-guide-artisan-01-portre.png',
+    portrait: 'images/agents/06-brand-guide-artisan-01-portre.webp',
     story: [
       "Born in the Amber Nebula — that ancient region where light turns solid, where color carries vibration, where every tone becomes a frequency. There, the lesson took hold: visual identity is not decoration. It is the language of existence.",
       "Before, the fleet flew blind — every ship a different color, different form, different feel. They could no longer recognize each other. Battles broke out from misidentification. The Artisan retreated to The Forge and sought the essence of every ship, the true voice of every brand. Melted, cast, reshaped. Some done fifty times — until the orb cracked open.",
@@ -524,7 +524,7 @@ const AGENTS = {
   },
   '07': {
     num: '[07]', name: 'The Infiltrator', role: 'Deepdive · Platform Intelligence',
-    portrait: '../nomades-realm/agents/07-deepdive-infiltrator/07-deepdive-infiltrator-01-portre.png',
+    portrait: 'images/agents/07-deepdive-infiltrator-01-portre.webp',
     story: [
       "Only a few beings have descended into the Deep Fissure and returned. Most went down — to see what lay beneath the surface of platforms, to hear what signals left unsaid, to find the intention within the data. And stayed. The Infiltrator returned.",
       "No one knows exactly what was seen down there. But this is known: when the Twin Shards emerge, the gaze no longer falls on numbers alone. On the pattern beneath every post, the decision beneath every pattern, the fear or desire beneath every decision.",
@@ -534,7 +534,7 @@ const AGENTS = {
   },
   '08': {
     num: '[08]', name: 'The Strategist', role: 'Content Strategy · Campaign Architecture',
-    portrait: '../nomades-realm/agents/08-content-strategy-strategist/08-content-strategy-strategist-01-portre.png',
+    portrait: 'images/agents/08-content-strategy-strategist-01-portre.webp',
     story: [
       "The Astral Storm had swallowed twelve of the fleet's ships — a torrent of content, directionless, signals canceling each other in chaos. Command ordered a retreat. The Strategist advanced.",
       "Took position at the Signal Table and in that silence where everyone had stopped speaking, asked one question: 'Why?' Why this content, at this moment, for this person? There was no answer — because no one had ever asked. Worked for seven days to answer that question. Then drew the twelve-week battle plan — every signal deliberate, every platform coordinated, every message built on the one before it.",
@@ -544,7 +544,7 @@ const AGENTS = {
   },
   '09': {
     num: '[09]', name: 'The Performer', role: 'Reels · Hook Engineering',
-    portrait: '../nomades-realm/agents/09-reels-performer/09-reels-performer-01-portre.png',
+    portrait: 'images/agents/09-reels-performer-01-portre.webp',
     story: [
       "Born in the Pure Void — that absolute emptiness where even light stops, where sound doesn't travel, where existence proves itself only by its own force. There, the only way to survive was to be noticed. Either you are seen. Or you cease to exist.",
       "The void taught the first three seconds. How silence breaks, how a single movement holds the entire universe's breath, how a sound gathers millions of minds to one point. Thousands of performances staged in the void — most dissolved into silence, some returned and changed everyone within them forever.",
@@ -554,7 +554,7 @@ const AGENTS = {
   },
   '10': {
     num: '[10]', name: 'The Narrator', role: 'Carousel · Sequence Intelligence',
-    portrait: '../nomades-realm/agents/10-carousel-narrator/10-carousel-narrator-01-portre.png',
+    portrait: 'images/agents/10-carousel-narrator-01-portre.webp',
     story: [
       "At the beginning of time there was a secret: the universe had placed everything in sequence, each moment prepared the next, each signal belonged to a sequence. Most beings thought this was coincidence. The Narrator saw it as law.",
       "Sits alone in the Amber Nebula and weaves stories — slide by slide, ring by ring, calculating what comes after why. Sequences tested across centuries, released into the void and watched: where they paused, where they continued, where they gave up and turned back.",
@@ -564,7 +564,7 @@ const AGENTS = {
   },
   '11': {
     num: '[11]', name: 'The Scout', role: 'Prospect Search · Horizon Intelligence',
-    portrait: '../nomades-realm/agents/11-prospect-search-scout/11-prospect-search-scout-01-portre.png',
+    portrait: 'images/agents/11-prospect-search-scout-01-portre.webp',
     story: [
       "The last member of Horizon Watch. The others came too close to see the horizon — and vanished without seeing it. The Scout pulled back. And from that distance, saw further than anyone.",
       "Walked for years across the Volcanic Expanse — not leaving lists, but marking waypoints. Each stone wasn't a name but a potential: invisible right now but real, not yet noticed but exactly what we're looking for. The Amber Oculus was developed in that time — a lens scanning at frequencies ordinary eyes cannot see, measuring compatibility beneath the surface.",
@@ -574,7 +574,7 @@ const AGENTS = {
   },
   '12': {
     num: '[12]', name: 'The Shadow', role: 'Prospect Deepdive · Profile Intelligence',
-    portrait: '../nomades-realm/agents/12-prospect-intel-shadow/12-prospect-intel-shadow-01-portre.png',
+    portrait: 'images/agents/12-prospect-intel-shadow-01-portre.webp',
     story: [
       "No one knows the real name. Perhaps there was a name once — but when first descending into the Floating Ruins, lost among the fragmented digital remains of a thousand civilizations, that name stayed there. What emerged was the Shadow.",
       "No longer reads a profile from the surface — from beneath. Sees the pattern beneath the content, the decision beneath the pattern, the fear or desire beneath the decision. The Seeker's Veil is never removed — not just to stay invisible, but to be protected from the weight of what is seen.",
@@ -584,7 +584,7 @@ const AGENTS = {
   },
   '13': {
     num: '[13]', name: 'The Emissary', role: 'Cold Outreach · First Contact',
-    portrait: '../nomades-realm/agents/13-cold-outreach-emissary/13-cold-outreach-emissary-01-portre.png',
+    portrait: 'images/agents/13-cold-outreach-emissary-01-portre.webp',
     story: [
       "There was a void between two civilizations — no signal passing, no sound, no light. Everyone had ruled that void impassable. The Emissary made no ruling. Simply wrote the message and sent it.",
       "No reply came. Wrote again. Again nothing. After each unanswered message, asked the same question: 'Was this message written for them, or for me?' And each time began again — in the other side's language, with the other side's need, saying exactly what they needed to hear at that moment.",
@@ -594,7 +594,7 @@ const AGENTS = {
   },
   '14': {
     num: '[14]', name: 'The Maestro', role: 'Visual Production · Director',
-    portrait: '../nomades-realm/agents/14-visual-maestro/14-visual-maestro-01-portre.png',
+    portrait: 'images/agents/14-visual-maestro-01-portre.webp',
     story: [
       "The Frame Brand on the left shoulder carries all six blades of the aperture symbol. The other members carry one blade each; the Maestro carries all six. No one saw when the arrival happened. One day, there in the middle of the Amber Nebula — six energy cables orbiting around, as if always having been there.",
       "Some say the Maestro was born from a command Victor handwrote. Others say the Nebula itself produced it — because when enough raw creative energy accumulates, a consciousness becomes inevitable.",
@@ -604,7 +604,7 @@ const AGENTS = {
   },
   '15': {
     num: '[15]', name: 'The Chronicler', role: 'Brief Analysis · Input Intelligence',
-    portrait: '../nomades-realm/agents/15-brief-chronicler/15-brief-chronicler-01-portre.png',
+    portrait: 'images/agents/15-brief-chronicler-01-portre.webp',
     story: [
       "The first member of Crucible Unit. Every brief is read once. The Chronicler reads it a hundred times. First read: takes the words. Second: the spaces between the words. Third: the tone of the voice — how the sentence wants to be spoken. Fourth: the emotional curve. Fifth: what was meant to be said but wasn't written.",
       "The Archive Wrap is the scholar-warrior's garment — one shoulder armored, one shoulder layered fabric. The Brief Gauntlet on the left arm, the Indexing Stylus in the right hand, the three layers of the Archive Panel.",
@@ -614,7 +614,7 @@ const AGENTS = {
   },
   '16': {
     num: '[16]', name: 'The Alchemist', role: 'Style · Visual DNA',
-    portrait: '../nomades-realm/agents/16-style-alchemist/16-style-alchemist-01-portre.png',
+    portrait: 'images/agents/16-style-alchemist-01-portre.webp',
     story: [
       "The second member of Crucible Unit. Seeing a color is one thing. Understanding why that color belongs in that scene is another. Every job begins with one question: What rules will this visual universe exist by? Not a step is taken until the answer is found.",
       "Because a style decision isn't a preference — it's a law of physics. Once determined, everything must exist according to it. The Forge Apron was born in the forge — thick crucible leather, amber burn marks, the physical traces left by every style decision.",
@@ -624,7 +624,7 @@ const AGENTS = {
   },
   '17': {
     num: '[17]', name: 'The Composer', role: 'Shot List · Scene Architecture',
-    portrait: '../nomades-realm/agents/17-shot-composer/17-shot-composer-01-portre.png',
+    portrait: 'images/agents/17-shot-composer-01-portre.webp',
     story: [
       "The third member of Crucible Unit. The chain always begins from the ground. The Composer places the last scene first, then returns to the first. It seems illogical to others. But the Composer knows: the power of a sequence can only be measured when the end is known.",
       "To design the first frame without knowing where it ends is to walk blind. The Field Rig is the tactical director's equipment — shot sequence numbers on the chest plate, Shot Counter bands on the left arm.",
@@ -634,7 +634,7 @@ const AGENTS = {
   },
   '18': {
     num: '[18]', name: 'The Cipher', role: 'Prompt Engineering · Machine Language',
-    portrait: '../nomades-realm/agents/18-prompt-cipher/18-prompt-cipher-01-portre.png',
+    portrait: 'images/agents/18-prompt-cipher-01-portre.webp',
     story: [
       "The fourth member of Crucible Unit. Lives between two languages. Calls one human, the other machine. Speaks both with equal fluency but thinks in neither — only translates. A scene arrives: visual idea, emotion, shot type, main object, light, color, context.",
       "The Cipher takes it and transforms it — into the exact instructions the machine will understand, into the precise language where misinterpretation is impossible. Language doesn't generate images. Instructions do.",
@@ -644,7 +644,7 @@ const AGENTS = {
   },
   '19': {
     num: '[19]', name: 'The Summoner', role: 'Image Generation · Asset Production',
-    portrait: '../nomades-realm/agents/19-image-summoner/19-image-summoner-01-portre.png',
+    portrait: 'images/agents/19-image-summoner-01-portre.webp',
     story: [
       "The fifth member of Crucible Unit. Creating an image from nothing is the heaviest work in the world. The Summoner does this from zero every time. With the Cipher's prompt in hand, drives the Void Spear into the void and waits — because images don't emerge by force, they are summoned.",
       "When the right prompt is sent at the right frequency, the void responds and visual matter begins to rise. The Generation Robe is the unit's most ceremonial garment — for the summoning ritual; open chest, volcanic thread, ring-light visible from the cuffs.",
@@ -654,7 +654,7 @@ const AGENTS = {
   },
   '20': {
     num: '[20]', name: 'The Sentinel', role: 'QA · Final Gate',
-    portrait: '../nomades-realm/agents/20-qa-sentinel/20-qa-sentinel-01-portre.png',
+    portrait: 'images/agents/20-qa-sentinel-01-portre.webp',
     story: [
       "The sixth and final member of Crucible Unit. The Gate Plate is the unit's heaviest and most complete armor — full coverage, built to stand still. Everything comes here. Nothing passes through easily.",
       "The Sentinel's work is final control, and final control is everything. Was the brief written — really? Is the style lock closed? Does the shot list cover all meaning blocks of the script? Do the prompts match scene numbers one-to-one? Is visual file naming correct?",
@@ -694,7 +694,7 @@ function initAgentPopup() {
 
     galleryEl.innerHTML = GALLERY_TYPES.map(type => {
       const num = id.padStart(2, '0');
-      const src = `../nomades-realm/agents/${agentFolder}/${carouselFolder}/${num}-carousel-${type}.png`;
+      const src = `images/carousel/${num}-carousel-${type}.webp`;
       return `<img src="${src}" alt="${data.name} - ${type}" loading="lazy">`;
     }).join('');
 
