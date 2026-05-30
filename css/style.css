@@ -1669,10 +1669,10 @@ body {
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.06;
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
-  filter: saturate(0.6);
+  filter: saturate(0.5) brightness(0.4);
 }
 
 .process-label,
@@ -3109,7 +3109,7 @@ footer {
    PROCESS — Left padding + cosmic bg
 ═══════════════════════════════════════ */
 
-.process-cosmic-bg { opacity: 0.08; }
+.process-cosmic-bg { opacity: 0.3; }
 
 
 /* ═══════════════════════════════════════
