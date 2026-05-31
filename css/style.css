@@ -1511,7 +1511,6 @@ body {
   font-size: 7px;
   font-weight: 700;
   letter-spacing: .3em;
-  text-transform: uppercase;
   color: var(--amber);
   background: rgba(240,170,0,0.06);
   border: 1px solid rgba(240,170,0,0.18);

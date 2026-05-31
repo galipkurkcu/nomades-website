@@ -973,16 +973,16 @@ const TRANSLATIONS = {
     'hq.int9.name': 'The Lobby',
     'hq.int9.desc': "Concierge Unit's domain. Every lead crosses this threshold before anything else begins. The Registry Desk stands at the center-back — names, stages, timestamps, milestones.",
     /* Maestro (Crucible Unit Conductor) */
-    'maestro.badge': 'Unit Conductor',
+    'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
     'maestro.desc':  "Six specialists. One conductor. Visual identity doesn't happen by accident. It is directed.",
     'maestro.btn':   'Read The Story  →',
     /* Threshold (Concierge Unit Conductor) */
-    'threshold.badge': 'Unit Conductor',
+    'threshold.badge': 'UNIT CONDUCTOR',
     /* Oracle / Architect / Strategist unit badges */
-    'oracle.badge':     'Unit Conductor',
-    'architect.badge':  'Unit Conductor',
-    'strategist.badge': 'Unit Conductor',
+    'oracle.badge':     'UNIT CONDUCTOR',
+    'architect.badge':  'UNIT CONDUCTOR',
+    'strategist.badge': 'UNIT CONDUCTOR',
     'threshold.role':  'Coordinator · Pipeline Registry',
     'threshold.desc':  'Every lead must be named. Every milestone must be marked. The Key does not lock or unlock. It registers.',
     'threshold.btn':   'Read The Story  →',
@@ -1246,16 +1246,16 @@ const TRANSLATIONS = {
     'hq.int9.name': 'Lobi',
     'hq.int9.desc': 'Concierge Birimi\'nin alanı. Her lead, başka bir şey başlamadan önce bu eşikten geçer. Registry Masası odanın arka merkezinde durur: isimler, aşamalar, zaman damgaları, milestone\'lar.',
     /* Maestro (Crucible Birimi Sefi) */
-    'maestro.badge': 'Birim Şefi',
+    'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
     'maestro.desc':  'Altı uzman. Tek sef. Görsel kimlik tesadüfen oluşmaz. Yönetilir.',
     'maestro.btn':   'Hikayeyi Oku  →',
     /* Threshold (Concierge Birimi Sefi) */
-    'threshold.badge': 'Birim Şefi',
+    'threshold.badge': 'BİRİM ŞEFİ',
     /* Oracle / Architect / Strategist birim şefi etiketleri */
-    'oracle.badge':     'Birim Şefi',
-    'architect.badge':  'Birim Şefi',
-    'strategist.badge': 'Birim Şefi',
+    'oracle.badge':     'BİRİM ŞEFİ',
+    'architect.badge':  'BİRİM ŞEFİ',
+    'strategist.badge': 'BİRİM ŞEFİ',
     'threshold.role':  'Koordinatör · Süreç Kaydı',
     'threshold.desc':  'Her lead isimlendirilmek zorundadır. Her milestone işaretlenmek zorundadır. Anahtar kitlemez veya açmaz. Kaydeder.',
     'threshold.btn':   'Hikayeyi Oku  →',
