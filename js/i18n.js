@@ -847,7 +847,7 @@ const TRANSLATIONS = {
     /* Army */
     'army.label':   '03 · The Army',
     'army.h2.line1':'21 AI Agents.',
-    'army.h2.line2':'6 Units.',
+    'army.h2.line2':'7 Units.',
     'army.h2.em':   '1 Mission.',
     'army.sub':     'Click any AI agent to read their full story.',
     /* Units */
@@ -863,6 +863,8 @@ const TRANSLATIONS = {
     'unit.signal.tagline':'Strategy · Production · Outreach. The broadcast engine that turns foundation into frequency.',
     'unit.crucible.name':    'Crucible Unit',
     'unit.crucible.tagline': 'Visual Production Team. Brief to screen, precisely. Seven AI agents, one pipeline. Nothing leaves unexamined.',
+    'unit.recon.name':       'Recon Unit',
+    'unit.recon.tagline':    'Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
     'sovereign.desc': 'Twenty intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
@@ -979,10 +981,11 @@ const TRANSLATIONS = {
     'maestro.btn':   'Read The Story  →',
     /* Threshold (Concierge Unit Conductor) */
     'threshold.badge': 'UNIT CONDUCTOR',
-    /* Oracle / Architect / Strategist unit badges */
+    /* Oracle / Architect / Strategist / Scout unit badges */
     'oracle.badge':     'UNIT CONDUCTOR',
     'architect.badge':  'UNIT CONDUCTOR',
     'strategist.badge': 'UNIT CONDUCTOR',
+    'scout.badge':      'UNIT CONDUCTOR',
     'threshold.role':  'Coordinator · Pipeline Registry',
     'threshold.desc':  'Every lead must be named. Every milestone must be marked. The Key does not lock or unlock. It registers.',
     'threshold.btn':   'Read The Story  →',
@@ -1092,7 +1095,7 @@ const TRANSLATIONS = {
     /* Army */
     'army.label':   '03 · Ordu',
     'army.h2.line1':'21 AI Ajan.',
-    'army.h2.line2':'6 Birim.',
+    'army.h2.line2':'7 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
     /* Units */
@@ -1108,6 +1111,8 @@ const TRANSLATIONS = {
     'unit.signal.tagline':'Strateji · Üretim · Yayın. Temeli frekansa dönüştüren yayın motoru.',
     'unit.crucible.name':    'Prodüksiyon Birimi',
     'unit.crucible.tagline': 'Görsel Üretim Ekibi. Brif\'ten ekrana, hassasiyetle. Yedi ajan, bir pipeline. Hiçbir şey incelenmeden geçmez.',
+    'unit.recon.name':       'Keşif Birimi',
+    'unit.recon.tagline':    'Prospect Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
     'sovereign.desc': 'Yirmi AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
@@ -1252,10 +1257,11 @@ const TRANSLATIONS = {
     'maestro.btn':   'Hikayeyi Oku  →',
     /* Threshold (Concierge Birimi Sefi) */
     'threshold.badge': 'BİRİM ŞEFİ',
-    /* Oracle / Architect / Strategist birim şefi etiketleri */
+    /* Oracle / Architect / Strategist / Scout birim şefi etiketleri */
     'oracle.badge':     'BİRİM ŞEFİ',
     'architect.badge':  'BİRİM ŞEFİ',
     'strategist.badge': 'BİRİM ŞEFİ',
+    'scout.badge':      'BİRİM ŞEFİ',
     'threshold.role':  'Koordinatör · Süreç Kaydı',
     'threshold.desc':  'Her lead isimlendirilmek zorundadır. Her milestone işaretlenmek zorundadır. Anahtar kitlemez veya açmaz. Kaydeder.',
     'threshold.btn':   'Hikayeyi Oku  →',
