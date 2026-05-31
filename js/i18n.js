@@ -979,6 +979,10 @@ const TRANSLATIONS = {
     'maestro.btn':   'Read The Story  →',
     /* Threshold (Concierge Unit Conductor) */
     'threshold.badge': 'Unit Conductor',
+    /* Oracle / Architect / Strategist unit badges */
+    'oracle.badge':     'Unit Conductor',
+    'architect.badge':  'Unit Conductor',
+    'strategist.badge': 'Unit Conductor',
     'threshold.role':  'Coordinator · Pipeline Registry',
     'threshold.desc':  'Every lead must be named. Every milestone must be marked. The Key does not lock or unlock. It registers.',
     'threshold.btn':   'Read The Story  →',
@@ -1248,6 +1252,10 @@ const TRANSLATIONS = {
     'maestro.btn':   'Hikayeyi Oku  →',
     /* Threshold (Concierge Birimi Sefi) */
     'threshold.badge': 'Birim Şefi',
+    /* Oracle / Architect / Strategist birim şefi etiketleri */
+    'oracle.badge':     'Birim Şefi',
+    'architect.badge':  'Birim Şefi',
+    'strategist.badge': 'Birim Şefi',
     'threshold.role':  'Koordinatör · Süreç Kaydı',
     'threshold.desc':  'Her lead isimlendirilmek zorundadır. Her milestone işaretlenmek zorundadır. Anahtar kitlemez veya açmaz. Kaydeder.',
     'threshold.btn':   'Hikayeyi Oku  →',
