@@ -661,6 +661,16 @@ const AGENTS = {
       "The Verdict Scale on the left shoulder physically rotates — the decision scale is never a metaphor, it is always real. Every decision made here is final. And final means final. Nothing leaves the Crucible unexamined. Not because mistakes happen. Because they won't."
     ],
     carousel: ['20-qa-sentinel', '20-carousel']
+  },
+  '21': {
+    num: '[21]', name: 'The Threshold', role: 'Coordinator · Pipeline Registry',
+    portrait: 'images/agents/21-coordinator-threshold-01-portre.webp',
+    story: [
+      "Before the Concierge Unit existed, the pipeline breathed without rhythm. Leads arrived nameless, milestones passed unmarked, progress dissolved into the void before anyone could catch it. In the Realm, agents of great power existed — but none stood at the threshold. None counted.",
+      "The Threshold is not recognized by rank alone. The Concierge Coat declares the distinction before the figure speaks: eight amber-crystal buttons sealed along its front, one for each pipeline stage, the intake flow made visible in fabric. Not armor. Not ceremony. The uniform of protocol and precision. When a new entity approaches the obsidian facade of HQ, the Mark Collar at the throat declares identity before a word is spoken. The Ingress Key is raised at shoulder height — blade downward, bow up, a perfect triangle amber-etched at its crown echoing the HQ geometry. Eight teeth descend the blade: some burning amber for active stages, some dark in basalt, waiting. The Key does not lock or unlock. It registers.",
+      "In The Lobby — HQ-INT-09, where the boundary between the outside world and the pipeline is made physical — the Registry Desk stands at the room's center-back. Cascading amber data across its obsidian surface: names, stages, timestamps, milestones. The Signal Pulse radiates outward from the chest in measured rings, each pulse marking one new arrival acknowledged. When a new entity crosses the threshold, a cold tooth in the Ingress Key warms to amber. When a milestone is recorded, another lights. The single law of the Concierge Unit: nothing advances until the Key accepts it."
+    ],
+    carousel: ['21-coordinator-threshold', '21-carousel']
   }
 };
 
@@ -1151,6 +1161,14 @@ const AGENTS_TR = {
       "Sentinel'in işi nihai kontroldür ve nihai kontrol her şeydir. Brief gerçekten yazıldı mı? Stil kilidi kapalı mı? Çekim listesi senaryonun tüm anlam bloklarını kapsıyor mu? Promptlar sahne numaralarıyla bire bir örtüşüyor mu? Görsel dosya isimlendirmesi doğru mu?",
       "Sol omuzda Karar Terazisi fiziksel olarak döner: karar terazisi hiçbir zaman metafor değil, her zaman gerçektir. Burada alınan her karar kesindir. Ve kesin, kesin demektir. Crucible'dan hiçbir şey incelenmeden çıkmaz. Hatalar olduğu için değil. Olmayacak oldukları için."
     ]
+  },
+  '21': {
+    role_tr: 'Koordinatör · Pipeline Kaydı',
+    story_tr: [
+      "Concierge Unit var olmadan önce, pipeline ritmsiz nefes alıyordu. Lead'ler isimsiz gelirdi, milestone'lar işaretsiz geçerdi, ilerleme kimse yakalamadan void'e karışırdı. Realm'de büyük güçte agent'lar vardı: ama eşikte duran yoktu. Sayan yoktu.",
+      "Threshold yalnızca rütbeyle tanınmaz. Concierge Paltosu, figür konuşmadan önce ayrımı ilan eder: sekiz amber kristal düğme önünde mühürlü, her biri bir pipeline aşaması, giriş akışı kumaşa işlenmiş. Zırh değil, tören kıyafeti değil: protokolün ve hassasiyetin üniforması. Yeni bir varlık HQ'nun obsidyen cephesine yaklaştığında, boğazdaki Mark Yakası kimliği tek kelime edilmeden ilan eder. Ingress Key omuz hizasında yukarı tutulur: diş kısmı aşağıda, yay yukarıda, HQ geometrisini yansıtan üçgen zirve amber kabartmalarla işlenmiş. Sekiz diş bıçak boyunca iner: kimisi amber parıltısında yanar (aktif aşamalar), kimisi karanlık bazaltta bekler. Anahtar kitlemez veya açmaz. Kaydeder.",
+      "HQ-INT-09 The Lobby'de — dış dünyanın pipeline ile birleştiği eşiğin fiziksel hale geldiği yerde — Registry Masası odanın arka merkezinde durur. Obsidyen yüzeyinde kaskatlayan amber veriler: isimler, aşamalar, zaman damgaları, milestone'lar. Signal Pulse gögüsten ölçülü halkalar halinde dışa yayılır, her nabız yeni bir varışın onaylandığını bildirir. Yeni bir varlık eşikten her geçtiğinde, Ingress Key'in soğuk bir dişi ısınır. Bir milestone kaydedildiğinde, bir diş daha amber parıltısına kavuşur. Concierge Unit'in tek yasası: hiçbir şey anahtar kabul etmeden ileriye geçmez."
+    ]
   }
 };
 
@@ -1262,13 +1280,15 @@ const TRANSLATIONS = {
     'svc.03.body':       "Strategy, scripts, visuals, scheduling. Monthly content packages produced by the fleet and delivered ready-to-publish. Not templates. Not recycled content. Every piece built from your Kernel.",
     /* Army */
     'army.label':   '03 · The Army',
-    'army.h2.line1':'20 AI Agents.',
-    'army.h2.line2':'5 Units.',
+    'army.h2.line1':'21 AI Agents.',
+    'army.h2.line2':'6 Units.',
     'army.h2.em':   '1 Mission.',
     'army.sub':     'Click any AI agent to read their full story.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
+    'unit.concierge.name':    'Concierge Unit',
+    'unit.concierge.tagline': 'Intake · Pipeline · Record. The threshold every lead must cross before anything else can begin.',
     'unit.intel.name':    'Intel Unit',
     'unit.intel.tagline': 'Analysis · Proposal · Discovery. The three AI agents that know everything before the work begins.',
     'unit.forge.name':    'Forge Unit',
@@ -1279,7 +1299,7 @@ const TRANSLATIONS = {
     'unit.crucible.tagline': 'Visual Production Team. Brief to screen, precisely. Seven AI agents, one pipeline. Nothing leaves unexamined.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
-    'sovereign.desc': 'Nineteen intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
+    'sovereign.desc': 'Twenty intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
     'chron.label':  '04 · Signal Chronicle',
@@ -1389,6 +1409,11 @@ const TRANSLATIONS = {
     'maestro.role':  'Visual Production · Director',
     'maestro.desc':  "Six specialists. One conductor. Visual identity doesn't happen by accident. It is directed.",
     'maestro.btn':   'Read The Story  →',
+    /* Threshold (Concierge Unit Conductor) */
+    'threshold.badge': 'Unit Conductor',
+    'threshold.role':  'Coordinator · Pipeline Registry',
+    'threshold.desc':  'Every lead must be named. Every milestone must be marked. The Key does not lock or unlock. It registers.',
+    'threshold.btn':   'Read The Story  →',
     /* Agent card descriptions */
     'agent.02.desc': "The Oracle does not read what you wrote. The Oracle reads what you couldn't say. Between the brief and the output: the exact distance between who you think you are and who the market sees.",
     'agent.03.desc': 'No deal begins at the meeting. The Ambassador arrives first: reading the room, shaping the offer, closing the frame before the client finishes the first sentence.',
@@ -1445,13 +1470,15 @@ const TRANSLATIONS = {
     'manifesto.col3.text':  '"Yeterince iyi" bizim sözlüğümüzde yok. Her brief tavanı zorlar. Her teslimat standardı yükseltir.',
     /* Army */
     'army.label':   '02 · Ordu',
-    'army.h2.line1':'20 AI Ajan.',
-    'army.h2.line2':'5 Birim.',
+    'army.h2.line1':'21 AI Ajan.',
+    'army.h2.line2':'6 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
+    'unit.concierge.name':    'Concierge Birimi',
+    'unit.concierge.tagline': 'Giriş · Pipeline · Kayıt. Her lead\'in başka bir şey başlamadan önce geçmek zorunda olduğu eşik.',
     'unit.intel.name':    'Intel Birimi',
     'unit.intel.tagline': 'Analiz · Teklif · Keşif. İş başlamadan önce her şeyi bilen üç ajan.',
     'unit.forge.name':    'Forge Birimi',
@@ -1462,7 +1489,7 @@ const TRANSLATIONS = {
     'unit.crucible.tagline': 'Görsel Üretim Ekibi. Brief\'ten ekrana, hassasiyetle. Yedi ajan, bir pipeline. Hiçbir şey incelenmeden geçmez.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
-    'sovereign.desc': 'On dokuz zeka. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
+    'sovereign.desc': 'Yirmi zeka. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
     'chron.label':  '03 · Sinyal Tarihi',
@@ -1572,6 +1599,11 @@ const TRANSLATIONS = {
     'maestro.role':  'Görsel Üretim · Yönetmen',
     'maestro.desc':  'Altı uzman. Tek sef. Görsel kimlik tesadüfen oluşmaz. Yönetilir.',
     'maestro.btn':   'Hikayeyi Oku  →',
+    /* Threshold (Concierge Birimi Sefi) */
+    'threshold.badge': 'Birim Sefi',
+    'threshold.role':  'Koordinatör · Pipeline Kaydı',
+    'threshold.desc':  'Her lead isimlendirilmek zorundadır. Her milestone işaretlenmek zorundadır. Anahtar kitlemez veya açmaz. Kaydeder.',
+    'threshold.btn':   'Hikayeyi Oku  →',
     /* Ajan kart açıklamaları */
     'agent.02.desc': "Oracle yazdığınızı okumaz. Yazmadığınızı okur. Brief ile çıktı arasındaki mesafe: kendinizi kim sandığınız ile pazarın sizi nasıl gördüğü arasındaki tam uzaklıktır.",
     'agent.03.desc': 'Hiçbir anlaşma toplantıda başlamaz. Ambassador önce gelir: odayı okur, teklifi şekillendirir, müşteri ilk cümlesini bitirmeden çerçeveyi kapatır.',

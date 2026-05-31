@@ -2985,6 +2985,15 @@ footer {
 .unit-name { transition: text-shadow 0.5s; }
 .unit:hover .unit-name { text-shadow: 0 0 48px rgba(240,170,0,0.18); }
 
+/* Threshold hero image: center the figure */
+.unit--concierge .agent-card--maestro-hero .agent-visual img {
+  object-position: center 15%;
+  filter: brightness(.55) saturate(1.1);
+}
+.unit--concierge .agent-card--maestro-hero:hover .agent-visual img {
+  filter: brightness(.72) saturate(1.1);
+}
+
 /* Victor sovereign: ambient amber right-side haze */
 .unit--orchestration .sovereign { position: relative; overflow: hidden; }
 .unit--orchestration .sovereign::after {
