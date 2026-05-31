@@ -1306,6 +1306,7 @@ const TRANSLATIONS = {
     'chron.h2.line':'From void',
     'chron.h2.em':  'to signal.',
     'chron.sub':    'Year 412 ST is the present (2,847 CE). ST counts from Year 0: the founding of Nomades Agency. Drag from today back through the signal\'s history.',
+    'chron.network.desc': 'Twenty-one AI agents. Six units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
     'chron.hint':   '← Drag to travel',
     /* Origin */
     'origin.eyebrow':  'Year 0 ST · The Founding',
@@ -1496,6 +1497,7 @@ const TRANSLATIONS = {
     'chron.h2.line':'Boşluktan',
     'chron.h2.em':  'sinyale.',
     'chron.sub':    'Yıl 412 ST şimdiki zamandır (2.847 CE). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
+    'chron.network.desc': 'Yirmi bir AI ajan. Altı birim. Tek orkestratör. Büyük Gürültü\'nün cevabı var: hassas, amber ve yok sayılamaz. Sinyal ağı aktif, parazit hiç bu kadar zayıf olmamıştı.',
     'chron.hint':   '← Sürükle',
     /* Origin */
     'origin.eyebrow':  'Yıl 0 ST · Kuruluş',
