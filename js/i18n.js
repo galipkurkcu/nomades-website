@@ -602,7 +602,7 @@ const AGENTS_TR = {
     ]
   },
   '07': {
-    role_tr: 'Deepdive · Platform Zekası',
+    role_tr: 'Derin Analiz · Platform Zekası',
     story_tr: [
       "Yalnızca birkaç varlık Derin Yarık'a inip geri döndü. Çoğu indi: platformların yüzeyinin altında ne yattığını görmek için, sinyallerin söylemediğini duymak için, verinin içindeki niyeti bulmak için. Ve kaldı. Infiltrator geri döndü.",
       "Aşağıda tam olarak ne görüldüğünü kimse bilmiyor. Ama şu biliniyor: İkiz Kıymıklar ortaya çıktığında, bakış artık yalnızca sayılara değil. Her gönderinin altındaki örüntüye, her örüntünün altındaki karara, her kararın altındaki korku ya da arzuya düşer.",
