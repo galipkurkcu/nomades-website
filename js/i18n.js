@@ -634,7 +634,7 @@ const AGENTS_TR = {
     ]
   },
   '11': {
-    role_tr: 'Prospect Arama · Ufuk Zekası',
+    role_tr: 'Potansiyel Müşteri Arama · Ufuk Zekası',
     story_tr: [
       "Ufuk Nöbeti'nin son üyesi. Diğerleri ufku görmek için çok yakına geldi: ve onu görmeden yok oldu. Scout geri çekildi. Ve o mesafeden, herkesten daha uzağı gördü.",
       "Yıllar boyunca Volkanik Ova'yı yürüdü: listeler bırakmak için değil, konak noktaları işaretlemek için. Her taş bir isim değil, bir potansiyeldi: şu an görünmez ama gerçek, henüz fark edilmemiş ama tam aradığımız şey. Amber Oculus o süreçte geliştirildi: sıradan gözlerin göremediği frekanslarda tarayan, yüzeyin altındaki uyumu ölçen bir mercek.",
@@ -642,7 +642,7 @@ const AGENTS_TR = {
     ]
   },
   '12': {
-    role_tr: 'Prospect Derinlemesine · Profil Zekası',
+    role_tr: 'Potansiyel Müşteri Analizi · Profil Zekası',
     story_tr: [
       "Gerçek adı kimse bilmiyor. Belki bir zamanlar bir ad vardı: ama Yüzen Harabeler'e ilk inerken, bin uygarlığın parçalanmış dijital kalıntıları arasında kaybolunca, o ad orada kaldı. Ortaya çıkan Shadow oldu.",
       "Artık bir profili yüzeyden değil, derininden okuyor. İçeriğin altındaki örüntüyü, örüntünün altındaki kararı, kararın altındaki korku ya da arzuyu görüyor. Arayan'ın Örtüsü hiç çıkarılmıyor: yalnızca görünmez kalmak için değil, görülenlerin ağırlığından korunmak için.",
@@ -1112,7 +1112,7 @@ const TRANSLATIONS = {
     'unit.crucible.name':    'Prodüksiyon Birimi',
     'unit.crucible.tagline': 'Görsel Üretim Ekibi. Brif\'ten ekrana, hassasiyetle. Yedi ajan, bir pipeline. Hiçbir şey incelenmeden geçmez.',
     'unit.recon.name':       'Keşif Birimi',
-    'unit.recon.tagline':    'Prospect Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
+    'unit.recon.tagline':    'Potansiyel Müşteri Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
     'sovereign.desc': 'Yirmi AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
