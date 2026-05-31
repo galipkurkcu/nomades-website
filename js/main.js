@@ -1405,6 +1405,8 @@ const TRANSLATIONS = {
     'hq.int7.desc': 'Long-range signal monitoring. Scout and Shadow operate from this level when mapping new territory before first contact.',
     'hq.int8.name': 'Research Chamber',
     'hq.int8.desc': "Intel Unit's primary analysis space. Every client survey is processed here. The work that happens before the work begins.",
+    'hq.int9.name': 'The Lobby',
+    'hq.int9.desc': "Concierge Unit's domain. Every lead crosses this threshold before anything else begins. The Registry Desk stands at the center-back — names, stages, timestamps, milestones.",
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'Unit Conductor',
     'maestro.role':  'Visual Production · Director',
@@ -1595,6 +1597,8 @@ const TRANSLATIONS = {
     'hq.int7.name': 'Gözlemevi',
     'hq.int7.desc': 'Uzun menzilli sinyal izleme. Scout ve Shadow, ilk temasta yeni bölgeler haritalandırırken bu seviyeden çalışır.',
     'hq.int8.name': 'Araştırma Odası',
+    'hq.int9.name': 'Lobi',
+    'hq.int9.desc': 'Concierge Birimi\'nin alanı. Her lead, başka bir şey başlamadan önce bu eşikten geçer. Registry Masası odanın arka merkezinde durur: isimler, aşamalar, zaman damgaları, milestone\'lar.',
     'hq.int8.desc': 'Intel Biriminin birincil analiz alanı. Her müşteri anketi burada işlenir. Çalışmanın başlamadan önceki çalışması.',
     /* Maestro (Crucible Birimi Sefi) */
     'maestro.badge': 'Birim Sefi',
