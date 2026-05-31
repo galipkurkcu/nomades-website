@@ -480,6 +480,11 @@ function applyTranslations(lang) {
     if (t[key] !== undefined) el.innerHTML = t[key];
   });
 
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
   document.documentElement.lang = lang;
 
   // Army card roles
@@ -602,7 +607,8 @@ function initContactForm() {
       timestamp: new Date().toISOString()
     };
     btn.disabled = true;
-    btn.textContent = 'Sending...';
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    btn.textContent = t['form.sending'] || 'Sending...';
     try {
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
@@ -614,8 +620,8 @@ function initContactForm() {
       document.getElementById('cf-success').hidden = false;
     } catch(err) {
       btn.disabled = false;
-      btn.textContent = 'Başvur  →';
-      alert('Bir hata oluştu. Lütfen tekrar dene.');
+      btn.innerHTML = t['form.submit'] || 'Apply &nbsp;&rarr;';
+      alert(currentLang === 'tr' ? 'Bir hata oluştu. Lütfen tekrar dene.' : 'An error occurred. Please try again.');
     }
   });
 }

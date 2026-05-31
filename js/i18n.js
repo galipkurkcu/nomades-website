@@ -752,7 +752,7 @@ const MARQUEE_ITEMS = {
   tr: [
     { text: 'Nomades Agency',          lit: false },
     { text: 'Sinyal Zekası',            lit: true  },
-    { text: 'Hybrid Model',             lit: false },
+    { text: 'Hibrit Model',             lit: false },
     { text: 'İçerik Hakimiyeti',        lit: false },
     { text: 'iyiyle yetinmeyiz',        lit: true  },
     { text: 'Marka Mimarisi',           lit: false },
@@ -902,7 +902,7 @@ const TRANSLATIONS = {
     'proc.h2.line1': 'Zero to',
     'proc.h2.line2': 'system.',
     'proc.00.step':  'Sales Engine',
-    'proc.00.title': 'Potansiyel Müşteri ve İlk Temas',
+    'proc.00.title': 'Prospects & Outreach',
     'proc.00.desc':  'Before any proposal is written, the fleet scans the horizon. Signal scouts identify high-fit prospects, map their platform presence, and deliver precision-crafted first contact. The right signal, to the right target.',
     'proc.01.step':  'Contact',
     'proc.01.title': 'First Contact',
@@ -911,9 +911,9 @@ const TRANSLATIONS = {
     'proc.02.title': 'Strategic Survey',
     'proc.02.desc':  "30 in-depth questions extract your brand's DNA before we build anything. Goals, voice, audience, pain points - every answer feeds directly into the system.",
     'proc.03.step':  'Alignment',
-    'proc.03.title': 'İhtiyaç Analizi Görüşmesi',
+    'proc.03.title': 'Discovery Call',
     'proc.03.desc':  'We present your personal roadmap, built from the survey. Timeline, scope, and vision aligned in one session. This is where the Signal Pact begins.',
-    'proc.04.step':  'Entegrasyon Süreci',
+    'proc.04.step':  'Onboarding',
     'proc.04.title': 'Onboarding / Brand Identity',
     'proc.04.desc':  'Visual language, tone of voice, and content framework are established. The brand kit is collected, then the system is activated.',
     'proc.05.step':  'System',
@@ -1005,7 +1005,22 @@ const TRANSLATIONS = {
     'footer.tagline': "we don't settle for good, we seek perfection",
     'footer.contact': 'Contact',
     /* Popup */
-    'popup.gallery': 'In the Realm'
+    'popup.gallery': 'In the Realm',
+    /* Contact Form */
+    'form.label.name':      'Name',
+    'form.label.email':     'Email',
+    'form.label.brand':     'Brand',
+    'form.label.instagram': 'Instagram',
+    'form.label.message':   'Message',
+    'form.ph.name':         'Victor Furrier',
+    'form.ph.email':        'you@email.com',
+    'form.ph.brand':        'Brand Name',
+    'form.ph.instagram':    '@username',
+    'form.ph.message':      'Your message',
+    'form.submit':          'Apply &nbsp;&rarr;',
+    'form.sending':         'Sending...',
+    'form.success.title':   'Signal received.',
+    'form.success.sub':     "We'll be in touch shortly."
   },
 
   tr: {
@@ -1019,7 +1034,7 @@ const TRANSLATIONS = {
     'hero.eyebrow': 'Nomades Agency  ·  2026',
     'hero.line1':   'İçerik değil,',
     'hero.line2':   'hakimiyet.',
-    'hero.tagline': "iyiyle yetinmeyiz, mükemmeli arıyoruz",
+    'hero.tagline': "İyiyle yetinmeyiz, mükemmeli arıyoruz",
     'hero.apply':   'Başvur  →',
     'hero.army':    'AI Orduyu Tanı',
     'hero.scroll':  'Kaydır',
@@ -1039,7 +1054,7 @@ const TRANSLATIONS = {
     'manifesto.col1.text':  'Az kelime, maksimum etki. Ne düşündüğümüzü söyleriz. Filtre yok, performatif alçakgönüllülük yok. Bir şey yanlışsa söyleriz.',
     'manifesto.col2.title': 'Vizyoner',
     'manifesto.col2.text':  'Trendleri takip etmeyiz, yaratırız. Bugünü görmeyiz, gidişatı görürüz. Büyük resim her zaman önce gelir.',
-    'manifesto.col3.title': 'Taviz Vermez',
+    'manifesto.col3.title': 'Sıfır Tolerans',
     'manifesto.col3.text':  '"Yeterince iyi" bizim sözlüğümüzde yok. Her brif tavanı zorlar. Her teslimat standardı yükseltir.',
     /* Services */
     'services.label':   '02 · Hizmetler',
@@ -1077,7 +1092,7 @@ const TRANSLATIONS = {
     'army.h2.em':   '1 Görev.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
     /* Units */
-    'unit.orch.name':     'Orchestration',
+    'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
     'unit.concierge.name':    'Koordinasyon Birimi',
     'unit.concierge.tagline': 'Giriş · Süreç · Kayıt. Her lead\'in başka bir şey başlamadan önce geçmek zorunda olduğu eşik.',
@@ -1191,14 +1206,14 @@ const TRANSLATIONS = {
     'proc.02.step':  'Zeka',
     'proc.02.title': 'Stratejik Anket',
     'proc.02.desc':  '30 derinlemesine soru, herhangi bir şey inşa etmeden önce markanızın DNA\'sını çıkarır. Hedefler, ses tonu, kitle, acı noktaları - her cevap doğrudan sistemi besler.',
-    'proc.03.step':  'Hizalama',
+    'proc.03.step':  'Hizalanma',
     'proc.03.title': 'İhtiyaç Analizi Görüşmesi',
     'proc.03.desc':  'Anketten hazırlanan kişisel yol haritanızı sunarız. Zaman çizelgesi, kapsam ve vizyon tek seansta hizalanır. Sinyal Paktı burada başlar.',
     'proc.04.step':  'Katılım',
     'proc.04.title': 'Entegrasyon Süreci / Marka Kimliği',
     'proc.04.desc':  'Görsel dil, ses tonu ve içerik çerçevesi oluşturulur. Marka kiti alınır, ardından sistem devreye girer.',
     'proc.05.step':  'Sistem',
-    'proc.05.title': 'Çekirdek Yapı + Marka Rehberi',
+    'proc.05.title': 'Kernel + Marka Rehberi',
     'proc.05.desc':  'AI temeli ve görsel kimlik sistemi paralel olarak inşa edilir. Markanızın artık bir beyni ve bir dili var. Buradan üretilen her şey ikisini de taşır.',
     'proc.06.step':  'Üretim',
     'proc.06.title': 'Aylık İçerik Paketi',
@@ -1286,7 +1301,22 @@ const TRANSLATIONS = {
     'footer.tagline': "iyiyle yetinmeyiz, mükemmeli arıyoruz",
     'footer.contact': 'İletişim',
     /* Popup */
-    'popup.gallery': "Diyar'da"
+    'popup.gallery': "Diyar'da",
+    /* Contact Form */
+    'form.label.name':      'İsim',
+    'form.label.email':     'E-posta',
+    'form.label.brand':     'Marka',
+    'form.label.instagram': 'Instagram',
+    'form.label.message':   'Mesaj',
+    'form.ph.name':         'Ad Soyad',
+    'form.ph.email':        'siz@email.com',
+    'form.ph.brand':        'Marka Adı',
+    'form.ph.instagram':    '@kullanici',
+    'form.ph.message':      'Mesajınız',
+    'form.submit':          'Başvur &nbsp;&rarr;',
+    'form.sending':         'Gönderiliyor...',
+    'form.success.title':   'Sinyal alındı.',
+    'form.success.sub':     'En kısa sürede ulaşacağız.'
   }
 };
 
