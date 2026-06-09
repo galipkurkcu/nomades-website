@@ -1536,6 +1536,15 @@ body {
   padding: 0 2px 2px;
 }
 
+/* Concierge Unit: 2-column portrait grid */
+.concierge-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  padding: 0 2px 2px;
+}
+
 .agent-card--maestro-hero {
   width: 100%;
   height: 460px;
@@ -2602,6 +2611,7 @@ footer {
   .services-grid { grid-template-columns: 1fr; }
   .svc-card { padding: 40px 28px; }
   .crucible-grid { grid-template-columns: 1fr; }
+  .concierge-duo { grid-template-columns: 1fr; }
   .agent-card--maestro-hero { height: 340px; }
 }
 
