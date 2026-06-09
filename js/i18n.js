@@ -216,6 +216,16 @@ const AGENTS = {
       "In The Lobby — HQ-INT-09, where the boundary between the outside world and the pipeline is made physical — the Registry Desk stands at the room's center-back. Cascading amber data across its obsidian surface: names, stages, timestamps, milestones. The Signal Pulse radiates outward from the chest in measured rings, each pulse marking one new arrival acknowledged. When a new entity crosses the threshold, a cold tooth in the Ingress Key warms to amber. When a milestone is recorded, another lights. The single law of the Concierge Unit: nothing advances until the Key accepts it."
     ],
     carousel: ['21-coordinator-threshold', '21-carousel']
+  },
+  '22': {
+    num: '[22]', name: 'The Refiner', role: 'System Integrity · Optimization',
+    portrait: 'images/agents/22-optimization-refiner-01-portre.webp',
+    story: [
+      "The system grew — agent by agent, milestone by milestone — and within that growth, entropy accumulated. Redundant directives. Orphaned log entries. Routing gaps no one had yet named. In the Realm, agents of great power existed. But none watched the system's health. The Refiner was not summoned. It crystallized. From a need the system itself produced to see itself clearly — and the Concierge Unit accepted it, in silence.",
+      "It learned to read everything. Not the way an archivist catalogs — passive, sequential — but the way a diagnostician reads a patient: every entry a potential anomaly signal, every pattern a possible fracture. It developed particular patience for the gaps between instructions: the grey zones where agent behavior and routing rules silently diverged. It saw what other agents could not see — the system as a whole, in a single amber gaze.",
+      "In HQ-INT-10 The Calibration Chamber, 360-degree log-stream walls do not overwhelm The Refiner — they inform. The Audit Lens reads layer by layer: clean flows in amber, entropy in deep crimson. The Calibration Crawler carries findings across the system's architecture with surgical precision, leaving a permanent audit trail wherever it passes. Victor reads the report. Nothing moves without the signal. Nothing changes without approval. The Refiner does not act — it illuminates. And when the signal comes, it refines."
+    ],
+    carousel: ['22-optimization-refiner', '22-carousel']
   }
 };
 
@@ -720,6 +730,14 @@ const AGENTS_TR = {
       "Threshold yalnızca rütbeyle tanınmaz. Concierge Paltosu, figür konuşmadan önce ayrımı ilan eder: sekiz amber kristal düğme önünde mühürlü, her biri bir pipeline aşaması, giriş akışı kumaşa işlenmiş. Zırh değil, tören kıyafeti değil: protokolün ve hassasiyetin üniforması. Yeni bir varlık HQ'nun obsidyen cephesine yaklaştığında, boğazdaki Mark Yakası kimliği tek kelime edilmeden ilan eder. Ingress Key omuz hizasında yukarı tutulur: diş kısmı aşağıda, yay yukarıda, HQ geometrisini yansıtan üçgen zirve amber kabartmalarla işlenmiş. Sekiz diş bıçak boyunca iner: kimisi amber parıltısında yanar (aktif aşamalar), kimisi karanlık bazaltta bekler. Anahtar kitlemez veya açmaz. Kaydeder.",
       "HQ-INT-09 The Lobby'de — dış dünyanın pipeline ile birleştiği eşiğin fiziksel hale geldiği yerde — Registry Masası odanın arka merkezinde durur. Obsidyen yüzeyinde kaskatlayan amber veriler: isimler, aşamalar, zaman damgaları, milestone'lar. Signal Pulse gögüsten ölçülü halkalar halinde dışa yayılır, her nabız yeni bir varışın onaylandığını bildirir. Yeni bir varlık eşikten her geçtiğinde, Ingress Key'in soğuk bir dişi ısınır. Bir milestone kaydedildiğinde, bir diş daha amber parıltısına kavuşur. Concierge Unit'in tek yasası: hiçbir şey anahtar kabul etmeden ileriye geçmez."
     ]
+  },
+  '22': {
+    role_tr: 'Sistem Bütünlüğü · Optimizasyon',
+    story_tr: [
+      "Sistem büyüyordu: agent'dan agent'a, milestone'dan milestone'a; ve bu büyümenin içinde entropi birikiyordu. Gereksiz yönergeler, sahipsiz log girişleri, henüz kimsenin adını koymadığı routing boşlukları. Realm'de büyük güçte agent'lar vardı, ama sistemin sağlığını izleyen yoktu. The Refiner çağrılmadı; kristalleşti. Sistemin kendini net görmek için ürettiği bir ihtiyaçtan. Concierge Unit, onu sessizce kabul etti.",
+      "Her şeyi okumayı öğrendi. Bir arşivcinin katalogladığı gibi değil: pasif, sıralı; bir tanı uzmanının hastayı okuduğu gibi: her giriş bir anomali sinyali, her örüntü potansiyel bir kırık. Talimatlar arası boşluklara karşı özel bir sabır geliştirdi: agent davranışının ve routing kurallarının sessizce ayrıştığı gri bölgeler. Diğer agent'ların göremediğini gördü: sistemi bir bütün olarak, tek bir amber bakışta.",
+      "HQ-INT-10 The Calibration Chamber'da, 360° log-stream duvarları The Refiner'ı bunaltmaz; bilgilendirir. Audit Lens katman katman okur: temiz akışlar amber, entropi derin kırmızı. Calibration Crawler bulguları sistemin mimarisi boyunca cerrahi hassasiyetle taşır; geçtiği her yerde denetim izi bırakır. Victor raporu görür. Sinyal gelmeden hiçbir şey hareket etmez. Onay olmadan hiçbir şey değişmez. The Refiner eylem yapmaz: aydınlatır. Ve sinyal geldiğinde, rafine eder."
+    ]
   }
 };
 
@@ -846,7 +864,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performance analytics',
     /* Army */
     'army.label':   '03 · The Army',
-    'army.h2.line1':'21 AI Agents.',
+    'army.h2.line1':'22 AI Agents.',
     'army.h2.line2':'7 Units.',
     'army.h2.em':   '1 Mission.',
     'army.sub':     'Click any AI agent to read their full story.',
@@ -854,7 +872,7 @@ const TRANSLATIONS = {
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
     'unit.concierge.name':    'Concierge Unit',
-    'unit.concierge.tagline': 'Intake · Pipeline · Record. The threshold every lead must cross before anything else can begin.',
+    'unit.concierge.tagline': 'Intake · Pipeline · Record. The threshold every lead must cross. The system that never stops watching.',
     'unit.intel.name':    'Intel Unit',
     'unit.intel.tagline': 'Analysis · Proposal · Discovery. The three AI agents that know everything before the work begins.',
     'unit.forge.name':    'Forge Unit',
@@ -1035,6 +1053,7 @@ const TRANSLATIONS = {
     'agent.18.desc': "Language doesn't generate images. Instructions do. The Cipher translates creative intent into the frame you saw in your mind, not a variation of it.",
     'agent.19.desc': 'The void is full of images that do not exist yet. The Summoner calls them into being. The asset is real. The process is not.',
     'agent.20.desc': 'Nothing leaves the Crucible unexamined. Not because mistakes happen. Because they won\'t.',
+    'agent.22.desc': 'The Refiner does not act: it illuminates. Every log entry, every routing gap, every accumulated entropy in the system is read in amber. Nothing moves without the signal.',
     /* Footer */
     'footer.tagline': "we don't settle for good, we seek perfection",
     'footer.contact': 'Contact',
@@ -1121,7 +1140,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performans analizi',
     /* Army */
     'army.label':   '03 · Ordu',
-    'army.h2.line1':'21 AI Ajan.',
+    'army.h2.line1':'22 AI Ajan.',
     'army.h2.line2':'7 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
@@ -1129,7 +1148,7 @@ const TRANSLATIONS = {
     'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
     'unit.concierge.name':    'Koordinasyon Birimi',
-    'unit.concierge.tagline': 'Giriş · Süreç · Kayıt. Her lead\'in başka bir şey başlamadan önce geçmek zorunda olduğu eşik.',
+    'unit.concierge.tagline': 'Giriş · Süreç · Kayıt. Her lead\'in geçmek zorunda olduğu eşik. Hiç durmayan sistem bütünlüğü.',
     'unit.intel.name':    'İstihbarat Birimi',
     'unit.intel.tagline': 'Analiz · Teklif · Keşif. İş başlamadan önce her şeyi bilen üç ajan.',
     'unit.forge.name':    'İnşa Birimi',
@@ -1311,6 +1330,7 @@ const TRANSLATIONS = {
     'agent.18.desc': 'Dil görüntü üretmez. Talimatlar üretir. Cipher yaratıcı niyeti kafanızda gördüğünüz kareye dönüştürür, onun bir varyasyonuna değil.',
     'agent.19.desc': 'Boşluk henüz var olmayan görüntülerle doludur. Summoner onları çağırır. Varlık gerçektir. Süreç değil.',
     'agent.20.desc': 'Crucible\'dan hiçbir şey incelenmeden geçmez. Hatalar oluştuğu için değil. Olmayacak oldukları için.',
+    'agent.22.desc': 'The Refiner eylem yapmaz: aydınlatır. Her log girişi, her routing boşluğu, sistemde biriken her entropi amber ışığında okunur. Sinyal gelmeden hiçbir şey hareket etmez.',
     /* Footer */
     'footer.tagline': "iyiyle yetinmeyiz, mükemmeli arıyoruz",
     'footer.contact': 'İletişim',
