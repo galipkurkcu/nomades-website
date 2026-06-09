@@ -816,7 +816,7 @@ const TRANSLATIONS = {
     'hero.army':    'Meet The Army',
     'hero.scroll':  'Scroll',
     /* Stats */
-    'stat.agents':  'Specialist AI Agents',
+    'stat.agents':  '22 Specialist AI Agents',
     'stat.hybrid':  'Hybrid',
     'stat.model':   'Production Model',
     'stat.command': 'Command Center',
@@ -1092,7 +1092,7 @@ const TRANSLATIONS = {
     'hero.army':    'AI Orduyu Tanı',
     'hero.scroll':  'Kaydır',
     /* Stats */
-    'stat.agents':  'Uzman AI Ajan',
+    'stat.agents':  '22 Uzman AI Ajan',
     'stat.hybrid':  'Hibrit',
     'stat.model':   'Üretim Modeli',
     'stat.command': 'Komuta Merkezi',
