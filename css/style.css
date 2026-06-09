@@ -2287,7 +2287,7 @@ footer {
   position: relative;
   z-index: 1;
   width: min(1080px, 95vw);
-  max-height: 88vh;
+  height: 88vh;
   background: #0F0F15;
   border: 1px solid rgba(240,170,0,0.1);
   display: flex;
