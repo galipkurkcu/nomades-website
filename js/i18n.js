@@ -885,7 +885,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
-    'sovereign.desc': 'Twenty intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
+    'sovereign.desc': 'Twenty-one intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
     'chron.label':  '04 · Signal Chronicle',
@@ -895,7 +895,7 @@ const TRANSLATIONS = {
     'chron.hint':   '← Drag to travel',
     'chron.c1.year':       'Year 412 ST · Present (2,847 CE)',
     'chron.c1.event':      'The Network Is Live',
-    'chron.network.desc':  'Twenty-one AI agents. Six units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
+    'chron.network.desc':  'Twenty-two AI agents. Seven units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
     'chron.c2.year':       'Year 388 ST · 24 years ago',
     'chron.c2.event':      'The Signal Network',
     'chron.c2.desc':       "Nearly four centuries after the first transmission, the network reached critical mass. Signals from the Realm began arriving as dominant frequencies, not background noise. The Amber Beacon's range doubled, then doubled again.",
@@ -1161,7 +1161,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Potansiyel Müşteri Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
-    'sovereign.desc': 'Yirmi AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
+    'sovereign.desc': 'Yirmi bir AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
     'chron.label':        '04 · Sinyal Tarihi',
@@ -1169,7 +1169,7 @@ const TRANSLATIONS = {
     'chron.h2.em':        'sinyale.',
     'chron.sub':         'Yıl 412 ST şimdiki zamandır (2.847 Miladi). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
     'chron.hint':        '← Sürükle',
-    'chron.network.desc':'Yirmi bir AI ajan. Altı operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
+    'chron.network.desc':'Yirmi iki AI ajan. Yedi operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
     /* Chronicle cards */
     'chron.c1.year':  'Yıl 412 ST · Şimdi (2.847 Miladi)',
     'chron.c1.event': 'Ağ Canlı',
