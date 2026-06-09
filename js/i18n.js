@@ -1019,6 +1019,8 @@ const TRANSLATIONS = {
     'hq.int8.desc': "Intel Unit's primary analysis space. Every client survey is processed here. The work that happens before the work begins.",
     'hq.int9.name': 'The Lobby',
     'hq.int9.desc': "Concierge Unit's domain. Every lead crosses this threshold before anything else begins. The Registry Desk stands at the center-back — names, stages, timestamps, milestones.",
+    'hq.int10.name': 'The Calibration Chamber',
+    'hq.int10.desc': "The Refiner's domain. 360-degree log-stream walls, amber data flowing across every surface. Clean signals in amber, entropy in deep crimson. The system sees itself here.",
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
@@ -1296,6 +1298,8 @@ const TRANSLATIONS = {
     'hq.int8.desc': 'Intel Biriminin birincil analiz alanı. Her müşteri anketi burada işlenir. Çalışmanın başlamadan önceki çalışması.',
     'hq.int9.name': 'Lobi',
     'hq.int9.desc': 'Concierge Birimi\'nin alanı. Her lead, başka bir şey başlamadan önce bu eşikten geçer. Registry Masası odanın arka merkezinde durur: isimler, aşamalar, zaman damgaları, milestone\'lar.',
+    'hq.int10.name': 'Kalibrasyon Odası',
+    'hq.int10.desc': 'The Refiner\'ın alanı. 360 derece log-stream duvarları, her yüzeyde akan amber veri. Temiz sinyaller amber, entropi derin kırmızı. Sistem burada kendini görür.',
     /* Maestro (Crucible Birimi Sefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
