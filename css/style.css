@@ -103,6 +103,13 @@ body {
   -webkit-backdrop-filter: blur(24px);
   border-color: var(--border);
 }
+/* While the mobile fullscreen menu is open, drop the backdrop-filter — a filtered
+   ancestor would become the containing block for the fixed menu and clip it. */
+.nav.nav-menu-open {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--void);
+}
 
 .nav-logo img {
   height: 44px;
@@ -4253,11 +4260,9 @@ textarea:focus-visible,
   .process-item::after { top: 46px; }
 }
 
-/* ── Speed: skip rendering below-fold sections until near viewport ── */
-.signal-section { content-visibility: auto; contain-intrinsic-size: 1px 720px; }
-.proof-section { content-visibility: auto; contain-intrinsic-size: 1px 560px; }
-.testimonials-section { content-visibility: auto; contain-intrinsic-size: 1px 620px; }
-.cta-section { content-visibility: auto; contain-intrinsic-size: 1px 760px; }
+/* Note: content-visibility:auto was removed here — its estimated contain-intrinsic-size
+   didn't match real mobile heights (grids stack to 1 column), so anchor links to
+   below-fold targets (e.g. hero CTA -> #contact) landed at the wrong position. */
 
 /* ═══════════════════════════════════════════════════════════
    PROSPECT CLARITY — outcome lines · service intro · investment

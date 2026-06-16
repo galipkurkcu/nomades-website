@@ -353,12 +353,16 @@ function initNav() {
 function initHamburger() {
   const btn   = document.querySelector('.nav-hamburger');
   const links = document.querySelector('.nav-links');
+  const nav   = document.querySelector('.nav');
   if (!btn || !links) return;
 
   const spans = btn.querySelectorAll('span');
 
   const open = () => {
     links.classList.add('is-open');
+    // Drop the nav's backdrop-filter while open: a filtered ancestor becomes the
+    // containing block for the fixed fullscreen menu, clipping it to half-height.
+    nav?.classList.add('nav-menu-open');
     spans[0].style.transform = 'rotate(45deg) translate(4.5px,4.5px)';
     spans[1].style.opacity   = '0';
     spans[2].style.transform = 'rotate(-45deg) translate(4.5px,-4.5px)';
@@ -366,6 +370,7 @@ function initHamburger() {
   };
   const close = () => {
     links.classList.remove('is-open');
+    nav?.classList.remove('nav-menu-open');
     spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     document.body.style.overflow = '';
   };
@@ -462,6 +467,7 @@ function initSmoothScroll() {
       const links = document.querySelector('.nav-links');
       if (links && links.classList.contains('is-open')) {
         links.classList.remove('is-open');
+        document.querySelector('.nav')?.classList.remove('nav-menu-open');
         const ham = document.querySelector('.nav-hamburger');
         ham?.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
         document.body.style.overflow = '';
