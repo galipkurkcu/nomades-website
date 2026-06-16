@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/env/env-03-amber-nebula.webp" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -194,7 +195,7 @@
 
     <div class="df-col" id="citadel">
       <div class="df-bg" id="citadel-pax-img"
-           style="background-image: url('images/env/env-04-obsidian-citadel.webp')"></div>
+           data-bg="images/env/env-04-obsidian-citadel.webp"></div>
       <div class="df-vignette"></div>
       <div class="df-content">
         <p class="df-eyebrow" data-reveal data-i18n="citadel.eyebrow">The Citadel</p>
@@ -216,7 +217,7 @@
 
     <div class="df-col df-col--realm" id="realm">
       <div class="df-bg" id="realm-pax-img"
-           style="background-image: url('images/lore/lore-09-realm-bugun.webp')"></div>
+           data-bg="images/lore/lore-09-realm-bugun.webp"></div>
       <div class="df-vignette df-vignette--left"></div>
       <div class="df-content">
         <p class="df-eyebrow df-eyebrow--red" data-reveal data-i18n="realm.eyebrow">The Realm</p>
@@ -378,7 +379,7 @@
     </article>
 
     <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img loading="lazy" src="images/hq/hq-int-09-lobi.webp" alt="The Lobby"></div>
+      <div class="hq-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-09-lobi.webp" alt="The Lobby"></div>
       <div class="hq-info">
         <span class="hq-code">INT · 09</span>
         <h3 class="hq-name" data-i18n="hq.int9.name">The Lobby</h3>
@@ -387,7 +388,7 @@
     </article>
 
     <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img loading="lazy" src="images/hq/hq-int-10-kalibrasyon-odasi.webp" alt="The Calibration Chamber"></div>
+      <div class="hq-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-10-kalibrasyon-odasi.webp" alt="The Calibration Chamber"></div>
       <div class="hq-info">
         <span class="hq-code">INT · 10</span>
         <h3 class="hq-name" data-i18n="hq.int10.name">The Calibration Chamber</h3>

@@ -648,3 +648,15 @@ function initContactForm() {
   update();
 })();
 
+
+/* ── Lazy background images: load [data-bg] when near viewport ── */
+(function initLazyBg() {
+  const els = document.querySelectorAll('[data-bg]');
+  if (!els.length) return;
+  const load = el => { el.style.backgroundImage = `url('${el.dataset.bg}')`; el.removeAttribute('data-bg'); };
+  if (!('IntersectionObserver' in window)) { els.forEach(load); return; }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { load(e.target); obs.unobserve(e.target); } });
+  }, { rootMargin: '300px' });
+  els.forEach(el => io.observe(el));
+})();

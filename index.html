@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/env/env-03-amber-nebula.webp" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -161,7 +162,7 @@
 
 <!-- MANIFESTO -->
 <section class="manifesto" id="about">
-  <div class="manifesto-bg" style="background-image: url('images/env/env-08-signal-room.webp')"></div>
+  <div class="manifesto-bg" data-bg="images/env/env-08-signal-room.webp"></div>
 
   <p class="manifesto-label" data-reveal data-i18n="manifesto.label">01 · What We Are</p>
 
@@ -267,7 +268,7 @@
   <!-- ARMY RAIL (horizontal draggable: unit card + agent cards, command-chain order) -->
   <div class="army-rail drag-scroll" role="list">
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/hq/hq-int-02-victor-kulesi.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-02-victor-kulesi.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">COMMAND</span>
           <h3 class="unit-card-name" data-i18n="unit.orch.name">Orchestration</h3>
@@ -277,7 +278,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="01">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/01-victor-01-portre.webp" alt="Victor"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/01-victor-01-portre.webp" alt="Victor"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[01]</span>
@@ -289,7 +290,7 @@
         </div>
       </article>
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/hq/hq-int-09-lobi.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-09-lobi.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">GATEWAY</span>
           <h3 class="unit-card-name" data-i18n="unit.concierge.name">Concierge Unit</h3>
@@ -299,7 +300,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="21">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/21-coordinator-threshold-01-portre.webp" alt="The Threshold"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/21-coordinator-threshold-01-portre.webp" alt="The Threshold"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[21]</span>
@@ -312,7 +313,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="22">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/22-optimization-refiner-01-portre.webp" alt="The Refiner"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/22-optimization-refiner-01-portre.webp" alt="The Refiner"></div>
         <div class="agent-info">
           <span class="agent-num">[22]</span>
           <h3 class="agent-name">The Refiner</h3>
@@ -321,7 +322,7 @@
         </div>
       </article>
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-06-floating-ruins.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-06-floating-ruins.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">INTEL</span>
           <h3 class="unit-card-name" data-i18n="unit.intel.name">Intel Unit</h3>
@@ -331,7 +332,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="02">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/02-analysis-oracle-01-portre.webp" alt="The Oracle"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/02-analysis-oracle-01-portre.webp" alt="The Oracle"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[02]</span>
@@ -344,7 +345,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="03">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/03-proposal-ambassador-01-portre.webp" alt="The Ambassador"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/03-proposal-ambassador-01-portre.webp" alt="The Ambassador"></div>
         <div class="agent-info">
           <span class="agent-num">[03]</span>
           <h3 class="agent-name">The Ambassador</h3>
@@ -354,7 +355,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="04">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/04-roadmap-navigator-01-portre.webp" alt="The Navigator"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/04-roadmap-navigator-01-portre.webp" alt="The Navigator"></div>
         <div class="agent-info">
           <span class="agent-num">[04]</span>
           <h3 class="agent-name">The Navigator</h3>
@@ -363,7 +364,7 @@
         </div>
       </article>
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-03-amber-nebula.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-03-amber-nebula.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">FORGE</span>
           <h3 class="unit-card-name" data-i18n="unit.forge.name">Forge Unit</h3>
@@ -373,7 +374,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="05">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/05-kernel-architect-01-portre.webp" alt="The Architect"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/05-kernel-architect-01-portre.webp" alt="The Architect"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[05]</span>
@@ -386,7 +387,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="06">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/06-brand-guide-artisan-01-portre.webp" alt="The Artisan"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/06-brand-guide-artisan-01-portre.webp" alt="The Artisan"></div>
         <div class="agent-info">
           <span class="agent-num">[06]</span>
           <h3 class="agent-name">The Artisan</h3>
@@ -396,7 +397,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="07">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/07-deepdive-infiltrator-01-portre.webp" alt="The Infiltrator"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/07-deepdive-infiltrator-01-portre.webp" alt="The Infiltrator"></div>
         <div class="agent-info">
           <span class="agent-num">[07]</span>
           <h3 class="agent-name">The Infiltrator</h3>
@@ -405,7 +406,7 @@
         </div>
       </article>
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-07-astral-storm.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-07-astral-storm.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">SIGNAL</span>
           <h3 class="unit-card-name" data-i18n="unit.signal.name">Signal Unit</h3>
@@ -415,7 +416,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="08">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/08-content-strategy-strategist-01-portre.webp" alt="The Strategist"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/08-content-strategy-strategist-01-portre.webp" alt="The Strategist"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[08]</span>
@@ -428,7 +429,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="09">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/09-reels-performer-01-portre.webp" alt="The Performer"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/09-reels-performer-01-portre.webp" alt="The Performer"></div>
         <div class="agent-info">
           <span class="agent-num">[09]</span>
           <h3 class="agent-name">The Performer</h3>
@@ -438,7 +439,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="10">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/10-carousel-narrator-01-portre.webp" alt="The Narrator"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/10-carousel-narrator-01-portre.webp" alt="The Narrator"></div>
         <div class="agent-info">
           <span class="agent-num">[10]</span>
           <h3 class="agent-name">The Narrator</h3>
@@ -447,7 +448,7 @@
         </div>
       </article>
       <article class="unit-card" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-08-signal-room.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-08-signal-room.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">RECON</span>
           <h3 class="unit-card-name" data-i18n="unit.recon.name">Recon Unit</h3>
@@ -457,7 +458,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="11">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/11-prospect-search-scout-01-portre.webp" alt="The Scout"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/11-prospect-search-scout-01-portre.webp" alt="The Scout"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[11]</span>
@@ -470,7 +471,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="12">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/12-prospect-intel-shadow-01-portre.webp" alt="The Shadow"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/12-prospect-intel-shadow-01-portre.webp" alt="The Shadow"></div>
         <div class="agent-info">
           <span class="agent-num">[12]</span>
           <h3 class="agent-name">The Shadow</h3>
@@ -480,7 +481,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="13">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/13-cold-outreach-emissary-01-portre.webp" alt="The Emissary"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/13-cold-outreach-emissary-01-portre.webp" alt="The Emissary"></div>
         <div class="agent-info">
           <span class="agent-num">[13]</span>
           <h3 class="agent-name">The Emissary</h3>
@@ -489,7 +490,7 @@
         </div>
       </article>
       <article class="unit-card unit-card--rebel" role="listitem">
-        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-vpt-01-crucible-complex.webp" alt=""></div>
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-vpt-01-crucible-complex.webp" alt=""></div>
         <div class="unit-card-info">
           <span class="unit-card-tag">ROGUE</span>
           <h3 class="unit-card-name" data-i18n="unit.crucible.name">Crucible Unit</h3>
@@ -499,7 +500,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="14">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/14-visual-maestro-01-portre.webp" alt="The Maestro"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/14-visual-maestro-01-portre.webp" alt="The Maestro"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[14]</span>
@@ -512,7 +513,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="15">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/15-brief-chronicler-01-portre.webp" alt="The Chronicler"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/15-brief-chronicler-01-portre.webp" alt="The Chronicler"></div>
         <div class="agent-info">
           <span class="agent-num">[15]</span>
           <h3 class="agent-name">The Chronicler</h3>
@@ -522,7 +523,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="16">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/16-style-alchemist-01-portre.webp" alt="The Alchemist"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/16-style-alchemist-01-portre.webp" alt="The Alchemist"></div>
         <div class="agent-info">
           <span class="agent-num">[16]</span>
           <h3 class="agent-name">The Alchemist</h3>
@@ -532,7 +533,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="17">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/17-shot-composer-01-portre.webp" alt="The Composer"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/17-shot-composer-01-portre.webp" alt="The Composer"></div>
         <div class="agent-info">
           <span class="agent-num">[17]</span>
           <h3 class="agent-name">The Composer</h3>
@@ -542,7 +543,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="18">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/18-prompt-cipher-01-portre.webp" alt="The Cipher"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/18-prompt-cipher-01-portre.webp" alt="The Cipher"></div>
         <div class="agent-info">
           <span class="agent-num">[18]</span>
           <h3 class="agent-name">The Cipher</h3>
@@ -552,7 +553,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="19">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/19-image-summoner-01-portre.webp" alt="The Summoner"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/19-image-summoner-01-portre.webp" alt="The Summoner"></div>
         <div class="agent-info">
           <span class="agent-num">[19]</span>
           <h3 class="agent-name">The Summoner</h3>
@@ -562,7 +563,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="20">
         <div class="agent-bar"></div>
-        <div class="agent-visual"><img loading="lazy" src="images/agents/20-qa-sentinel-01-portre.webp" alt="The Sentinel"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/20-qa-sentinel-01-portre.webp" alt="The Sentinel"></div>
         <div class="agent-info">
           <span class="agent-num">[20]</span>
           <h3 class="agent-name">The Sentinel</h3>
@@ -579,7 +580,7 @@
 <!-- PROCESS -->
 <section class="process" id="process">
   <div class="process-cosmic-bg"
-       style="background-image: url('images/env/env-07-astral-storm.webp')"></div>
+       data-bg="images/env/env-07-astral-storm.webp"></div>
 
   <p class="process-label" data-reveal data-i18n="proc.label">04 · Process</p>
   <h2 class="process-headline" data-reveal data-d="1"><span data-i18n="proc.h2.line1">Zero to</span><br><em data-i18n="proc.h2.line2">system.</em></h2>
