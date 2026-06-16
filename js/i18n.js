@@ -233,9 +233,9 @@ const GALLERY_TYPES = ['s1-portre', 's2-hq', 's3-ofis', 's4-arac', 's5-aksiyon',
 
 function initAgentPopup() {
   const popup   = document.getElementById('agent-popup');
+  if (!popup) return;
   const overlay = popup.querySelector('.ap-overlay');
   const closeBtn = popup.querySelector('.ap-close');
-  if (!popup) return;
 
   const imgEl    = document.getElementById('ap-portrait-img');
   const numEl    = document.getElementById('ap-num');
@@ -806,7 +806,15 @@ const TRANSLATIONS = {
     'nav.services': 'Services',
     'nav.army':     'The Army',
     'nav.process':  'Process',
+    'nav.realm':    'The Realm',
     'nav.apply':    'Apply →',
+    /* Realm page */
+    'realmpage.eyebrow': 'The World Behind The Fleet',
+    'realmpage.title':   'The Realm',
+    'realmpage.sub':     'Chronicle, citadel and command. The universe Nomades was built inside.',
+    'realmpage.back':    '← Back to Agency',
+    'realmpage.outro.eyebrow': 'End of the Realm',
+    'realmpage.outro.title':   'The signal returns to the fleet.',
     /* Hero */
     'hero.eyebrow': 'Nomades Agency  ·  2026',
     'hero.line1':   'Not content,',
@@ -836,7 +844,7 @@ const TRANSLATIONS = {
     /* Services */
     'services.label':    '02 · Services',
     'services.h2.line':  'Three disciplines.',
-    'services.h2.em':    'One system.',
+    'services.h2.em':    'Built around your brand.',
     'svc.01.num':        '01',
     'svc.01.title':      'Signal Intelligence',
     'svc.01.desc':       'Instagram DM Automation',
@@ -868,6 +876,12 @@ const TRANSLATIONS = {
     'army.h2.line2':'7 Units.',
     'army.h2.em':   '1 Mission.',
     'army.sub':     'Click any AI agent to read their full story.',
+    'org.core':     'Core Operations · Same Tier',
+    'org.rebel':    'Operates apart from the chain',
+    'army.drag':    '← Drag through the chain of command →',
+    'unit.crew':    'Meet the unit',
+    'commander.badge': 'COMMANDER',
+    'commander.desc':  'Twenty-one intelligences. One command. The Sovereign does not act, it orchestrates.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
@@ -888,7 +902,7 @@ const TRANSLATIONS = {
     'sovereign.desc': 'Twenty-one intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
-    'chron.label':  '04 · Signal Chronicle',
+    'chron.label':  '01 · Signal Chronicle',
     'chron.h2.line':'From void',
     'chron.h2.em':  'to signal.',
     'chron.sub':    'Year 412 ST is the present (2,847 CE). ST counts from Year 0: the founding of Nomades Agency. Drag from today back through the signal\'s history.',
@@ -930,22 +944,22 @@ const TRANSLATIONS = {
     'origin.signal':   'What they sent: The First Amber Signal.',
     'origin.founded':  'What they founded: Nomades Agency.',
     /* Realm */
-    'realm.label':  '05 · Nomades Realm',
+    'realm.label':  '02 · Nomades Realm',
     'realm.h2.line':'At the edge of',
     'realm.h2.em':  'the Local Void.',
     'realm.sub':    'The obsidian spire on Bazalt. Amber Beacon burning since Year 0 ST. The signal origin.',
     /* HQ */
-    'hq.label': '06 · HQ Spaces',
+    'hq.label': '03 · HQ Spaces',
     'hq.h2':    'Inside the<br><em>signal spire.</em>',
     'hq.sub':   'Exterior and interior spaces of Nomades Agency HQ on Bazalt.<br>Drag to explore.',
     'hq.hint':  '← Drag',
     /* Signal */
-    'signal.label':   '07 · The Signal',
+    'signal.label':   '05 · The Signal',
     'signal.h2.line1':'Your brand already',
     'signal.h2.line2':'has a signal.',
     'signal.body':    'Most brands never find it. We extract it, amplify it, and broadcast it at the frequency that cuts through the Great Noise.',
     /* Process */
-    'proc.label':    '08 · Process',
+    'proc.label':    '04 · Process',
     'proc.h2.line1': 'Zero to',
     'proc.h2.line2': 'system.',
     'proc.00.step':  'Sales Engine',
@@ -1059,6 +1073,33 @@ const TRANSLATIONS = {
     /* Footer */
     'footer.tagline': "we don't settle for good, we seek perfection",
     'footer.contact': 'Contact',
+    /* Proof */
+    'proof.label':        '06 · Proof',
+    'proof.headline':     'The signal, measured.',
+    'proof.sub':          'Numbers from the fleet. Replace with live data.',
+    'proof.m1.label':     'Active Brands',
+    'proof.m2.label':     'Content / Month',
+    'proof.m3.label':     'Avg. Reach Growth',
+    'proof.m4.label':     'DM Response Time',
+    'proof.logos.label':  'Trusted by',
+    /* Testimonials */
+    'tst.label':     '07 · Voices',
+    'tst.headline':  'What the signal sounds like.',
+    'tst.1.text':    'We had content, but no system. Nomades gave our brand a brain. Every reel, every caption now sounds unmistakably like us, and the fleet ships it before we even ask.',
+    'tst.1.name':    'Selin Aktaş',
+    'tst.1.role':    'Maison Éclat · Founder',
+    'tst.2.text':    'The DM automation alone paid for the engagement. Leads get qualified and answered in seconds, day or night. We went from chasing replies to choosing which conversations to take.',
+    'tst.2.name':    'Deniz Korman',
+    'tst.2.role':    'Véla · Marketing Lead',
+    'tst.3.text':    'What sold me was the consistency. Across reels, carousels and stories, the brand finally feels like one voice instead of ten freelancers. It looks expensive, because it is precise.',
+    'tst.3.name':    'Aslı Yorgancı',
+    'tst.3.role':    'Norda Studio · Creative Director',
+    /* Sticky · legal · assurance */
+    'sticky.apply':     'Apply  →',
+    'form.assurance':   'No commitment · We reply within 48 hours',
+    'footer.copyright': '© 2026 Nomades Agency. All rights reserved.',
+    'footer.privacy':   'Privacy',
+    'footer.terms':     'Terms',
     /* Popup */
     'popup.gallery': 'In the Realm',
     /* Contact Form */
@@ -1067,7 +1108,7 @@ const TRANSLATIONS = {
     'form.label.brand':     'Brand',
     'form.label.instagram': 'Instagram',
     'form.label.message':   'Message',
-    'form.ph.name':         'Victor Furrier',
+    'form.ph.name':         'Name Surname',
     'form.ph.email':        'you@email.com',
     'form.ph.brand':        'Brand Name',
     'form.ph.instagram':    '@username',
@@ -1084,7 +1125,15 @@ const TRANSLATIONS = {
     'nav.services': 'Hizmetler',
     'nav.army':     'AI Ordu',
     'nav.process':  'Süreç',
+    'nav.realm':    'The Realm',
     'nav.apply':    'Başvur →',
+    /* Realm page */
+    'realmpage.eyebrow': 'Filonun Ardındaki Dünya',
+    'realmpage.title':   'The Realm',
+    'realmpage.sub':     'Tarih, kale ve komuta. Nomades\'in içinde kurulduğu evren.',
+    'realmpage.back':    '← Ajansa Dön',
+    'realmpage.outro.eyebrow': 'Diyarın Sonu',
+    'realmpage.outro.title':   'Sinyal filoya geri döner.',
     /* Hero */
     'hero.eyebrow': 'Nomades Agency  ·  2026',
     'hero.line1':   'İçerik değil,',
@@ -1114,7 +1163,7 @@ const TRANSLATIONS = {
     /* Services */
     'services.label':   '02 · Hizmetler',
     'services.h2.line': 'Üç disiplin.',
-    'services.h2.em':   'Tek sistem.',
+    'services.h2.em':   'Markanıza özel kurulur.',
     'svc.01.num':       '01',
     'svc.01.title':     'İletişim Zekası',
     'svc.01.desc':      'Instagram DM Otomasyonu',
@@ -1146,6 +1195,12 @@ const TRANSLATIONS = {
     'army.h2.line2':'7 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
+    'org.core':     'Çekirdek Operasyonlar · Aynı Seviye',
+    'org.rebel':    'Zincirin dışında hareket eder',
+    'army.drag':    '← Komuta zincirini sürükleyerek gez →',
+    'unit.crew':    'Birimi gör',
+    'commander.badge': 'KOMUTAN',
+    'commander.desc':  'Yirmi bir zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
     /* Units */
     'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
@@ -1166,7 +1221,7 @@ const TRANSLATIONS = {
     'sovereign.desc': 'Yirmi bir AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
-    'chron.label':        '04 · Sinyal Tarihi',
+    'chron.label':        '01 · Sinyal Tarihi',
     'chron.h2.line':      'Boşluktan',
     'chron.h2.em':        'sinyale.',
     'chron.sub':         'Yıl 412 ST şimdiki zamandır (2.847 Miladi). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
@@ -1209,22 +1264,22 @@ const TRANSLATIONS = {
     'origin.signal':   'Gönderdikleri şey: İlk Amber Sinyal.',
     'origin.founded':  'Kurdukları şey: Nomades Agency.',
     /* Realm */
-    'realm.label':  '05 · Nomades Diyarı',
+    'realm.label':  '02 · Nomades Diyarı',
     'realm.h2.line':'Yerel Boşluğun',
     'realm.h2.em':  'kıyısında.',
     'realm.sub':    'Bazalt\'taki obsidyen kule. Amber Beacon, Yıl 0 ST\'den beri yanıyor. Sinyalin kaynağı.',
     /* HQ */
-    'hq.label': '06 · Karargah Mekanları',
+    'hq.label': '03 · Karargah Mekanları',
     'hq.h2':    'İçeriye girin,<br><em>sinyal kulesine.</em>',
     'hq.sub':   'Bazalt\'taki Nomades Agency Karargahı\'nın dış ve iç mekanları. Sürükleyerek keşfet.',
     'hq.hint':  '← Sürükle',
     /* Signal */
-    'signal.label':   '07 · Sinyal',
+    'signal.label':   '05 · Sinyal',
     'signal.h2.line1':'Markanızın zaten',
     'signal.h2.line2':'bir sinyali var.',
     'signal.body':    'Çoğu marka onu hiç bulamaz. Biz onu çıkarır, yükseltir ve Büyük Gürültü\'yü kesen frekansta yayınlarız.',
     /* Process */
-    'proc.label':    '08 · Süreç',
+    'proc.label':    '04 · Süreç',
     'proc.h2.line1': 'Sıfırdan',
     'proc.h2.line2': 'sisteme.',
     'proc.00.step':  'Satış Motoru',
@@ -1300,12 +1355,12 @@ const TRANSLATIONS = {
     'hq.int9.desc': 'Concierge Birimi\'nin alanı. Her lead, başka bir şey başlamadan önce bu eşikten geçer. Registry Masası odanın arka merkezinde durur: isimler, aşamalar, zaman damgaları, milestone\'lar.',
     'hq.int10.name': 'Kalibrasyon Odası',
     'hq.int10.desc': 'The Refiner\'ın alanı. 360 derece log-stream duvarları, her yüzeyde akan amber veri. Temiz sinyaller amber, entropi derin kırmızı. Sistem burada kendini görür.',
-    /* Maestro (Crucible Birimi Sefi) */
+    /* Maestro (Crucible Birimi Şefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
-    'maestro.desc':  'Altı uzman. Tek sef. Görsel kimlik tesadüfen oluşmaz. Yönetilir.',
+    'maestro.desc':  'Altı uzman. Tek şef. Görsel kimlik tesadüfen oluşmaz. Yönetilir.',
     'maestro.btn':   'Hikayeyi Oku  →',
-    /* Threshold (Concierge Birimi Sefi) */
+    /* Threshold (Concierge Birimi Şefi) */
     'threshold.badge': 'BİRİM ŞEFİ',
     /* Oracle / Architect / Strategist / Scout birim şefi etiketleri */
     'oracle.badge':     'BİRİM ŞEFİ',
@@ -1338,6 +1393,33 @@ const TRANSLATIONS = {
     /* Footer */
     'footer.tagline': "iyiyle yetinmeyiz, mükemmeli arıyoruz",
     'footer.contact': 'İletişim',
+    /* Proof */
+    'proof.label':        '06 · Kanıt',
+    'proof.headline':     'Sinyal, ölçülebilir.',
+    'proof.sub':          'Filodan rakamlar. Gerçek verilerle değiştir.',
+    'proof.m1.label':     'Aktif Marka',
+    'proof.m2.label':     'Aylık İçerik',
+    'proof.m3.label':     'Ort. Erişim Artışı',
+    'proof.m4.label':     'DM Yanıt Süresi',
+    'proof.logos.label':  'Bize güvenenler',
+    /* Testimonials */
+    'tst.label':     '07 · Sesler',
+    'tst.headline':  'Sinyal böyle duyulur.',
+    'tst.1.text':    'İçeriğimiz vardı ama bir sistemimiz yoktu. Nomades markamıza bir beyin kazandırdı. Artık her reels, her caption net biçimde bize benziyor ve filo biz istemeden teslim ediyor.',
+    'tst.1.name':    'Selin Aktaş',
+    'tst.1.role':    'Maison Éclat · Kurucu',
+    'tst.2.text':    'Tek başına DM otomasyonu bu iş birliğinin maliyetini çıkardı. Lead\'ler saniyeler içinde nitelenip yanıtlanıyor, gece gündüz fark etmiyor. Yanıt kovalamaktan hangi görüşmeyi alacağımızı seçmeye geçtik.',
+    'tst.2.name':    'Deniz Korman',
+    'tst.2.role':    'Véla · Pazarlama Direktörü',
+    'tst.3.text':    'Beni ikna eden tutarlılık oldu. Reels, carousel ve storylerde marka artık on ayrı freelancer gibi değil, tek bir ses gibi. Pahalı görünüyor çünkü kusursuz.',
+    'tst.3.name':    'Aslı Yorgancı',
+    'tst.3.role':    'Norda Studio · Kreatif Direktör',
+    /* Sticky · legal · assurance */
+    'sticky.apply':     'Başvur  →',
+    'form.assurance':   'Bağlayıcılığı yok · 48 saat içinde cevap veriyoruz',
+    'footer.copyright': '© 2026 Nomades Agency. Tüm hakları saklıdır.',
+    'footer.privacy':   'Gizlilik',
+    'footer.terms':     'Koşullar',
     /* Popup */
     'popup.gallery': "Diyar'da",
     /* Contact Form */

@@ -33,6 +33,7 @@
     <a href="#services" data-i18n="nav.services">Services</a>
     <a href="#army" data-i18n="nav.army">The Army</a>
     <a href="#process" data-i18n="nav.process">Process</a>
+    <a href="the-realm.html" data-i18n="nav.realm">The Realm</a>
     <a href="#contact" class="nav-cta" data-i18n="nav.apply">Apply &rarr;</a>
   </div>
   <button class="nav-hamburger" aria-label="Menu">
@@ -201,7 +202,7 @@
   <div class="services-header">
     <p class="services-label" data-reveal data-i18n="services.label">02 · Services</p>
     <h2 class="services-headline" data-reveal data-d="1">
-      <span data-i18n="services.h2.line">Three disciplines.</span><br><em data-i18n="services.h2.em">One system.</em>
+      <span data-i18n="services.h2.line">Three disciplines.</span><br><em data-i18n="services.h2.em">Built around your brand.</em>
     </h2>
   </div>
 
@@ -255,7 +256,7 @@
 <section class="army-section" id="army">
 
   <div class="army-section-header">
-    <p class="army-section-label" data-reveal data-i18n="army.label">02 · The Army</p>
+    <p class="army-section-label" data-reveal data-i18n="army.label">03 · The Army</p>
     <h2 class="army-section-title" data-reveal data-d="1">
       <span data-i18n="army.h2.line1">22 Agents.</span><br><span data-i18n="army.h2.line2">7 Units.</span><br><em data-i18n="army.h2.em">1 Mission.</em>
     </h2>
@@ -263,67 +264,42 @@
   </div>
 
 
-  <!-- ORCHESTRATION UNIT: Victor -->
-  <div class="unit unit--orchestration" id="unit-orchestration">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/hq/hq-int-02-victor-kulesi.webp')"></div>
-      <div class="unit-num-ghost">01</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">01</span>
-          <span class="unit-tag">ORCHESTRATION UNIT</span>
+  <!-- ARMY RAIL (horizontal draggable: unit card + agent cards, command-chain order) -->
+  <div class="army-rail drag-scroll" role="list">
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/hq/hq-int-02-victor-kulesi.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">COMMAND</span>
+          <h3 class="unit-card-name" data-i18n="unit.orch.name">Orchestration</h3>
+          <p class="unit-card-line" data-i18n="unit.orch.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
-        <h3 class="unit-name" data-i18n="unit.orch.name">Orchestration</h3>
-        <p class="unit-tagline" data-i18n="unit.orch.tagline">Command · Intelligence · Absolute Authority. The center the fleet revolves around.</p>
-      </div>
-    </div>
-    <div class="sovereign">
-      <div class="sovereign-info" data-reveal>
-        <p class="sovereign-num">THE SOVEREIGN</p>
-        <h2 class="sovereign-name">Victor</h2>
-        <p class="sovereign-title-role" data-i18n="sovereign.role">Orchestrator · Command Intelligence</p>
-        <p class="sovereign-desc" data-i18n-html="sovereign.desc">
-          Twenty-one intelligences. One command.<br><br>
-          The Sovereign does not act, it orchestrates.
-          Every signal, every strategy, every word your brand
-          will ever speak passes through one intelligence first.
-          Unseen, unspoken, absolute.
-        </p>
-        <button class="sovereign-story-btn" data-agent-id="01" data-i18n="sovereign.btn">
-          Read The Story &nbsp;&rarr;
-        </button>
-      </div>
-      <div class="sovereign-visual" data-agent-id="01" role="button" tabindex="0" aria-label="Open Victor's story">
-        <img
-          src="images/agents/01-victor-01-portre.webp"
-          alt="Victor, The Sovereign"
-        >
-      </div>
-    </div>
-  </div>
-
-
-  <!-- CONCIERGE UNIT: 21 - 22 -->
-  <div class="unit unit--concierge" id="unit-concierge">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/hq/hq-int-09-lobi.webp')"></div>
-      <div class="unit-num-ghost">02</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">21 - 22</span>
-          <span class="unit-tag">CONCIERGE UNIT</span>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="01">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/01-victor-01-portre.webp" alt="Victor"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[01]</span>
+            <span class="maestro-badge" data-i18n="commander.badge">COMMANDER</span>
+          </div>
+          <h3 class="agent-name">Victor</h3>
+          <p class="agent-role" data-i18n="sovereign.role">Orchestrator · Command Intelligence</p>
+          <p class="agent-desc" data-i18n="commander.desc">Twenty-one intelligences. One command. The Sovereign does not act, it orchestrates.</p>
         </div>
-        <h3 class="unit-name" data-i18n="unit.concierge.name">Concierge Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.concierge.tagline">Intake · Pipeline · Record. The threshold every lead must cross. The system that never stops watching.</p>
-      </div>
-    </div>
-    <!-- 2-column portrait grid -->
-    <div class="concierge-duo">
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/hq/hq-int-09-lobi.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">GATEWAY</span>
+          <h3 class="unit-card-name" data-i18n="unit.concierge.name">Concierge Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.concierge.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="21">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img loading="lazy" src="images/agents/21-coordinator-threshold-01-portre.webp" alt="The Threshold">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/21-coordinator-threshold-01-portre.webp" alt="The Threshold"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[21]</span>
@@ -336,9 +312,7 @@
       </article>
       <article class="agent-card" role="listitem" data-agent-id="22">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img loading="lazy" src="images/agents/22-optimization-refiner-01-portre.webp" alt="The Refiner">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/22-optimization-refiner-01-portre.webp" alt="The Refiner"></div>
         <div class="agent-info">
           <span class="agent-num">[22]</span>
           <h3 class="agent-name">The Refiner</h3>
@@ -346,31 +320,18 @@
           <p class="agent-desc" data-i18n="agent.22.desc">The Refiner does not act: it illuminates. Every log entry, every routing gap, every accumulated entropy in the system is read in amber. Nothing moves without the signal.</p>
         </div>
       </article>
-    </div>
-  </div>
-
-
-  <!-- INTEL UNIT: 02 - 04 -->
-  <div class="unit" id="unit-intel">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/env/env-06-floating-ruins.webp')"></div>
-      <div class="unit-num-ghost">03</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">02 - 04</span>
-          <span class="unit-tag">INTEL UNIT</span>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-06-floating-ruins.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">INTEL</span>
+          <h3 class="unit-card-name" data-i18n="unit.intel.name">Intel Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.intel.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
-        <h3 class="unit-name" data-i18n="unit.intel.name">Intel Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.intel.tagline">Analysis · Proposal · Discovery. The three agents that know everything before the work begins.</p>
-      </div>
-    </div>
-    <div class="unit-scroll" role="list">
-
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="02">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/02-analysis-oracle-01-portre.webp" alt="The Oracle">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/02-analysis-oracle-01-portre.webp" alt="The Oracle"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[02]</span>
@@ -381,12 +342,9 @@
           <p class="agent-desc" data-i18n="agent.02.desc">The Oracle does not read what you wrote. The Oracle reads what you couldn't say. Between the brief and the output: the exact distance between who you think you are and who the market sees.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="03">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/03-proposal-ambassador-01-portre.webp" alt="The Ambassador">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/03-proposal-ambassador-01-portre.webp" alt="The Ambassador"></div>
         <div class="agent-info">
           <span class="agent-num">[03]</span>
           <h3 class="agent-name">The Ambassador</h3>
@@ -394,12 +352,9 @@
           <p class="agent-desc" data-i18n="agent.03.desc">No deal begins at the meeting. The Ambassador arrives first: reading the room, shaping the offer, closing the frame before the client finishes the first sentence.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="04">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/04-roadmap-navigator-01-portre.webp" alt="The Navigator">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/04-roadmap-navigator-01-portre.webp" alt="The Navigator"></div>
         <div class="agent-info">
           <span class="agent-num">[04]</span>
           <h3 class="agent-name">The Navigator</h3>
@@ -407,32 +362,18 @@
           <p class="agent-desc" data-i18n="agent.04.desc">The Navigator does not chart where you've been. The Navigator charts where the current is moving, and draws the line no trend map has yet traced.</p>
         </div>
       </article>
-
-    </div>
-  </div>
-
-
-  <!-- FORGE UNIT: 05 - 07 -->
-  <div class="unit" id="unit-forge">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/env/env-03-amber-nebula.webp')"></div>
-      <div class="unit-num-ghost">04</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">05 - 07</span>
-          <span class="unit-tag">FORGE UNIT</span>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-03-amber-nebula.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">FORGE</span>
+          <h3 class="unit-card-name" data-i18n="unit.forge.name">Forge Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.forge.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
-        <h3 class="unit-name" data-i18n="unit.forge.name">Forge Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.forge.tagline">Foundation · Identity · Intelligence. The builders of the system that everything else runs on.</p>
-      </div>
-    </div>
-    <div class="unit-scroll" role="list">
-
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="05">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/05-kernel-architect-01-portre.webp" alt="The Architect">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/05-kernel-architect-01-portre.webp" alt="The Architect"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[05]</span>
@@ -443,12 +384,9 @@
           <p class="agent-desc" data-i18n="agent.05.desc">The Kernel is not a prompt. It is a mind. The Architect builds it: invisible, load-bearing, the foundation everything else thinks from.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="06">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/06-brand-guide-artisan-01-portre.webp" alt="The Artisan">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/06-brand-guide-artisan-01-portre.webp" alt="The Artisan"></div>
         <div class="agent-info">
           <span class="agent-num">[06]</span>
           <h3 class="agent-name">The Artisan</h3>
@@ -456,12 +394,9 @@
           <p class="agent-desc" data-i18n="agent.06.desc">Every color is a decision that outlasts the trend. Every typeface, a conviction. The Artisan makes the choices that define recognition.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="07">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/07-deepdive-infiltrator-01-portre.webp" alt="The Infiltrator">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/07-deepdive-infiltrator-01-portre.webp" alt="The Infiltrator"></div>
         <div class="agent-info">
           <span class="agent-num">[07]</span>
           <h3 class="agent-name">The Infiltrator</h3>
@@ -469,32 +404,18 @@
           <p class="agent-desc" data-i18n="agent.07.desc">The data exists. All of it. The Infiltrator simply knows where to look, and how to read what the algorithm reveals when it thinks nobody is watching.</p>
         </div>
       </article>
-
-    </div>
-  </div>
-
-
-  <!-- SIGNAL UNIT: 08 - 10 -->
-  <div class="unit" id="unit-signal">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/env/env-07-astral-storm.webp')"></div>
-      <div class="unit-num-ghost">05</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">08 - 10</span>
-          <span class="unit-tag">SIGNAL UNIT</span>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-07-astral-storm.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">SIGNAL</span>
+          <h3 class="unit-card-name" data-i18n="unit.signal.name">Signal Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.signal.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
-        <h3 class="unit-name" data-i18n="unit.signal.name">Signal Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.signal.tagline">Strategy · Production · Outreach. The broadcast engine that turns foundation into frequency.</p>
-      </div>
-    </div>
-    <div class="unit-scroll" role="list">
-
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="08">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/08-content-strategy-strategist-01-portre.webp" alt="The Strategist">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/08-content-strategy-strategist-01-portre.webp" alt="The Strategist"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[08]</span>
@@ -505,12 +426,9 @@
           <p class="agent-desc" data-i18n="agent.08.desc">The calendar is not a schedule. It is a weapon. Every content decision made from a position of power.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="09">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/09-reels-performer-01-portre.webp" alt="The Performer">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/09-reels-performer-01-portre.webp" alt="The Performer"></div>
         <div class="agent-info">
           <span class="agent-num">[09]</span>
           <h3 class="agent-name">The Performer</h3>
@@ -518,12 +436,9 @@
           <p class="agent-desc" data-i18n="agent.09.desc">Three seconds. The Performer lives in that precise threshold: the instant that decides whether your brand stays in the feed or disappears from it.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="10">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/10-carousel-narrator-01-portre.webp" alt="The Narrator">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/10-carousel-narrator-01-portre.webp" alt="The Narrator"></div>
         <div class="agent-info">
           <span class="agent-num">[10]</span>
           <h3 class="agent-name">The Narrator</h3>
@@ -531,32 +446,18 @@
           <p class="agent-desc" data-i18n="agent.10.desc">The first slide earns the second. The Narrator understands sequence: each frame is a promise the next must keep.</p>
         </div>
       </article>
-
-    </div>
-  </div>
-
-
-  <!-- RECON UNIT: 11 - 13 -->
-  <div class="unit" id="unit-recon">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/env/env-08-signal-room.webp')"></div>
-      <div class="unit-num-ghost">06</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">11 - 13</span>
-          <span class="unit-tag">RECON UNIT</span>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-08-signal-room.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">RECON</span>
+          <h3 class="unit-card-name" data-i18n="unit.recon.name">Recon Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.recon.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
-        <h3 class="unit-name" data-i18n="unit.recon.name">Recon Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.recon.tagline">Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.</p>
-      </div>
-    </div>
-    <div class="unit-scroll" role="list">
-
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="11">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/11-prospect-search-scout-01-portre.webp" alt="The Scout">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/11-prospect-search-scout-01-portre.webp" alt="The Scout"></div>
         <div class="agent-info">
           <div class="maestro-badge-row">
             <span class="agent-num">[11]</span>
@@ -567,12 +468,9 @@
           <p class="agent-desc" data-i18n="agent.11.desc">The best prospects have not yet been named. The Scout finds them before the territory is mapped, before the competition has arrived.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="12">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/12-prospect-intel-shadow-01-portre.webp" alt="The Shadow">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/12-prospect-intel-shadow-01-portre.webp" alt="The Shadow"></div>
         <div class="agent-info">
           <span class="agent-num">[12]</span>
           <h3 class="agent-name">The Shadow</h3>
@@ -580,12 +478,9 @@
           <p class="agent-desc" data-i18n="agent.12.desc">A profile is never just a profile. The Shadow maps what no one thought to ask, and arrives knowing more than the prospect knows about themselves.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="13">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/13-cold-outreach-emissary-01-portre.webp" alt="The Emissary">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/13-cold-outreach-emissary-01-portre.webp" alt="The Emissary"></div>
         <div class="agent-info">
           <span class="agent-num">[13]</span>
           <h3 class="agent-name">The Emissary</h3>
@@ -593,57 +488,31 @@
           <p class="agent-desc" data-i18n="agent.13.desc">The first message is architecture. The Emissary engineers first contact: precision-crafted, personally delivered.</p>
         </div>
       </article>
-
-    </div>
-  </div>
-
-
-  <!-- CRUCIBLE UNIT: 14 - 20 -->
-  <div class="unit unit--crucible" id="unit-crucible">
-    <div class="unit-header">
-      <div class="unit-header-bg" style="background-image: url('images/env/env-vpt-01-crucible-complex.webp')"></div>
-      <div class="unit-num-ghost">07</div>
-      <div class="unit-header-inner">
-        <div class="unit-meta">
-          <span class="unit-range">14 - 20</span>
-          <span class="unit-tag">CRUCIBLE UNIT</span>
-        </div>
-        <h3 class="unit-name" data-i18n="unit.crucible.name">Crucible Unit</h3>
-        <p class="unit-tagline" data-i18n="unit.crucible.tagline">Visual Production Team. Brief to screen, precisely. Seven agents, one pipeline. Nothing leaves unexamined.</p>
-      </div>
-    </div>
-    <!-- Maestro: full-width hero row -->
-    <div class="crucible-maestro">
-      <article class="agent-card agent-card--maestro-hero" role="listitem" data-agent-id="14">
-        <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/14-visual-maestro-01-portre.webp" alt="The Maestro">
-        </div>
-        <div class="agent-info">
-          <div class="maestro-info-left">
-            <div class="maestro-badge-row">
-              <span class="agent-num">[14]</span>
-              <span class="maestro-badge" data-i18n="maestro.badge">UNIT CONDUCTOR</span>
-            </div>
-            <h3 class="agent-name">The Maestro</h3>
-            <p class="agent-role" data-i18n="maestro.role">Visual Production · Director</p>
-          </div>
-          <div class="maestro-info-right">
-            <p class="agent-desc" data-i18n="maestro.desc">Six specialists. One conductor. Visual identity doesn't happen by accident. It is directed.</p>
-            <span class="maestro-cta" data-i18n="maestro.btn">Read The Story &#8594;</span>
-          </div>
+      <article class="unit-card unit-card--rebel" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" src="images/env/env-vpt-01-crucible-complex.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">ROGUE</span>
+          <h3 class="unit-card-name" data-i18n="unit.crucible.name">Crucible Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.crucible.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
         </div>
       </article>
-    </div>
-
-    <!-- 6 agents: 3 × 2 grid -->
-    <div class="crucible-grid" role="list">
-
+      <article class="agent-card" role="listitem" data-agent-id="14">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/14-visual-maestro-01-portre.webp" alt="The Maestro"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[14]</span>
+            <span class="maestro-badge" data-i18n="maestro.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Maestro</h3>
+          <p class="agent-role" data-i18n="maestro.role">Visual Production · Director</p>
+          <p class="agent-desc" data-i18n="maestro.desc">Six specialists. One conductor. Visual identity doesn't happen by accident. It is directed.</p>
+        </div>
+      </article>
       <article class="agent-card" role="listitem" data-agent-id="15">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/15-brief-chronicler-01-portre.webp" alt="The Chronicler">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/15-brief-chronicler-01-portre.webp" alt="The Chronicler"></div>
         <div class="agent-info">
           <span class="agent-num">[15]</span>
           <h3 class="agent-name">The Chronicler</h3>
@@ -651,12 +520,9 @@
           <p class="agent-desc" data-i18n="agent.15.desc">Every brief is read once. The Chronicler reads it a hundred times: for what was said, and more importantly for what was left unsaid.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="16">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/16-style-alchemist-01-portre.webp" alt="The Alchemist">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/16-style-alchemist-01-portre.webp" alt="The Alchemist"></div>
         <div class="agent-info">
           <span class="agent-num">[16]</span>
           <h3 class="agent-name">The Alchemist</h3>
@@ -664,12 +530,9 @@
           <p class="agent-desc" data-i18n="agent.16.desc">Color is not a preference. It is a system. The Alchemist locks the visual DNA: palette, light, atmosphere, the invisible rules that make every asset feel like it belongs.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="17">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/17-shot-composer-01-portre.webp" alt="The Composer">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/17-shot-composer-01-portre.webp" alt="The Composer"></div>
         <div class="agent-info">
           <span class="agent-num">[17]</span>
           <h3 class="agent-name">The Composer</h3>
@@ -677,12 +540,9 @@
           <p class="agent-desc" data-i18n="agent.17.desc">No scene is improvised. The Composer sequences every shot before any is taken. The edit begins before the camera rolls.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="18">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/18-prompt-cipher-01-portre.webp" alt="The Cipher">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/18-prompt-cipher-01-portre.webp" alt="The Cipher"></div>
         <div class="agent-info">
           <span class="agent-num">[18]</span>
           <h3 class="agent-name">The Cipher</h3>
@@ -690,12 +550,9 @@
           <p class="agent-desc" data-i18n="agent.18.desc">Language doesn't generate images. Instructions do. The Cipher translates creative intent into the frame you saw in your mind, not a variation of it.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="19">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/19-image-summoner-01-portre.webp" alt="The Summoner">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/19-image-summoner-01-portre.webp" alt="The Summoner"></div>
         <div class="agent-info">
           <span class="agent-num">[19]</span>
           <h3 class="agent-name">The Summoner</h3>
@@ -703,12 +560,9 @@
           <p class="agent-desc" data-i18n="agent.19.desc">The void is full of images that don't exist yet. The Summoner calls them into being. The asset is real. The process is not.</p>
         </div>
       </article>
-
       <article class="agent-card" role="listitem" data-agent-id="20">
         <div class="agent-bar"></div>
-        <div class="agent-visual">
-          <img src="images/agents/20-qa-sentinel-01-portre.webp" alt="The Sentinel">
-        </div>
+        <div class="agent-visual"><img loading="lazy" src="images/agents/20-qa-sentinel-01-portre.webp" alt="The Sentinel"></div>
         <div class="agent-info">
           <span class="agent-num">[20]</span>
           <h3 class="agent-name">The Sentinel</h3>
@@ -716,402 +570,9 @@
           <p class="agent-desc" data-i18n="agent.20.desc">Nothing leaves the Crucible unexamined. Not because mistakes happen. Because they won't.</p>
         </div>
       </article>
-
-    </div>
   </div>
 
-</section>
 
-
-<!-- SIGNAL CHRONICLE -->
-<section class="chronicle" id="chronicle">
-
-  <div class="chronicle-header">
-    <div class="chronicle-header-left">
-      <p class="chronicle-label" data-reveal data-i18n="chron.label">03 · Signal Chronicle</p>
-      <h2 class="chronicle-title" data-reveal data-d="1">
-        <span data-i18n="chron.h2.line">From void</span><br><em data-i18n="chron.h2.em">to signal.</em>
-      </h2>
-      <p class="chronicle-sub" data-reveal data-d="2" data-i18n="chron.sub">
-        Year 412 ST is the present (2,847 CE). ST counts from Year 0: the founding of Nomades Agency.
-        Drag from today back through the signal's history.
-      </p>
-    </div>
-    <p class="chronicle-hint" aria-label="Drag to explore" data-i18n="chron.hint">&larr; Drag to travel</p>
-  </div>
-
-  <div class="chronicle-scroll drag-scroll" role="list" aria-label="Signal Chronicle Timeline">
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-09-realm-bugun.webp" alt="The Network Is Live">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c1.year">Year 412 ST · Present (2,847 CE)</span>
-        <h3 class="cc-event" data-i18n="chron.c1.event">The Network Is Live</h3>
-        <p class="cc-desc" data-i18n="chron.network.desc">Twenty-two AI agents. Seven units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-08-sinyal-agi.webp" alt="The Signal Network">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c2.year">Year 388 ST · 24 years ago</span>
-        <h3 class="cc-event" data-i18n="chron.c2.event">The Signal Network</h3>
-        <p class="cc-desc" data-i18n="chron.c2.desc">Nearly four centuries after the first transmission, the network reached critical mass. Signals from the Realm began arriving as dominant frequencies, not background noise. The Amber Beacon's range doubled, then doubled again.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-07-realm-kurulusu.webp" alt="The Realm Is Built">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c3.year">Year 0 ST · 412 years ago</span>
-        <h3 class="cc-event" data-i18n="chron.c3.event">The Realm Is Built</h3>
-        <p class="cc-desc" data-i18n="chron.c3.desc">The obsidian spire rises from Bazalt's volcanic basalt. Not built to be comfortable, built to be permanent. The Amber Beacon ignites at the apex and has not gone dark since. HQ organizes itself around the signal, not the other way around.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card chronicle-card--amber" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-06-ilk-amber-sinyal.webp" alt="The First Amber Signal">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c4.year">Year 0 ST · The Founding</span>
-        <h3 class="cc-event" data-i18n="chron.c4.event">Foundation of Nomades Agency</h3>
-        <p class="cc-desc" data-i18n="chron.c4.desc">In Bazalt's volcanic depths, a group of post-human intelligences made a decision: identity, not sound, was the missing frequency. A single transmission cut through the static. Not the loudest, not the longest: the most precise. That day, Nomades Agency was founded. The Great Noise had an answer.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-05-sinyal-suskunlugu.webp" alt="Signal Silence">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c5.year">Year -12 ST · Before the founding</span>
-        <h3 class="cc-event" data-i18n="chron.c5.event">The Signal Silence</h3>
-        <p class="cc-desc" data-i18n="chron.c5.desc">The last frequency worth listening to goes quiet. Total signal collapse: no transmissions, no broadcasts, no identity. Only noise. The void becomes deafening. It is in this silence that the pre-history of the Realm is written, not in sound, but in the absence of it.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-04-buyuk-gurultu.webp" alt="The Great Noise">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c6.year">Year -248 ST · Deep history</span>
-        <h3 class="cc-event" data-i18n="chron.c6.event">The Great Noise</h3>
-        <p class="cc-desc" data-i18n="chron.c6.desc">Signal infrastructure enters free fall. Not a technical failure: an identity failure. Everyone speaks. No one is heard. Content multiplies without strategy. Platforms grow without identity. Sound rises without meaning. The Great Noise begins, and will not end until the First Amber Signal finds its frequency.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-03-bazalt-gezegeni.webp" alt="Bazalt Discovered">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c7.year">Year -2,000 ST · Ancient past</span>
-        <h3 class="cc-event" data-i18n="chron.c7.event">Bazalt Discovered</h3>
-        <p class="cc-desc" data-i18n="chron.c7.desc">Survey teams reach the volcanic world at the edge of the Local Void. The terrain is hostile: constant eruptions, obsidian formations, suspended ash atmosphere. But the electromagnetic readings are unlike anything recorded. Pure signal potential, waiting to be directed. The site is chosen.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-02-kul-yildizi.webp" alt="The Ash Star">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c8.year">Deep Time</span>
-        <h3 class="cc-event" data-i18n="chron.c8.event">The Ash Star</h3>
-        <p class="cc-desc" data-i18n="chron.c8.desc">Before Bazalt was mapped, a dying star emitted one final pulse: long, amber, detected by instruments since destroyed. The theory: the original amber frequency didn't originate from technology. It was always in the void. The star simply showed where to look.</p>
-      </div>
-    </article>
-
-    <article class="chronicle-card" role="listitem">
-      <div class="chronicle-card-img">
-        <img src="images/lore/lore-01-yerel-bosluk.webp" alt="The Local Void">
-      </div>
-      <div class="chronicle-card-text">
-        <span class="cc-year" data-i18n="chron.c9.year">Before Time</span>
-        <h3 class="cc-event" data-i18n="chron.c9.event">The Local Void</h3>
-        <p class="cc-desc" data-i18n="chron.c9.desc">Before signals. Before noise. Before time had a name in any calendar. A region of deep space: no galaxy claims it, no star system organizes it, no civilization maps it. Only the void. And in that void, something already knows: frequency is not created. It is found.</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- NOMADES REALM -->
-<section class="realm-section" id="nomades-realm">
-
-  <div class="realm-section-header">
-    <p class="realm-section-label" data-reveal data-i18n="realm.label">04 · Nomades Realm</p>
-    <h2 class="realm-section-title" data-reveal data-d="1">
-      <span data-i18n="realm.h2.line">At the edge of</span><br><em data-i18n="realm.h2.em">Local Void.</em>
-    </h2>
-    <p class="realm-section-sub" data-reveal data-d="2" data-i18n="realm.sub">The obsidian spire on Bazalt. Amber Beacon burning since Year 0 ST. The signal origin.</p>
-  </div>
-
-  <div class="dual-feature" id="citadel-realm">
-
-    <div class="df-col" id="citadel">
-      <div class="df-bg" id="citadel-pax-img"
-           style="background-image: url('images/env/env-04-obsidian-citadel.webp')"></div>
-      <div class="df-vignette"></div>
-      <div class="df-content">
-        <p class="df-eyebrow" data-reveal data-i18n="citadel.eyebrow">The Citadel</p>
-        <h2 class="df-display" data-reveal data-d="1">
-          <span data-i18n="citadel.h2.line">Built on</span><br><em data-i18n="citadel.h2.em">volcanic ground.</em>
-        </h2>
-        <p class="df-body" data-reveal data-d="2" data-i18n="citadel.body">
-          The obsidian spire at the edge of the Local Void.
-          Not built to be comfortable. Built to be correct.
-          The Amber Beacon burns at the apex, uninterrupted since Year 0 ST.
-        </p>
-        <div class="df-coords" data-reveal data-d="3">
-          <span data-i18n="citadel.coord1">Cinder Prime · Bazalt</span>
-          <span data-i18n="citadel.coord2">Year 0 ST · Founded</span>
-          <span data-i18n="citadel.coord3">Year 412 ST · Active</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="df-col df-col--realm" id="realm">
-      <div class="df-bg" id="realm-pax-img"
-           style="background-image: url('images/lore/lore-09-realm-bugun.webp')"></div>
-      <div class="df-vignette df-vignette--left"></div>
-      <div class="df-content">
-        <p class="df-eyebrow df-eyebrow--red" data-reveal data-i18n="realm.eyebrow">The Realm</p>
-        <h2 class="df-display" data-reveal data-d="1">
-          <span data-i18n="realm.df.h2.line">Where signals</span><br><em data-i18n="realm.df.h2.em">are forged.</em>
-        </h2>
-        <p class="df-body" data-reveal data-d="2" data-i18n="realm.df.body">
-          No galaxy claims us. No industry contains us.
-          Signal is the only currency that matters here.
-          The fleet operates from the void.
-        </p>
-        <div class="df-coords" data-reveal data-d="3">
-          <span data-i18n="realm.df.coord1">Cinder Prime System</span>
-          <span data-i18n="realm.df.coord2">Bazalt · Year 412 ST</span>
-          <span data-i18n="realm.df.coord3">Local Void</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- HQ SPACES -->
-<section class="hq-section" id="hq">
-
-  <div class="hq-header">
-    <div class="hq-header-left">
-      <p class="hq-label" data-reveal data-i18n="hq.label">05 · HQ Spaces</p>
-      <h2 class="hq-title" data-reveal data-d="1" data-i18n-html="hq.h2">
-        Inside the<br><em>signal spire.</em>
-      </h2>
-      <p class="hq-sub" data-reveal data-d="2" data-i18n-html="hq.sub">
-        Exterior and interior spaces of Nomades Agency HQ on Bazalt.<br>
-        Drag to explore.
-      </p>
-    </div>
-    <p class="hq-hint" aria-label="Drag to explore" data-i18n="hq.hint">&larr; Drag</p>
-  </div>
-
-  <div class="hq-scroll drag-scroll" role="list" aria-label="HQ Spaces">
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-amb-01-realm-panoramasi.webp" alt="Realm Panorama"></div>
-      <div class="hq-info">
-        <span class="hq-code">AMB</span>
-        <h3 class="hq-name" data-i18n="hq.amb.name">Realm Panorama</h3>
-        <p class="hq-desc" data-i18n="hq.amb.desc">The full expanse as seen from the volcanic ridge. No other agency claims this ground.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-amb-02-alcak-aci.webp" alt="Low Approach"></div>
-      <div class="hq-info">
-        <span class="hq-code">AMB</span>
-        <h3 class="hq-name" data-i18n="hq.amb2.name">Low Approach</h3>
-        <p class="hq-desc" data-i18n="hq.amb2.desc">From ground level, the citadel reads as an unbroken wall of obsidian. Designed to be entered only by those with authorization.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-ext-02-kus-bakisi.webp" alt="Bird's Eye"></div>
-      <div class="hq-info">
-        <span class="hq-code">EXT · 02</span>
-        <h3 class="hq-name" data-i18n="hq.ext2.name">Bird's Eye</h3>
-        <p class="hq-desc" data-i18n="hq.ext2.desc">Aerial mapping. Four operational zones, one central spire. From above, the compound has no wasted space.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-ext-03-gece.webp" alt="After Signal Hours"></div>
-      <div class="hq-info">
-        <span class="hq-code">EXT · 03</span>
-        <h3 class="hq-name" data-i18n="hq.ext3.name">After Signal Hours</h3>
-        <p class="hq-desc" data-i18n="hq.ext3.desc">22:00 ST. The Beacon doesn't dim. The work doesn't stop. The Signal is continuous.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-ext-04-cephe-dokusu.webp" alt="Facade Texture"></div>
-      <div class="hq-info">
-        <span class="hq-code">EXT · 04</span>
-        <h3 class="hq-name" data-i18n="hq.ext4.name">Facade Texture</h3>
-        <p class="hq-desc" data-i18n="hq.ext4.desc">Volcanic obsidian from Bazalt's equatorial ridge. Every surface chosen for signal resonance. The aesthetics followed.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-01-atrium.webp" alt="The Atrium"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 01</span>
-        <h3 class="hq-name" data-i18n="hq.int1.name">The Atrium</h3>
-        <p class="hq-desc" data-i18n="hq.int1.desc">Common ground floor. Where the fleet assembles before dispersing to operational zones. The only level with natural light.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-02-victor-kulesi.webp" alt="The Sovereign's Tower"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 02</span>
-        <h3 class="hq-name" data-i18n="hq.int2.name">The Sovereign's Tower</h3>
-        <p class="hq-desc" data-i18n="hq.int2.desc">Victor's command level. Only the signal enters without authorization. The entire fleet is visible from here.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-03-savas-odasi.webp" alt="The War Room"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 03</span>
-        <h3 class="hq-name" data-i18n="hq.int3.name">The War Room</h3>
-        <p class="hq-desc" data-i18n="hq.int3.desc">Strategic command center. Content campaigns are planned here. Nothing leaves this room that wasn't deliberate.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-04-arsiv.webp" alt="The Archive"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 04</span>
-        <h3 class="hq-name" data-i18n="hq.int4.name">The Archive</h3>
-        <p class="hq-desc" data-i18n="hq.int4.desc">Every signal ever transmitted by Nomades Agency. Every brief, every output, every analysis. Nothing is discarded.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-05-sinyal-odasi.webp" alt="The Signal Room"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 05</span>
-        <h3 class="hq-name" data-i18n="hq.int5.name">The Signal Room</h3>
-        <p class="hq-desc" data-i18n="hq.int5.desc">Broadcast operations center. Live signal monitoring across all client platforms, all frequencies, simultaneously.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-06-dovme-odasi.webp" alt="The Forge Chamber"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 06</span>
-        <h3 class="hq-name" data-i18n="hq.int6.name">The Forge Chamber</h3>
-        <p class="hq-desc" data-i18n="hq.int6.desc">Crucible Unit production space. Six specialized stations, one production pipeline. Every asset made here has been through The Forge.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-07-gozlemevi.webp" alt="The Observatory"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 07</span>
-        <h3 class="hq-name" data-i18n="hq.int7.name">The Observatory</h3>
-        <p class="hq-desc" data-i18n="hq.int7.desc">Long-range signal monitoring. Scout and Shadow operate from this level when mapping new territory before first contact.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img src="images/hq/hq-int-08-arastirma-odasi.webp" alt="Research Chamber"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 08</span>
-        <h3 class="hq-name" data-i18n="hq.int8.name">Research Chamber</h3>
-        <p class="hq-desc" data-i18n="hq.int8.desc">Intel Unit's primary analysis space. Every client survey is processed here. The work that happens before the work begins.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img loading="lazy" src="images/hq/hq-int-09-lobi.webp" alt="The Lobby"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 09</span>
-        <h3 class="hq-name" data-i18n="hq.int9.name">The Lobby</h3>
-        <p class="hq-desc" data-i18n="hq.int9.desc">Concierge Unit's domain. Every lead crosses this threshold before anything else begins. The Registry Desk stands at the center-back — names, stages, timestamps, milestones.</p>
-      </div>
-    </article>
-
-    <article class="hq-card" role="listitem">
-      <div class="hq-visual"><img loading="lazy" src="images/hq/hq-int-10-kalibrasyon-odasi.webp" alt="The Calibration Chamber"></div>
-      <div class="hq-info">
-        <span class="hq-code">INT · 10</span>
-        <h3 class="hq-name" data-i18n="hq.int10.name">The Calibration Chamber</h3>
-        <p class="hq-desc" data-i18n="hq.int10.desc">The Refiner's domain. 360-degree log-stream walls, amber data flowing across every surface. Clean signals in amber, entropy in deep crimson. The system sees itself here.</p>
-      </div>
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- THE SIGNAL -->
-<section class="signal-section" id="signal">
-  <div class="signal-grid">
-
-    <div class="signal-visual">
-      <div class="signal-img-wrap">
-        <img class="signal-img" id="signal-pax-img"
-             src="images/realm/05-img-amber-warmth.webp"
-             alt="The Signal">
-        <div class="signal-img-overlay"></div>
-      </div>
-    </div>
-
-    <div class="signal-content">
-      <p class="signal-eyebrow" data-reveal data-i18n="signal.label">06 · The Signal</p>
-      <h2 class="signal-h2" data-reveal data-d="1">
-        <span data-i18n="signal.h2.line1">Your brand already</span><br><span data-i18n="signal.h2.line2">has a signal.</span>
-      </h2>
-      <p class="signal-body" data-reveal data-d="2" data-i18n="signal.body">
-        Most brands never find it. We extract it, amplify it,
-        and broadcast it at the frequency that cuts through
-        the Great Noise.
-      </p>
-
-      <div class="freq-spectrum" data-reveal data-d="3" data-freq>
-        <div class="freq-bar" style="--fh:15%;--fd:0s"></div>
-        <div class="freq-bar" style="--fh:9%;--fd:.05s"></div>
-        <div class="freq-bar" style="--fh:23%;--fd:.1s"></div>
-        <div class="freq-bar" style="--fh:17%;--fd:.15s"></div>
-        <div class="freq-bar" style="--fh:31%;--fd:.2s"></div>
-        <div class="freq-bar" style="--fh:14%;--fd:.25s"></div>
-        <div class="freq-bar" style="--fh:44%;--fd:.3s"></div>
-        <div class="freq-bar" style="--fh:38%;--fd:.35s"></div>
-        <div class="freq-bar freq-amber" style="--fh:72%;--fd:.4s"></div>
-        <div class="freq-bar freq-amber" style="--fh:85%;--fd:.45s"></div>
-        <div class="freq-bar freq-amber freq-bright" style="--fh:92%;--fd:.5s"></div>
-        <div class="freq-bar freq-amber" style="--fh:88%;--fd:.55s"></div>
-      </div>
-      <div class="freq-labels" data-reveal data-d="4">
-        <span class="freq-label-low">0 : Static</span>
-        <span class="freq-label-high">8-10 : Amber Signal</span>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 
@@ -1120,7 +581,7 @@
   <div class="process-cosmic-bg"
        style="background-image: url('images/env/env-07-astral-storm.webp')"></div>
 
-  <p class="process-label" data-reveal data-i18n="proc.label">07 · Process</p>
+  <p class="process-label" data-reveal data-i18n="proc.label">04 · Process</p>
   <h2 class="process-headline" data-reveal data-d="1"><span data-i18n="proc.h2.line1">Zero to</span><br><em data-i18n="proc.h2.line2">system.</em></h2>
 
   <div class="process-list">
@@ -1220,6 +681,55 @@
 </section>
 
 
+<!-- THE SIGNAL -->
+<section class="signal-section" id="signal">
+  <div class="signal-grid">
+
+    <div class="signal-visual">
+      <div class="signal-img-wrap">
+        <img class="signal-img" id="signal-pax-img"
+             src="images/realm/05-img-amber-warmth.webp"
+             alt="The Signal">
+        <div class="signal-img-overlay"></div>
+      </div>
+    </div>
+
+    <div class="signal-content">
+      <p class="signal-eyebrow" data-reveal data-i18n="signal.label">05 · The Signal</p>
+      <h2 class="signal-h2" data-reveal data-d="1">
+        <span data-i18n="signal.h2.line1">Your brand already</span><br><span data-i18n="signal.h2.line2">has a signal.</span>
+      </h2>
+      <p class="signal-body" data-reveal data-d="2" data-i18n="signal.body">
+        Most brands never find it. We extract it, amplify it,
+        and broadcast it at the frequency that cuts through
+        the Great Noise.
+      </p>
+
+      <div class="freq-spectrum" data-reveal data-d="3" data-freq>
+        <div class="freq-bar" style="--fh:15%;--fd:0s"></div>
+        <div class="freq-bar" style="--fh:9%;--fd:.05s"></div>
+        <div class="freq-bar" style="--fh:23%;--fd:.1s"></div>
+        <div class="freq-bar" style="--fh:17%;--fd:.15s"></div>
+        <div class="freq-bar" style="--fh:31%;--fd:.2s"></div>
+        <div class="freq-bar" style="--fh:14%;--fd:.25s"></div>
+        <div class="freq-bar" style="--fh:44%;--fd:.3s"></div>
+        <div class="freq-bar" style="--fh:38%;--fd:.35s"></div>
+        <div class="freq-bar freq-amber" style="--fh:72%;--fd:.4s"></div>
+        <div class="freq-bar freq-amber" style="--fh:85%;--fd:.45s"></div>
+        <div class="freq-bar freq-amber freq-bright" style="--fh:92%;--fd:.5s"></div>
+        <div class="freq-bar freq-amber" style="--fh:88%;--fd:.55s"></div>
+      </div>
+      <div class="freq-labels" data-reveal data-d="4">
+        <span class="freq-label-low">0 : Static</span>
+        <span class="freq-label-high">8-10 : Amber Signal</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-light-leak" aria-hidden="true"
@@ -1237,7 +747,7 @@
       <div class="cf-row">
         <div class="cf-field">
           <label for="cf-name" data-i18n="form.label.name">Name</label>
-          <input type="text" id="cf-name" name="name" placeholder="Victor Furrier" data-i18n-placeholder="form.ph.name" required>
+          <input type="text" id="cf-name" name="name" placeholder="Name Surname" data-i18n-placeholder="form.ph.name" required>
         </div>
         <div class="cf-field">
           <label for="cf-email" data-i18n="form.label.email">Email</label>
@@ -1259,6 +769,7 @@
         <textarea id="cf-message" name="message" rows="3" placeholder="Your message" data-i18n-placeholder="form.ph.message" required></textarea>
       </div>
       <div class="cf-actions"><button type="submit" class="cf-submit" data-i18n="form.submit">Apply &nbsp;&rarr;</button></div>
+      <p class="cf-assurance" data-i18n="form.assurance">No commitment &middot; We reply within 48 hours</p>
     </form>
     <div class="cf-success" id="cf-success" hidden>
       <div class="cf-success-icon">&#10003;</div>
@@ -1272,7 +783,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a class="footer-logo" href="#">
+  <a class="footer-logo" href="#hero">
     <img src="images/nomades-agency.webp" alt="Nomades Agency">
   </a>
   <p class="footer-tagline" data-i18n="footer.tagline">we don't settle for good, we seek perfection</p>
@@ -1281,8 +792,13 @@
     <a href="#services" data-i18n="nav.services">Services</a>
     <a href="#army" data-i18n="nav.army">The Army</a>
     <a href="#process" data-i18n="nav.process">Process</a>
+    <a href="the-realm.html" data-i18n="nav.realm">The Realm</a>
     <a href="#contact" data-i18n="footer.contact">Contact</a>
   </nav>
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-legal-line">
+    <span data-i18n="footer.copyright">&copy; 2026 Nomades Agency. All rights reserved.</span>
+  </p>
 </footer>
 
 
@@ -1327,6 +843,9 @@
   </div>
 </div>
 
+
+<!-- STICKY CTA -->
+<a href="#contact" class="sticky-cta" id="sticky-cta" data-i18n="sticky.apply">Apply &nbsp;&rarr;</a>
 
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>

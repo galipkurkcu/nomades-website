@@ -625,3 +625,26 @@ function initContactForm() {
     }
   });
 }
+
+/* ── Sticky CTA: show after hero, hide when contact form is in view ── */
+(function initStickyCTA() {
+  const btn = document.getElementById('sticky-cta');
+  const hero = document.getElementById('hero');
+  const contact = document.getElementById('contact');
+  if (!btn || !hero) return;
+
+  let contactVisible = false;
+  if (contact && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      contactVisible = entries[0].isIntersecting;
+    }, { rootMargin: '0px 0px -20% 0px' }).observe(contact);
+  }
+
+  function update() {
+    const pastHero = window.scrollY > (hero.offsetHeight * 0.8);
+    btn.classList.toggle('is-visible', pastHero && !contactVisible);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
