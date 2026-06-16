@@ -15,10 +15,18 @@
   --border:  #18181C;
   --font:    'Space Grotesk', sans-serif;
   --serif:   'Cormorant Garamond', Georgia, serif;
+  /* Height of the fixed nav in its compact (scrolled) state + breathing gap.
+     Single source of truth for anchor offset — used by scroll-margin-top and JS smooth-scroll. */
+  --nav-h: 96px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+/* Anchor targets land just below the fixed nav, not under it */
+section[id] { scroll-margin-top: var(--nav-h); }
+@media (max-width: 768px) { :root { --nav-h: 88px; } }
+@media (max-width: 640px) { :root { --nav-h: 82px; } }
 
 body {
   background: var(--void);

@@ -451,11 +451,32 @@ function initReveal() {
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      const t = document.querySelector(href);
       if (!t) return;
       e.preventDefault();
-      const offset = (document.querySelector('.nav')?.offsetHeight ?? 72) + 16;
-      window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - offset, behavior: 'smooth' });
+
+      // Mobile: the open menu locks body scroll (overflow:hidden). Close it and release
+      // the lock BEFORE scrolling, otherwise window.scrollTo is blocked / lands wrong.
+      const links = document.querySelector('.nav-links');
+      if (links && links.classList.contains('is-open')) {
+        links.classList.remove('is-open');
+        const ham = document.querySelector('.nav-hamburger');
+        ham?.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        document.body.style.overflow = '';
+      }
+
+      // Offset = compact nav height (the state the nav settles into after scrolling),
+      // read from a single CSS source so desktop and mobile stay in sync.
+      const navH = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--nav-h'), 10) || 92;
+
+      // Measure after the layout settles (menu close / overflow release) to get the true position
+      requestAnimationFrame(() => {
+        const top = t.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+      });
     });
   });
 }
