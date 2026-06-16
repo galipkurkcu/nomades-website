@@ -660,3 +660,42 @@ function initContactForm() {
   }, { rootMargin: '300px' });
   els.forEach(el => io.observe(el));
 })();
+
+
+/* ── Proof metrics: animated count-up that preserves prefix/suffix spans ── */
+(function initProofCount() {
+  const els = document.querySelectorAll('[data-count-to]');
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el     = e.target;
+      const target = parseFloat(el.dataset.countTo);
+      const dec    = parseInt(el.dataset.countDec || '0', 10);
+      const dur    = 1500;
+      const start  = performance.now();
+      function tick(now) {
+        const t    = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = (ease * target).toFixed(dec);
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(dec);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  els.forEach(el => io.observe(el));
+})();
+
+
+/* ── Process: draw the vertical spine once the list scrolls into view ── */
+(function initProcessDraw() {
+  const list = document.querySelector('.process-list');
+  if (!list) return;
+  if (!('IntersectionObserver' in window)) { list.classList.add('is-drawn'); return; }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { list.classList.add('is-drawn'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  io.observe(list);
+})();

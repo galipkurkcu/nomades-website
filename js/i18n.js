@@ -388,27 +388,31 @@ function initScrollProgress() {
 
 function initCardTilt() {
   if (window.matchMedia('(hover: none)').matches) return;
-  document.querySelectorAll('.agent-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width  * 0.5)) / (r.width  * 0.5);
-      const dy = (e.clientY - (r.top  + r.height * 0.5)) / (r.height * 0.5);
-      card.style.transform = `perspective(900px) rotateX(${dy * -7}deg) rotateY(${dx * 7}deg) translateZ(12px)`;
+  const bind = (selector, maxDeg, lift) => {
+    document.querySelectorAll(selector).forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r  = card.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width  * 0.5)) / (r.width  * 0.5);
+        const dy = (e.clientY - (r.top  + r.height * 0.5)) / (r.height * 0.5);
+        card.style.transform = `perspective(900px) rotateX(${dy * -maxDeg}deg) rotateY(${dx * maxDeg}deg) translateZ(${lift}px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.65s cubic-bezier(0.22,1,0.36,1)';
+        card.style.transform  = '';
+        setTimeout(() => { card.style.transition = ''; }, 700);
+      });
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.08s linear';
+      });
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.65s cubic-bezier(0.22,1,0.36,1)';
-      card.style.transform  = '';
-      setTimeout(() => { card.style.transition = ''; }, 700);
-    });
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'transform 0.08s linear';
-    });
-  });
+  };
+  bind('.agent-card', 7, 12);      // agent cards — unchanged feel
+  bind('.manifesto-col', 4, 6);    // manifesto cards — gentle depth, keeps glow hover
 }
 
 
 function initMagneticButtons() {
-  // magnetic tracking removed — hover handled by CSS scale
+  // magnetic stick disabled by request — button hover/shimmer handled by CSS
 }
 
 
@@ -755,16 +759,13 @@ const MARQUEE_ITEMS = {
     { text: 'AI-Powered Content',       lit: false },
     { text: 'Visual Production',        lit: false },
     { text: 'Human-Centered Strategy',  lit: true  },
-    { text: 'Post-Human Intelligence',  lit: false },
     { text: 'Signal Broadcast',         lit: false },
     { text: 'Premium Content',          lit: false },
     { text: "we don't compromise",      lit: true  },
     { text: 'Brand Frequency',          lit: false },
-    { text: 'Obsidian Standard',        lit: false },
     { text: 'we seek the signal',       lit: true  },
     { text: 'Content Systems',          lit: false },
     { text: 'Precision Strategy',       lit: false },
-    { text: 'Void Intelligence',        lit: false },
     { text: 'Strategic Identity',       lit: true  }
   ],
   tr: [
@@ -779,16 +780,13 @@ const MARQUEE_ITEMS = {
     { text: 'AI Destekli İçerik',       lit: false },
     { text: 'Görsel Üretim',            lit: false },
     { text: 'İnsan Odaklı Strateji',    lit: true  },
-    { text: 'Post-İnsan Zekası',        lit: false },
     { text: 'Sinyal Yayını',            lit: false },
     { text: 'Premium İçerik',           lit: false },
     { text: 'taviz vermeyiz',           lit: true  },
     { text: 'Marka Frekansı',           lit: false },
-    { text: 'Obsidyen Standart',        lit: false },
     { text: 'sinyali arıyoruz',         lit: true  },
     { text: 'İçerik Sistemleri',        lit: false },
     { text: 'Hassas Strateji',          lit: false },
-    { text: 'Boşluk Zekası',            lit: false },
     { text: 'Stratejik Kimlik',         lit: true  }
   ]
 };
@@ -847,19 +845,23 @@ const TRANSLATIONS = {
     'services.h2.em':    'Built around your brand.',
     'svc.01.num':        '01',
     'svc.01.title':      'Signal Intelligence',
-    'svc.01.desc':       'Instagram DM Automation',
-    'svc.01.body':       "When the right signal reaches the right person, the response can't be slow. We build automated DM flows that qualify leads, deliver value, and convert: without a human in the loop. Built for Instagram. Tuned for your brand voice.",
+    'svc.01.desc':       'Instagram DM, Comment & Story Automation',
+    'svc.01.body':       "When the right signal reaches the right person, the response can't be slow. We automate every Instagram touchpoint, DMs, comments, and stories, into flows that qualify leads, deliver value, and convert: without a human in the loop. Tuned for your brand voice.",
     'svc.02.num':        '02',
     'svc.02.title':      'Orbital Intelligence',
-    'svc.02.desc':       'Internal CRM & Automation',
-    'svc.02.body':       "The fleet doesn't operate on instinct. It operates on data. We map your internal workflows and build CRM pipelines that track every touchpoint, from first contact to ongoing retention. Nothing falls through the void.",
+    'svc.02.desc':       'In-House CRM & Brand Automation',
+    'svc.02.body':       "The fleet doesn't operate on instinct. It operates on data. We map your internal workflows and build an in-house CRM plus a custom automation layer shaped around your brand's specific needs, tracking every touchpoint from first contact to ongoing retention. Nothing falls through the void.",
     'svc.03.num':        '03',
     'svc.03.title':      'Signal Broadcasting',
     'svc.03.desc':       'Social Media Management',
     'svc.03.body':       "Strategy, scripts, visuals, scheduling. Monthly content packages produced by the fleet and delivered ready-to-publish. Not templates. Not recycled content. Every piece built from your Kernel.",
+    'services.intro':    'Less lost leads, a sharper brand, publish-ready content every month. That is what the system changes.',
+    'svc.01.outcome':    '<span class="svc-outcome-tag">Outcome</span> every lead answered in seconds, qualified around the clock.',
+    'svc.02.outcome':    '<span class="svc-outcome-tag">Outcome</span> no lead lost, no follow-up forgotten, every touchpoint tracked.',
+    'svc.03.outcome':    '<span class="svc-outcome-tag">Outcome</span> a month of on-brand content, ready to publish, every month.',
     /* Service bullets */
     'svc.01.li1': 'Lead qualification flows',
-    'svc.01.li2': 'Auto-response sequences',
+    'svc.01.li2': 'Comment-to-DM automation',
     'svc.01.li3': 'Story trigger campaigns',
     'svc.01.li4': 'CTA-to-inbox funnels',
     'svc.02.li1': 'Custom CRM architecture',
@@ -875,6 +877,7 @@ const TRANSLATIONS = {
     'army.h2.line1':'22 AI Agents.',
     'army.h2.line2':'7 Units.',
     'army.h2.em':   '1 Mission.',
+    'army.frame':   'This is the team behind your monthly package. Nothing generic, nothing missed.',
     'army.sub':     'Click any AI agent to read their full story.',
     'org.core':     'Core Operations · Same Tier',
     'org.rebel':    'Operates apart from the chain',
@@ -987,7 +990,7 @@ const TRANSLATIONS = {
     'cta.label':   'To Begin',
     'cta.h2.line1':'Turn your brand',
     'cta.h2.line2':'into a system.',
-    'cta.sub':     'The first step is a conversation. Free.',
+    'cta.sub':     'Every brand is different. Scope and investment are defined together on the first call. The first step is a conversation. Free.',
     'cta.btn':     'Apply  →',
     /* Citadel / Realm dual feature */
     'citadel.eyebrow':  'The Citadel',
@@ -1166,19 +1169,23 @@ const TRANSLATIONS = {
     'services.h2.em':   'Markanıza özel kurulur.',
     'svc.01.num':       '01',
     'svc.01.title':     'İletişim Zekası',
-    'svc.01.desc':      'Instagram DM Otomasyonu',
-    'svc.01.body':      'Doğru sinyal doğru kişiye ulaştığında, yanıt yavaş olamaz. Potansiyel müşterileri nitelendiren, değer sunan ve dönüşüm sağlayan otomatik DM akışları oluşturuyoruz: döngüde insan olmadan. Instagram için kuruldu. Marka sesinize göre ayarlandı.',
+    'svc.01.desc':      'Instagram DM, Yorum ve Story Otomasyonu',
+    'svc.01.body':      'Doğru sinyal doğru kişiye ulaştığında, yanıt yavaş olamaz. Instagram\'ın her temas noktasını, DM, yorum ve story\'leri, potansiyel müşterileri nitelendiren, değer sunan ve dönüşüm sağlayan akışlara dönüştürüyoruz: döngüde insan olmadan. Marka sesinize göre ayarlandı.',
     'svc.02.num':       '02',
     'svc.02.title':     'Çevresel Zeka',
-    'svc.02.desc':      'Dahili CRM ve Otomasyon',
-    'svc.02.body':      'Filo içgüdüyle değil, veriyle çalışır. İç iş akışlarınızı haritalandırır ve ilk temastan süregelen müşteri tutumuna kadar her temas noktasını izleyen CRM pipeline\'ları inşa ederiz. Hiçbir şey boşluğa düşmez.',
+    'svc.02.desc':      'Inhouse CRM ve Markaya Özel Otomasyon',
+    'svc.02.body':      'Filo içgüdüyle değil, veriyle çalışır. İç iş akışlarınızı haritalandırır, markanızın kendine özgü ihtiyaçlarına göre şekillenen bir inhouse CRM ve özel otomasyon katmanı kurarız: ilk temastan süregelen müşteri tutumuna kadar her temas noktasını izleyerek. Hiçbir şey boşluğa düşmez.',
     'svc.03.num':       '03',
     'svc.03.title':     'Sinyal Yayını',
     'svc.03.desc':      'Sosyal Medya Yönetimi',
     'svc.03.body':      'Strateji, senaryolar, görseller, planlama. Filo tarafından üretilen ve yayına hazır teslim edilen aylık içerik paketleri. Şablon değil. Geri dönüştürülmüş içerik değil. Her parça Kernel\'ınızdan üretilir.',
+    'services.intro':   'Daha az kaçan lead, daha keskin bir marka, her ay yayına hazır içerik. Sistemin değiştirdiği şey bu.',
+    'svc.01.outcome':   '<span class="svc-outcome-tag">Sonuç</span> her lead saniyeler içinde yanıtlanır, gün boyu otomatik elenir.',
+    'svc.02.outcome':   '<span class="svc-outcome-tag">Sonuç</span> kaybolan lead yok, unutulan takip yok, her temas kayıt altında.',
+    'svc.03.outcome':   '<span class="svc-outcome-tag">Sonuç</span> her ay markanıza özel, yayına hazır bir içerik paketi.',
     /* Service bullets */
     'svc.01.li1': 'Potansiyel müşteri değerlendirme akışları',
-    'svc.01.li2': 'Otomatik yanıt senaryoları',
+    'svc.01.li2': 'Yorumdan DM\'e otomasyon',
     'svc.01.li3': 'Hikâye tetikleme kampanyaları',
     'svc.01.li4': 'Dönüşüm sistemleri',
     'svc.02.li1': 'Özel CRM mimarisi',
@@ -1194,6 +1201,7 @@ const TRANSLATIONS = {
     'army.h2.line1':'22 AI Ajan.',
     'army.h2.line2':'7 Birim.',
     'army.h2.em':   '1 Görev.',
+    'army.frame':   'Aylık paketinizin arkasındaki ekip bu. Hiçbir şey jenerik değil, hiçbir şey atlanmıyor.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
     'org.core':     'Çekirdek Operasyonlar · Aynı Seviye',
     'org.rebel':    'Zincirin dışında hareket eder',
@@ -1307,7 +1315,7 @@ const TRANSLATIONS = {
     'cta.label':   'Başlamak İçin',
     'cta.h2.line1':'Markanızı',
     'cta.h2.line2':'bir sisteme dönüştürün.',
-    'cta.sub':     'Bir mesaj uzağınızdayız...',
+    'cta.sub':     'Her marka farklı. Kapsam ve yatırım ilk görüşmede birlikte belirlenir. İlk adım bir sohbet. Ücretsiz.',
     'cta.btn':     'Başvur  →',
     /* Citadel / Realm dual feature */
     'citadel.eyebrow':  'Kale',

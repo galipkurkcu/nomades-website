@@ -4166,3 +4166,88 @@ textarea:focus-visible,
               0 22px 48px -26px rgba(0,0,0,0.7),
               0 0 40px -22px rgba(240,170,0,0.18);
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   VISUAL + MOTION POLISH (calisma deltas · 2026-06-16)
+   rail edge-fade · button shimmer · process spine draw · depth
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Army rail: soft edge fade so cards melt into the void at both ends ── */
+.army-rail {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+}
+@media (max-width: 640px) {
+  .army-rail {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  }
+}
+
+/* ── Button shimmer: amber light sweep on hover (::before keeps text crisp) ── */
+.btn-amber, .cf-submit, .sticky-cta, .nav-cta { position: relative; overflow: hidden; }
+.btn-amber::before, .cf-submit::before, .sticky-cta::before, .nav-cta::before {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -140%;
+  width: 65%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.btn-amber:hover::before, .cf-submit:hover::before,
+.sticky-cta:hover::before, .nav-cta:hover::before {
+  animation: btn-shimmer 0.9s ease;
+}
+@keyframes btn-shimmer { from { left: -140%; } to { left: 140%; } }
+
+/* ── Process: vertical spine drawn on scroll + sequential node dots ── */
+.process-list::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(240,170,0,0.40) 0%, rgba(240,170,0,0.10) 100%);
+  transform: scaleY(0); transform-origin: top center;
+  transition: transform 1.3s cubic-bezier(0.22,1,0.36,1);
+}
+.process-list.is-drawn::before { transform: scaleY(1); }
+.process-item::after {
+  content: ''; position: absolute; left: -4.5px; top: 60px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #0B0B0E; border: 1px solid rgba(240,170,0,0.28);
+  transition: background .5s, border-color .5s, box-shadow .5s;
+  z-index: 2;
+}
+.process-item.is-visible::after {
+  background: var(--amber); border-color: var(--amber);
+  box-shadow: 0 0 14px rgba(240,170,0,0.55);
+}
+@media (max-width: 900px) {
+  .process-item::after { top: 46px; }
+}
+
+/* ── Speed: skip rendering below-fold sections until near viewport ── */
+.signal-section { content-visibility: auto; contain-intrinsic-size: 1px 720px; }
+.proof-section { content-visibility: auto; contain-intrinsic-size: 1px 560px; }
+.testimonials-section { content-visibility: auto; contain-intrinsic-size: 1px 620px; }
+.cta-section { content-visibility: auto; contain-intrinsic-size: 1px 760px; }
+
+/* ═══════════════════════════════════════════════════════════
+   PROSPECT CLARITY — outcome lines · service intro · investment
+   ═══════════════════════════════════════════════════════════ */
+.services-intro {
+  max-width: 720px; margin-top: 24px;
+  font-size: 15px; line-height: 1.7; color: var(--grey);
+}
+.svc-outcome {
+  margin: 20px 0 4px; padding-top: 16px;
+  border-top: 1px solid rgba(240,170,0,0.16);
+  font-size: 13px; line-height: 1.55; color: rgba(250,250,247,0.80);
+}
+.svc-outcome-tag {
+  display: inline-block; margin-right: 9px;
+  font-size: 9px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--amber);
+}
+.army-section-frame {
+  max-width: 640px; margin: 18px 0 14px;
+  font-size: 16px; line-height: 1.6; color: rgba(250,250,247,0.82);
+}
