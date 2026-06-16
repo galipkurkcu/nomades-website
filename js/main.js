@@ -132,6 +132,10 @@ function initSignalParallax() {
   const img     = document.getElementById('signal-pax-img');
   if (!section || !img) return;
 
+  // Parallax causes visible jitter on touch/mobile (scroll-driven repaint lags).
+  // Desktop only — leave the image static on mobile.
+  if (window.matchMedia('(hover: none), (max-width: 768px)').matches) return;
+
   function update() {
     const rect  = section.getBoundingClientRect();
     const viewH = window.innerHeight;
@@ -393,7 +397,7 @@ function initDragScrolls() {
       if (!isDown) return;
       e.preventDefault();
       if (Math.abs(e.pageX - el.offsetLeft - startX) > 6) didDrag = true;
-      el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX) * 1.4;
+      el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX);
     });
 
     // Block card clicks if user dragged
@@ -595,8 +599,43 @@ function initContactForm() {
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEN0bBZTpCTIPRphjvezleR-7r-3oCKqEUUJ4a10LWL8LlivL4cWDwCGD87HfhFhJlJw/exec';
   const form = document.getElementById('contact-form');
   if (!form) return;
+  // Stricter than the browser default: requires @ and a real domain with a dot (e.g. name@site.com)
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+
+  // Clear the invalid highlight as soon as the user starts fixing a field
+  form.querySelectorAll('[required]').forEach(field => {
+    field.addEventListener('input', () => {
+      field.classList.remove('cf-invalid');
+      field.setCustomValidity('');
+    });
+  });
+
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    // Validate before sending — block empty/invalid submissions and guide the user
+    let firstInvalid = null;
+    form.querySelectorAll('[required]').forEach(field => {
+      field.classList.remove('cf-invalid');
+      field.setCustomValidity('');
+      let ok = field.checkValidity();
+      if (ok && field.type === 'email' && !EMAIL_RE.test(field.value.trim())) {
+        field.setCustomValidity(currentLang === 'tr'
+          ? 'Geçerli bir e-posta gir (ör. isim@site.com)'
+          : 'Enter a valid email (e.g. name@site.com)');
+        ok = false;
+      }
+      if (!ok) {
+        field.classList.add('cf-invalid');
+        if (!firstInvalid) firstInvalid = field;
+      }
+    });
+    if (firstInvalid) {
+      firstInvalid.focus();
+      firstInvalid.reportValidity();
+      return;
+    }
+
     const btn = form.querySelector('.cf-submit');
     const payload = {
       name:      form.elements.name.value.trim(),

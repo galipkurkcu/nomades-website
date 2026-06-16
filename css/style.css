@@ -1989,6 +1989,16 @@ body {
 }
 .cf-field:focus-within::after { width: 100%; }
 
+/* Invalid field highlight — shown when submit is attempted with empty/bad fields */
+.cf-field input.cf-invalid,
+.cf-field textarea.cf-invalid {
+  border-bottom-color: var(--red);
+}
+.cf-field input.cf-invalid::placeholder,
+.cf-field textarea.cf-invalid::placeholder {
+  color: rgba(176,28,46,0.5);
+}
+
 .cf-actions { text-align: center; }
 
 .cf-submit {
@@ -2094,6 +2104,13 @@ footer {
 [data-reveal][data-d="2"] { transition-delay: .24s; }
 [data-reveal][data-d="3"] { transition-delay: .36s; }
 [data-reveal][data-d="4"] { transition-delay: .5s; }
+[data-reveal][data-d="5"] { transition-delay: .62s; }
+[data-reveal][data-d="6"] { transition-delay: .74s; }
+
+/* Process items reveal one by one as you scroll, not as a group. The data-d
+   stagger (and missing d5/d6 rules) made 05/06 fill before 03/04.
+   Each item should reveal immediately when it enters view — order follows scroll. */
+.process-item[data-reveal] { transition-delay: 0s; }
 
 /* Clip-reveal elements also need data-reveal transition for opacity */
 .clip-reveal[data-reveal] {
@@ -2566,7 +2583,11 @@ footer {
   .manifesto-cols { grid-template-columns: 1fr; }
 
   .services { padding: 80px 32px; }
-  .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  /* Mobile: cards share one dark bg with only a 2px line, so they merged.
+     Give each its own bordered box + persistent top accent for clear separation. */
+  .services-grid { grid-template-columns: 1fr; gap: 16px; background: transparent; }
+  .svc-card { border: 1px solid var(--border); }
+  .svc-card::before { opacity: 0.55; }
 
   .crucible-maestro { padding: 0 2px 2px; }
   .agent-card--maestro-hero { height: 380px; }
@@ -4114,15 +4135,15 @@ textarea:focus-visible,
   display: flex; gap: 18px; align-items: stretch;
   overflow-x: auto; overflow-y: hidden;
   padding: 12px 72px 38px;
-  cursor: grab; scroll-snap-type: x proximity;
+  cursor: grab;
   scrollbar-width: none; -ms-overflow-style: none;
 }
 .army-rail::-webkit-scrollbar { display: none; }
 .army-rail.is-dragging { cursor: grabbing; }
 
 /* restore fixed card sizing inside the rail (global rule forces width:100%) */
-.army-rail .agent-card { flex: 0 0 360px; width: 360px; height: 600px; scroll-snap-align: start; }
-.army-rail .unit-card  { flex: 0 0 300px; width: 300px; height: 600px; scroll-snap-align: start; }
+.army-rail .agent-card { flex: 0 0 360px; width: 360px; height: 600px; }
+.army-rail .unit-card  { flex: 0 0 300px; width: 300px; height: 600px; }
 
 /* UNIT CARD — looks like an agent card; NO hover animation (static) */
 .unit-card { position: relative; overflow: hidden; background: #0E0E14; }

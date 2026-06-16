@@ -484,29 +484,7 @@ function initNavActiveSection() {
 
 
 function initDragInertia() {
-  document.querySelectorAll('.drag-scroll').forEach(el => {
-    let vel = 0, lastX = 0, lastT = 0, rafId = null, active = false;
-    el.addEventListener('mousedown', e => {
-      if (rafId) cancelAnimationFrame(rafId);
-      vel = 0; active = true; lastX = e.pageX; lastT = performance.now();
-    });
-    el.addEventListener('mousemove', e => {
-      if (!active || !el.classList.contains('is-dragging')) return;
-      const now = performance.now(), dt = now - lastT;
-      if (dt > 0) vel = (lastX - e.pageX) / dt * 16;
-      lastX = e.pageX; lastT = now;
-    });
-    const release = () => {
-      if (!active) return; active = false;
-      (function glide() {
-        if (Math.abs(vel) < 0.4) return;
-        el.scrollLeft += vel; vel *= 0.91;
-        rafId = requestAnimationFrame(glide);
-      })();
-    };
-    el.addEventListener('mouseup',    release);
-    el.addEventListener('mouseleave', release);
-  });
+  // Inertia/momentum glide disabled by request — drag must be free 1:1, no snap or drift.
 }
 
 
