@@ -1953,7 +1953,7 @@ body {
   font-weight: 700;
   letter-spacing: .35em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--white);
   margin-bottom: 18px;
 }
 .cf-field input,
