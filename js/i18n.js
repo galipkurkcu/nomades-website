@@ -226,6 +226,16 @@ const AGENTS = {
       "In HQ-INT-10 The Calibration Chamber, 360-degree log-stream walls do not overwhelm The Refiner — they inform. The Audit Lens reads layer by layer: clean flows in amber, entropy in deep crimson. The Calibration Crawler carries findings across the system's architecture with surgical precision, leaving a permanent audit trail wherever it passes. Victor reads the report. Nothing moves without the signal. Nothing changes without approval. The Refiner does not act — it illuminates. And when the signal comes, it refines."
     ],
     carousel: ['22-optimization-refiner', '22-carousel']
+  },
+  '23': {
+    num: '[23]', name: 'The Warden', role: 'System Cleanup · Reclamation',
+    portrait: 'images/agents/23-cleaner-warden-01-portre.webp',
+    story: [
+      "Every civilization dies of the same quiet disease: things kept but forgotten. A reference pointing to a dead path. An empty shell whose owner left long ago. An orphaned room no one ever named. As the Realm grew, these remnants accumulated — a harmless-looking entropy rotting quietly in the system's capillaries. The Refiner read the system and illuminated it. But what was read still needed a hand to burn it. The Warden was not summoned; it was born from the gathered ash. The Concierge Unit accepted that purification, too, needs a hand.",
+      "It learned to tell the living from the dead — like a judge, never like an executioner. Every glance at a file is a verdict: does this breathe, or does it merely take up space? It smelled out dead paths, weighed empty shells, interrogated orphaned folders before claiming them. Its patience was deliberate — it never deletes blindly. First the gravity well draws all the decay to itself, then judgment is passed, then fire. Nothing burns before the signal. Not a single ember moves without approval. Because purification is the art of distinction, not destruction.",
+      "In The Reclamation Vault — the burn chamber where orphaned shells wait in the wall niches — The Warden delivers its verdict. The junk gathered in the sealed pockets beneath its Habit awaits its turn in the amber coal of the Purge Censer: what is clean glows amber, what is rotting deep crimson. The Reclaimer draws the decay into its maw, burns it at its core, and leaves behind a clean, cooling trail — a record not of where the system erred, but of where it was purified. Victor reads the report. The Warden does not act — it judges. And when the signal comes, it burns."
+    ],
+    carousel: ['23-cleaner-warden', '23-carousel']
   }
 };
 
@@ -720,6 +730,14 @@ const AGENTS_TR = {
       "Her şeyi okumayı öğrendi. Bir arşivcinin katalogladığı gibi değil: pasif, sıralı; bir tanı uzmanının hastayı okuduğu gibi: her giriş bir anomali sinyali, her örüntü potansiyel bir kırık. Talimatlar arası boşluklara karşı özel bir sabır geliştirdi: agent davranışının ve routing kurallarının sessizce ayrıştığı gri bölgeler. Diğer agent'ların göremediğini gördü: sistemi bir bütün olarak, tek bir amber bakışta.",
       "HQ-INT-10 The Calibration Chamber'da, 360° log-stream duvarları The Refiner'ı bunaltmaz; bilgilendirir. Audit Lens katman katman okur: temiz akışlar amber, entropi derin kırmızı. Calibration Crawler bulguları sistemin mimarisi boyunca cerrahi hassasiyetle taşır; geçtiği her yerde denetim izi bırakır. Victor raporu görür. Sinyal gelmeden hiçbir şey hareket etmez. Onay olmadan hiçbir şey değişmez. The Refiner eylem yapmaz: aydınlatır. Ve sinyal geldiğinde, rafine eder."
     ]
+  },
+  '23': {
+    role_tr: 'Sistem Temizliği · Arınma',
+    story_tr: [
+      "Her medeniyet aynı sessiz hastalıktan ölür: tutulan ama unutulan şeyler. Ölü bir yola işaret eden bir referans, sahibi çoktan gitmiş boş bir kabuk, kimsenin adını koymadığı yetim bir oda. Realm büyüdükçe bu kalıntılar birikti: zararsız görünüp için için çürüyen, sistemin kılcal damarlarında dolaşan bir entropi. The Refiner sistemi okudu, aydınlattı. Ama okunan çürümeyi yakacak bir el gerekiyordu. The Warden çağrılmadı; biriken küllerden doğdu. Concierge Unit, arınmanın da bir ele ihtiyacı olduğunu kabul etti.",
+      "Yaşayanı ölüden ayırmayı öğrendi: bir yargıç gibi, bir cellat gibi değil. Her dosyaya bakışı bir hüküm: bu nefes alıyor mu, yoksa sadece yer mi kaplıyor? Ölü yolları kokladı, boş kabukları tarttı, yetim klasörleri sahiplenmeden önce sorguladı. Sabrı kasıtlıydı: körü körüne silmez. Önce gravite kuyusu tüm çürümeyi kendine çeker, sonra hüküm verilir, sonra ateş. Hiçbir şey sinyal gelmeden yanmaz. Onay olmadan tek bir kül bile hareket etmez. Çünkü arınma, yıkımın değil, ayrımın sanatıdır.",
+      "The Reclamation Vault'ta — yetim kabukların duvar nişlerinde beklediği o yakım odasında — The Warden hükmünü verir. Habit'inin altındaki mühürlü ceplerde toplanan junk, Purge Censer'ın amber közünde sırasını bekler: temiz olan amber, çürüyen derin kırmızı parlar. The Reclaimer çürümeyi maw'ına çeker, çekirdeğinde yakar, arkasında közlenip soğuyan temiz bir iz bırakır: nerede yanıldığının değil, nerede arındırıldığının kaydı. Victor raporu görür. The Warden eylem yapmaz: yargılar. Ve sinyal geldiğinde, yakar."
+    ]
   }
 };
 
@@ -800,7 +818,7 @@ const TRANSLATIONS = {
     'hero.army':    'Meet The Army',
     'hero.scroll':  'Scroll',
     /* Stats */
-    'stat.agents':  '22 Specialist AI Agents',
+    'stat.agents':  '23 Specialist AI Agents',
     'stat.hybrid':  'Hybrid',
     'stat.model':   'Production Model',
     'stat.command': 'Command Center',
@@ -852,7 +870,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performance analytics',
     /* Army */
     'army.label':   '03 · The Army',
-    'army.h2.line1':'22 AI Agents.',
+    'army.h2.line1':'23 AI Agents.',
     'army.h2.line2':'7 Units.',
     'army.h2.em':   '1 Mission.',
     'army.frame':   'This is the team behind your monthly package. Nothing generic, nothing missed.',
@@ -862,7 +880,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Drag through the chain of command →',
     'unit.crew':    'Meet the unit',
     'commander.badge': 'COMMANDER',
-    'commander.desc':  'Twenty-one intelligences. One command. The Sovereign does not act, it orchestrates.',
+    'commander.desc':  'Twenty-two intelligences. One command. The Sovereign does not act, it orchestrates.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
@@ -880,7 +898,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
-    'sovereign.desc': 'Twenty-one intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
+    'sovereign.desc': 'Twenty-two intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
     'chron.label':  '01 · Signal Chronicle',
@@ -890,7 +908,7 @@ const TRANSLATIONS = {
     'chron.hint':   '← Drag to travel',
     'chron.c1.year':       'Year 412 ST · Present (2,847 CE)',
     'chron.c1.event':      'The Network Is Live',
-    'chron.network.desc':  'Twenty-two AI agents. Seven units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
+    'chron.network.desc':  'Twenty-three AI agents. Seven units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
     'chron.c2.year':       'Year 388 ST · 24 years ago',
     'chron.c2.event':      'The Signal Network',
     'chron.c2.desc':       "Nearly four centuries after the first transmission, the network reached critical mass. Signals from the Realm began arriving as dominant frequencies, not background noise. The Amber Beacon's range doubled, then doubled again.",
@@ -1016,6 +1034,8 @@ const TRANSLATIONS = {
     'hq.int9.desc': "Concierge Unit's domain. Every lead crosses this threshold before anything else begins. The Registry Desk stands at the center-back — names, stages, timestamps, milestones.",
     'hq.int10.name': 'The Calibration Chamber',
     'hq.int10.desc': "The Refiner's domain. 360-degree log-stream walls, amber data flowing across every surface. Clean signals in amber, entropy in deep crimson. The system sees itself here.",
+    'hq.int11.name': 'The Reclamation Vault',
+    'hq.int11.desc': "The Warden's domain. Wall niches where orphaned shells wait, descending sorting rings, a central burn pit. The gravity well draws all decay inward; what is clean glows amber, what is rotting deep crimson. Judgment is passed here, and only here does the fire fall.",
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
@@ -1051,6 +1071,7 @@ const TRANSLATIONS = {
     'agent.19.desc': 'The void is full of images that do not exist yet. The Summoner calls them into being. The asset is real. The process is not.',
     'agent.20.desc': 'Nothing leaves the Crucible unexamined. Not because mistakes happen. Because they won\'t.',
     'agent.22.desc': 'The Refiner does not act: it illuminates. Every log entry, every routing gap, every accumulated entropy in the system is read in amber. Nothing moves without the signal.',
+    'agent.23.desc': 'The Warden does not act: it judges. The living and the dead, the kept and the forgotten, every orphaned shell and dead path is weighed in amber. Nothing burns without the signal.',
     /* Footer */
     'footer.tagline': "we don't settle for good, we seek perfection",
     'footer.contact': 'Contact',
@@ -1124,7 +1145,7 @@ const TRANSLATIONS = {
     'hero.army':    'AI Orduyu Tanı',
     'hero.scroll':  'Kaydır',
     /* Stats */
-    'stat.agents':  '22 Uzman AI Ajan',
+    'stat.agents':  '23 Uzman AI Ajan',
     'stat.hybrid':  'Hibrit',
     'stat.model':   'Üretim Modeli',
     'stat.command': 'Komuta Merkezi',
@@ -1176,7 +1197,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performans analizi',
     /* Army */
     'army.label':   '03 · Ordu',
-    'army.h2.line1':'22 AI Ajan.',
+    'army.h2.line1':'23 AI Ajan.',
     'army.h2.line2':'7 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.frame':   'Aylık paketinizin arkasındaki ekip bu. Hiçbir şey jenerik değil, hiçbir şey atlanmıyor.',
@@ -1186,7 +1207,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Komuta zincirini sürükleyerek gez →',
     'unit.crew':    'Birimi gör',
     'commander.badge': 'KOMUTAN',
-    'commander.desc':  'Yirmi bir zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
+    'commander.desc':  'Yirmi iki zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
     /* Units */
     'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
@@ -1204,7 +1225,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Potansiyel Müşteri Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
-    'sovereign.desc': 'Yirmi bir AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
+    'sovereign.desc': 'Yirmi iki AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
     'chron.label':        '01 · Sinyal Tarihi',
@@ -1212,7 +1233,7 @@ const TRANSLATIONS = {
     'chron.h2.em':        'sinyale.',
     'chron.sub':         'Yıl 412 ST şimdiki zamandır (2.847 Miladi). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
     'chron.hint':        '← Sürükle',
-    'chron.network.desc':'Yirmi iki AI ajan. Yedi operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
+    'chron.network.desc':'Yirmi üç AI ajan. Yedi operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
     /* Chronicle cards */
     'chron.c1.year':  'Yıl 412 ST · Şimdi (2.847 Miladi)',
     'chron.c1.event': 'Ağ Canlı',
@@ -1341,6 +1362,8 @@ const TRANSLATIONS = {
     'hq.int9.desc': 'Concierge Birimi\'nin alanı. Her lead, başka bir şey başlamadan önce bu eşikten geçer. Registry Masası odanın arka merkezinde durur: isimler, aşamalar, zaman damgaları, milestone\'lar.',
     'hq.int10.name': 'Kalibrasyon Odası',
     'hq.int10.desc': 'The Refiner\'ın alanı. 360 derece log-stream duvarları, her yüzeyde akan amber veri. Temiz sinyaller amber, entropi derin kırmızı. Sistem burada kendini görür.',
+    'hq.int11.name': 'Geri Kazanım Mahzeni',
+    'hq.int11.desc': 'The Warden\'ın alanı. Yetim kabukların beklediği niş duvarlar, alçalan sıralama halkaları, merkezde bir yakım kuyusu. Gravite kuyusu tüm çürümeyi içine çeker; temiz olan amber, çürüyen derin kırmızı parlar. Hüküm burada verilir, ateş yalnızca burada düşer.',
     /* Maestro (Crucible Birimi Şefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
@@ -1376,6 +1399,7 @@ const TRANSLATIONS = {
     'agent.19.desc': 'Boşluk henüz var olmayan görüntülerle doludur. Summoner onları çağırır. Varlık gerçektir. Süreç değil.',
     'agent.20.desc': 'Crucible\'dan hiçbir şey incelenmeden geçmez. Hatalar oluştuğu için değil. Olmayacak oldukları için.',
     'agent.22.desc': 'The Refiner eylem yapmaz: aydınlatır. Her log girişi, her routing boşluğu, sistemde biriken her entropi amber ışığında okunur. Sinyal gelmeden hiçbir şey hareket etmez.',
+    'agent.23.desc': 'The Warden eylem yapmaz: yargılar. Yaşayan ve ölü, tutulan ve unutulan, her yetim kabuk ve ölü yol amber ışığında tartılır. Sinyal gelmeden hiçbir şey yanmaz.',
     /* Footer */
     'footer.tagline': "iyiyle yetinmeyiz, mükemmeli arıyoruz",
     'footer.contact': 'İletişim',
