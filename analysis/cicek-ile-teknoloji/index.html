@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çiçek ile Teknoloji — İçerik Arşiv Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Nomades brand — void / thruster / solar */
+  --void-deep:#0B0B0E; --void-1:#1C1C1C; --void-2:#3A3A3A;
+  --bg:#0B0B0E; --surface:#141418; --surface2:#1C1C1C; --border:#1E1E22;
+  --text:#FAFAF7; --dim:#777;
+  --red:#B01C2E; --amber:#F0AA00; --gold:#F0AA00; --green:#F0AA00;
+  --font:'Space Grotesk',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#FAFAF7; --surface:#FFFFFF; --surface2:#F0EFE9; --border:#E0DDD8;
+  --text:#1C1C1C; --dim:#8A8A82; --gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:15px;
+  line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+h1,h2,h3{font-family:var(--font);letter-spacing:-0.01em}
+.mono,.num{font-family:var(--font);font-variant-numeric:tabular-nums}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 28px;margin-bottom:38px;transition:background .3s}
+[data-theme="light"] header{background:rgba(250,250,247,0.92)}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:16px}
+.hlogo{width:34px;filter:invert(1);flex-shrink:0}
+[data-theme="light"] .hlogo{filter:none}
+.hlogo-div{width:1px;height:42px;background:var(--red);flex-shrink:0}
+.heyebrow{font-size:.55rem;font-weight:600;letter-spacing:.34em;color:var(--amber)}
+.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
+.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
+.htools{display:flex;align-items:center;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--red);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--red)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
+  padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+
+/* SECTIONS */
+section{margin-bottom:54px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-size:1.85rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero) " — ";color:var(--amber);font-weight:700}
+.shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.95rem;max-width:780px;margin-bottom:22px;line-height:1.75}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--void-2);border-radius:4px;padding:20px}
+.kpi .label{display:block;margin-bottom:10px;color:var(--amber)}
+.kpi .v{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:.8rem;color:var(--dim);font-weight:500}
+.kpi .note{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.kpi.alert{border-top-color:var(--red)}
+.kpi.alert .v{color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}
+.kpi.good .v{color:var(--amber)}
+.kpi.span4{grid-column:span 4}
+
+/* BANNER */
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--border)}
+th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-space:nowrap}
+th.sortkey{color:var(--amber)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--surface)}
+.cap{max-width:380px}
+.cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.bar{height:5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+
+/* CARDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:14px;font-weight:700}
+.meta{font-size:.78rem;color:var(--dim)}
+
+/* THEME / HOUR LISTS */
+.tlist .trow{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.tlist .tname{flex:0 0 160px;font-size:.84rem}
+.tlist .tbar{flex:1;height:16px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.tlist .tbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+.tlist .tval{flex:0 0 70px;text-align:right;font-size:.78rem;color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* COMMENTS */
+.cmts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmt{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:15px 17px}
+.cmt .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.cmt .u{font-size:.76rem;font-weight:600;color:var(--amber)}
+.cmt .txt{font-size:.89rem;margin-bottom:9px;color:var(--text);line-height:1.6}
+.cmt .meta a{color:var(--dim);text-decoration:none}
+.cmt .meta a:hover{color:var(--amber)}
+.tag{font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.tag.satin{background:rgba(176,28,46,.16);color:var(--red)}
+.tag.soru{background:rgba(240,170,0,.16);color:var(--amber)}
+.tag.itiraz{background:rgba(120,120,120,.18);color:var(--dim)}
+.tag.katilim{background:rgba(240,170,0,.10);color:var(--amber)}
+
+/* INSIGHTS */
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ins{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:4px;padding:20px 22px}
+.ins.critical{border-left-color:var(--red)}
+.ins.opportunity{border-left-color:var(--amber)}
+.ins.warning{border-left-color:var(--amber)}
+.ins .it{font-size:.6rem;font-weight:700;letter-spacing:.16em;margin-bottom:10px}
+.ins.critical .it{color:var(--red)}
+.ins.warning .it{color:var(--amber)}
+.ins.opportunity .it{display:inline-block;background:var(--amber);color:var(--void-deep);padding:3px 8px;border-radius:2px}
+.ins h3{font-size:1.02rem;margin-bottom:9px;font-weight:700}
+.ins p{font-size:.88rem;color:var(--text);margin-bottom:11px;line-height:1.6}
+.ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.55}
+.ins .act b{color:var(--amber)}
+
+/* HOOKS */
+.hooks .ins{border-left-color:var(--amber)}
+.hooks .it{color:var(--amber)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber)}
+.foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
+.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+
+@media(max-width:880px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .kpi.span4{grid-column:span 2}
+  .grid2,.cmts,.insights{grid-template-columns:1fr}
+  .shead h2{font-size:1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media print{
+  .no-print{display:none!important}
+  header{position:static}
+  body{background:#fff;color:#111}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body data-theme="dark">
+<header>
+  <div class="hbar">
+    <div class="hbrand">
+      <img class="hlogo" src="nomades-agency.png" alt="Nomades Agency">
+      <div class="hlogo-div"></div>
+      <div class="htitle">
+        <p class="heyebrow">NOMADES AGENCY — DEEPDIVE ANALYTICS</p>
+        <h1>Çiçek ile Teknoloji — İçerik Arşiv Analizi</h1>
+        <div class="sub">@cicekileteknoloji · Teknoloji / Yapay Zeka Medya · Veri aralığı: 14–17 Haziran 2026 · 20 reel</div>
+      </div>
+    </div>
+    <div class="htools no-print">
+      <span class="badge">⚠ Düşük etkileşim sinyali</span>
+      <button class="btn" id="pdfBtn">PDF olarak Kaydet</button>
+      <button class="btn" id="themeBtn">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="banner">
+    <b>Veri kapsamı notu:</b> Bu analiz, veri kaynağının erişime sunduğu son 20 reel (14–17 Haziran 2026, ~3,3 günlük pencere) üzerinden hazırlanmıştır. Hesabın geçmiş arşivinin tamamını yansıtmaz; gösterilen sıralama ve oranlar bu örneklemle sınırlıdır. Tüm metrikler ham veriden türetilmiştir.
+  </div>
+
+  <!-- KPI -->
+  <section>
+    <div class="shead"><h2>Temel Metrikler</h2><span class="stag">SON 20 REEL</span></div>
+    <div class="kpis">
+      <div class="kpi"><span class="label">TOPLAM BEĞENİ</span><div class="v">7.805</div><div class="note">ort. 390 / post · medyan 206</div></div>
+      <div class="kpi"><span class="label">TOPLAM GÖRÜNTÜLEME</span><div class="v">242.769</div><div class="note">videoViewCount toplamı</div></div>
+      <div class="kpi"><span class="label">TOPLAM OYNATMA</span><div class="v">631.210</div><div class="note">videoPlayCount toplamı</div></div>
+      <div class="kpi"><span class="label">TOPLAM YORUM</span><div class="v">1.154</div><div class="note">tek outlier: 905 (Karpathy)</div></div>
+      <div class="kpi alert"><span class="label">ETKİLEŞİM ORANI</span><div class="v">~%0,12</div><div class="note">(beğeni+yorum)/386K takipçi · 386K kitle için kritik düşük</div></div>
+      <div class="kpi alert"><span class="label">GÖRÜNTÜLEME / TAKİPÇİ</span><div class="v">~%3,1</div><div class="note">içerik takipçilerin yalnızca ~%3'üne ulaşıyor</div></div>
+      <div class="kpi"><span class="label">PAYLAŞIM SIKLIĞI</span><div class="v">~6<small> /gün</small></div><div class="note">20 reel / 3,3 gün</div></div>
+      <div class="kpi good"><span class="label">EN İYİ POST (GÖRÜNTÜLEME)</span><div class="v">65.902</div><div class="note">NASA / Enceladus uzay görseli · ortalamanın ~5,4 katı</div></div>
+    </div>
+  </section>
+
+  <!-- POST PERF -->
+  <section>
+    <div class="shead"><h2>Post Performans Sıralaması</h2><span class="stag">GÖRÜNTÜLEMEYE GÖRE</span></div>
+    <p class="lead">Tablo <b style="color:var(--amber)">en yüksek görüntülemeden en düşüğe</b> doğru sıralanmıştır (sıralama ölçütü: <b style="color:var(--amber)">görüntüleme sayısı</b>). Aynı format (AI/teknoloji haber özeti) 367 ile 65.902 görüntüleme arasında salınıyor — neyin neden tuttuğuna dair bir sistem yok. Başlığa tıklayarak gönderiyi açabilirsiniz.</p>
+    <table id="postTable">
+      <thead><tr><th class="cap">Gönderi</th><th class="n sortkey">Görüntüleme ▼</th><th class="n">Oynatma</th><th class="n">Beğeni</th><th class="n">Yorum</th><th class="n">Süre</th><th class="n">Zaman</th></tr></thead>
+      <tbody id="postBody"></tbody>
+    </table>
+  </section>
+
+  <!-- THEME + TIMING -->
+  <section>
+    <div class="shead"><h2>Tematik Dağılım & Zamanlama</h2><span class="stag">FORMAT–PERFORMANS</span></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Temaya göre ortalama görüntüleme</h3>
+        <div class="tlist" id="themeList"></div>
+        <p class="meta" style="font-size:.78rem;color:var(--dim);margin-top:10px">Uzay/bilim ve stilize başlıklı (kalın Unicode) gönderiler tutarlı şekilde öne çıkıyor; regülasyon/politika ve kişisel finans en altta kalıyor.</p>
+      </div>
+      <div class="card">
+        <h3>Saate göre ortalama görüntüleme (TR)</h3>
+        <div class="tlist" id="hourList"></div>
+        <p class="meta" style="font-size:.78rem;color:var(--dim);margin-top:10px">16:00 dilimi açık ara en güçlü (~26K ort.). 20:00 ve öğle (12:00) dilimleri zayıf. Format–uzunluk: 60sn+ haber formatı ~15,4K, 60sn altı kısa klipler ~2,2K ortalama (~7 kat fark).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section>
+    <div class="shead"><h2>Stratejik Çıkarımlar</h2><span class="stag">KANITA DAYALI</span></div>
+    <div class="insights">
+      <div class="ins critical"><div class="it">KRİTİK</div><h3>386K kitle, ~%0,12 etkileşim</h3><p>Beğeni+yorum, takipçinin yalnızca binde 1,2'sine denk geliyor. Görüntüleme/takipçi ~%3,1 — içerik kitlenin ~%97'sine hiç ulaşmıyor. Bu, ölçülebilir bir dağıtım/ölü-kitle sorunu.</p><div class="act"><b>Aksiyon:</b> Sıklığı düşürüp gönderi başına derinliği artıran, kaydetme/paylaşma tetikleyen format sistemine geç.</div></div>
+      <div class="ins critical"><div class="it">KRİTİK</div><h3>Hacim yüksek, getiri düşük</h3><p>Günde ~6 reel basılıyor ama medyan yalnızca 206 beğeni / 6.576 görüntüleme. Üretim eforu ile sonuç arasında ciddi açık var; çoğu gönderi 40–600 beğenide kalıyor.</p><div class="act"><b>Aksiyon:</b> "Daha az ama daha iyi" — günde 6 yerine kürasyonlu 2–3 yüksek-niyet gönderisi.</div></div>
+      <div class="ins warning"><div class="it">UYARI</div><h3>Aynı formatta 174 kat oynama</h3><p>Aynı tür içerik 367 ile 65.902 görüntüleme arasında değişiyor. Performans şansa bağlı; tekrarlanabilir bir viral mantığı yok.</p><div class="act"><b>Aksiyon:</b> En iyi 5 gönderinin ortak değişkenlerini (uzay/bilim teması, stilize başlık, 16:00) sabit bir şablona dönüştür.</div></div>
+      <div class="ins opportunity"><div class="it">FIRSAT</div><h3>Uzay/bilim teması tutarlı kazanıyor</h3><p>Uzay/bilim gönderileri ort. ~15,5K görüntüleme; en yüksek gönderi (NASA/Enceladus) ortalamanın 5,4 katı. AI-liderler ve otomotiv ikinci sırada; politika/finans en zayıf.</p><div class="act"><b>Aksiyon:</b> Haftalık sabit "uzay & bilim" serisi kur; düşük performanslı politika/kişisel-finans klipleri seyrekleştir.</div></div>
+      <div class="ins opportunity"><div class="it">FIRSAT</div><h3>16:00 ve uzun format kazanıyor</h3><p>16:00 dilimi ~26K ort. görüntüleme; 60sn+ haber formatı 60sn altı kısa kliplere göre ~7 kat performanslı. Kısa kişisel-finans klipleri (22–47sn) en dipte.</p><div class="act"><b>Aksiyon:</b> Ana gönderileri 16:00 TR'ye sabitle; 60–105sn formatı standartlaştır.</div></div>
+      <div class="ins warning"><div class="it">UYARI</div><h3>Caption CTA'sı yok — yorum sönük</h3><p>Soru/CTA içeren caption'lar ort. yalnızca 2 yorum alırken (çünkü bunlar zayıf kişisel-finans klipleri), haber gönderilerinde yorum organik (ort. 72) ama caption yapısı etkileşimi yönlendirmiyor. Hashtag neredeyse hiç yok (yalnızca 3 kez #işbirliği), mention 0.</p><div class="act"><b>Aksiyon:</b> Her caption'a tartışma açan tek bir net soru + tematik keşif hashtag seti ekle.</div></div>
+      <div class="ins critical"><div class="it">KRİTİK</div><h3>Yorumlar yanıtsız — etkileşim fırsatı kaçıyor</h3><p>1.154 yoruma karşılık görünür yanıt oranı sıfıra yakın. Gerçek sorular ve görüşler büyük ölçüde yanıtsız kalıyor; otorite ve topluluk inşası için güçlü bir fırsat değerlendirilmemiş durumda.</p><div class="act"><b>Aksiyon:</b> İlk 60 dakikada sabit yorum-yanıt rutini; yorumlardan doğan soruları içeriğe dönüştüren "yorumdan reel" döngüsü.</div></div>
+      <div class="ins opportunity"><div class="it">FIRSAT</div><h3>Outlier'lar dönüşüm hunisi istiyor</h3><p>Karpathy gönderisi 905 yorumla patladı; NASA gönderisi 65,9K görüntüleme aldı. Bu zirveler hiçbir abone/üyelik/danışmanlık aksiyonuna bağlanmıyor — trafik üretip kaçıyor.</p><div class="act"><b>Aksiyon:</b> Yüksek-performans gönderilerine sabit bir sonraki-adım (bülten/seri/derin içerik) bağla.</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-l">
+      <p class="fname">NOMADES AGENCY</p>
+      <p class="fmeta">@cicekileteknoloji · İçerik &amp; Etkileşim Analiz Raporu · Veri: 14–17 Haziran 2026 (son 20 reel)<br>Tüm metrikler ham veriden türetilmiştir · Confidential</p>
+    </div>
+    <p class="foot-tl">we don't settle for good, we seek perfection</p>
+  </footer>
+</div>
+
+<script>
+const D = {"posts": [{"caption": "Ferrari’nin ilk elektrikli otomobili Luce ile lüks segmentte yeni dönem!", "likes": 394, "comments": 58, "views": 19119, "plays": 51795, "duration": 103, "url": "https://www.instagram.com/p/DZrRmwkFU6_/", "time": "Wed 09:01", "hour": 9}, {"caption": "Nous Research’ten açık kaynak masaüstü ajanı: Hermes Desktop", "likes": 77, "comments": 2, "views": 2572, "plays": 11534, "duration": 37, "url": "https://www.instagram.com/p/DZsB9FwFQDX/", "time": "Wed 16:03", "hour": 16}, {"caption": "Microsoft Build 2026: Ajan işletim sistemi stratejisi", "likes": 46, "comments": 0, "views": 1182, "plays": 7268, "duration": 118, "url": "https://www.instagram.com/p/DZsddGOCYk5/", "time": "Wed 20:05", "hour": 20}, {"caption": "Trump'ın YZ kararnamesi: 30 günlük gönüllü frontier inceleme!", "likes": 68, "comments": 4, "views": 2647, "plays": 11457, "duration": 86, "url": "https://www.instagram.com/p/DZr2WxwCMP5/", "time": "Wed 14:22", "hour": 14}, {"caption": "Jensen Huang: \"Yapay zekaya dayanıklı bölüm\" aramayın!", "likes": 607, "comments": 22, "views": 20562, "plays": 54645, "duration": 105, "url": "https://www.instagram.com/p/DZpdEqZCfiB/", "time": "Tue 16:03", "hour": 16}, {"caption": "David Solomon: Yapay zeka kitlesel işsizlik yaratmayacak!", "likes": 93, "comments": 3, "views": 3425, "plays": 14487, "duration": 104, "url": "https://www.instagram.com/p/DZpqupCAXZX/", "time": "Tue 18:04", "hour": 18}, {"caption": "“Gücümüzü paradan mı almalıyız, yoksa becerilerimizden mi?”", "likes": 41, "comments": 1, "views": 1442, "plays": 6470, "duration": 29, "url": "https://www.instagram.com/p/DZsMGecs6FY/", "time": "Wed 17:32", "hour": 17}, {"caption": "İş dünyasındaki büyük değişimler ve artan işten çıkarmalar kapıdayken, gelecek nesilleri b", "likes": 100, "comments": 2, "views": 4344, "plays": 13388, "duration": 58, "url": "https://www.instagram.com/p/DZpkx1YMjIY/", "time": "Tue 17:11", "hour": 17}, {"caption": "Karpathy'nin LLM konseyi YZ’nın aşırı onaylama sorununu çözüyor. Kendi konseyini oluşturma", "likes": 591, "comments": 905, "views": 16893, "plays": 48410, "duration": 155, "url": "https://www.instagram.com/p/DZsJ1TDDtcV/", "time": "Wed 17:14", "hour": 17}, {"caption": "“Bu benim isteğim mi, yoksa ihtiyacım mı?” 🤔", "likes": 164, "comments": 4, "views": 2396, "plays": 7688, "duration": 47, "url": "https://www.instagram.com/p/DZnFlslMa6J/", "time": "Mon 18:03", "hour": 18}, {"caption": "Demis Hassabis AGI tarihini verdi: 2030 civarında gerçekleşecek!", "likes": 102, "comments": 3, "views": 2818, "plays": 12716, "duration": 86, "url": "https://www.instagram.com/p/DZpPPkbDZX-/", "time": "Tue 14:02", "hour": 14}, {"caption": "𝗡𝗔𝗦𝗔 𝗟𝗘𝗔𝗣: 𝗘𝗻𝗰𝗲𝗹𝗮𝗱𝘂𝘀'𝘂𝗻 𝗴𝗮𝘆𝘇𝗲𝗿𝗹𝗲𝗿𝗶 𝗶𝗰̧𝗶𝗻 𝗣𝗼𝗴𝗼-𝗦𝘁𝗶𝗰𝗸 𝗯𝗲𝗻𝘇𝗲𝗿𝗶 𝗿𝗼𝗯𝗼𝘁", "likes": 2571, "comments": 82, "views": 65902, "plays": 115266, "duration": 101, "url": "https://www.instagram.com/p/DZkTd9VFK7F/", "time": "Sun 16:03", "hour": 16}, {"caption": "Uzayda insan yaşamı: Çin'in uzay istasyonunda yapay embriyo deneyi", "likes": 512, "comments": 20, "views": 14991, "plays": 39032, "duration": 112, "url": "https://www.instagram.com/p/DZm4DNKk1bM/", "time": "Mon 16:01", "hour": 16}, {"caption": "𝗚𝗲𝗻𝗲𝘀𝗶𝘀 𝗔𝗜, 𝗿𝗼𝗯𝗼𝘁𝗹𝗮𝗿 𝗶𝗰̧𝗶𝗻 𝘀𝗮𝗻𝗮𝗹 𝗱𝘂̈𝗻𝘆𝗮𝘀ı𝗻ı 𝗮𝗰̧𝘁ı: 𝗚𝗲𝗻𝗲𝘀𝗶𝘀 𝗪𝗼𝗿𝗹𝗱 𝟭.𝟬", "likes": 148, "comments": 2, "views": 5213, "plays": 19682, "duration": 89, "url": "https://www.instagram.com/p/DZkhOvWiekP/", "time": "Sun 18:03", "hour": 18}, {"caption": "Spotify yatırımcı günü: UMG ile YZ cover anlaşması ve 3 yeni ürün", "likes": 493, "comments": 8, "views": 15946, "plays": 50288, "duration": 108, "url": "https://www.instagram.com/p/DZmIMaPCKOq/", "time": "Mon 09:03", "hour": 9}, {"caption": "Sivil havacılıkta hipersonik çağ: Tokyo-New York sadece 2 Saat!", "likes": 886, "comments": 15, "views": 28250, "plays": 64434, "duration": 94, "url": "https://www.instagram.com/p/DZnF2FgAkuc/", "time": "Mon 18:01", "hour": 18}, {"caption": "NASA’da yeniden yapılanma: Isaacman’in sadeleşme planı!", "likes": 364, "comments": 5, "views": 17353, "plays": 41900, "duration": 100, "url": "https://www.instagram.com/p/DZosyqCjLUv/", "time": "Tue 09:01", "hour": 9}, {"caption": "Çocuğunuz parayı tanımadan harcıyor olabilir. Peki ne yapmalı?", "likes": 37, "comments": 1, "views": 367, "plays": 2432, "duration": 22, "url": "https://www.instagram.com/p/DZj7UJXsw0B/", "time": "Sun 12:32", "hour": 12}, {"caption": "𝗘𝗱𝗲𝗻 𝗥𝗼𝗯𝗼𝘁𝗶𝗰𝘀: 𝗦𝗮𝗮𝘁𝗹𝗶𝗸 𝟭𝟬 𝗱𝗼𝗹𝗮𝗿𝗮 𝗿𝗼𝗯𝗼𝘁 𝗶𝘀̧𝗰̧𝗶", "likes": 263, "comments": 9, "views": 7938, "plays": 26914, "duration": 86, "url": "https://www.instagram.com/p/DZkFvSAE1_p/", "time": "Sun 14:03", "hour": 14}, {"caption": "Papa Leo XIV'ün YZ konusundaki encyclical'ı: Magnifica Humanitas", "likes": 248, "comments": 8, "views": 9409, "plays": 31404, "duration": 109, "url": "https://www.instagram.com/p/DZmr_rRiAhf/", "time": "Mon 14:16", "hour": 14}]};
+const fmt = n => n.toLocaleString('tr-TR');
+
+// post table
+const posts = [...D.posts].sort((a,b)=>b.views-a.views);
+const maxV = Math.max(...posts.map(p=>p.views));
+document.getElementById('postBody').innerHTML = posts.map(p=>`
+  <tr>
+    <td class="cap"><a href="${p.url}" target="_blank" rel="noopener">${p.caption}</a>
+      <div class="bar"><i style="width:${(p.views/maxV*100).toFixed(1)}%"></i></div></td>
+    <td class="n">${fmt(p.views)}</td>
+    <td class="n" style="color:var(--dim)">${fmt(p.plays)}</td>
+    <td class="n">${fmt(p.likes)}</td>
+    <td class="n">${fmt(p.comments)}</td>
+    <td class="n" style="color:var(--dim)">${p.duration}sn</td>
+    <td class="n" style="color:var(--dim)">${p.time}</td>
+  </tr>`).join('');
+
+// theme list (precomputed)
+const themes = [
+  ['Uzay / Bilim',15509],['AI Liderler / Söylem',9054],['Otomotiv / Tüketici Tech',9457],
+  ['AI Modeli / Ürün',6882],['AI Ekonomi / İş',4344],['Kişisel Finans / Yaşam',1402],['Politika / Regülasyon',2647]
+].sort((a,b)=>b[1]-a[1]);
+const maxT = Math.max(...themes.map(t=>t[1]));
+document.getElementById('themeList').innerHTML = themes.map(t=>`
+  <div class="trow"><div class="tname">${t[0]}</div>
+  <div class="tbar"><i style="width:${(t[1]/maxT*100).toFixed(0)}%"></i></div>
+  <div class="tval">${fmt(t[1])}</div></div>`).join('');
+
+// hour list
+const hours = [['09:00',17473],['16:00',26007],['18:00',9821],['17:00',7560],['14:00',5703],['20:00',1182],['12:00',367]].sort((a,b)=>b[1]-a[1]);
+const maxH = Math.max(...hours.map(h=>h[1]));
+document.getElementById('hourList').innerHTML = hours.map(h=>`
+  <div class="trow"><div class="tname">${h[0]}</div>
+  <div class="tbar"><i style="width:${(h[1]/maxH*100).toFixed(0)}%"></i></div>
+  <div class="tval">${fmt(h[1])}</div></div>`).join('');
+
+// theme toggle
+const tb = document.getElementById('themeBtn');
+tb.addEventListener('click', ()=>{
+  const cur = document.body.getAttribute('data-theme');
+  const nx = cur==='dark'?'light':'dark';
+  document.body.setAttribute('data-theme', nx);
+  tb.textContent = nx==='dark'?'🌙':'☀️';
+});
+document.getElementById('pdfBtn').addEventListener('click', ()=>window.print());
+</script>
+</body>
+</html>
