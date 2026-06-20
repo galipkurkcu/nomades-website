@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diyetisyen Zara Bekar — İçerik Performans Analizi</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0B0B0E;
+    --surface1: #141418;
+    --surface2: #1C1C1C;
+    --border:   #1E1E22;
+    --text:     #FAFAF7;
+    --dim:      #555;
+    --red:      #B01C2E;
+    --green:    #4caf89;
+    --amber:    #F0AA00;
+    --gold:     #F0AA00;
+    --gold-light: #FAFAF7;
+    --critical:   #B01C2E;
+    --opportunity:#4caf89;
+    --warning:    #F0AA00;
+    --font:     'Space Grotesk', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  /* HEADER */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header-left h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .header-left .sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .badge-unanswered {
+    background: rgba(176,28,46,0.12);
+    border: 1px solid rgba(176,28,46,0.35);
+    color: var(--red);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-lead {
+    background: rgba(232,168,58,0.15);
+    border: 1px solid rgba(232,168,58,0.4);
+    color: var(--amber);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.2s;
+  }
+  .btn:hover { color: var(--text); border-color: var(--gold); }
+
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px; }
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .kpi-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+    opacity: 0.6;
+  }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .kpi-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+  .kpi-highlight .kpi-value { color: var(--amber); }
+  .kpi-danger .kpi-value { color: var(--red); }
+  .kpi-good .kpi-value { color: var(--green); }
+
+  /* POST TABLO */
+  .post-table { width: 100%; border-collapse: collapse; }
+  .post-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+  .post-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(51,56,64,0.5);
+    vertical-align: top;
+    font-size: 13px;
+  }
+  .post-table tr:hover td { background: var(--surface2); }
+  .post-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    width: 28px;
+  }
+  .post-caption a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .post-caption a:hover { color: var(--gold-light); }
+  .post-metric {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .post-metric-sub { font-size: 11px; color: var(--dim); font-family: 'Space Grotesk', sans-serif; }
+  .post-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); }
+  .pinned-badge {
+    display: inline-block;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .duplicate-badge {
+    display: inline-block;
+    background: rgba(232,168,58,0.1);
+    border: 1px solid rgba(232,168,58,0.3);
+    color: var(--amber);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .bar-container { width: 80px; }
+  .bar {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--amber));
+    border-radius: 3px;
+    transition: width 0.4s;
+  }
+
+  /* YORUM KARTLARI */
+  .comments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 14px;
+  }
+  .comment-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    position: relative;
+  }
+  .comment-card.unanswered { border-left: 3px solid var(--red); }
+  .comment-card.answered { border-left: 3px solid var(--green); }
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .comment-user {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-light);
+  }
+  .comment-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .tag-soru { background: rgba(200,169,110,0.15); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .tag-satis { background: rgba(200,57,43,0.15); color: var(--red); border: 1px solid rgba(200,57,43,0.3); }
+  .tag-katilim { background: rgba(76,175,137,0.15); color: var(--green); border: 1px solid rgba(76,175,137,0.3); }
+  .tag-etkilesim { background: rgba(122,122,136,0.15); color: var(--dim); border: 1px solid rgba(122,122,136,0.3); }
+  .tag-itiraz { background: rgba(232,168,58,0.15); color: var(--amber); border: 1px solid rgba(232,168,58,0.3); }
+  .comment-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .comment-post {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+  }
+  .comment-post a { color: var(--dim); text-decoration: none; }
+  .comment-post a:hover { color: var(--gold-light); }
+  .comment-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    margin-top: 6px;
+  }
+  .status-no { color: var(--red); }
+  .status-yes { color: var(--green); }
+
+  /* TEMATİK */
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .theme-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+  }
+  .theme-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+  .theme-card p { font-size: 13px; color: var(--dim); line-height: 1.5; }
+  .theme-tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .theme-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .theme-stat {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    margin-top: 8px;
+  }
+
+  /* DUYGU */
+  .emotion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .emotion-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .emotion-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+  .emotion-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .emotion-bar {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    margin: 8px 0;
+    overflow: hidden;
+  }
+  .emotion-fill { height: 100%; border-radius: 2px; }
+  .emotion-desc { font-size: 12px; color: var(--dim); line-height: 1.4; }
+
+  /* İÇERİK TİPİ */
+  .content-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .content-type-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .ct-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .ct-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+  .ct-stats { display: flex; gap: 16px; }
+  .ct-stat { flex: 1; }
+  .ct-stat-label { font-size: 10px; color: var(--dim); margin-bottom: 2px; }
+  .ct-stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ct-stat-value.highlight { color: var(--amber); }
+
+  /* STRATEJİK ÇIKARIMLAR */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+  .insight-card {
+    background: var(--surface1);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .insight-card.critical::before { background: var(--red); }
+  .insight-card.opportunity::before { background: var(--green); }
+  .insight-card.warning::before { background: var(--amber); }
+  .insight-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .insight-card.critical .insight-type { color: var(--red); }
+  .insight-card.opportunity .insight-type { color: var(--green); }
+  .insight-card.warning .insight-type { color: var(--amber); }
+  .insight-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .insight-body { font-size: 13px; color: var(--dim); line-height: 1.6; margin-bottom: 12px; }
+  .insight-action {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .insight-action strong {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: block;
+    color: var(--dim);
+    margin-bottom: 4px;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 32px;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 40px;
+  }
+  .footer span { color: var(--gold); }
+
+  /* PRINT */
+  @media print {
+    .header { position: static; }
+    .no-print { display: none !important; }
+    body { background: white; color: #1a1a1e; }
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left" style="display:flex;align-items:center;gap:20px;">
+    <img src="./nomades-agency.png" alt="Nomades Agency" style="height:28px;filter:invert(1);opacity:0.9;flex-shrink:0;">
+    <div style="width:1px;height:32px;background:var(--border);"></div>
+    <div>
+      <h1>Diyetisyen Zara Bekar — @diyetisyennzara</h1>
+      <div class="sub">Veri aralığı: 27 Nisan 2026 — 18 Haziran 2026 &nbsp;·&nbsp; 20 içerik analiz edildi &nbsp;·&nbsp; Klinik / Sağlık sektörü</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="badge-unanswered">15 Yanıtsız Soru</span>
+    <button class="btn no-print" onclick="window.print()">PDF Kaydet</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- KPI GRİD -->
+  <section class="section">
+    <div class="section-title">Temel Metrikler</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Toplam Beğeni</div>
+        <div class="kpi-value">3.457</div>
+        <div class="kpi-sub">20 içerik genelinde</div>
+      </div>
+      <div class="kpi-card kpi-highlight">
+        <div class="kpi-label">Toplam Görüntüleme</div>
+        <div class="kpi-value">131K</div>
+        <div class="kpi-sub">Tekil görüntüleme (view)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Toplam İzlenme</div>
+        <div class="kpi-value">376K</div>
+        <div class="kpi-sub">Tekrarlı oynatma dahil</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Toplam Yorum</div>
+        <div class="kpi-value">151</div>
+        <div class="kpi-sub">20 içerik genelinde</div>
+      </div>
+      <div class="kpi-card kpi-danger">
+        <div class="kpi-label">Yanıtsız Soru</div>
+        <div class="kpi-value">15</div>
+        <div class="kpi-sub">57 takipçi yorumunda 15 soru yanıtsız</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ort. Beğeni / İçerik</div>
+        <div class="kpi-value">172.8</div>
+        <div class="kpi-sub">Medyan: 89 beğeni</div>
+      </div>
+      <div class="kpi-card kpi-good">
+        <div class="kpi-label">En İyi İçerik</div>
+        <div class="kpi-value">1.877</div>
+        <div class="kpi-sub">Şişkinlik smoothie — 84K görüntüleme</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Analiz Edilen İçerik</div>
+        <div class="kpi-value">20</div>
+        <div class="kpi-sub">Hepsi Video (Reels) formatı</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POST PERFORMANS -->
+  <section class="section">
+    <div class="section-title">İçerik Performans Sıralaması</div>
+    <table class="post-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>İçerik</th>
+          <th>Beğeni</th>
+          <th>Görüntüleme</th>
+          <th>Yorum</th>
+          <th>Tarih</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="post-rank">1</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Derdine Göre Smoothie — Şişkinlik</a>
+            <span class="pinned-badge">PİNLİ</span>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">18 sn kısa video · orijinal ses</div>
+          </td>
+          <td class="post-metric">1.877
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:100%"></div></div></div>
+          </td>
+          <td class="post-metric">84.139<div class="post-metric-sub">2.62x tekrar</div></td>
+          <td class="post-metric">56</td>
+          <td class="post-date">2 Haz 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">2</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DXpBdFQjONu/" target="_blank">Sofra dolu ama neden doymuyoruz? — Beyin ve doyma</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">45 sn · eğitim formatı</div>
+          </td>
+          <td class="post-metric">220
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:12%"></div></div></div>
+          </td>
+          <td class="post-metric">8.677<div class="post-metric-sub">4.08x tekrar</div></td>
+          <td class="post-metric">8</td>
+          <td class="post-date">27 Nis 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">3</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DXw8Ao3skP9/" target="_blank">Protein tozu — sihirli çözüm mü, takviye mi?</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">53 sn · trend debunk formatı</div>
+          </td>
+          <td class="post-metric">178
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:9%"></div></div></div>
+          </td>
+          <td class="post-metric">8.664<div class="post-metric-sub">3.04x tekrar</div></td>
+          <td class="post-metric">20</td>
+          <td class="post-date">30 Nis 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">4</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie — detoks değil denge</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">11 sn kısa video</div>
+          </td>
+          <td class="post-metric">165
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:9%"></div></div></div>
+          </td>
+          <td class="post-metric">3.329<div class="post-metric-sub">2.95x tekrar</div></td>
+          <td class="post-metric">6</td>
+          <td class="post-date">1 Haz 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">5</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DYPttANMdzx/" target="_blank">Whoosh Effect — bir anda incelme hissi</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">50 sn · eğitim formatı</div>
+          </td>
+          <td class="post-metric">131
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:7%"></div></div></div>
+          </td>
+          <td class="post-metric">2.442<div class="post-metric-sub">3.20x tekrar</div></td>
+          <td class="post-metric">5</td>
+          <td class="post-date">12 May 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">6</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DZIct4PuAwJ/" target="_blank">Derdine Göre Smoothie — Şişkinlik (2. versiyon)</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">18 sn · aynı içerik, farklı post</div>
+          </td>
+          <td class="post-metric">112
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:6%"></div></div></div>
+          </td>
+          <td class="post-metric">4.208</td>
+          <td class="post-metric">4</td>
+          <td class="post-date">3 Haz 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">7</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DYXWXnlsZlN/" target="_blank">Gece acıktın, sokak yemeği — kötünün iyisi</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">62 sn · pratik içerik</div>
+          </td>
+          <td class="post-metric">108
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:6%"></div></div></div>
+          </td>
+          <td class="post-metric">3.703</td>
+          <td class="post-metric">1</td>
+          <td class="post-date">15 May 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">8</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DYAL1w0MkyX/" target="_blank">Erkekler neden daha hızlı kilo veriyor?</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">55 sn · tartışma formatı</div>
+          </td>
+          <td class="post-metric">97
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:5%"></div></div></div>
+          </td>
+          <td class="post-metric">1.917</td>
+          <td class="post-metric">10</td>
+          <td class="post-date">6 May 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">9</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DZIZ-rcNMzv/" target="_blank">Derdine Göre Smoothie — Tatlı krizi</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">15 sn kısa video</div>
+          </td>
+          <td class="post-metric">92
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:5%"></div></div></div>
+          </td>
+          <td class="post-metric">2.417</td>
+          <td class="post-metric">6</td>
+          <td class="post-date">3 Haz 2026</td>
+        </tr>
+        <tr>
+          <td class="post-rank">10</td>
+          <td class="post-caption">
+            <a href="https://www.instagram.com/p/DZX0QWEsP8i/" target="_blank">Danışan Hikayesi — Dilara Hanım</a>
+            <div style="font-size:11px;color:var(--dim);margin-top:3px;">168 sn uzun vlog formatı</div>
+          </td>
+          <td class="post-metric">89
+            <div class="bar-container"><div class="bar"><div class="bar-fill" style="width:5%"></div></div></div>
+          </td>
+          <td class="post-metric">1.244</td>
+          <td class="post-metric">14</td>
+          <td class="post-date">9 Haz 2026</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);">
+      Not: 7 içerikte caption tekrarı tespit edildi — bu postlar orijinalin 1/10–1/17 düzeyinde performans gösteriyor.
+    </div>
+  </section>
+
+  <!-- YANITLANMAMIŞ YORUMLAR -->
+  <section class="section">
+    <div class="section-title">Yanıtsız Yorum Analizi</div>
+    <p style="font-size:13px;color:var(--dim);margin-bottom:20px;">
+      72 takipçi yorumundan 15'i cevap bekleyen soru içeriyor. En yoğun yanıtsız küme viral smoothie postunda (56 yorum, 7+ soru yanıtsız). Yorum yanıt oranı düşük — büyük bir bağlantı fırsatı bekliyor.
+    </p>
+    <div class="comments-grid">
+
+      <!-- Yanıtsız sorular -->
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@humeyra_halilcan35</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Kahvaltı yerine mi hocam"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a> · 17 Haz 2026
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@kbr_inci_86</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Öğün yerine mi, ara öğün mü, sabah aç karnına mı.."</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a> · 14 Haz 2026
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@nurcan67761</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Bunu ne zamanlar kullanmalı"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@ageanhorizon</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Ne zaman içmek uygun"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@erhan.habibe21</span>
+          <span class="comment-tag tag-satis">SATINALMA</span>
+        </div>
+        <div class="comment-text">"Tarifi dm den yazarmisn"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi — DM talebi!</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@erhan.habibe21</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"İşe yariyormu gercekten"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@bozbetull</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Ne zaman içilmeli"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@nursellseyyar</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Nezaman içilmeli bu? Ayrıca birde kefirli elmalı salatalık lı bir daha içicek varsa yazar mısın"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi — içerik talebi!</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@1sunay_</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Ne zaman içilmeli?❤️"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@_elifdemirciii</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Peki hocam kortizolü düşürmek için destekleyici içerikte ne tüketebiliriz yiyecek ya da takviye olarak"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZfjeV1sC1g/" target="_blank">Kortizol / Stres içeriği</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi — takviye sorusu (Farmakoloji nişi!)</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@mert_gullu__</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Kilo almak istiyorum ben ne yapmalıyım kullanmalı mıyım yararını görürmüyüm"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DXw8Ao3skP9/" target="_blank">Protein tozu içeriği</a> · 30 Nis 2026
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi — potansiyel danışan!</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@srktdrya16</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"onları koyduğunuz makinenin ismi nedir"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a>
+        </div>
+        <div class="comment-status status-no">Yanıt verilmedi — ürün sorusu</div>
+      </div>
+
+      <!-- Yanıtlanmış yorumlar -->
+      <div class="comment-card answered">
+        <div class="comment-header">
+          <span class="comment-user">@dyg.svr</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Ne zaman tüketilmeli?"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZIct4PuAwJ/" target="_blank">Smoothie tarifi</a>
+        </div>
+        <div class="comment-status status-yes">Yanıtlandı: "Sabah aç karnına tercih edebilirsiniz"</div>
+      </div>
+
+      <div class="comment-card answered">
+        <div class="comment-header">
+          <span class="comment-user">@nalan_cumen_72</span>
+          <span class="comment-tag tag-soru">SORU</span>
+        </div>
+        <div class="comment-text">"Bu smoothie kaç kalori"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZIZ-rcNMzv/" target="_blank">Tatlı krizi smoothie</a>
+        </div>
+        <div class="comment-status status-yes">Yanıtlandı: "Yaklaşık 260 kcal"</div>
+      </div>
+
+      <div class="comment-card unanswered">
+        <div class="comment-header">
+          <span class="comment-user">@dlrozdmrr</span>
+          <span class="comment-tag tag-katilim">KATILIM</span>
+        </div>
+        <div class="comment-text">"Ağlayarak izledim iyi ki varsın evimizin diyetisyeni iyi ki hayatımı değiştirdin"</div>
+        <div class="comment-post">
+          Post: <a href="https://www.instagram.com/p/DZX0QWEsP8i/" target="_blank">Danışan hikayesi</a> · 9 Haz 2026
+        </div>
+        <div class="comment-status status-no">Güçlü güven sinyali — yanıt yok</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEMATİK YORUM ANALİZİ -->
+  <section class="section">
+    <div class="section-title">Tematik Yorum Dağılımı</div>
+    <div class="theme-grid">
+      <div class="theme-card">
+        <div class="theme-card-title">Smoothie Tarifleri — Kullanım Soruları</div>
+        <p>En yüksek yorum hacmi bu temada. "Ne zaman içilmeli", "kahvaltı yerine mi", "kefir yerine ne olur" soruları tekrar eden kalıplar. Yanıt oranı düşük — izleyici merak ediyor ama rehberlik almıyor.</p>
+        <div class="theme-tag-list">
+          <span class="theme-tag">#smoothie</span>
+          <span class="theme-tag">#şişkinlik</span>
+          <span class="theme-tag">#chia</span>
+          <span class="theme-tag">#tatlıkrizi</span>
+        </div>
+        <div class="theme-stat">40+ yorum · En fazla soru tipi</div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-title">Güven ve Bağ İfadeleri</div>
+        <p>Danışan hikayesi videosu ve viral smoothie postunda güçlü duygusal bağ ifadeleri: "evimizin diyetisyeni", "hayatımı değiştirdin", "Zara hocam özlemişim sizi". Güven inşa edilmiş ama sistematik değil.</p>
+        <div class="theme-tag-list">
+          <span class="theme-tag">danışan hikayeleri</span>
+          <span class="theme-tag">güven</span>
+          <span class="theme-tag">sadakat</span>
+        </div>
+        <div class="theme-stat">10+ yorum · Yüksek duygusal rezonans</div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-title">Trend Eleştirisi ve Debunk</div>
+        <p>Protein tozu, su diyeti, erkek-kadın metabolizması karşılaştırması içerikleri hem katılım hem itiraz üretiyor. "Haksızlık bu", "erkolar kapatılsın" gibi mizahi tepkiler — viral potansiyel taşıyor.</p>
+        <div class="theme-tag-list">
+          <span class="theme-tag">#protein tozu</span>
+          <span class="theme-tag">#otofaji</span>
+          <span class="theme-tag">#erkek metabolizması</span>
+        </div>
+        <div class="theme-stat">20+ yorum · Tartışma formatı işe yarıyor</div>
+      </div>
+      <div class="theme-card">
+        <div class="theme-card-title">Takviye ve Farmakoloji Soruları</div>
+        <p>"Kortizolü düşürmek için takviye olarak ne tüketebiliriz" — yalnızca 1 yorum ama kritik: Farmakoloji yüksek lisansı olan bir diyetisyene bu soru sorulmuş ve yanıtsız kalmış. Bu nişin içeriklerde yansıma potansiyeli büyük.</p>
+        <div class="theme-tag-list">
+          <span class="theme-tag">kortizol</span>
+          <span class="theme-tag">takviye</span>
+          <span class="theme-tag">farmakoloji nişi</span>
+        </div>
+        <div class="theme-stat">1 yorum · Yüksek değer nişi — kullanılmıyor</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUYGU ANALİZİ -->
+  <section class="section">
+    <div class="section-title">Duygu ve Ton Analizi</div>
+    <div class="emotion-grid">
+      <div class="emotion-card">
+        <div class="emotion-label">Rezonans / Tanıma</div>
+        <div class="emotion-value">Yüksek</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:85%;background:var(--green)"></div></div>
+        <div class="emotion-desc">"Bizi anlattınız galiba", "ben inceldim sandım" — izleyici kendini içeriklerde buluyor. Acı noktalar iyi seçilmiş.</div>
+      </div>
+      <div class="emotion-card">
+        <div class="emotion-label">Güven / Bağlılık</div>
+        <div class="emotion-value">Çok Yüksek</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:90%;background:var(--green)"></div></div>
+        <div class="emotion-desc">"Evimizin diyetisyeni", "iyi ki tanımışım", "hayatımı değiştirdin" — klinik için nadir güçlü güven ifadeleri.</div>
+      </div>
+      <div class="emotion-card">
+        <div class="emotion-label">Merak / Soru</div>
+        <div class="emotion-value">Yüksek</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:80%;background:var(--amber)"></div></div>
+        <div class="emotion-desc">Tarif ve teknik içeriklerde yoğun soru trafiği. Yanıt beklentisi yüksek ama karşılanma oranı düşük.</div>
+      </div>
+      <div class="emotion-card">
+        <div class="emotion-label">Mizah / Hafif İtiraz</div>
+        <div class="emotion-value">Orta</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:45%;background:var(--amber)"></div></div>
+        <div class="emotion-desc">"Erkolar kapatılsın", "kendime sürekli ödül maması veriyorum" — kadın izleyici kitlesi espriyle katılıyor.</div>
+      </div>
+      <div class="emotion-card">
+        <div class="emotion-label">Satın Alma Niyeti</div>
+        <div class="emotion-value">Düşük-Orta</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:30%;background:var(--red)"></div></div>
+        <div class="emotion-desc">"Tarifi dm'den yazar mısın", "kilo almak istiyorum ne yapmalıyım" — DM yönlendirmesi yok, dönüşüm mekanizması eksik.</div>
+      </div>
+      <div class="emotion-card">
+        <div class="emotion-label">Şüphe / Sorgulama</div>
+        <div class="emotion-value">Düşük</div>
+        <div class="emotion-bar"><div class="emotion-fill" style="width:20%;background:var(--dim)"></div></div>
+        <div class="emotion-desc">"İşe yarıyor mu gerçekten" — marjinal şüphe var. Debunk içerikleri güven inşasına katkıda bulunuyor.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İÇERİK TİPİ KORELASYONU -->
+  <section class="section">
+    <div class="section-title">İçerik Tipi Performans Korelasyonu</div>
+    <div class="content-type-grid">
+      <div class="content-type-card" style="border-top:2px solid var(--amber)">
+        <div class="ct-name">Tarif / Smoothie</div>
+        <div class="ct-count">6 içerik · kısa format (10–19 sn)</div>
+        <div class="ct-stats">
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Beğeni</div>
+            <div class="ct-stat-value highlight">386</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Görüntüleme</div>
+            <div class="ct-stat-value">16.029</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Yorum</div>
+            <div class="ct-stat-value">12.3</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--dim);">Hesabın açık ara en güçlü formatı. Viral post bu kategoriden çıktı. Seri formatı (Derdine Göre Smoothie) tutarlı etkileşim sağlıyor.</div>
+      </div>
+      <div class="content-type-card" style="border-top:2px solid var(--gold)">
+        <div class="ct-name">Trend Debunk</div>
+        <div class="ct-count">6 içerik · orta format (45–65 sn)</div>
+        <div class="ct-stats">
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Beğeni</div>
+            <div class="ct-stat-value">94</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Görüntüleme</div>
+            <div class="ct-stat-value">3.245</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Yorum</div>
+            <div class="ct-stat-value">6.7</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--dim);">İkinci en güçlü format. Yüksek tekrar izlenme oranı (4x+) — içerik not alınan türden. Tartışma ve merak üretiyor.</div>
+      </div>
+      <div class="content-type-card" style="border-top:2px solid var(--green)">
+        <div class="ct-name">Bilimsel / Eğitim</div>
+        <div class="ct-count">6 içerik · orta format (50–66 sn)</div>
+        <div class="ct-stats">
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Beğeni</div>
+            <div class="ct-stat-value">81</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Görüntüleme</div>
+            <div class="ct-stat-value">2.403</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Yorum</div>
+            <div class="ct-stat-value">3.8</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--dim);">Güven inşa eden içerik ama etkileşim en düşük kategoride. Tarif formatıyla bütünleştirildiğinde güçlenebilir.</div>
+      </div>
+      <div class="content-type-card" style="border-top:2px solid var(--red)">
+        <div class="ct-name">Danışan Hikayesi</div>
+        <div class="ct-count">2 içerik · uzun format (168 sn)</div>
+        <div class="ct-stats">
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Beğeni</div>
+            <div class="ct-stat-value">45</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Görüntüleme</div>
+            <div class="ct-stat-value">683</div>
+          </div>
+          <div class="ct-stat">
+            <div class="ct-stat-label">Ort. Yorum</div>
+            <div class="ct-stat-value">7.0</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--dim);">Rakamsal olarak en zayıf. Ama yorum kalitesi en yüksek: "hayatımı değiştirdin", "ağlayarak izledim" — dönüşüm değeri yüksek, erişim düşük.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--surface1);border:1px solid var(--border);border-radius:6px;padding:14px 16px;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);margin-bottom:8px;">KOPYA POST SORUNU</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.6;">
+        20 içeriğin <strong>7'sinde aynı caption kullanılmış</strong> — dosyalar farklı, metin birebir tekrar ediyor. Bu postlar orijinalin ortalama <strong>%3–12 beğenisini</strong> alıyor. İzlenme verisi bölünüyor, algoritma sinyali zayıflıyor. Düzenli bir içerik planı bu çakışmaları tamamen ortadan kaldırır.
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEJİK ÇIKARIMLAR -->
+  <section class="section">
+    <div class="section-title">Stratejik Çıkarımlar</div>
+    <div class="insights-grid">
+
+      <div class="insight-card critical">
+        <div class="insight-type">Kritik Sorun</div>
+        <div class="insight-title">Viral post 1.877 beğeni aldı, 56 soru yanıtsız kaldı</div>
+        <div class="insight-body">Şişkinlik smoothie içeriği 84.000+ görüntüleme ve 56 yorum aldı. Bu yorumların en az 7'si doğrudan soru — "ne zaman içilmeli", "kahvaltı yerine mi", "tarifi DM'den yaz". Her yanıtsız soru, bir güven anını ve potansiyel dönüşüm fırsatını bekletmektedir.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Viral postlarda yorum yanıt rutini: her 10 yorum başına en az 3 yanıt, soru yorumları öncelikli. Tekrarlayan sorular ayrı içerik fikrine dönüştürülmeli.
+        </div>
+      </div>
+
+      <div class="insight-card critical">
+        <div class="insight-type">Kritik Sorun</div>
+        <div class="insight-title">7 içerikte aynı caption tekrarlanmış — içerik kaynağı bölünüyor</div>
+        <div class="insight-body">Dosyalar farklı, ancak caption metni birebir aynı. Bu postlar orijinalin %3–12'si kadar beğeni alıyor. Yorum trafiği bölünüyor, algoritma sinyali zayıflıyor, aynı URL'ye link vermek imkânsız hale geliyor.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Tekrar eden caption'lar olan postlar gözden geçirilmeli, orijinal post pinleme ve story arşivleme ile öne taşınmalı. İçerik takvimi sistemi kurulmalı.
+        </div>
+      </div>
+
+      <div class="insight-card opportunity">
+        <div class="insight-type">Fırsat</div>
+        <div class="insight-title">Tarif serisi hesabın motorudur — ama sürdürülemez</div>
+        <div class="insight-body">"Derdine Göre Smoothie" serisi 3 içerikle toplam beğeni havuzunun %64'ünü aldı. Ort. beğeni 386, diğer tüm kategorilerin 4 katı. Bu seri sistematik hale getirilmeli: haftada 1 tarif, seri numaralandırması, her tarifin altında bir "danışmanlık CTA" ile kapanması.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Seriye isim ve numara standardı: "Derdine Göre #01 — Şişkinlik". Her tarif postunun altına sabit bir yorum yanıtı: "Bireysel beslenme planı için DM." Aylık 4 tarif hedefi.
+        </div>
+      </div>
+
+      <div class="insight-card opportunity">
+        <div class="insight-type">Fırsat</div>
+        <div class="insight-title">Farmakoloji uzmanlığı henüz içeriklerde sahneye çıkmamış</div>
+        <div class="insight-body">Tıbbi Farmakoloji yüksek lisansı, Türkiye'deki diyetisyen kitlesinde neredeyse doldurulamayan bir niş. "Bitkisel takviye + ilaç etkileşimi" veya "diyetisyen gözüyle takviye gerçekleri" formatı için rakip sayısı sıfıra yakın — bu derinliği içeriklere taşımak güçlü bir farklılaştırıcı olur.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Aylık 1–2 "Farmakoloji + Beslenme" içeriği: "Magnezyum alıyorsanız bunu bilmeniz gerekiyor" formatı. Bu içerikler hem keşfet trafiği hem de uzmanlık inşası için güçlü.
+        </div>
+      </div>
+
+      <div class="insight-card opportunity">
+        <div class="insight-type">Fırsat</div>
+        <div class="insight-title">Kısa format açık ara kazanıyor — uzun format boşa harcanan enerji</div>
+        <div class="insight-body">10–19 saniye videolar 16.000+ ort. görüntüleme alırken, 167 saniyelik danışan videoları 683 görüntülemede kaldı. Uzun format her içerik kategorisinde 20 kat daha düşük performans gösteriyor. Uzun format için harcanan süre kısa formata yönlendirilmeli.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          İçerik dağılımı: %60 kısa (15–30 sn), %30 orta (45–65 sn), %10 uzun. Danışan hikayeleri, Reels yerine story veya podcast formatında değerlendirilmeli.
+        </div>
+      </div>
+
+      <div class="insight-card warning">
+        <div class="insight-type">Uyarı</div>
+        <div class="insight-title">Danışana dönüştürecek köprü içerik yok</div>
+        <div class="insight-body">İzleyiciler Zara'yı seviyor ("evimizin diyetisyeni"), içeriklerini izliyor, soru soruyor — ama "benimle çalış" adımını atmıyor. "DM at", "link bio'da", "randevu için tıkla" gibi bir CTA mekanizması hiçbir içerikte sistematik kullanılmıyor. Doktorsitesi linki bio'da bile olmayabilir.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Her tarif postuna sabit CTA son karesi: "Kişisel beslenme programı için DM at." Haftada 1 "danışmanlık tanıtım" içeriği: "Nasıl çalışıyoruz?" formatı.
+        </div>
+      </div>
+
+
+      <div class="insight-card opportunity">
+        <div class="insight-type">Fırsat</div>
+        <div class="insight-title">Tekrar izlenme oranı içeriklerin derinliğini kanıtlıyor</div>
+        <div class="insight-body">En iyi postlar 2.6x–4.5x tekrar oynatma oranına sahip. Bu, izleyicilerin içeriği not almak veya tariften malzemeleri okumak için geri sardığını gösteriyor. Metin overlay (malzeme listesi, adım adım) ve on-screen grafik bu davranışı daha da güçlendirir.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Tarif videolarına açık metin overlay ekle: malzeme listesi, gram değerleri, alternatif malzeme. Bu tekrar izlenme oranını daha da artırır ve kaydet sayısını yükseltir.
+        </div>
+      </div>
+
+      <div class="insight-card critical">
+        <div class="insight-type">Kritik Sorun</div>
+        <div class="insight-title">Web mülkü sıfır — tüm dijital varlık tek platforma bağımlı</div>
+        <div class="insight-body">Klinik aktif, 49 hizmet alanı var, online danışmanlık yapıyor — ama dijital altyapı tamamen üçüncü parti platformlara bağımlı. Hesap kapanırsa veya erişim kısıtlanırsa tüm iletişim kanalı yok. E-posta listesi yok, web sitesi yok, arama motorunda hiç görünüm yok.</div>
+        <div class="insight-action">
+          <strong>Önerilen Aksiyon</strong>
+          Minimal web varlığı: tek sayfalık site (Bio + Hizmetler + Randevu). E-posta toplama: "Ücretsiz beslenme rehberi indir" mekaniği. Bu hesap içeriğini uzun vadeli sürdürülebilir hale getirir.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div style="margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:12px;">
+    <img src="./nomades-agency.png" alt="Nomades" style="height:16px;filter:invert(1);opacity:0.3;">
+    <span>&nbsp;·&nbsp; <span style="color:var(--amber);">@diyetisyennzara</span> &nbsp;·&nbsp; İçerik Analiz Raporu</span>
+  </div>
+  <div>İçerik Performans Analizi &nbsp;·&nbsp; Analiz Tarihi: 20 Haziran 2026 &nbsp;·&nbsp; 20 içerik · 27 Nisan 2026 → 18 Haziran 2026</div>
+</footer>
+
+</body>
+</html>
