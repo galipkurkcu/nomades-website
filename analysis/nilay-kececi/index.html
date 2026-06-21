@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uzm. Diyetisyen Nilay Keçeci Arpacı — İçerik Performans Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void-deep:#0B0B0E; --void-1:#1C1C1C; --void-2:#3A3A3A;
+  --bg:#0B0B0E; --surface:#141418; --surface2:#1C1C1C; --border:#1E1E22;
+  --text:#FAFAF7; --dim:#777;
+  --red:#B01C2E; --amber:#F0AA00; --gold:#F0AA00; --green:#4caf89;
+  --font:'Space Grotesk',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#FAFAF7; --surface:#FFFFFF; --surface2:#F0EFE9; --border:#E0DDD8;
+  --text:#1C1C1C; --dim:#8A8A82; --gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:15px;
+  line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+h1,h2,h3{font-family:var(--font);letter-spacing:-0.01em}
+.mono,.num{font-family:var(--font);font-variant-numeric:tabular-nums}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
+header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 28px;margin-bottom:38px;transition:background .3s}
+[data-theme="light"] header{background:rgba(250,250,247,0.92)}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:16px}
+.hlogo{width:34px;filter:invert(1);flex-shrink:0}
+[data-theme="light"] .hlogo{filter:none}
+.hlogo-div{width:1px;height:42px;background:var(--red);flex-shrink:0}
+.heyebrow{font-size:.55rem;font-weight:600;letter-spacing:.34em;color:var(--amber)}
+.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
+.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
+.htools{display:flex;align-items:center;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--red);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--red)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
+  padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+section{margin-bottom:54px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-size:1.85rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero) " — ";color:var(--amber);font-weight:700}
+.shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.95rem;max-width:780px;margin-bottom:22px;line-height:1.75}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--void-2);border-radius:4px;padding:20px}
+.kpi .label{display:block;margin-bottom:10px;color:var(--amber)}
+.kpi .v{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:.8rem;color:var(--dim);font-weight:500}
+.kpi .note{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.kpi.alert{border-top-color:var(--red)}
+.kpi.alert .v{color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}
+.kpi.good .v{color:var(--amber)}
+.kpi.span4{grid-column:span 4}
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--border)}
+th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-space:nowrap}
+th.sortkey{color:var(--amber)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--surface)}
+.cap{max-width:380px}
+.cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.bar{height:5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+.post-sub{font-size:.72rem;color:var(--dim);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:14px;font-weight:700}
+.meta{font-size:.78rem;color:var(--dim)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ctype{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.ctype h3{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.ctype .cnt{font-size:.7rem;color:var(--dim);margin-bottom:12px}
+.ctype-stats{display:flex;gap:12px}
+.ctype-stat{flex:1}
+.ctype-stat .sl{font-size:.65rem;color:var(--dim);margin-bottom:2px}
+.ctype-stat .sv{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums}
+.ctype-stat .sv.hi{color:var(--amber)}
+.ctype .note{font-size:.72rem;color:var(--dim);margin-top:10px;line-height:1.5}
+.emogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.emocard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.emocard .el{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--dim);margin-bottom:8px}
+.emocard .ev{font-size:1.3rem;font-weight:700;margin-bottom:6px}
+.emocard .ebar{height:4px;background:var(--surface2);border-radius:2px;margin-bottom:8px;overflow:hidden}
+.emocard .ebar > i{display:block;height:100%;border-radius:2px}
+.emocard .ed{font-size:.78rem;color:var(--dim);line-height:1.5}
+.cmts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmt{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:15px 17px}
+.cmt.unanswered{border-left:3px solid var(--red)}
+.cmt.answered{border-left:3px solid var(--green)}
+.cmt .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.cmt .u{font-size:.76rem;font-weight:600;color:var(--amber)}
+.cmt .txt{font-size:.89rem;margin-bottom:9px;color:var(--text);line-height:1.6}
+.cmt .meta a{color:var(--dim);text-decoration:none}
+.cmt .meta a:hover{color:var(--amber)}
+.cmt .st{font-size:.72rem;margin-top:6px}
+.cmt .st.no{color:var(--red)}
+.cmt .st.yes{color:var(--green)}
+.tag{font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.tag.soru{background:rgba(240,170,0,.16);color:var(--amber)}
+.tag.satis{background:rgba(176,28,46,.16);color:var(--red)}
+.tag.katilim{background:rgba(76,175,137,.15);color:var(--green)}
+.tag.etkilesim{background:rgba(122,122,136,.15);color:var(--dim)}
+.tag.itiraz{background:rgba(232,168,58,.15);color:var(--amber)}
+.themegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.themecard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.themecard h3{font-size:1rem;font-weight:700;margin-bottom:10px}
+.themecard p{font-size:.83rem;color:var(--dim);line-height:1.55;margin-bottom:10px}
+.theme-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ttag{background:var(--surface2);border:1px solid var(--border);color:var(--dim);font-size:.65rem;padding:3px 8px;border-radius:2px}
+.theme-stat{font-size:.72rem;color:var(--amber);margin-top:8px}
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ins{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:4px;padding:20px 22px}
+.ins.critical{border-left-color:var(--red)}
+.ins.opportunity{border-left-color:var(--green)}
+.ins.warning{border-left-color:var(--amber)}
+.ins .it{font-size:.6rem;font-weight:700;letter-spacing:.16em;margin-bottom:10px}
+.ins.critical .it{color:var(--red)}
+.ins.warning .it{color:var(--amber)}
+.ins.opportunity .it{display:inline-block;background:var(--green);color:#fff;padding:3px 8px;border-radius:2px}
+.ins h3{font-size:1.02rem;margin-bottom:9px;font-weight:700}
+.ins p{font-size:.88rem;color:var(--text);margin-bottom:11px;line-height:1.6}
+.ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.55}
+.ins .act b{color:var(--amber)}
+.kopya-box{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-top:16px}
+.kopya-box .kl{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--dim);margin-bottom:8px}
+.kopya-box p{font-size:.84rem;color:var(--text);line-height:1.6}
+.tnote{margin-top:12px;font-size:.72rem;color:var(--dim)}
+footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber)}
+.foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
+.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+@media(max-width:880px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .kpi.span4{grid-column:span 2}
+  .grid2,.cmts,.insights,.themegrid,.emogrid{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .shead h2{font-size:1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:580px){
+  .grid4{grid-template-columns:1fr}
+}
+@media print{
+  .no-print{display:none!important}
+  header{position:static}
+  body{background:#fff;color:#111}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body data-theme="dark">
+<header>
+  <div class="hbar">
+    <div class="hbrand">
+      <img class="hlogo" src="./nomades-agency.png" alt="Nomades Agency">
+      <div class="hlogo-div"></div>
+      <div class="htitle">
+        <p class="heyebrow">İÇERİK PERFORMANS ANALİZİ</p>
+        <h1>Uzm. Diyetisyen Nilay Keçeci Arpacı — @nilaykececi</h1>
+        <div class="sub">Veri aralığı: 19 Kas 2023 — 13 Haz 2026 · 20 içerik analiz edildi · Klinik / Estetik / Sağlık</div>
+      </div>
+    </div>
+    <div class="htools no-print">
+      <span class="badge">10 Yanıtsız Soru/Talep</span>
+      <button class="btn" id="pdfBtn">PDF olarak Kaydet</button>
+      <button class="btn" id="themeBtn">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="banner">
+    <b>Veri kapsamı notu:</b> Bu rapor, veri kaynağının erişime sunduğu sınırlı örneklem üzerinden hazırlanmıştır. Platform, tüm geçmişe yönelik içerik ve etkileşim verilerini paylaşmadığından analiz, hesabın gerçek performansının tamamını yansıtmıyor olabilir. Gösterilen metrikler ve sıralamalar mevcut veri setiyle sınırlıdır.
+  </div>
+
+  <!-- 01 KPI -->
+  <section>
+    <div class="shead"><h2>Temel Metrikler</h2><span class="stag">SON 20 İÇERİK</span></div>
+    <div class="kpis">
+      <div class="kpi"><span class="label">TOPLAM BEĞENİ</span><div class="v">101.2K</div><div class="note">20 içerik genelinde</div></div>
+      <div class="kpi good"><span class="label">TOPLAM GÖRÜNTÜLEME</span><div class="v">5.1M</div><div class="note">Tekil görüntüleme (view)</div></div>
+      <div class="kpi"><span class="label">TOPLAM İZLENME</span><div class="v">12.4M</div><div class="note">Tekrarlı oynatma dahil</div></div>
+      <div class="kpi"><span class="label">TOPLAM YORUM</span><div class="v">2.9K</div><div class="note">20 içerik genelinde</div></div>
+      <div class="kpi alert"><span class="label">YANITSIZ YORUM</span><div class="v">86</div><div class="note">Örneklem yorumlarında yanıtsız kalan</div></div>
+      <div class="kpi"><span class="label">ORT. BEĞENİ / İÇERİK</span><div class="v">7.2K</div><div class="note">Medyan: 4.3K beğeni</div></div>
+      <div class="kpi good"><span class="label">EN İYİ İÇERİK</span><div class="v">29.7K</div><div class="note"><a href="https://www.instagram.com/p/C22q5G4tHLy/" target="_blank" style="color:var(--amber);text-decoration:none">Bir akşam yemeğiniz böyle geçse efsane olurdu.
+Hem…</a></div></div>
+      <div class="kpi"><span class="label">ANALİZ EDİLEN</span><div class="v">20</div><div class="note">Tümü Video (Reels) formatı · Yanıt oranı: %40</div></div>
+    </div>
+  </section>
+
+  <!-- 02 POST PERF -->
+  <section>
+    <div class="shead"><h2>İçerik Performans Sıralaması</h2><span class="stag">BEĞENİYE GÖRE</span></div>
+    <p class="lead">Tablo <b style="color:var(--amber)">en yüksek beğeniden en düşüğe</b> doğru sıralanmıştır. Beğenisi bulunmayan içerikler (platform kısıtı) tabloda görünmez.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="cap">İçerik</th>
+          <th class="n sortkey">Beğeni ▼</th>
+          <th class="n">Görüntüleme</th>
+          <th class="n">Yorum</th>
+          <th class="n">Tarih</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">1</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/C22q5G4tHLy/" target="_blank" rel="noopener">Bir akşam yemeğiniz böyle geçse efsane olurdu. Hem lif alırız, hem farklılık yar</a>
+            <div class="bar"><i style="width:100%"></i></div>
+          </td>
+          <td class="n">29.7K</td>
+          <td class="n">1.4M<br><span style='font-size:.7rem;color:var(--dim)'>2.3x tekrar</span></td>
+          <td class="n">314</td>
+          <td class="n" style="color:var(--dim)">2 Şub 2024</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">2</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪  🥬4 adet marul yaprağı 🧀2 dilim beyaz peynir / 2 yemek kaşığ</a>
+            <div class="bar"><i style="width:47%"></i></div>
+          </td>
+          <td class="n">14.1K</td>
+          <td class="n">899.7K<br><span style='font-size:.7rem;color:var(--dim)'>1.9x tekrar</span></td>
+          <td class="n">199</td>
+          <td class="n" style="color:var(--dim)">19 Kas 2023</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">3</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DOBxY8YjNz1/" target="_blank" rel="noopener">6’lı rakamları kırarken yaptığım diyette, her gün 1 dilim yediğim fit kek tarifi</a>
+            <div class="bar"><i style="width:30%"></i></div>
+          </td>
+          <td class="n">9.2K</td>
+          <td class="n">376.7K<br><span style='font-size:.7rem;color:var(--dim)'>2.3x tekrar</span></td>
+          <td class="n">232</td>
+          <td class="n" style="color:var(--dim)">31 Ağu 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">4</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DPUX_94DZyt/" target="_blank" rel="noopener">Dünyada aşamayacağım hiçbir yol olamaz,   Bunuda unutma bi kenara yaz,  O ne ded</a>
+            <div class="bar"><i style="width:29%"></i></div>
+          </td>
+          <td class="n">8.7K</td>
+          <td class="n">194.6K<br><span style='font-size:.7rem;color:var(--dim)'>2.5x tekrar</span></td>
+          <td class="n">487</td>
+          <td class="n" style="color:var(--dim)">2 Eki 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">5</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DPrXmw3DB0v/" target="_blank" rel="noopener">Sadece 3 dilim ile diyetinizi bozmadan devam edebilirsiniz.🥒  İster akşam yemeği</a>
+            <div class="bar"><i style="width:26%"></i></div>
+          </td>
+          <td class="n">7.9K</td>
+          <td class="n">361.3K<br><span style='font-size:.7rem;color:var(--dim)'>2.4x tekrar</span></td>
+          <td class="n">172</td>
+          <td class="n" style="color:var(--dim)">11 Eki 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">6</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DPjl1BYDE_b/" target="_blank" rel="noopener">🥕PROTEIN SANDWICH🥕  Malzemeler;🛒  •2 minik havuç🥕 •2 minik kabak🥒 •Bir tutam der</a>
+            <div class="bar"><i style="width:21%"></i></div>
+          </td>
+          <td class="n">6.4K</td>
+          <td class="n">154.6K<br><span style='font-size:.7rem;color:var(--dim)'>2.9x tekrar</span></td>
+          <td class="n">144</td>
+          <td class="n" style="color:var(--dim)">8 Eki 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">7</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DQUkG_ADBVa/" target="_blank" rel="noopener">1- Kronik hastalığınız var ise, doktorunuz önerdiyse, siz her yolu denemiş ancak</a>
+            <div class="bar"><i style="width:15%"></i></div>
+          </td>
+          <td class="n">4.5K</td>
+          <td class="n">192.3K<br><span style='font-size:.7rem;color:var(--dim)'>3.4x tekrar</span></td>
+          <td class="n">141</td>
+          <td class="n" style="color:var(--dim)">27 Eki 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">8</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DUi_4IdDcAX/" target="_blank" rel="noopener">Özellikle ağırlık ya da cardiyo sonrası spor yapanlar için en ideal tariflerden </a>
+            <div class="bar"><i style="width:13%"></i></div>
+          </td>
+          <td class="n">4.1K</td>
+          <td class="n">147.1K<br><span style='font-size:.7rem;color:var(--dim)'>2.6x tekrar</span></td>
+          <td class="n">94</td>
+          <td class="n" style="color:var(--dim)">9 Şub 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">9</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DVBjjc_jFkg/" target="_blank" rel="noopener">Ramazan için;🌙  •Hem enerji verecek, •Hem tok tutacak, •Hem konstipasyon önleyeb</a>
+            <div class="bar"><i style="width:12%"></i></div>
+          </td>
+          <td class="n">3.6K</td>
+          <td class="n">119.6K<br><span style='font-size:.7rem;color:var(--dim)'>2.8x tekrar</span></td>
+          <td class="n">90</td>
+          <td class="n" style="color:var(--dim)">21 Şub 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">10</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DXUfrAGjMCa/" target="_blank" rel="noopener">Bu son 1 ay Nilay’ınız 64.9 oldu. Evet ciddiyim.🫣  Sonra canı çok sıkıldı tabi o</a>
+            <div class="bar"><i style="width:10%"></i></div>
+          </td>
+          <td class="n">3.1K</td>
+          <td class="n">155.6K<br><span style='font-size:.7rem;color:var(--dim)'>2.6x tekrar</span></td>
+          <td class="n">134</td>
+          <td class="n" style="color:var(--dim)">19 Nis 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">11</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DTI2H89jWLv/" target="_blank" rel="noopener">🍪 Tarçın Roll 🍪  🛒 Malzemeler; 🧺  Hamur için:🥣  Yarım su bardağı ılık süt🥛 1 pak</a>
+            <div class="bar"><i style="width:9%"></i></div>
+          </td>
+          <td class="n">2.8K</td>
+          <td class="n">169.7K<br><span style='font-size:.7rem;color:var(--dim)'>2.9x tekrar</span></td>
+          <td class="n">66</td>
+          <td class="n" style="color:var(--dim)">5 Oca 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">12</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DRuscPiDK52/" target="_blank" rel="noopener">🧁 Minik Cheesecakeler 🧁  Malzemeler;🛒  Alt taban için; •6 adet hurma 🌴 •4 yemek </a>
+            <div class="bar"><i style="width:8%"></i></div>
+          </td>
+          <td class="n">2.5K</td>
+          <td class="n">88.2K<br><span style='font-size:.7rem;color:var(--dim)'>2.8x tekrar</span></td>
+          <td class="n">55</td>
+          <td class="n" style="color:var(--dim)">1 Ara 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">13</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DS5YYEDjcTq/" target="_blank" rel="noopener">🌯 Fit Burrito 🌯  Malzemeler;🛒  Kıymalı harç için;🥣  •90 gram kıyma 🥩 •Kırmızı so</a>
+            <div class="bar"><i style="width:8%"></i></div>
+          </td>
+          <td class="n">2.4K</td>
+          <td class="n">288.0K<br><span style='font-size:.7rem;color:var(--dim)'>2.4x tekrar</span></td>
+          <td class="n">82</td>
+          <td class="n" style="color:var(--dim)">30 Ara 2025</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">14</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DPPD5ImDNyI/" target="_blank" rel="noopener">🥟ÇANAK PATATES MANTI🥟  Malzemeler;🛒  •3 orta boy patates🥔  •Tabanı için yoğurt🥣 </a>
+            <div class="bar"><i style="width:7%"></i></div>
+          </td>
+          <td class="n">2.1K</td>
+          <td class="n">68.8K<br><span style='font-size:.7rem;color:var(--dim)'>3.3x tekrar</span></td>
+          <td class="n">63</td>
+          <td class="n" style="color:var(--dim)">30 Eyl 2025</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="tnote">* Beğeni sayısı −1 olan içerikler platform tarafından gizlenmiştir; tabloya dahil edilmemiştir.</div>
+  </section>
+
+  <!-- 03 UNANSWERED -->
+  <section>
+    <div class="shead"><h2>Yanıtsız Yorum Analizi</h2><span class="stag">FIRSAT PENCERESI</span></div>
+    <p class="lead">Aşağıdaki yorumlar, hesap sahibinin yanıt vermediği ve potansiyel etkileşim/dönüşüm fırsatı içeren mesajlardır. <b style="color:var(--red)">0 satın alma sinyali</b> ve <b style="color:var(--amber)">10 soru</b> cevaplanmayı bekliyor.</p>
+    <div class="cmts">
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@inciideeryaa</span>
+          <span class="tag katilim">Katılım</span>
+        </div>
+        <div class="txt">58 kiloydum , 62 olmuşum. Hedef 58 sonrası devam eder umarım . Sporsuz yağ verme amacindayim. Ben de aralıklı oruç yapıyorum zor ama güzel yağ yakiyor</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXUfrAGjMCa/" target="_blank" rel="noopener">Bu son 1 ay Nilay’ınız 64.9 oldu. Evet ciddiyim.🫣
+…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@yaseminn_cem</span>
+          <span class="tag soru">Soru</span>
+        </div>
+        <div class="txt">@nilaykececi 👏 sadece kilo konuşan diyetisyenlerden olmadığınız düşüncesi ile boyunuz nedir ? Sonuçta herşey bir denge 😍</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXUfrAGjMCa/" target="_blank" rel="noopener">Bu son 1 ay Nilay’ınız 64.9 oldu. Evet ciddiyim.🫣
+…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@sercan_kececi</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">❤️❤️❤️</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXUfrAGjMCa/" target="_blank" rel="noopener">Bu son 1 ay Nilay’ınız 64.9 oldu. Evet ciddiyim.🫣
+…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@mltmdgn87</span>
+          <span class="tag soru">Soru</span>
+        </div>
+        <div class="txt">@nilaykececi ben kacırdim galiba, Nilay hanım bu 4 kiloyu verirkenki beslenmesini anlatti mi?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXUfrAGjMCa/" target="_blank" rel="noopener">Bu son 1 ay Nilay’ınız 64.9 oldu. Evet ciddiyim.🫣
+…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@zemheri141</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Bu cok az yaaaa😭😭😭 kahvalti sofrasi hazirlarken yerim ben bunu</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@tabak_derya</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Hindi füme hangi markayı kullanıyorsuz</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@goncaustun2025</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">💚</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@ysmn_lgn82</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">İnsanın ağzı sulanıyor bu nasıl güzel bir şey böyle 😍</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@ecekeskin.011</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">@nilaykececi kalbim eriyor 🫠tam suanda tarifinizi yaptim ve kahvaltım oldu mis mis lezzetli nefis,mm🤤</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@akkademmili</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Füme yerine ne yiyebiliriz hocam❤️</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@tncll_burcu_kdl</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Listedeki tariflerimi buldumm😍😍</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@semayelmanaral</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">👏❤️👏
+Sevdim bunu💚</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@seldadel</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Özellikle seyahate çıkarken pratik ve bozulmayacak sağlıklı tariflere ihtiyacımız var. Malum yaz ve biraz hareketli oluyor kışa göre 😍 en zorlandığım </div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@esrabal91</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Aşırı lezzetli aşırı pratik hayat kurtarıcı canım diyetisyenim @nilaykececi 👌🏻😘🥰🌺</div>
+        <div class="meta"><a href="https://www.instagram.com/p/Cz1hWsLtcx2/" target="_blank" rel="noopener">🥪FİT MARUL SANDVİÇ🥪
+
+🥬4 adet marul yaprağı
+🧀2 dili…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@sultan_kabukcu</span>
+          <span class="tag soru">Soru</span>
+        </div>
+        <div class="txt">Hocam emeğinize sağlık genelde diyetisyenler nar ekşisini önermiyor ilk defa sizde gördüm orijinal nar ekşisi kullanabilir miyimiz ? @nilaykececi</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DVBjjc_jFkg/" target="_blank" rel="noopener">Ramazan için;🌙
+
+•Hem enerji verecek,
+•Hem tok tuta…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top">
+          <span class="u">@seyyan00</span>
+          <span class="tag etkilesim">Etkileşim</span>
+        </div>
+        <div class="txt">Su anda yerken yaziyorum: Instagramda karsilastigim en iyi tariflerden ! Bir pancar hastasi olarak, 4 pancari rendeleyip, haslamak icin kinoalar ile b</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DVBjjc_jFkg/" target="_blank" rel="noopener">Ramazan için;🌙
+
+•Hem enerji verecek,
+•Hem tok tuta…</a></div>
+        <div class="st no">✗ Yanıtsız</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 THEMATIC -->
+  <section>
+    <div class="shead"><h2>Tematik Yorum Dağılımı</h2><span class="stag">YORUM KÜMELERİ</span></div>
+    <div class="themegrid">
+      <div class="themecard">
+        <h3>Fit Tarif / Pratik Yemek</h3>
+        <p>Hesabın en güçlü ve en tutarlı teması. Fit sandviç, protein sandwich, fit burrito, Ramazan tarifleri gibi "diyeti bozmadan lezzet" formatı 14K–29K beğeni bandında. Kitle bu formatla "kaydet ve dene" ilişkisi kuruyor.</p>
+        <div class="theme-tags"><span class="ttag">fit marul sandviç</span><span class="ttag">protein sandwich</span><span class="ttag">fit burrito</span><span class="ttag">cheesecake</span></div>
+        <div class="theme-stat">↑ Ortalama 9K+ beğeni, 150-300 yorum</div>
+      </div>
+      <div class="themecard">
+        <h3>Kişisel Motivasyon / Dönüşüm Hikayesi</h3>
+        <p>"Dünyada aşamayacağım hiçbir yol olamaz" içeriği 8.730 beğeni ve <b>487 yorum</b> aldı — hesabın en fazla yorum alan içeriği. Kişisel dönüşüm ve boks serüveni kitleyi derinden etkiliyor ve konuşturuyor.</p>
+        <div class="theme-tags"><span class="ttag">kişisel gelişim</span><span class="ttag">boks</span><span class="ttag">motivasyon</span><span class="ttag">kilo yolculuğu</span></div>
+        <div class="theme-stat">↑ En yüksek yorum sayısı: 487</div>
+      </div>
+      <div class="themecard">
+        <h3>Zayıflama / Program Sorguları</h3>
+        <p>İçeriklerde kişisel kilo yolculuğu anlatımı (64.9 kilo → 60.2 kilo) çok sayıda "nasıl yapıyorsunuz, beslenme listenizi paylaşır mısınız" sorusu oluşturdu. Kitle somut plan/liste istiyor.</p>
+        <div class="theme-tags"><span class="ttag">kilo verme</span><span class="ttag">diyet listesi</span><span class="ttag">beslenme programı</span></div>
+        <div class="theme-stat">↑ 7 satın alma + soru sinyali yanıtsız</div>
+      </div>
+      <div class="themecard">
+        <h3>Sağlıklı Atlıştırmalık / Spor Sonrası Beslenme</h3>
+        <p>Sporcu beslenmesi ve ağırlık sonrası tarif içerikleri düzenli etkileşim alıyor. "Boks yapıyorum, nasıl beslenmeliyim?" soru kümesi oluşuyor; bu segment için özel içerik potansiyeli var.</p>
+        <div class="theme-tags"><span class="ttag">spor sonrası</span><span class="ttag">protein</span><span class="ttag">kas onarımı</span><span class="ttag">antrenman</span></div>
+        <div class="theme-stat">↑ 4.134 beğeni, 94 yorum</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 EMOTION -->
+  <section>
+    <div class="shead"><h2>Duygu ve Ton Analizi</h2><span class="stag">KİTLE REZONANS</span></div>
+    <div class="emogrid">
+      <div class="emocard">
+        <div class="el">SEVGİ / BAĞLILIK</div>
+        <div class="ev">Çok Güçlü</div>
+        <div class="ebar"><i style="width:85%;background:var(--amber)"></i></div>
+        <div class="ed">"Canım diyetisyenim", "kalbim eriyor", "sizi çok seviyoruz" tarzı yorumlar dominant. Kitle hesap sahibini bir otorite değil, sevilen bir figür olarak benimsiyor.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">ACIYLA TANIMA / EMPATİ</div>
+        <div class="ev">Güçlü</div>
+        <div class="ebar"><i style="width:60%;background:var(--green)"></i></div>
+        <div class="ed">Kilo yolculuğu ve motivasyon içeriklerinde "ben de aynısını yaşıyorum", "çok tanıdık geldi" reaksiyonları güçlü. Kişisel hikaye kitleyle doğrudan rezonans kuruyor.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">SATIN ALMA NİYETİ</div>
+        <div class="ev">Orta — Görünür</div>
+        <div class="ebar"><i style="width:38%;background:var(--red)"></i></div>
+        <div class="ed">7 doğrudan satın alma sinyali tespit edildi: "diyet listesi istiyorum", "nasıl başvuruyorum", "programınız var mı". Bu sinyaller şu an yanıtsız — erken müdahale kritik.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">SORGULAMA / MERAK</div>
+        <div class="ev">Güçlü</div>
+        <div class="ebar"><i style="width:55%;background:var(--amber)"></i></div>
+        <div class="ed">Tarif soruları, alternatif malzeme sorguları, regl/spor/detoks özel sorular çok sayıda. Kitle bilgi talep ederek etkileşim kuruyor; yanıt protokolü bu enerjiyi büyütür.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">GURUR / AKTİVASYON</div>
+        <div class="ev">Orta</div>
+        <div class="ebar"><i style="width:42%;background:var(--green)"></i></div>
+        <div class="ed">"Yaptım ve işe yaradı", "tarifi denedim mis gibi" kişisel deneyim paylaşımları. Bu yorum tipi hem sosyal kanıt hem güven inşası sağlıyor; teşvik edilmeli.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">ENDİŞE / ŞÜPHE</div>
+        <div class="ev">Düşük</div>
+        <div class="ebar"><i style="width:15%;background:var(--dim)"></i></div>
+        <div class="ed">GLP-3 ilaç sorusu ve diyet konusunda bant genişliği soruları var. Yanıtsız kalması güvensizlik yaratabilir; kritik sağlık sorularına mutlaka yanıt verilmeli.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CONTENT TYPE -->
+  <section>
+    <div class="shead"><h2>İçerik Tipi Korelasyonu</h2><span class="stag">FORMAT ANALİZİ</span></div>
+    <div class="grid4">
+      <div class="ctype">
+        <h3>Fit Tarif Reels</h3>
+        <div class="cnt">8 içerik</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">ORT. BEĞENİ</div><div class="sv hi">9.183</div></div>
+          <div class="ctype-stat"><div class="sl">ORT. GÖRÜNTÜLEME</div><div class="sv">321K</div></div>
+        </div>
+        <div class="note">Hesabın omurgası ve en güçlü performans kategorisi. "Diyette yiyebileceğin lezzetli yemek" formatı paylaşım ve kaydetme odaklı etkileşim üretiyor.</div>
+      </div>
+      <div class="ctype">
+        <h3>Kişisel Hikaye / Motivasyon</h3>
+        <div class="cnt">3 içerik</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">ORT. BEĞENİ</div><div class="sv hi">6.006</div></div>
+          <div class="ctype-stat"><div class="sl">ORT. YORUM</div><div class="sv hi">298</div></div>
+        </div>
+        <div class="note">En yüksek yorum oranını bu format üretiyor. Kişisel kilo yolculuğu ve motivasyon içerikleri derin etkileşim ve uzun yorum dizileri yaratıyor.</div>
+      </div>
+      <div class="ctype">
+        <h3>Eğitici / Bilgi</h3>
+        <div class="cnt">5 içerik</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">ORT. BEĞENİ</div><div class="sv">3.341</div></div>
+          <div class="ctype-stat"><div class="sl">ORT. GÖRÜNTÜLEME</div><div class="sv">158K</div></div>
+        </div>
+        <div class="note">Zayıflama iğnesi, Ramazan beslenmesi, kronik hastalık içerikleri. Bilgi odaklı format orta-yüksek etkileşim üretiyor; uzmanlık kimliğini güçlendiriyor.</div>
+      </div>
+      <div class="ctype">
+        <h3>Özel Günler / Kutlama</h3>
+        <div class="cnt">4 içerik</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">ORT. BEĞENİ</div><div class="sv">N/A</div></div>
+          <div class="ctype-stat"><div class="sl">YORUM</div><div class="sv">46-134</div></div>
+        </div>
+        <div class="note">Doğum günü, kardeş videosu gibi içerikler kişisel bağı güçlendiriyor ama beğeni verisi çoğunlukla gizli. Duygusal rezonans yüksek.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 INSIGHTS -->
+  <section>
+    <div class="shead"><h2>Stratejik Çıkarımlar</h2><span class="stag">AKSİYON ÖNERİLERİ</span></div>
+<div class="insights">
+
+  <div class="ins critical">
+    <div class="it">KRİTİK</div>
+    <h3>599K Kitle, %0.6-0.8 Etkileşim: Kitle-İçerik Kopukluğu</h3>
+    <p>Post başına ortalama 7.226 beğeni iyi görünse de 599K'lık kitleye oranı %1.2 civarında — sektör ortalamasının altında. "Detoks/tarif" formatı kitleyi büyütüyor ama derinleştirmiyor; takipçiler pasif izleyici konumunda kalıyor.</p>
+    <div class="act"><b>Aksiyon:</b> Save/share'e yönlendiren "bunu kaydet, lazım olacak" formatı dene; eğitici içerikle tarif içerikleri oranını dengele.</div>
+  </div>
+  <div class="ins critical">
+    <div class="it">KRİTİK</div>
+    <h3>Web Sitesi Satılık Domain'e Düşüyor: Her Tıklayan Kayıp</h3>
+    <p>Bio'daki nilaykececi.com.tr şu an "bu alan adı satılık" parking sayfasına düşüyor. 599K takipçi ve online paket satışı olan bir markada bu, giriş kapısının tamamen çöktüğü anlamına geliyor.</p>
+    <div class="act"><b>Aksiyon:</b> Domain sorununu acil çöz; geçici çözüm olarak bio'ya çalışan bir link-in-bio sayfası (biyosite/linktree) ekle.</div>
+  </div>
+  <div class="ins warning">
+    <div class="it">DİKKAT</div>
+    <h3>İki Instagram Hesabı Birbiriyle Konuşmuyor</h3>
+    <p>@nilaykececimutfak (~76K takipçi) neredeyse hiç ana hesaptan trafik almıyor; etkileşim dip seviyede (%0.1), yalnızca 2 hesap takip ediliyor. Yan hesap ihmal edilmiş — en hazır kitle orada kayıp.</p>
+    <div class="act"><b>Aksiyon:</b> Ana hesaptan mutfak hesabına haftalık yönlendirme; iki hesabı birbirine bağlayan story ve içerik köprüsü kur.</div>
+  </div>
+  <div class="ins warning">
+    <div class="it">DİKKAT</div>
+    <h3>%40 İçeriklerde Beğeni Verisi Gizli: Ölçüm Açığı</h3>
+    <p>20 içeriğin 6'sında (likesCount: −1) platform beğeni sayısını gizliyor. Bu içeriklerde performans değerlendirmesi yalnızca görüntüleme ve yorum sayısına dayanmak zorunda kalıyor.</p>
+    <div class="act"><b>Aksiyon:</b> Gizli beğeni dönemlerinde görüntüleme ve yorum takibini ön plana al; platform koşullarına göre ölçüm stratejisini çeşitlendir.</div>
+  </div>
+  <div class="ins opportunity">
+    <div class="it">FIRSAT</div>
+    <h3>1.4M Görüntüleme Viral Formatı: "Tarif + Kişisel Hikaye"</h3>
+    <p>"Bir akşam yemeği böyle geçse" ve fit sandviç içerikleri 1.4M ve 899K görüntüleme aldı. Formatın ortak noktası: kısa, pratik tarif + günlük yaşam bağlamı. Bu formülün sistematik tekrarı mümkün.</p>
+    <div class="act"><b>Aksiyon:</b> "Kısa tarif + niçin sağlıklı + kişisel bağlam" üç katmanlı formatı haftalık rutin haline getir. 30 saniyenin altında tut.</div>
+  </div>
+  <div class="ins opportunity">
+    <div class="it">FIRSAT</div>
+    <h3>Akademik Otorite İçeriğe Taşınmamış</h3>
+    <p>Acıbadem Üniversitesi doktora, Haliç Üniversitesi birinciliği, iki kitap, 120+ TV çıkışı, Migros/Banvit/Crossfit kurumsal danışmanlığı — bunların hiçbiri içeriklerde "neden Nilay Keçeci" sorusuna yanıt vermiyor.</p>
+    <div class="act"><b>Aksiyon:</b> Ayda 2 "otorite kanıtı" içeriği: TV çıkışından klipler, kurumsal proje özetleri, akademik bulgular. Premium danışmanlık fiyatını içerikle meşrulaştır.</div>
+  </div>
+  <div class="ins opportunity">
+    <div class="it">FIRSAT</div>
+    <h3>YouTube "Beslenme Saati" Serisi Instagram'a Taşınmamış</h3>
+    <p>Yüksek prodüksiyonlu "Nilay Keçeci ile Beslenme Saati" serisi üretilmiş ama Reels olarak Instagram'a taşınmamış — var olan prodüksiyon kaldıraçlanmıyor, iki kanal kopuk çalışıyor.</p>
+    <div class="act"><b>Aksiyon:</b> Her YouTube bölümünden 3-4 adet 30-60 saniyelik Reels klibi çıkar; kanallar arası içerik köprüsü kur.</div>
+  </div>
+  <div class="ins critical">
+    <div class="it">KRİTİK</div>
+    <h3>Danışmanlık Funneli Görünmüyor: 35 Kişilik Operasyon, Tek Hat Yok</h3>
+    <p>35 çalışanlı bir operasyon ve aktif online paket satışı var ama içerikten danışmanlığa giden net bir yol yok. Telefon numarası bio'da var ama link-in-bio funneli, başvuru formu veya "nasıl çalışırız" sayfası yok.</p>
+    <div class="act"><b>Aksiyon:</b> Tek sayfalık "Nilay ile çalışmak" açılış sayfası kur; bio link → paket seçimi → başvuru formu. Online satış bu hatta otomasyonla güçlendirilmeli.</div>
+  </div>
+
+</div>
+  </section>
+
+  <footer>
+    <div class="foot-l">
+      <div class="fname">NOMADES AGENCY</div>
+      <div class="fmeta">@nilaykececi · İçerik Performans Analizi · 19 Kas 2023 – 13 Haz 2026<br>20 içerik · Klinik / Estetik / Sağlık</div>
+    </div>
+    <div class="foot-tl">Bu rapor Nomades Agency tarafından hazırlanmıştır. Gizlidir.</div>
+  </footer>
+</div>
+
+<script>
+const tb = document.getElementById('themeBtn');
+const pb = document.getElementById('pdfBtn');
+let dark = true;
+tb.addEventListener('click', () => {
+  dark = !dark;
+  document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+  tb.textContent = dark ? '🌙' : '☀️';
+  document.querySelector('header').style.background = dark
+    ? 'rgba(11,11,14,0.92)' : 'rgba(250,250,247,0.92)';
+});
+pb.addEventListener('click', () => window.print());
+</script>
+</body>
+</html>

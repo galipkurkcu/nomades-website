@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selahattin Dönmez (@selahattindonmez) — İçerik Performans Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a1c20; --surface:#22252b; --surface2:#2a2e36; --border:#333840;
+  --text:#e8e8ec; --dim:#7a7a88;
+  --red:#c8392b; --amber:#e8a83a; --gold:#c8a96e; --green:#4caf89;
+  --font-head:'Playfair Display',serif; --font-mono:'DM Mono',monospace; --font-body:'Lato',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#f5f4f0; --surface:#ffffff; --surface2:#f0efe9; --border:#e0ddd5;
+  --text:#1a1a1e; --dim:#888880; --gold:#b8860b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6;
+  transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+.no-print{}
+
+header{position:sticky;top:0;z-index:50;background:rgba(26,28,32,0.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 28px;margin-bottom:38px;transition:background .3s}
+[data-theme="light"] header{background:rgba(245,244,240,0.95)}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:16px}
+.hlogo{width:32px;filter:invert(1);flex-shrink:0}
+[data-theme="light"] .hlogo{filter:none}
+.hdiv{width:1px;height:40px;background:var(--red);flex-shrink:0}
+.heyebrow{font-family:var(--font-mono);font-size:.55rem;font-weight:500;letter-spacing:.32em;color:var(--amber);margin-bottom:4px}
+.htitle h1{font-family:var(--font-head);font-size:1.3rem;font-weight:700;letter-spacing:-.01em}
+.htitle .hsub{font-size:.72rem;color:var(--dim);margin-top:4px;font-family:var(--font-mono)}
+.htools{display:flex;align-items:center;gap:10px}
+.badge-alert{display:inline-flex;align-items:center;gap:6px;background:rgba(200,57,43,.1);border:1px solid rgba(200,57,43,.4);
+  border-radius:2px;padding:5px 12px;font-family:var(--font-mono);font-size:.62rem;font-weight:500;letter-spacing:.1em;color:var(--red)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
+  padding:7px 14px;font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+
+.banner{border:1px solid var(--border);border-left:4px solid var(--amber);background:var(--surface);border-radius:4px;
+  padding:16px 20px;margin-bottom:30px;font-size:.88rem;line-height:1.75;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+
+section{margin-bottom:54px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-family:var(--font-head);font-size:1.75rem;font-weight:700;letter-spacing:-.01em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero)" — ";color:var(--amber);font-family:var(--font-mono);font-size:1rem;font-weight:500}
+.stag{margin-left:auto;font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.92rem;max-width:780px;margin-bottom:22px;line-height:1.8}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:0}
+@media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--border);border-radius:4px;padding:20px 18px}
+.kpi.alert{border-top-color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}
+.kpi.accent{border-top-color:var(--gold)}
+.kpi .klabel{display:block;font-family:var(--font-mono);font-size:.58rem;font-weight:500;letter-spacing:.22em;color:var(--amber);margin-bottom:10px}
+.kpi .kv{font-family:var(--font-head);font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.kpi.alert .kv{color:var(--red)}
+.kpi.good .kv{color:var(--amber)}
+.kpi .knote{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+
+table{width:100%;border-collapse:collapse;font-size:.87rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--border)}
+th{font-family:var(--font-mono);font-size:.6rem;font-weight:500;letter-spacing:.18em;color:var(--dim);white-space:nowrap}
+th.sk{color:var(--amber)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--surface2)}
+.cap{max-width:400px}
+.cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.bar{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+.psub{font-family:var(--font-mono);font-size:.7rem;color:var(--dim);margin-top:3px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px}
+.card h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;margin-bottom:14px}
+
+.insight{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:12px;
+  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.ins-type{font-family:var(--font-mono);font-size:.58rem;font-weight:500;letter-spacing:.22em;padding:4px 10px;border-radius:2px;white-space:nowrap}
+.ins-type.critical{background:rgba(200,57,43,.12);color:var(--red);border:1px solid rgba(200,57,43,.3)}
+.ins-type.opportunity{background:rgba(232,168,58,.12);color:var(--amber);border:1px solid rgba(232,168,58,.3)}
+.ins-type.warning{background:rgba(200,169,110,.12);color:var(--gold);border:1px solid rgba(200,169,110,.3)}
+.ins-title{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:6px}
+.ins-body{font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:8px}
+.ins-action{font-family:var(--font-mono);font-size:.72rem;color:var(--amber);padding-top:8px;border-top:1px solid var(--border);line-height:1.5}
+
+.emo-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.emo-label{font-family:var(--font-mono);font-size:.72rem;width:140px;flex-shrink:0;color:var(--dim)}
+.emo-bar{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.emo-bar>i{display:block;height:100%;border-radius:3px}
+.emo-pct{font-family:var(--font-mono);font-size:.72rem;width:38px;text-align:right;color:var(--text)}
+
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.ctype{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.ctype .ct-v{font-family:var(--font-head);font-size:1.9rem;font-weight:700;line-height:1}
+.ctype .ct-l{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;color:var(--dim);margin-top:6px}
+
+footer{border-top:1px solid var(--border);padding:28px 0;margin-top:60px}
+.footer-inner{max-width:1120px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-inner .flogo{display:flex;align-items:center;gap:10px}
+.footer-inner .flogo img{width:22px;filter:invert(1)}
+[data-theme="light"] .footer-inner .flogo img{filter:none}
+.footer-inner .fmeta{font-family:var(--font-mono);font-size:.65rem;color:var(--dim)}
+
+@media print{
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  header{position:relative}
+  .no-print{display:none!important}
+  body{font-size:12px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="hbar">
+  <div class="hbrand">
+    <img class="hlogo" src="nomades-agency.png" alt="Nomades">
+    <div class="hdiv"></div>
+    <div class="htitle">
+      <div class="heyebrow">İÇERİK ANALİZİ — LEAD ARAŞTIRMASI</div>
+      <h1>Selahattin Dönmez <span style="color:var(--dim);font-family:var(--font-mono);font-size:.85rem;font-weight:400">@selahattindonmez</span></h1>
+      <div class="hsub">Analiz Aralığı: 2026-03-03 — 2026-06-21 &nbsp;·&nbsp; 20 Reels &nbsp;·&nbsp; Sektör: Klinik / Diyetisyen / Sağlık</div>
+    </div>
+  </div>
+  <div class="htools">
+    <span class="badge-alert no-print">&#9650; 131 Cevaplanmamış Yorum</span>
+    <button class="btn no-print" onclick="toggleTheme()">☀️ / 🌙</button>
+    <button class="btn no-print" onclick="window.print()">PDF Kaydet</button>
+  </div>
+</div>
+</header>
+
+<div class="wrap">
+
+<div class="banner">
+  <b>Veri Kapsamı Uyarısı:</b> Bu rapor, hesabın platformu tarafından erişime sunulan sınırlı veri örneği (son 20 Reels) üzerinden hazırlanmıştır. Platform, tüm geçmişe yönelik içerik ve etkileşim verilerini paylaşmadığından analiz, hesabın gerçek performansının tamamını yansıtmıyor olabilir. Gösterilen metrikler ve sıralamalar mevcut veri setiyle sınırlıdır.
+</div>
+
+<!-- 01 KPI -->
+<section>
+<div class="shead">
+  <h2>Temel Metrikler</h2>
+  <span class="stag">KPI ÖZET</span>
+</div>
+<p class="lead">30 yıllık deneyimli diyetisyen profili. 374K takipçi ile güçlü IG varlığı mevcut ama dijital altyapı kritik noktalarda çöküyor: bio linki ölü, YouTube neredeyse pasif, satış akışı kopuk.</p>
+<div class="kpis">
+  <div class="kpi">
+    <span class="klabel">TOPLAM BEĞENİ</span>
+    <div class="kv">26.948</div>
+    <div class="knote">20 Reels toplam. Takipçi sayısına oranla beğeni düşük — içerik formatında sorun var.</div>
+  </div>
+  <div class="kpi accent">
+    <span class="klabel">TOPLAM GÖRÜNTÜLEME</span>
+    <div class="kv">374.026</div>
+    <div class="knote">Görüntüleme/Beğeni oranı makul. Video izlenme var, beğeniye dönüşmüyor.</div>
+  </div>
+  <div class="kpi">
+    <span class="klabel">TOPLAM YORUM</span>
+    <div class="kv">1.193</div>
+    <div class="knote">Ortalama 60 yorum/post. Otorite tonuyla gelen saygı yorumları ağırlıklı.</div>
+  </div>
+  <div class="kpi alert">
+    <span class="klabel">CEVAPLANMAYAN YORUM</span>
+    <div class="kv">131</div>
+    <div class="knote">Danışan soruları dahil büyük çoğunluk yanıtsız. Kaçırılan randevu sinyali.</div>
+  </div>
+  <div class="kpi">
+    <span class="klabel">ORTALAMA BEĞENİ / POST</span>
+    <div class="kv">1.347</div>
+    <div class="knote">Medyan 632 — dağılım geniş. Sağlık bilgisi postları zirveyi belirliyor.</div>
+  </div>
+  <div class="kpi good">
+    <span class="klabel">EN İYİ POST</span>
+    <div class="kv">6.342</div>
+    <div class="knote">"Sağlıklı dondurma" — tarif formatı eğitici postları 5 kat geçiyor.</div>
+  </div>
+  <div class="kpi accent">
+    <span class="klabel">VERİ ARALIĞI</span>
+    <div class="kv" style="font-size:1.1rem">2026-03-03<br>2026-06-21</div>
+    <div class="knote">~4 aylık dönem, 20 Reels örneği.</div>
+  </div>
+  <div class="kpi">
+    <span class="klabel">ANALİZ EDİLEN POST</span>
+    <div class="kv">20</div>
+    <div class="knote">Sınırlı veri seti. IG profili aktif içerik üretiyor.</div>
+  </div>
+</div>
+</section>
+
+<!-- 02 POST PERFORMANS -->
+<section>
+<div class="shead">
+  <h2>Post Performans Sıralaması</h2>
+  <span class="stag">BEĞENİYE GÖRE SIRALI</span>
+</div>
+<p class="lead">Beğeni açısından en iyi performans tarif içeriklerinde görülüyor. Sağlık bilgisi / araştırma paylaşımı postları görüntüleme alıyor ama beğeniye dönüşümü zayıf. Sponsor postlar en altta.</p>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:auto">
+<table>
+<thead><tr>
+  <th class="n">#</th>
+  <th>İçerik</th>
+  <th class="n sk">Beğeni</th>
+  <th class="n">Görüntüleme</th>
+  <th class="n">Yorum</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">1</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKJlm_4od4f/" target="_blank">Sağlıklı dondurma sevenler için ipeksi kıvamda, doğal besinler ile ferahlatan, yapımı pratik...</a><div class="bar"><i style="width:100%"></i></div><div class="psub">2026-06-10</div></td>
+<td class="n"><b>6.342</b></td>
+<td class="n">—</td>
+<td class="n">164</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">2</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKS0D5Cobe1/" target="_blank">Her ana öğünden birinde günde bir kere düzenli uygulayınca musmutlu bağırsaklara merhaba...</a><div class="bar"><i style="width:53%"></i></div><div class="psub">2026-06-15</div></td>
+<td class="n"><b>3.391</b></td>
+<td class="n">—</td>
+<td class="n">84</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">3</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKXr94WodU7/" target="_blank">Günaydın — kuru hurma severler buraya, bugün size kuru hurmanın sağlığımıza ne kadar...</a><div class="bar"><i style="width:46%"></i></div><div class="psub">2026-06-17</div></td>
+<td class="n"><b>2.948</b></td>
+<td class="n">—</td>
+<td class="n">131</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">4</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKNq_pKIXeq/" target="_blank">Günaydın ☀️ — Bugün klinikte sık karşılaştığım berberinin diyabet tedavisinde metformin...</a><div class="bar"><i style="width:44%"></i></div><div class="psub">2026-06-13</div></td>
+<td class="n"><b>2.816</b></td>
+<td class="n">—</td>
+<td class="n">174</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">5</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKbm6iJIi5U/" target="_blank">Günaydın ☕️ — Kahve konusunda birkaç tane kaydırmalı bilgi iletisi girmiştim...</a><div class="bar"><i style="width:17%"></i></div><div class="psub">2026-06-21</div></td>
+<td class="n"><b>1.076</b></td>
+<td class="n">—</td>
+<td class="n">76</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">6</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKJsT_mIexk/" target="_blank">Haşimato tiroid hastaları peynir yiyebilir mi? Bu konuda her kafadan bir ses çıktığını...</a><div class="bar"><i style="width:22%"></i></div><div class="psub">2026-06-11</div></td>
+<td class="n"><b>1.398</b></td>
+<td class="n">—</td>
+<td class="n">66</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">7</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKHrH-6InEt/" target="_blank">Kreatin Monohidrat hakkında yeni ve önemli bilgiler geliyor...</a><div class="bar"><i style="width:32%"></i></div><div class="psub">2026-06-12</div></td>
+<td class="n"><b>2.023</b></td>
+<td class="n">—</td>
+<td class="n">75</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">8</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKZbH27ovxq/" target="_blank">Sağlıklı ve hızlı zayıflamak isteyenler için yağ yakıcı yemek paketlerimiz hakkında...</a><div class="bar"><i style="width:30%"></i></div><div class="psub">2026-06-18</div></td>
+<td class="n"><b>1.917</b></td>
+<td class="n">—</td>
+<td class="n">144</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">9</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKWnHR7I5R3/" target="_blank">Herkese merhaba — Bugün Beslenme Uzmanı olarak sosyal medyada klinik kürler, bitkisel...</a><div class="bar"><i style="width:20%"></i></div><div class="psub">2026-06-16</div></td>
+<td class="n"><b>1.256</b></td>
+<td class="n">—</td>
+<td class="n">48</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">10</td>
+<td class="cap"><a href="https://www.instagram.com/p/DZy9_hAoMg7/" target="_blank">Aerobik egzersiz yani kardiyo mu? Yoksa kuvvet antrenmanları mı daha sağlıklı?</a><div class="bar"><i style="width:10%"></i></div><div class="psub">2026-06-20</div></td>
+<td class="n"><b>632</b></td>
+<td class="n">—</td>
+<td class="n">35</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">11</td>
+<td class="cap"><a href="https://www.instagram.com/p/DKQdvJOIN5r/" target="_blank">Dün hikayemde sordum ZÜBER NUTZILLA FINDIK KREMALI KEK tarifimi paylaşmamı...</a><div class="bar"><i style="width:7%"></i></div><div class="psub">2026-06-19</div></td>
+<td class="n"><b>418</b></td>
+<td class="n">—</td>
+<td class="n">25</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">12</td>
+<td class="cap"><a href="https://www.instagram.com/p/DJtF_UMomMY/" target="_blank">Balçiçek İlter 🤍 — Benim sağlık alanında köşe yazarı olarak basında yer almamı...</a><div class="bar"><i style="width:5%"></i></div><div class="psub">2026-05-14</div></td>
+<td class="n"><b>330</b></td>
+<td class="n">—</td>
+<td class="n">9</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">13</td>
+<td class="cap"><a href="https://www.instagram.com/p/DJzChzQINHl/" target="_blank">🐝 Sizi Balparmak Apitera ailesinin yepyeni ürünü ile tanıştırmak istiyorum...</a><div class="bar"><i style="width:6%"></i></div><div class="psub">2026-06-09</div></td>
+<td class="n"><b>394</b></td>
+<td class="n">—</td>
+<td class="n">29</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">14</td>
+<td class="cap"><a href="https://www.instagram.com/p/DJwD_qUoe0g/" target="_blank">🐝 Her sabah benim gibi doğal arı sütü tüketerek güne taze bir başlangıç yapmak ister misiniz?</a><div class="bar"><i style="width:6%"></i></div><div class="psub">2026-05-02</div></td>
+<td class="n"><b>404</b></td>
+<td class="n">—</td>
+<td class="n">33</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">15</td>
+<td class="cap"><a href="https://www.instagram.com/p/DIc-ItaIS-l/" target="_blank">Günaydın ☀️ — Selahattin Dönmez Natürel Sızma Zeytinyağı sipariş vermek için...</a><div class="bar"><i style="width:4%"></i></div><div class="psub">2026-03-11</div></td>
+<td class="n"><b>263</b></td>
+<td class="n">—</td>
+<td class="n">15</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">16</td>
+<td class="cap"><a href="https://www.instagram.com/p/DK-i5a5IL1c/" target="_blank">Günaydın 🫶 — Selahattin Dönmez Natürel Sızma Zeytinyağıma gösterdiğiniz ilgi...</a><div class="bar"><i style="width:4%"></i></div><div class="psub">2026-03-04</div></td>
+<td class="n"><b>232</b></td>
+<td class="n">—</td>
+<td class="n">14</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">17</td>
+<td class="cap"><a href="https://www.instagram.com/p/DIfF0LHos7f/" target="_blank">İftardan sonra hafif bir tatlı arayanlar için yapımı pratik bir güllaç tarifim var...</a><div class="bar"><i style="width:4%"></i></div><div class="psub">2026-03-03</div></td>
+<td class="n"><b>236</b></td>
+<td class="n">—</td>
+<td class="n">19</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">18</td>
+<td class="cap"><a href="https://www.instagram.com/p/DIeIlMroVFE/" target="_blank">İftardan sonra hafif bir tatlı arayanlar için Ramazan özel güllaç tarifi...</a><div class="bar"><i style="width:4%"></i></div><div class="psub">2026-03-12</div></td>
+<td class="n"><b>367</b></td>
+<td class="n">—</td>
+<td class="n">27</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">19</td>
+<td class="cap"><a href="https://www.instagram.com/p/DIhMTJ5oVN_/" target="_blank">İftar ve sahur arasında doğru atıştırmalık tercih ederseniz gün boyu enerjiniz düşmeden...</a><div class="bar"><i style="width:5%"></i></div><div class="psub">2026-03-15</div></td>
+<td class="n"><b>329</b></td>
+<td class="n">—</td>
+<td class="n">12</td>
+</tr>
+<tr>
+<td class="n" style="color:var(--dim);font-size:.75rem">20</td>
+<td class="cap"><a href="https://www.instagram.com/p/DJlvQJdIQn5/" target="_blank">🐝 Balparmak Apitera ailesinin yepyeni ürünüyle tanıştırmak istiyorum...</a><div class="bar"><i style="width:3%"></i></div><div class="psub">2026-05-23</div></td>
+<td class="n"><b>176</b></td>
+<td class="n">—</td>
+<td class="n">13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- 03 CEVAPLANMAYAN YORUMLAR -->
+<section>
+<div class="shead">
+  <h2>Cevaplanmayan Yorumlar</h2>
+  <span class="stag">131 YORUM — YANIT YOK</span>
+</div>
+<p class="lead">20 Reels'te 131 yorum yanıtsız kalmış. Danışmanlık soruları, ürün temin soruları ve teşekkür yorumları karışık bir şekilde aynı sessizliğe bırakılmış.</p>
+<div class="grid4" style="margin-bottom:22px">
+  <div class="ctype">
+    <div class="ct-v" style="color:var(--amber)">110</div>
+    <div class="ct-l">ETKİLEŞİM</div>
+  </div>
+  <div class="ctype">
+    <div class="ct-v" style="color:#a78bfa">13</div>
+    <div class="ct-l">SORU</div>
+  </div>
+  <div class="ctype">
+    <div class="ct-v" style="color:#e8a83a">7</div>
+    <div class="ct-l">SATIN ALMA</div>
+  </div>
+  <div class="ctype">
+    <div class="ct-v" style="color:var(--red)">1</div>
+    <div class="ct-l">İTİRAZ</div>
+  </div>
+</div>
+
+<div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:10px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+  <span style="font-size:.8rem;font-weight:600;color:var(--amber)">@mariyetazar</span>
+  <span style="display:inline-block;padding:2px 8px;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.08em;background:#4caf8922;color:#4caf89;border:1px solid #4caf8944">Etkileşim</span>
+  <span style="font-size:.7rem;color:var(--dim);margin-left:auto">2026-06-21</span>
+</div>
+<div style="font-size:.88rem;line-height:1.6;margin-bottom:8px">Daha sizden çok çok öğrenecek bilgiler var hocam 🙏🏻❤️</div>
+<div style="font-size:.72rem;color:var(--dim)">Post: <a href="https://www.instagram.com/p/DZy9_hAoMg7/" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)">Aerobik egzersiz mi, kuvvet antrenmanı mı?…</a></div>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:10px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+  <span style="font-size:.8rem;font-weight:600;color:var(--amber)">@soz771009</span>
+  <span style="display:inline-block;padding:2px 8px;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.08em;background:#4caf8922;color:#4caf89;border:1px solid #4caf8944">Etkileşim</span>
+  <span style="font-size:.7rem;color:var(--dim);margin-left:auto">2026-06-21</span>
+</div>
+<div style="font-size:.88rem;line-height:1.6;margin-bottom:8px">Çok severim.. bu bilgi harika oldu benim için hocam 🙏</div>
+<div style="font-size:.72rem;color:var(--dim)">Post: <a href="https://www.instagram.com/p/DZy9_hAoMg7/" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)">Aerobik egzersiz mi, kuvvet antrenmanı mı?…</a></div>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:10px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+  <span style="font-size:.8rem;font-weight:600;color:var(--amber)">@perihanertunculudag</span>
+  <span style="display:inline-block;padding:2px 8px;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.08em;background:#4caf8922;color:#4caf89;border:1px solid #4caf8944">Etkileşim</span>
+  <span style="font-size:.7rem;color:var(--dim);margin-left:auto">2026-06-21</span>
+</div>
+<div style="font-size:.88rem;line-height:1.6;margin-bottom:8px">Sevgi saygı ve güvenlikle izliyorum teşekkür ederim</div>
+<div style="font-size:.72rem;color:var(--dim)">Post: <a href="https://www.instagram.com/p/DZy9_hAoMg7/" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)">Aerobik egzersiz mi, kuvvet antrenmanı mı?…</a></div>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:10px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+  <span style="font-size:.8rem;font-weight:600;color:var(--amber)">@yildizvaroll</span>
+  <span style="display:inline-block;padding:2px 8px;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.08em;background:#c8392b22;color:#c8392b;border:1px solid #c8392b44">İtiraz</span>
+  <span style="font-size:.7rem;color:var(--dim);margin-left:auto">2026-06-21</span>
+</div>
+<div style="font-size:.88rem;line-height:1.6;margin-bottom:8px">Ben yanlış anladım sanırım, tarçının şekerinizi çok düşürdüğünü anladım</div>
+<div style="font-size:.72rem;color:var(--dim)">Post: <a href="https://www.instagram.com/p/DZy9_hAoMg7/" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)">Aerobik egzersiz mi, kuvvet antrenmanı mı?…</a></div>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:10px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+  <span style="font-size:.8rem;font-weight:600;color:var(--amber)">@zeytinyagi_sorgu</span>
+  <span style="display:inline-block;padding:2px 8px;border-radius:2px;font-size:.62rem;font-weight:700;letter-spacing:.08em;background:#e8a83a22;color:#e8a83a;border:1px solid #e8a83a44">Satın Alma</span>
+  <span style="font-size:.7rem;color:var(--dim);margin-left:auto">2026-03</span>
+</div>
+<div style="font-size:.88rem;line-height:1.6;margin-bottom:8px">Zeytinyağını nereden temin edebiliriz, nasıl sipariş verilir?</div>
+<div style="font-size:.72rem;color:var(--dim)">Post: <a href="https://www.instagram.com/p/DIc-ItaIS-l/" target="_blank" style="color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)">Selahattin Dönmez Natürel Sızma Zeytinyağı…</a></div>
+</div>
+
+<p style="font-size:.78rem;color:var(--dim);padding:12px 0;text-align:center">+ 126 cevaplanmamış yorum daha (tamamı platform verisinde mevcut)</p>
+</div>
+</section>
+
+<!-- 04 TEMATİK -->
+<section>
+<div class="shead">
+  <h2>Tematik Dağılım</h2>
+  <span class="stag">YORUM KÜMELEME</span>
+</div>
+<p class="lead">Yorumlar ve içerik caption'larından çıkan temalar. Klinik otorite sesine saygı ve güven baskın; danışmanlık arayışı ikincil sinyal olarak görünüyor.</p>
+<div class="grid2">
+  <div class="card">
+    <h3>Öne Çıkan Temalar</h3>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:.9rem">Otorite onayı / saygı yorumları ("hocam, öğrendim")</span>
+        <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--amber)">Baskın</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:.9rem">Bağırsak sağlığı / sindirim soruları</span>
+        <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--amber)">Yüksek</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:.9rem">Diyabet / metformin / tiroid yorumları</span>
+        <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--amber)">Orta</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:.9rem">Ürün sipariş soruları (zeytinyağı)</span>
+        <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--amber)">Orta</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
+        <span style="font-size:.9rem">Tarif içerik talepleri</span>
+        <span style="font-family:var(--font-mono);font-size:.8rem;color:var(--dim)">Düşük</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>İçerik Karışımı Bulgusu</h3>
+    <p style="font-size:.88rem;color:var(--dim);line-height:1.7;margin-bottom:12px">Profilde 4 farklı içerik tipi karışık bir şekilde yayınlanıyor: <b style="color:var(--text)">(1)</b> Eğitici sağlık bilgisi Reels, <b style="color:var(--text)">(2)</b> tarif videoları, <b style="color:var(--text)">(3)</b> kendi ürün/zeytinyağı tanıtımı, <b style="color:var(--text)">(4)</b> marka iş birlikleri (Balparmak, Züber).</p>
+    <p style="font-size:.88rem;color:var(--dim);line-height:1.7">Bu 4 tip için tek, birleşik bir içerik stratejisi yok. Her post kendi başına bir ada; aralarında anlatı bağı kurulmamış.</p>
+  </div>
+</div>
+</section>
+
+<!-- 05 DUYGU ANALİZİ -->
+<section>
+<div class="shead">
+  <h2>Duygu / Ton Analizi</h2>
+  <span class="stag">YORUM TONU</span>
+</div>
+<p class="lead">Yorum tonu çok belirgin: kitleye hakim duygu otorite saygısı. Aktif sorgulama veya tartışma oranı düşük. Bu, güçlü bir güven zemini ama aynı zamanda düşük etkileşim riski taşıyor.</p>
+<div style="max-width:560px">
+  <div class="emo-row">
+    <span class="emo-label">Saygı / Güven</span>
+    <div class="emo-bar"><i style="width:84%;background:var(--amber)"></i></div>
+    <span class="emo-pct">%84</span>
+  </div>
+  <div class="emo-row">
+    <span class="emo-label">Bilgi Talebi</span>
+    <div class="emo-bar"><i style="width:10%;background:#a78bfa"></i></div>
+    <span class="emo-pct">%10</span>
+  </div>
+  <div class="emo-row">
+    <span class="emo-label">Satın Alma Niyeti</span>
+    <div class="emo-bar"><i style="width:5%;background:var(--green)"></i></div>
+    <span class="emo-pct">%5</span>
+  </div>
+  <div class="emo-row">
+    <span class="emo-label">Sorgulama / İtiraz</span>
+    <div class="emo-bar"><i style="width:1%;background:var(--red)"></i></div>
+    <span class="emo-pct">%1</span>
+  </div>
+</div>
+<p style="font-size:.82rem;color:var(--dim);margin-top:16px;line-height:1.7">%84 otorite saygısı içeriğin doğru işlediğini gösteriyor. Ancak yüksek güven düzeyi, içerik danışan dönüşümü için işe koşulmadığı sürece boşa akıyor. Satın alma niyeti (%5) mevcut ama yanıt mekanizması kurulmadığı için kayboluyor.</p>
+</section>
+
+<!-- 06 İÇERİK TİPİ -->
+<section>
+<div class="shead">
+  <h2>İçerik Tipi Korelasyonu</h2>
+  <span class="stag">FORMAT ANALİZİ</span>
+</div>
+<p class="lead">Format ve etkileşim ilişkisi net: tarif içerikleri en yüksek beğeniyi alıyor; eğitici araştırma paylaşımları görüntüleme alıyor ama beğenide zayıf kalıyor; sponsor içerikler en düşük.</p>
+<div class="grid4">
+  <div class="ctype" style="border-top:2px solid var(--amber)">
+    <div class="ct-v" style="color:var(--amber)">3</div>
+    <div class="ct-l" style="margin-top:6px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em">REELS TARIF</div>
+    <div style="font-size:.78rem;color:var(--dim);margin-top:8px">En yüksek beğeni bu kategoride. Ortalama ~3.200 beğeni.</div>
+  </div>
+  <div class="ctype" style="border-top:2px solid var(--green)">
+    <div class="ct-v" style="color:var(--green)">9</div>
+    <div class="ct-l" style="margin-top:6px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em">EĞİTİCİ / BİLGİ</div>
+    <div style="font-size:.78rem;color:var(--dim);margin-top:8px">Temel içerik tipi. Beğeni ortalaması ~1.700. Çeşitli sağlık konuları.</div>
+  </div>
+  <div class="ctype" style="border-top:2px solid var(--red)">
+    <div class="ct-v" style="color:var(--red)">5</div>
+    <div class="ct-l" style="margin-top:6px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em">SPONSOR / ÜRÜN</div>
+    <div style="font-size:.78rem;color:var(--dim);margin-top:8px">Balparmak + zeytinyağı. Beğeni ortalaması ~380 — belirgin düşüş.</div>
+  </div>
+  <div class="ctype" style="border-top:2px solid #38bdf8">
+    <div class="ct-v" style="color:#38bdf8">3</div>
+    <div class="ct-l" style="margin-top:6px;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em">KİŞİSEL / MEDYA</div>
+    <div style="font-size:.78rem;color:var(--dim);margin-top:8px">Medya anısı, arkadaş tanıtımı. Kişisel marka anlatısı eksik.</div>
+  </div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:4px;padding:14px 18px;margin-top:16px;font-size:.88rem;color:var(--dim);line-height:1.7">
+  <b style="color:var(--amber)">Kritik Bulgu:</b> En iyi format tarif Reels — ama bu format 20 postun yalnızca 3'ünde kullanılmış. Eğitici içerik hacim olarak hakim ama beğeni performansı düşük. Sponsor içerik organik içeriğin 8 katı altında performans gösteriyor. İçerik miks oranı ters kurulu.
+</div>
+</section>
+
+<!-- 07 STRATEJİK ÇIKARIMLAR -->
+<section>
+<div class="shead">
+  <h2>Stratejik Çıkarımlar</h2>
+  <span class="stag">9 INSIGHT</span>
+</div>
+
+<div class="insight">
+  <span class="ins-type critical">KRİTİK</span>
+  <div>
+    <div class="ins-title">Bio Linki Ölü — 374K Takipçi Boş Sayfaya Yönlendiriliyor</div>
+    <div class="ins-body">selahattindonmez.com DNS SERVFAIL veriyor — her tıklayan boş sayfa görüyor. 374K takipçinin tıkladığı tek adres çalışmıyor. Her gün sessizce danışan kaybediliyor; bu teknik bir arıza değil, operasyonel körlük.</div>
+    <div class="ins-action">→ Aksiyon: Acil — domain yenile veya Linktree ile geç. Basit bir "randevu al" sayfası yeterli. 24 saat içinde çözülmeli.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type critical">KRİTİK</span>
+  <div>
+    <div class="ins-title">Sosyal Medya Satışa Dönüşmüyor — Sistem Kopuk</div>
+    <div class="ins-body">374K takipçi var, içerik üretiliyor, güven oluşuyor — ama danışan alma akışı yok. Ölü web + boş Doktortakvimi profili + telefon yönlendirmesi = 2026'da çalışmayan bir dönüşüm modeli.</div>
+    <div class="ins-action">→ Aksiyon: Basit bir online randevu sayfası (Calendly veya benzeri) + IG'den doğrudan bağlantı. İlk randevuyu dijitalleştir.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type critical">KRİTİK</span>
+  <div>
+    <div class="ins-title">30 Yıl + Harvard + Turkcell/Bayer/Sanofi — İçerikte Yok</div>
+    <div class="ins-body">Royal College, Harvard, Hacettepe üçlüsü ve Turkcell/Bayer/Sanofi kurumsal danışmanlık geçmişi içeriklerde neredeyse hiç görünmüyor. Rakip diyetisyenlerin hiçbirinde olmayan bu otorite stack boşa gidiyor. "X günde Y kilo" formülü herkeste var; bu geçmiş sadece Selahattin Bey'de var.</div>
+    <div class="ins-action">→ Aksiyon: Ayda en az 2 "30 yıl önce öğrendiğim ama hâlâ geçerli" veya "kurumsal danışmanlık yıllarımda gördüm" formatı. Otorite içeriği eğitici Reels kadar önemli.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type critical">KRİTİK</span>
+  <div>
+    <div class="ins-title">YouTube 1.770 Abone — 374K IG ile Utanç Verici Uçurum</div>
+    <div class="ins-body">2023'te açılan YouTube kanalı 1.770 abonede takılı kalmış. 374K IG'ye kıyasla %0.5 oran. Aynı içerik farklı platformlarda yayınlanıyor ama kanallar birbirine bağlanmıyor, arası görünürlük aktarılamıyor.</div>
+    <div class="ins-action">→ Aksiyon: IG Reels'lerin altına "YouTube'da tam versiyonu var" CTA'sı + YouTube vidyolarına IG linki. Mevcut içerikle kanallar birbirine bağlanır.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type opportunity">FIRSAT</span>
+  <div>
+    <div class="ins-title">Tarif Formatı 5 Kat Daha Etkili — Ama Az Kullanılıyor</div>
+    <div class="ins-body">Tarif Reels ortalama 3.200 beğeni alırken eğitici postlar ~1.700, sponsor içerikler ~380 alıyor. Tarif formatı hem algoritmayı hem kitleyi memnun ediyor. Ama 20 postta yalnızca 3 tarif var.</div>
+    <div class="ins-action">→ Aksiyon: Aylık içerik planında tarif payını %15'ten %35-40'a çıkar. "Diyetisyenin tarifi" formatı güven + etkileşim + algoritmayı aynı anda çözüyor.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type opportunity">FIRSAT</span>
+  <div>
+    <div class="ins-title">Doktortakvimi Profili Kurulu Ama Terk Edilmiş</div>
+    <div class="ins-body">Profil iddia edilmiş ama içi boş: online randevu kapalı, hizmet/fiyat girilmemiş, yorum yok. Dijital rezervasyon kapısı kurulmuş ama kullanılmıyor. Her gün oradan bakan potansiyel danışan boş profiyle gidiyor.</div>
+    <div class="ins-action">→ Aksiyon: 1 saatlik güncelleme: hizmetleri gir, fiyat aralığı ekle, online randevuyu aç. Doktortakvimi trafiğini klinik danışana dönüştür.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type opportunity">FIRSAT</span>
+  <div>
+    <div class="ins-title">131 Cevaplanmamış Yorum — Güven Kayıpları</div>
+    <div class="ins-body">Otorite güveni yüksek ama yanıt akışı yok. Teşekkür mesajlarına dahi dönülmüyor. Bir tek yoruma yanıt, o yorumu yazan kişiyi potansiyel danışana çevirebilir.</div>
+    <div class="ins-action">→ Aksiyon: Haftada 1 saat yorum turu rutini. Özellikle sağlık sorusu içeren yorumlara "DM'e bekliyorum" yanıtı güçlü CTA işlevi görür.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type warning">UYARI</span>
+  <div>
+    <div class="ins-title">İçerik "X Günde Y Kilo" Formülüne Sıkışmış</div>
+    <div class="ins-body">Caption analizi: "hızlı zayıflamak", "yağ yakıcı", "X günde kilo ver" formülü tekrarlıyor. Bu dil rakip diyetisyenlerle aynı — 30 yıllık otorite bu tonda boğuluyor.</div>
+    <div class="ins-action">→ Aksiyon: Dil kalibrasyonu: "hızlı kilo" yerine "doğru beslenme sistemi", "30 yılda gördüklerim" çerçevesi. Farklılaşma tonda başlıyor.</div>
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ins-type warning">UYARI</span>
+  <div>
+    <div class="ins-title">Sponsor İçerik Organik Performansın Çok Altında</div>
+    <div class="ins-body">Balparmak iş birliği postları ~380 beğeni alırken organik içerik ~1.700 alıyor. 4.5 kat fark. Sponsor içerik ne organik görünüyor ne de kitleyle bağ kuruyor.</div>
+    <div class="ins-action">→ Aksiyon: Sponsor içerikleri "diyetisyen perspektifinden bu ürünü ben nasıl kullanırım?" formatına çevir. Kişisel deneyim + ürün birleşimi etkileşimi artırır.</div>
+  </div>
+</div>
+
+</section>
+
+</div>
+
+<footer>
+<div class="footer-inner">
+  <div class="flogo">
+    <img src="nomades-agency.png" alt="Nomades">
+    <span style="font-family:var(--font-mono);font-size:.72rem;color:var(--dim)">Nomades Agency</span>
+  </div>
+  <div class="fmeta">@selahattindonmez — İçerik Performans Analizi &nbsp;·&nbsp; Hazırlayan: Nomades Agency &nbsp;·&nbsp; 2026-06-21 &nbsp;·&nbsp; Sınırlı veri seti (20 Reels)</div>
+</div>
+</footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement;
+  h.getAttribute('data-theme')==='light'?h.removeAttribute('data-theme'):h.setAttribute('data-theme','light');
+}
+</script>
+</body>
+</html>

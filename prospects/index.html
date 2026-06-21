@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomades — Sales Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void-deep: #0B0B0E;
+  --void-1: #1C1C1C;
+  --void-2: #3A3A3A;
+  --red: #B01C2E;
+  --amber: #F0AA00;
+  --off-white: #FAFAF7;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Space Grotesk', sans-serif; background:#F2F2EF; color:var(--void-1); padding-bottom:60px; }
+a { color:inherit; text-decoration:none; }
+
+/* ── HEADER — brand dark ── */
+header {
+  background:var(--void-deep);
+  border-bottom:3px solid var(--red);
+  padding:20px 32px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.h-logo-area { display:flex; align-items:center; gap:16px; }
+.h-logo { width:36px; filter:invert(1); flex-shrink:0; display:block; }
+.h-divider { width:1px; height:36px; background:var(--red); flex-shrink:0; }
+.h-brand { font-size:9px; color:var(--amber); letter-spacing:0.3em; font-weight:700; text-transform:uppercase; margin-bottom:4px; }
+.h-title { font-size:18px; font-weight:800; letter-spacing:-0.01em; color:var(--off-white); }
+.h-sub { font-size:11px; color:#555; margin-top:3px; }
+.h-stats { display:flex; gap:10px; flex-shrink:0; }
+.h-stat {
+  background:#141418; border-radius:4px; border:1px solid #1E1E22;
+  padding:10px 18px; text-align:center; min-width:78px;
+}
+.h-stat-n { font-size:22px; font-weight:800; line-height:1.1; }
+.h-stat-l { font-size:9px; color:#555; letter-spacing:0.22em; margin-top:3px; font-weight:600; }
+
+/* ── MAIN ── */
+main { max-width:800px; margin:0 auto; padding:28px 20px; }
+
+/* ── SECTION ── */
+section { margin-bottom:36px; }
+.section-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:12px; padding:0 2px;
+}
+.sh-left { display:flex; align-items:center; gap:10px; }
+.sh-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.sh-title { font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--void-1); }
+.sh-subtitle { font-size:11px; color:var(--void-2); margin-top:2px; }
+.sh-count {
+  font-size:11px; font-weight:700;
+  padding:3px 10px; border-radius:10px;
+}
+
+/* ── CARD ── */
+.prospect-card {
+  border-radius:6px; margin-bottom:8px; overflow:hidden;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 1px 4px rgba(0,0,0,.07);
+}
+
+/* CARD HEADER */
+.card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px; cursor:pointer;
+  transition:background .15s; user-select:none;
+}
+.card-header:hover { background:var(--hdr-hover) !important; }
+.ch-left { display:flex; align-items:center; gap:10px; }
+.ch-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.ch-name { font-size:14px; font-weight:700; color:var(--void-1); }
+.ch-meta { font-size:11px; color:var(--void-2); margin-top:2px; }
+.ch-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+.ch-followers { font-size:13px; font-weight:700; color:var(--void-1); }
+.days-ok { font-size:11px; color:var(--void-2); }
+.days-warn { font-size:11px; color:var(--red); font-weight:700; }
+.ch-chevron { color:#AAAAAA; font-size:11px; transition:transform .2s; }
+.card-header.open .ch-chevron { transform:rotate(90deg); }
+
+/* ICP BAR */
+.icp-wrap { display:flex; align-items:center; gap:6px; }
+.icp-lbl { font-size:9px; color:var(--void-2); letter-spacing:0.22em; font-weight:700; text-transform:uppercase; }
+.icp-track {
+  width:60px; height:5px; border-radius:3px; position:relative;
+  background:linear-gradient(to right, #E8E8E8 0%, #F0AA00 48%, #B01C2E 100%);
+}
+.icp-dot {
+  width:10px; height:10px; border-radius:50%;
+  background:#fff; border:2px solid var(--void-1);
+  position:absolute; top:50%; transform:translate(-50%, -50%);
+  box-shadow:0 1px 3px rgba(0,0,0,.25);
+}
+.icp-val { font-size:12px; font-weight:700; color:var(--void-1); }
+.icp-na { font-size:11px; color:var(--void-2); }
+
+/* CARD BODY */
+.card-body {
+  display:none; border-top:1px solid rgba(0,0,0,.07);
+  padding:14px 18px 18px;
+}
+
+/* SOCIAL BUTTONS */
+.social-btns {
+  display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;
+}
+.social-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 10px; border-radius:6px; border:1.5px solid;
+  font-size:11px; font-weight:600; cursor:pointer;
+  text-decoration:none !important; transition:all .15s; white-space:nowrap;
+  background:none; font-family:'Space Grotesk', sans-serif;
+}
+.sb-ig { color:#C13584; border-color:#C13584; background:#FDF0F6; }
+.sb-ig:hover { background:#C13584; color:#fff; }
+.sb-yt { color:#CC0000; border-color:#CC0000; background:#FFF5F5; }
+.sb-yt:hover { background:#CC0000; color:#fff; }
+.sb-li { color:#0A66C2; border-color:#0A66C2; background:#EFF6FF; }
+.sb-li:hover { background:#0A66C2; color:#fff; }
+.sb-web { color:var(--void-2); border-color:#CCCCCC; background:#F5F5F5; }
+.sb-web:hover { background:var(--void-2); color:#fff; border-color:var(--void-2); }
+.sb-email { color:var(--void-2); border-color:#CCCCCC; background:#F5F5F5; font-size:10px; }
+.sb-email:hover { background:var(--void-2); color:#fff; border-color:var(--void-2); }
+.sb-email.copied { border-color:#27AE60; color:#27AE60; background:#F0FBF4; }
+.sb-analysis { color:#5B4FBF; border-color:#9B93DF; background:#F4F2FD; }
+.sb-analysis:hover { background:#5B4FBF; color:#fff; border-color:#5B4FBF; }
+
+/* ACTIONS */
+.cb-actions { display:flex; flex-direction:column; gap:7px; margin-bottom:14px; }
+.cb-action { display:flex; align-items:baseline; gap:8px; }
+.cb-action-label {
+  font-size:9px; color:var(--void-2); letter-spacing:0.22em; font-weight:700;
+  min-width:46px; flex-shrink:0;
+}
+.cb-action-val { font-size:12px; line-height:1.6; }
+.user-action { font-weight:700; color:var(--void-1); font-size:13px; }
+.victor-action { color:var(--void-2); }
+
+/* CMD copy inline */
+.cmd-wrap { display:inline-flex; align-items:center; gap:3px; }
+.cmd-wrap code {
+  background:rgba(0,0,0,.06); padding:2px 7px;
+  border-radius:4px; font-size:11px; color:var(--void-1); font-family:monospace;
+}
+.cmd-copy {
+  background:none; border:1px solid #CCCCCC; color:#AAAAAA;
+  padding:1px 5px; border-radius:4px; font-size:10px; cursor:pointer;
+  line-height:1.4; transition:all .15s; font-family:'Space Grotesk', sans-serif;
+}
+.cmd-copy:hover { background:var(--void-1); color:#fff; border-color:var(--void-1); }
+.cmd-copy.copied { background:#27AE60; color:#fff; border-color:#27AE60; }
+
+/* DM SECTION */
+.dm-section { border-top:1px solid rgba(0,0,0,.07); padding-top:14px; }
+.dm-tabs-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; gap:8px; }
+.dm-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+.dm-platform {
+  font-size:9px; color:var(--void-2); letter-spacing:0.2em; font-weight:600; text-transform:uppercase;
+  background:rgba(0,0,0,.05); padding:3px 8px; border-radius:10px;
+  white-space:nowrap; flex-shrink:0;
+}
+.dm-tab {
+  border:1.5px solid #DDDDDD; background:#fff; color:var(--void-1);
+  font-size:11px; font-weight:700; padding:5px 12px; border-radius:6px;
+  cursor:pointer; font-family:'Space Grotesk', sans-serif; transition:all .15s; letter-spacing:.2px;
+}
+.dm-tab:hover { background:#F0F0EE; }
+.dm-tab.active {
+  background:var(--tab-active, var(--void-1)); color:#fff;
+  border-color:var(--tab-active, var(--void-1));
+}
+.dm-tab.recommended { border-color:#C8900A; color:#C8900A; }
+.dm-tab.recommended.active { background:#C8900A; color:#fff; border-color:#C8900A; }
+.dm-panel { border-radius:6px; padding:14px 16px; }
+.dm-label { font-size:9px; color:var(--void-2); letter-spacing:0.2em; font-weight:700; text-transform:uppercase; margin-bottom:10px; }
+.dm-text {
+  font-size:12.5px; line-height:1.75; white-space:pre-wrap; word-break:break-word;
+  color:var(--void-1); font-family:'Space Grotesk', sans-serif;
+}
+.copy-btn {
+  margin-top:12px; background:var(--red); color:#fff; border:none;
+  padding:7px 18px; border-radius:6px; font-size:12px; font-weight:700;
+  cursor:pointer; font-family:'Space Grotesk', sans-serif; transition:background .15s; letter-spacing:.2px;
+}
+.copy-btn:hover { background:#8D1523; }
+.copy-btn.copied { background:#27AE60; }
+
+/* FOOTER */
+footer { text-align:center; color:#AAAAAA; font-size:11px; margin-top:24px; }
+footer code {
+  background:rgba(0,0,0,.06); padding:2px 8px; border-radius:4px; font-size:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-logo-area">
+    <img class="h-logo" src="../agency-brand-kit/nomades-agency.png" alt="Nomades Agency">
+    <div class="h-divider"></div>
+    <div>
+      <div class="h-brand">Nomades Agency</div>
+      <div class="h-title">Sales Engine</div>
+      <div class="h-sub">2026-06-21 · 13 aktif prospect</div>
+    </div>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat">
+      <div class="h-stat-n" style="color:#27AE60">2</div>
+      <div class="h-stat-l">ULAŞILDI</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-n" style="color:#F0AA00">11</div>
+      <div class="h-stat-l">DM HAZIR</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-n" style="color:#555">1</div>
+      <div class="h-stat-l">ICP DIŞI</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section><div class="section-header"><div class="sh-left"><span class="sh-dot" style="background:#27AE60"></span><div><div class="sh-title">Ulaşıldı</div><div class="sh-subtitle">Yanıt Bekleniyor</div></div></div><span class="sh-count" style="background:#27AE60; color:#fff">2</span></div><div class="prospect-card card-ulasildi" id="card-0" style="background:#F0FAF3; border-left:3px solid #27AE60">
+  <div class="card-header" style="--hdr-bg:#E3F5EA; --hdr-hover:#D0EDDA; background:#E3F5EA" onclick="toggleCard('card-0')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#27AE60"></span>
+      <div>
+        <div class="ch-name">Çiçek ile Teknoloji</div>
+        <div class="ch-meta"></div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:96%"></div></div><span class="icp-val">10</span></div>
+      <span class="ch-followers">388K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#F0FAF3">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/cicekileteknoloji" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/@cicekileteknoloji" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://www.linkedin.com/in/cicek-cizmeci-devge-68246215" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-web" href="https://cicekileteknoloji.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>cicekileteknoloji.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'cizmecicek@gmail.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>cizmecicek@gmail.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/cicek-ile-teknoloji/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">Yanıt bekle</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Yanıt gelince → <span class="cmd-wrap"><code>ilgilendi cicekileteknoloji</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span> ya da <span class="cmd-wrap"><code>ilgilenmedi cicekileteknoloji</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#27AE60" onclick="switchTab(this,'cicekileteknoloji-dm-0')">A</button><button class="dm-tab recommended" style="--tab-active:#27AE60" onclick="switchTab(this,'cicekileteknoloji-dm-1')">C ★</button><button class="dm-tab" style="--tab-active:#27AE60" onclick="switchTab(this,'cicekileteknoloji-dm-2')">D</button></div><span class="dm-platform">E-posta (cizmecicek@gmail.com)</span></div><div class="dm-panel" id="cicekileteknoloji-dm-0" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon A — Gözlem Odaklı</div><pre class="dm-text">Çiçek Hanım merhaba, nasılsınız?
+
+Çiçek ile Teknoloji&#x27;yi bir süredir takip ediyoruz; bu hacimde ve disiplinde üretim gerçekten nadir, o yüzden hesabınızı yüzeyden değil veri tarafından inceledik.
+
+Dikkatimizi çeken şu oldu: 386K takipçiniz var ama son 20 reel kitlenizin yalnızca ~%3&#x27;üne ulaşıyor. Sorun üretimde değil: günde altı reel, kalite yerinde; sorun dağıtımda. Üstelik kazanan reçeteniz veride zaten yazılı (uzay/bilim + stilize başlık + 16:00 paylaşımları açık ara önde), sadece sistematize edilmemiş.
+
+Biz markaların dijital işletim sistemini kuran bir ajansız; kendi evrenimiz Realm&#x27;de 30K+ otomatik yanıtı canlı çalıştırıyoruz; teori değil, işleyen bir sistem. Bu kazanan örüntüyü tekrarlanabilir hale getirip Nuvem Mag bülteninize bağlamayı kısaca konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="cicekileteknoloji-dm-1" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon C — Analiz Odaklı (ÖNERİLEN)</div><pre class="dm-text">Çiçek Hanım merhaba, nasılsınız?
+
+Bir AI otoritesi olarak rakamlarla konuşmayı tercih edeceğinizi düşündüğümüz için Çiçek ile Teknoloji&#x27;yi veri tarafından inceledik; üretiminizin hacmi ve disiplini gerçekten etkileyici.
+
+Üç şey dikkatimizi çekti: 386K takipçiniz var ama içerik kitlenin ~%3&#x27;üne ulaşıyor; aynı format 367 ile 65 bin görüntüleme arası salınıyor, kazanan örüntü var ama sisteme bağlı değil; ve en yüksek anlarınız bile (NASA&#x27;da 66 bin görüntüleme, Karpathy&#x27;de 905 yorum) hiçbir dönüşüm adımına bağlanmamış, yani trafik üretip kaçıyor.
+
+Üçü birlikte tek şeyi söylüyor: parçalar güçlü, eksik olan bunları bağlayan sistem. Biz tam olarak bunu kuruyoruz: Realm&#x27;de 30K+ otomatik yanıtı canlı çalıştıran, teori değil işleyen bir sistem. Bu trafiği Nuvem Mag bülteninize akıtan bir huniyi 15 dakika konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="cicekileteknoloji-dm-2" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon D — Sistem / Operasyon Odaklı (Digital OS)</div><pre class="dm-text">Çiçek Hanım merhaba, nasılsınız?
+
+Varlığınızı dışarıdan haritaladık: Instagram&#x27;da 386K, YouTube&#x27;da 163K, üstüne Teknoloji Dozu, Nuvem Mag, LinkedIn ve X. Her biri tek başına güçlü, hepsini birlikte yürütmek başlı başına bir iş.
+
+Ama dışarıdan bakınca parçalar ayrı ayrı besleniyor; tek bir sistem altında toplanmamış. İçerik tarafında kazanan reçeteniz var ama şansa kalmış (367 ile 65 bin görüntüleme arası salınım), dağıtım tarafında 386K kitlenin ~%3&#x27;üne ulaşıyorsunuz ve zirveleriniz hiçbir dönüşüm hunisine bağlı değil, yani üretip kaçırıyorsunuz.
+
+Nomades tam da burada devreye giriyor: markanın dijital işletim sistemini kuruyoruz. Kendi evrenimiz Realm&#x27;deki 23 AI ajanından oluşan ekiple 30K+ otomatik yanıtı canlı çalıştırıyoruz; teori değil, işleyen sistem. Dağınık parçaları tek mimariye oturtup Nuvem Mag bülteninizi bu trafiğin merkezine koymayı kısaca konuşalım mı?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-ulasildi" id="card-1" style="background:#F0FAF3; border-left:3px solid #27AE60">
+  <div class="card-header" style="--hdr-bg:#E3F5EA; --hdr-hover:#D0EDDA; background:#E3F5EA" onclick="toggleCard('card-1')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#27AE60"></span>
+      <div>
+        <div class="ch-name">Zara Bekar</div>
+        <div class="ch-meta">Diyetisyen / Sürdürülebilir Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:70%"></div></div><span class="icp-val">7</span></div>
+      <span class="ch-followers">7K</span>
+      <span class="days-ok">1 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#F0FAF3">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/diyetisyennzara" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/diyetisyennzara/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">Yanıt bekle</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Yanıt gelince → <span class="cmd-wrap"><code>ilgilendi diyetisyennzara</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span> ya da <span class="cmd-wrap"><code>ilgilenmedi diyetisyennzara</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#27AE60" onclick="switchTab(this,'diyetisyennzara-dm-0')">A</button><button class="dm-tab" style="--tab-active:#27AE60" onclick="switchTab(this,'diyetisyennzara-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#27AE60" onclick="switchTab(this,'diyetisyennzara-dm-2')">C ★</button><button class="dm-tab" style="--tab-active:#27AE60" onclick="switchTab(this,'diyetisyennzara-dm-3')">D</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="diyetisyennzara-dm-0" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon A (Gözlem Odaklı — Viral Post + Yanıtsız Sorular)</div><pre class="dm-text">Zara Hanım merhaba, nasılsınız?
+
+Şişkinlik smoothie içeriğiniz 84.000 kişiye ulaşmış, 1.877 beğeni almış; ama altındaki &quot;ne zaman içilmeli&quot;, &quot;kahvaltı yerine mi olur&quot; sorularından hiçbirini cevaplamadan geçmişsiniz. O soruları soran insanlar danışmanlığa bir adım uzaktaydı.
+
+Biz Nomades olarak buna &quot;köprü eksikliği&quot; diyoruz: içerik çekiyor, dönüştürecek mekanizma yok. Nomades Realm&#x27;deki 25 AI ajanıyla kurduğumuz sistemlerde 30.000&#x27;den fazla otomasyon devreye aldık; benzer boşlukları otomatik DM akışlarıyla kapatıyoruz.
+
+Son 20 içeriğinizi sizin için düzenli bir analize döktük. İncelemek isterseniz: nomadesagency.com/analysis/diyetisyennzara
+
+Hizmetlerimizin detaylarını kısa bir online görüşmede aktarabilir miyim?
+
+Yanıtınızı merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="diyetisyennzara-dm-1" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon B (Soru Odaklı — Farmakoloji Nişi)</div><pre class="dm-text">Zara Hanım merhaba, nasılsınız?
+
+Hesabınızı incelerken bir şey dikkatimi çekti: Tıbbi Farmakoloji yüksek lisansı yapan bir diyetisyenin içeriklerinde bu uzmanlıktan hiç iz yok. Birisi &quot;kortizolü düşürmek için ne almalıyım&quot; diye sormuş, yanıtsız kalmış. Bu soruyu bilimsel temelle doğru çerçevede cevaplayabilecek kaç kişi var Türkiye&#x27;de?
+
+Sormamın nedeni şu: Nomades olarak tam da bu nişi görünür kılmayı yapıyoruz. 25 AI ajanıyla çalışan Nomades Realm&#x27;imizden 30.000&#x27;den fazla otomasyon devreye aldık; ama bu sizin için farklı bir şey demek. Farmakoloji uzmanlığınızı içerik motoruna dönüştürmek, sizi benzeri olmayan bir konuma taşır.
+
+Son 20 içeriğinizi sizin için düzenli bir analize döktük. İncelemek isterseniz: nomadesagency.com/analysis/diyetisyennzara
+
+Paketlerimizin detaylarını kısa bir online görüşmede öğrenmek ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="diyetisyennzara-dm-2" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon C (Analiz Odaklı — 4+ Kanıt) ★ ÖNERİLEN</div><pre class="dm-text">Zara Hanım merhaba, nasılsınız?
+
+Hesabınızı biraz inceledim; dört şey aynı anda dikkatimi çekti.
+
+Birincisi: şişkinlik smoothie içeriğiniz 84.000 kişiye ulaşmış, ama altındaki 7+ soru yanıtsız kalmış. İkincisi: 20 içeriğin 7&#x27;sinde aynı caption birebir tekrarlanmış; orijinaller 1.877 beğeni alırken tekrar edenler 4&#x27;te kalmış. Üçüncüsü: kısa formatlarınız ortalama 16.000 görüntüleme alıyor, uzun formatlarınız 683&#x27;te kalıyor; ama enerji tersine dağılmış gibi görünüyor. Dördüncüsü: DM kanalınızda bir otomasyon yok — danışmak isteyen biri akşam, gece, tatilde yazdığında yanıt beklemek zorunda kalıyor.
+
+Bu bulgularla ilgili hazırladığımız tam analizi buradan inceleyebilirsiniz: nomadesagency.com/analysis/diyetisyennzara
+
+Bu dördü birlikte şunu söylüyor: içerik var, okuyucu var, güven var; sistemi oturtmak kaldı.
+
+@nomadesagency olarak 23 uzman AI ajanımızla tam bunu kuruyoruz: içerik sisteminizin üzerinde çalıştığı arka plan yapısını ve DM otomasyonunu. Danışmak isteyen kişiler akşam, gece, tatilde, bayramda anlık yanıt alıyor; sizin belirlediğiniz sorularla ön bilgi toplanıyor, iletişim otomatik organize ediliyor. Müsait olmasanız bile danışan kuyruğunuz kendiliğinden oluşuyor.
+
+Paketlerimizin detaylarını kısa bir online görüşmede öğrenmek ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="diyetisyennzara-dm-3" style="display:none; background:#E8F7ED"><div class="dm-label">Varyasyon D (Digital OS / Sistem Odaklı)</div><pre class="dm-text">Zara Hanım merhaba, nasılsınız?
+
+Hesabınız içerik olarak gerçekten çekiyor: 84.000 görüntüleme, &quot;evimizin diyetisyeni&quot; diyen yorumlar. Ama dışarıdan bakınca parçalar güçlü, tek bir sistem altında toplanmamış: içerik hem kısa hem uzun formatlar arasında dağılmış, yanıtsız sorular birikmiş, danışmanlığa köprü kuracak hiçbir mekanizma yok.
+
+Biz Nomades olarak tam bu tabloyla çalışıyoruz: bir markanın dijital işletim sistemini kuruyoruz. Kendi Realm&#x27;imizde 25 AI ajanıyla yürüttüğümüz sistemlerde 30.000&#x27;den fazla otomasyon devreye aldık; burada da benzer bir omurga, içerik takviminden DM akışına kadar tek çatıda kurulabilir.
+
+Son 20 içeriğinizi sizin için düzenli bir analize döktük. İncelemek isterseniz: nomadesagency.com/analysis/diyetisyennzara
+
+Hizmetlerimizi ve çalışma sistemimizin detaylarını kısa bir online görüşmede öğrenmek ister misiniz?
+
+Cevabınızı bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div></section>
+<section><div class="section-header"><div class="sh-left"><span class="sh-dot" style="background:#F0AA00"></span><div><div class="sh-title">DM Hazır</div><div class="sh-subtitle">Gönderilmeyi Bekliyor</div></div></div><span class="sh-count" style="background:#C8900A; color:#fff">11</span></div><div class="prospect-card card-dm-hazir" id="card-2" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-2')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Hatice Nur Ege</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">2.3M</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/diyetisyenhaticenurege" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://youtube.com/@haticenurege" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://www.linkedin.com/in/hatice-nur-ege-926881365" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'Nurege453@gmail.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>Nurege453@gmail.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/hatice-nur-ege/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi hatice-nur-ege</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'hatice-nur-ege-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'hatice-nur-ege-dm-1')">B</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'hatice-nur-ege-dm-2')">C</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'hatice-nur-ege-dm-3')">D ★</button></div><span class="dm-platform">Instagram DM</span></div><div class="dm-panel" id="hatice-nur-ege-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A — Gözlem Odaklı (Instagram DM)</div><pre class="dm-text">Hatice Hanım merhaba, nasılsınız?
+
+Bugün diyetisyenhaticenurege.com adresine girmek istedim, açılmadı. Eski siteniz haticenurege.com de öyle. 2.3 milyonluk bir kitleniz var ama dijital bir &quot;eviniz&quot; yok: herkes WhatsApp&#x27;a ve randevu sitelerine yönleniyor.
+
+Bu, o kitlenin en pahalı kaçtığı yer. İçerik sizi milyonlara ulaştırıyor ama sonrası elden kayıyor, çünkü trafiği toplayacak, danışana çevirecek bir altyapı kurulmamış.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz: içeriğin altına, görünürlüğü gerçek randevuya çeviren sistemi. Mevcut ekibinizin işini değiştirmeden, üstüne oturan bir katman.
+
+Bu boşluğu nasıl kapatacağımızı 15 dakikada gösterebilirim, ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="hatice-nur-ege-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B — Soru Odaklı (Instagram DM)</div><pre class="dm-text">Hatice Hanım merhaba, nasılsınız?
+
+İçeriklerinizi bir süredir takip ediyorum. Bir şey dikkatimi çekti: TRT, TV8 ve ATV&#x27;de uzman olarak konuşuyorsunuz ama profildeki &quot;1 gecede 1 kilo&quot; başlıkları sanki bambaşka bir kişiden geliyor gibi.
+
+Merak ettim: takipçiniz sizi &quot;güvendiği uzman&quot; olarak mı, yoksa &quot;tarif kanalı&quot; olarak mı görüyor? Çünkü bu ikisi aynı anda hem kitleyi büyütüp hem de premium danışan getirmeyi zorlaştırıyor olabilir.
+
+Bunu sormamın sebebi, biz Nomades olarak markaların bu tür ton dağınıklığını tek bir sistemde toplayıp gelire bağlıyoruz. Kısaca konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="hatice-nur-ege-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C — Analiz Odaklı (Instagram DM, çok kanıtlı)</div><pre class="dm-text">Hatice Hanım merhaba, nasılsınız?
+
+Hesabınızı ve dijital ayak izinizi biraz inceledim, 2.3 milyonluk bir markaya yakışan bir derinlik için söylüyorum.
+
+Üç şey dikkatimi çekti: web siteniz (iki domain de) açılmıyor, yani çalışan bir dijital eviniz yok; beş ayrı kanaldasınız (Instagram, Facebook, YouTube, X, LinkedIn) ama biri diğerinden habersiz akıyor; ve &quot;Pamuk Nenem&quot; içerikleriniz tutarlı viral oluyor ama o güçlü hikaye bir markaya, oradan da hizmete hiç bağlanmıyor.
+
+Bu üçü birlikte tek bir şeyi söylüyor: parçalar çok güçlü, ama hepsini taşıyacak sistem eksik. 2.3 milyon görünürlük var, onu danışana çeviren altyapı yok.
+
+Bu bulguyu 15 dakikada birlikte konuşmak ister misiniz? Nasıl bağlanabileceğini somut göstermek isterim.
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="hatice-nur-ege-dm-3" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon D — Sistem / Operasyon Odaklı (Digital OS, ÖNERİLEN)</div><pre class="dm-text">Hatice Hanım merhaba, nasılsınız?
+
+2.3 milyonluk kitleniz içeriğe doymuş durumda ama o trafiğin gideceği çalışan bir dijital ev yok: diyetisyenhaticenurege.com açılmıyor, herkes WhatsApp&#x27;a ve randevu sitelerine yönleniyor.
+
+Dışarıdan bakınca parçalar güçlü ama tek bir sistem altında toplanmamış: bir yanda milyonlara ulaşan içerik ve TRT/TV8/ATV&#x27;deki uzman göz, diğer yanda o ilgiyi toplayıp danışana çevirecek mülk ve huni boş. Görünürlük zirvede, dönüşüm altyapısı yok.
+
+Biz Nomades olarak tam da bunu kuruyoruz: markanın dijital işletim sistemini. Teori değil, işleyen sistem; Nomades Realm&#x27;deki 23 kişilik AI ajan ekibimizle müşterilerimiz için 30 binden fazla otomatik yanıt akışını devreye aldık. Mevcut ekibinizin işini değiştirmeden, üstüne oturan bir katman olarak çalışırız.
+
+İlk adım küçük olabilir: seçili birkaç markayla sınırlı tuttuğumuz bir başlangıçla sistemi canlı görürsünüz. 15 dakikalık kısa bir görüşmeye ne dersiniz?
+
+Cevabınızı bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-3" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-3')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Taylan Kümeli</div>
+        <div class="ch-meta">Diyetisyen / Sağlıklı Yaşam Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:90%"></div></div><span class="icp-val">9</span></div>
+      <span class="ch-followers">956K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/taylankumelitk" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://youtube.com/channel/UCAhlFRgMkaa6TTQ95wDooMQ" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-web" href="https://www.taylankumeli.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>taylankumeli.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'info@taylankumeli.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>info@taylankumeli.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/taylan-kumeli/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi taylan-kumeli</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'taylan-kumeli-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'taylan-kumeli-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'taylan-kumeli-dm-2')">C ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="taylan-kumeli-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (Repurpose Odaklı, öne çıkan hook)</div><pre class="dm-text">Taylan Bey merhaba, nasılsınız?
+
+&quot;Püf Lokmaları&quot; podcast&#x27;inizin 87 bölüme ulaşıp hâlâ her ay devam etmesi ve haftalık YouTube üretiminiz dikkatimizi çekti; bu kadar düzenli akan içerik üreten çok az isim var.
+
+Fark ettiğimiz şu: bu güçlü arşivin Instagram&#x27;daki clip karşılığı çok az kalmış, yani zaten ürettiğiniz değer ~950 bin kişilik kitlenize tam dönmüyor. Bizce buradaki en düşük efor, en yüksek getiri noktanız bu.
+
+Nomades olarak markaların dijital içerik sistemini kuruyoruz; bunu 23 AI ajanından oluşan bir ekiple, işleyen bir yapı olarak yürütüyoruz. Sizin için podcast ve videolarınızı düzenli bir Instagram clip serisine dönüştüren bir repurpose akışı kurabiliriz. Kısa bir görüşme için uygun musunuz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="taylan-kumeli-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (Soru / Metodoloji Odaklı)</div><pre class="dm-text">Taylan Bey merhaba, nasılsınız?
+
+Web sitenizdeki &quot;Taylan Kümeli Metodu&quot; çerçevesini gördükten sonra hesabınıza baktım.
+
+Şunu merak ettim: sizi sektördeki herkesten ayıran bu metodoloji, içeriklerinizde neredeyse hiç görünmüyor; bu bilinçli bir tercih mi, yoksa henüz sıraya girmemiş bir alan mı?
+
+Sormamın sebebi şu: en değerli farklılaştırıcınız görünür olduğunda ~950 bin kişilik kitlenizin sizi konumlandırma biçimi tamamen değişir. Nomades olarak markaların içerik sistemini bu tür çerçeveler etrafında kuruyoruz. Bunu kısaca konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="taylan-kumeli-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (Analiz Odaklı, 5 kanıt zengini) ★</div><pre class="dm-text">Taylan Bey merhaba, nasılsınız?
+
+Hesabınızı ve web sitenizi birlikte inceledik; üç şey dikkatimizi çekti.
+
+Birincisi, &quot;Taylan Kümeli Metodu&quot; güçlü bir farklılaştırıcı ama sosyal içerikte neredeyse yok. İkincisi, 87 bölümlük aktif podcast ve haftalık YouTube üretiminizin Instagram clip karşılığı çok az. Üçüncüsü, beslenme içerikleriniz ile kişisel paylaşımlarınız aynı akışta, kitleniz sizi hangi perspektif için takip ettiğini net göremiyor.
+
+Bu üçü birlikte şunu gösteriyor: elinizdeki ham madde çok güçlü, ama içerik sistemi bunu görünür kılmıyor. Nomades olarak tam da bunu kuruyoruz; 23 AI ajanından oluşan ekiple, işleyen bir yapı olarak. Bu bulguyu kısaca konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-4" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-4')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Serenay Bender Yaman</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:90%"></div></div><span class="icp-val">9</span></div>
+      <span class="ch-followers">955K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/stayfiteatdeliciouss" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-web" href="https://serenaybender.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>serenaybender.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'diyetisyen@serenaybender.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>diyetisyen@serenaybender.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/serenay-bender/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi serenay-bender</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'serenay-bender-dm-0')">A</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'serenay-bender-dm-1')">B ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="serenay-bender-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (Gözlem Odaklı)</div><pre class="dm-text">Serenay Hanım merhaba, nasılsınız?
+
+Hesabınızı bir süredir takip ediyoruz: yaklaşık 950 bin kişilik kitleniz, fonksiyonel tıp uzmanlığınız ve Terrace Fulya&#x27;daki kliniğiniz var, ama içeriğin neredeyse tamamı tarif; yani sizi nişteki diğer diyetisyenlerden ayıran asıl güç hiç sahnede değil.
+
+Bunun sonucu şu: kitle tarifleri izliyor ama danışana dönüşmüyor; web sitenizdeki hizmetler de DoktorTakvimi&#x27;ndeki uzmanlıklar da içerikte anlatılmıyor, dönüşüm köprüsü kurulmamış.
+
+Biz Nomades olarak markanın içerik ve dönüşüm sistemini birlikte kuruyoruz; işi 23 AI ajanından oluşan bir ekiple yürütüyoruz ve 30 binden fazla otomatik yanıt akışı devreye aldık. Fonksiyonel tıp otoritenizi öne çıkaran bir içerik serisi ve buna bağlı bir danışan akışı tasarlayabiliriz. Kısaca konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="serenay-bender-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (Soru Odaklı) ★</div><pre class="dm-text">Serenay Hanım merhaba, nasılsınız?
+
+Hesabınızı incelerken bir soru takıldı: yaklaşık 950 bin kişi tariflerinizi izliyor, peki bunun ne kadarı kliniğinize danışan oluyor?
+
+Çünkü fonksiyonel tıp uzmanlığınız, yüksek lisansınız, dokuz farklı uzmanlık alanınız var; ama içeriğin neredeyse tamamı tarif ve bu güç sahnede değil. Görünürlük yüksek, ama izleyiciyi danışana çeviren sistem eksik.
+
+Biz Nomades olarak tam bu köprüyü kuruyoruz: içerik ve dönüşümü tek sistemde topluyoruz, işi 23 AI ajanından oluşan bir ekiple yürütüyoruz, 30 binden fazla otomatik yanıt akışı kurduk. 51Digital işbirlikleri yönetiyor; bizim konuştuğumuz katman farklı, kendi danışanınızı çeken içerik sistemi. Kısa bir görüşmeye ne dersiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-5" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-5')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Ersin Özdemir</div>
+        <div class="ch-meta">Diyetisyen / Diyabet &amp; Tiroid Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:90%"></div></div><span class="icp-val">9</span></div>
+      <span class="ch-followers">635K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/diyabetli.diyetisyen" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://youtube.com/@diyabetlidiyetisyen" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://tr.linkedin.com/in/ersin-ozdemir-581925149" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/ersin-ozdemir/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi ersin-ozdemir</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'ersin-ozdemir-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'ersin-ozdemir-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'ersin-ozdemir-dm-2')">C ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="ersin-ozdemir-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (Gözlem odaklı — dönüşüm hub&#x27;ı)</div><pre class="dm-text">Ersin Bey merhaba, nasılsınız?
+
+Profilinizi bir süredir takip ediyorum: &quot;Diyabetli Diyetisyen&quot; kimliğini bu kadar net oturtmuş çok az isim var, 634K kişinin sizi takip etmesi tesadüf değil.
+
+Tek bir şey dikkatimi çekti: danışmanlık için &quot;DM at&quot; diyorsunuz ama hangi program, nasıl çalışıldığı, süre, fiyat... hiçbiri içerikte ya da bio&#x27;nuzda yok. Bio&#x27;daki 5 link bile içerik gösteriyor, hiçbiri &quot;buradan başvur&quot; demiyor. Yani sizi merak eden biri, o merakı eyleme çevireceği yeri bulamıyor; 634K trafik kapıda birikip dağılıyor.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz: içerikle dağıtımı tek sistem altında birleştiriyoruz. Realm&#x27;deki AI ajan ekibimizle müşterilerimizde 30.000&#x27;den fazla otomatik yanıt devreye aldık, yani teori değil işleyen bir sistemden bahsediyorum. Sizin durumunuzda, &quot;Diyet için DM&quot; akışını arkasında net bir başvuru hattı olan bir dönüşüm noktasına bağlayabiliriz.
+
+Bunu 10 dakika konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="ersin-ozdemir-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (Soru odaklı — Tip 1 hikayesi)</div><pre class="dm-text">Ersin Bey merhaba, nasılsınız?
+
+İçeriklerinizin arasında en çok aklımda kalan şey &quot;Diyabetli Diyetisyen&quot; kimliği oldu: 2015&#x27;ten beri Tip 1 diyabetle yaşayan bir diyetisyen olmanız, bu alanda gerçekten nadir bir hikaye.
+
+Merak ettiğim şu: o hikaye sizce içeriklerinizde ne kadar tutarlı yaşıyor? Dışarıdan bakınca bazen tam merkeze geliyor, bazen de günler boyu hiç görünmüyor gibi. Oysa sizi binlerce diyetisyenden ayıran tam olarak o.
+
+Biz Nomades&#x27;te markaların dijital işletim sistemini kuruyoruz; en güçlü farklılaştırıcıyı tesadüfe bırakmadan, içeriğin omurgasına yerleştirmek tam da bizim işimiz. O hikayeyi sistematik bir marka sesine nasıl çevirebileceğimizi konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="ersin-ozdemir-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (Analiz odaklı — ÖNERİLEN; kanıt zengin)</div><pre class="dm-text">Ersin Bey merhaba, nasılsınız?
+
+Hesabınızı biraz inceledim ve kısa bir not bırakmak istedim: 634K&#x27;lık bir kitleyi nadir bir nişte toplamış olmanız etkileyici.
+
+Üç şey birlikte dikkatimi çekti. Bir: satış tamamen &quot;Diyet için DM&quot; üzerinden yürüyor, ama hangi program, nasıl çalışıldığı, süre, fiyat hiçbir yerde yok. İki: bio&#x27;nuzdaki 5 link içerik gösteriyor, hiçbiri &quot;buradan başvur&quot; diyen bir dönüşüm noktası değil. Üç: TRT 1, büyük programlar, GZT alıntıları... ciddi bir medya sermayeniz var ama her görünüm tek seferlik kalıyor, birikmiyor.
+
+Bunlar ayrı sorunlar değil, hepsi aynı şeyin parçası: güçlü parçalarınız var ama hepsini birbirine bağlayan tek bir sistem eksik, o yüzden 634K&#x27;nın değeri görünür kılınmıyor. Biz Nomades olarak tam da bunu kuruyoruz: içeriği, dağıtımı ve dönüşümü markanın dijital işletim sistemi altında birleştiriyoruz; Realm&#x27;deki AI ajan ekibimizle müşterilerimizde 30.000&#x27;den fazla otomatik yanıt devreye aldık, yani işleyen bir sistemden bahsediyorum.
+
+Bu üç bulguyu ve sizin için somut neye benzeyeceğini 10 dakika konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-6" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-6')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Nilay Keçeci Arpacı</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">598K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/nilaykececi" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/channel/UCZw8QCW_x-whonKuJ9cvTKw" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://tr.linkedin.com/company/nilay-kececi" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/nilay-kececi/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi nilay-kececi</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'nilay-kececi-dm-0')">A ★</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'nilay-kececi-dm-1')">B</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'nilay-kececi-dm-2')">C</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'nilay-kececi-dm-3')">D</button></div><span class="dm-platform">Instagram DM</span></div><div class="dm-panel" id="nilay-kececi-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A — Gözlem Odaklı (domain hook, birincil — ÖNERİLEN)</div><pre class="dm-text">Nilay Hanım merhaba, nasılsınız?
+
+Profilinizi incelerken bir şey gözüme çarptı: bio&#x27;nuzdaki nilaykececi.com.tr adresi şu an size ait olmayan, &quot;bu alan adı satılık&quot; diyen bir sayfaya düşüyor. Muhtemelen haberiniz bile yoktur, düzeltmesi de kolay; ama 599K kişilik bir kitlede o linke tıklayan herkes şu an boşa düşüyor, yani kapınızı çalan müşteri tam giriş noktasında kayboluyor.
+
+Bizim işimiz tam olarak bu: markanın dijital işletim sistemini kuruyoruz, dağınık parçaları (site, funnel, içerik, yanıt akışı) tek bir çalışan yapıya bağlıyoruz. Geçtiğimiz dönemde müşterilerimiz için 30.000&#x27;den fazla otomatik yanıt akışı devreye aldık, bunları Realm dediğimiz kendi dünyamızdaki 23 özel AI ajanıyla yürütüyoruz, yani teori değil işleyen bir sistem.
+
+Sizde önce şu link/giriş noktasını sağlam bir biyosite funneline bağlayıp, oradan danışmanlık programınıza net bir yol kurabiliriz. Bunu 15 dakikalık kısa bir görüşmede konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="nilay-kececi-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B — Soru Odaklı</div><pre class="dm-text">Nilay Hanım merhaba, nasılsınız?
+
+Hesabınızı incelerken aklıma takılan bir soru oldu: 599K kişilik kitleniz bir linke tıklamak istediğinde nereye gidiyor? Çünkü bio&#x27;nuzdaki nilaykececi.com.tr şu an &quot;bu alan adı satılık&quot; diyen bir sayfaya düşüyor, online paket satan bir markada bu, sessizce kaybedilen tek dönüşüm noktası olabilir.
+
+Sorduğumun sebebi şu: biz markaların dijital işletim sistemini kuruyoruz, yani içerikten siteye, funneldan otomatik yanıta kadar dağınık parçaları tek çalışan bir akışa bağlıyoruz (kendi dünyamız Realm&#x27;de 23 AI ajanı ve 30.000&#x27;den fazla otomatik yanıtla). Sizde bu giriş noktasını tamir edip kitlenizi danışmanlığa götüren net bir köprü kurmak mümkün. Kısa bir görüşmede bakalım mı?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="nilay-kececi-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C — Analiz Odaklı (stratejist ton, kanıt zengini)</div><pre class="dm-text">Nilay Hanım merhaba, nasılsınız?
+
+Hesabınızı biraz inceledim, 599K kitleniz ve aktif büyümenizle güçlü bir varlık kurmuşsunuz. Üç şey dikkatimi çekti: bio&#x27;nuzdaki nilaykececi.com.tr şu an &quot;satılık alan adı&quot; sayfasına düşüyor (her tıklayan kayıp); etkileşim oranı kitlenizin büyüklüğüne göre düşük kalıyor; ve @nilaykececimutfak ana hesaptan neredeyse hiç trafik almıyor.
+
+Bu üçü birlikte bakınca aynı şeyi söylüyor: kitle ve içerik güçlü, ama bunları tek bir çalışan sisteme bağlayan altyapı eksik. Biz tam olarak bunu kuruyoruz, markanın dijital işletim sistemini; Realm&#x27;deki 23 AI ajanı ve 30.000&#x27;den fazla otomatik yanıtla, teori değil işleyen bir yapı olarak. Bu üç bulguyu ve nasıl tek akışa bağlanacağını kısa bir görüşmede konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="nilay-kececi-dm-3" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon D — Sistem / Operasyon Odaklı (Digital OS)</div><pre class="dm-text">Nilay Hanım merhaba, nasılsınız?
+
+Dışarıdan bakınca elinizde çok güçlü parçalar var: 599K kitle, iki Instagram hesabı, YouTube&#x27;da &quot;Beslenme Saati&quot; serisi, iki kitap ve 35 kişilik bir operasyon. Ama bu parçalar tek bir sistem altında toplanmamış: içerik tarafında otorite ve YouTube üretimi Reels&#x27;e taşınmıyor, dağıtım tarafında ise bio&#x27;nuzdaki nilaykececi.com.tr şu an &quot;satılık alan adı&quot; sayfasına düşüyor, yani funnelın giriş kapısı boşa açılıyor.
+
+Biz tam da bunu kuruyoruz: dağınık parçaları markanın tek dijital işletim sistemine bağlıyoruz. Realm dediğimiz kendi dünyamızdaki 23 AI ajanı ve devreye aldığımız 30.000&#x27;den fazla otomatik yanıt akışıyla, teori değil işleyen bir yapı. Sizde site/giriş noktasını onarıp içerik ile danışmanlık arasında çalışan tek bir akış kurabiliriz. Kısa bir görüşmede konuşmak ister misiniz?
+
+Cevabınızı bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-7" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-7')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Dilara Koçak</div>
+        <div class="ch-meta">Diyetisyen / Sağlıklı Yaşam İçerik Üreticisi</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:90%"></div></div><span class="icp-val">9</span></div>
+      <span class="ch-followers">509K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/dilarakocakiyiyasam" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/@dilarakocakiyiyasam" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://www.linkedin.com/in/dilarakocak" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-web" href="https://www.dilarakocak.com.tr" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>dilarakocak.com.tr</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'dilara@dilarakocak.com.tr')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>dilara@dilarakocak.com.tr</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/dilara-kocak/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi dilara-kocak</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'dilara-kocak-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'dilara-kocak-dm-1')">B</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'dilara-kocak-dm-2')">C</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'dilara-kocak-dm-3')">D ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="dilara-kocak-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A — Gözlem Odaklı</div><pre class="dm-text">Dilara Hanım merhaba, nasılsınız?
+
+Hesaplarınıza bakarken bir detay dikkatimi çekti: @dilarakocakmutfak&#x27;ta 27 bine yakın takipçiniz var ama kanalda sadece 25 gönderi duruyor. Açılmış, kitlesini de toplamış ama hiç beslenmemiş bir tarif kanalı, sizin içeriğinizi bekliyor.
+
+O boşluk, ana kanalla mutfak kanalı arasında sistemli bir köprü kurulduğunda hem de büyük bir efor gerektirmeden dolabilir.
+
+Bunu nasıl kurduğumuzu kısaca anlatabilir miyim?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="dilara-kocak-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B — Soru Odaklı</div><pre class="dm-text">Dilara Hanım merhaba, nasılsınız?
+
+Starbucks ile 12 ürün geliştirmiş, FAO Gıda Elçisi, TÜSİAD üyesi birinin elindeki birikim çok nadir. Bunun küçük bir kısmı bile sistemli içeriğe dönüşse &quot;neden Dilara Koçak&quot; sorusu kendiliğinden cevaplanır.
+
+Şu an o otoriteyi içeriklerinizde görmek ne kadar kolay?
+
+Bunu soruyorum çünkü bu sinyaller içerik sistemine oturduğunda danışmanlık paketlerinize giden yol da açılıyor. Konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="dilara-kocak-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C — Analiz Odaklı</div><pre class="dm-text">Dilara Hanım merhaba, nasılsınız?
+
+Profilinizi biraz inceledim: ~515K takipçi, üç kitap, FAO elçiliği, aktif bir online danışmanlık platformu. Hepsi aynı anda çalışıyor, ciddi bir birikim.
+
+Üç şey dikkatimi çekti: @dilarakocakmutfak&#x27;ta 27 bin takipçi var ama sadece 25 gönderi (açılmış ama beslenmemiş kanal); DK Dükkan ürünleriniz beş pazaryerine dağılmış ve kendi siteniz yanıt vermiyor; Starbucks, FAO, TÜSİAD gibi ağır referanslar içerikte öne çıkmıyor.
+
+Bu üçü birlikte şunu söylüyor: gelir kanallarınız ve içeriğiniz aynı yöne çekmek yerine ayrı ayrı çalışıyor.
+
+Bu tabloya birlikte bakıp konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="dilara-kocak-dm-3" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon D — Sistem / Operasyon Odaklı (Digital OS) ★</div><pre class="dm-text">Dilara Hanım merhaba, nasılsınız?
+
+Dışarıdan bakınca markanızın parçaları tek tek çok güçlü ama tek bir sistem altında toplanmamış: bir yanda 27 bin takipçili ama atıl @dilarakocakmutfak ve içeriğe dönüşmemiş nadir otoriteniz, diğer yanda beş pazaryerine dağılmış DK Dükkan ürünleri ve yanıt vermeyen kendi siteniz.
+
+Dağınık parçalar, eksik olan tek sistem. Nomades olarak tam da bunu kuruyoruz: içerik ile dağıtımı tek bir dijital işletim sistemine bağlıyoruz. Teori değil, işleyen bir sistem; Nomades Realm&#x27;deki 23 AI ajanıyla 30.000&#x27;den fazla otomatik yanıt akışı devreye aldık.
+
+İlk adım olarak mutfak hesabını besleyip satış kanallarını tek merkeze toplamayı konuşmak ister misiniz?
+
+Cevabınızı bekliyoruz, kolaylıklar.
+
+Cevabınızı bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-8" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-8')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Leyla Yeşilyurt</div>
+        <div class="ch-meta">Sağlıklı Yaşam / Beslenme İçerik Üreticisi</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">518K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/fityummie" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/@Fityummie" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'fityummie@gmail.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>fityummie@gmail.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/leyla-yesilyurt/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi leyla-yesilyurt</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'leyla-yesilyurt-dm-0')">A ★</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'leyla-yesilyurt-dm-1')">B</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'leyla-yesilyurt-dm-2')">C</button></div><span class="dm-platform">Instagram DM</span></div><div class="dm-panel" id="leyla-yesilyurt-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (Owned media odaklı) — ÖNERİLEN</div><pre class="dm-text">Leyla Hanım merhaba, nasılsınız?
+
+fityummie&#x27;yi bir süredir takip ediyoruz; 519K kişilik kitleniz ve tariflerinizdeki o sade güven gerçekten dikkat çekici.
+
+Ama bir şey fark ettik: bu 519K kişinin tamamı başkasının mülkünde duruyor. Bir web siteniz, bir e-posta listeniz yok (fityummie.com dahil hepsini kontrol ettik). Bugün bir platform politikası değişse, yıllarca emek verdiğiniz kitleye ulaşacak doğrudan bir kanalınız kalmıyor.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz; müşterilerimiz için 30.000&#x27;den fazla otomatik yanıt akışını hem takipçi hem de e-posta abone büyümesine çevirdik.
+
+Sizin için somut fırsat: o kitleyi kendi mülkünüze taşıyan bir e-posta listesi ve basit bir owned platform. Geliriniz yalnızca işbirliklerine bağlı kalmaz, kendi varlığınıza da dayanır. Kısa bir görüşmede konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="leyla-yesilyurt-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (&quot;Eş &amp; Anne&quot; kimliği odaklı, soru açan)</div><pre class="dm-text">Leyla Hanım merhaba, nasılsınız?
+
+fityummie&#x27;deki tariflerinizi ilgiyle takip ediyoruz. Ama biyografinizdeki bir detay merakımızı çekti: &quot;Eş &amp; Anne&quot; yazıyor, oysa içeriklerde bu kimlik neredeyse hiç görünmüyor; sadece tarif var.
+
+Bu kasıtlı bir tercih mi, yoksa doğru format henüz oturmadı mı? Sormamızın sebebi var: bir kitlenin bir markaya değil bir insana bağlanmasını sağlayan şey tam olarak bu hikaye.
+
+Biz Nomades olarak içeriği ve otomasyonu tek sistemde birleştiriyoruz; bunu kendi dünyamız Nomades Realm&#x27;de 23 AI ajanıyla işleyen bir sistem olarak yürütüyoruz.
+
+Bu kimliği merkeze alıp kendi e-posta listeniz ve ileride kendi ürününüzle (bir tarif e-book&#x27;u gibi) buluşturabiliriz; böylece gelir tek bacağa bağlı kalmaz. Konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="leyla-yesilyurt-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (Analiz / stratejist tonu, 4+ kanıt sentezi)</div><pre class="dm-text">Leyla Hanım merhaba, nasılsınız?
+
+fityummie hesabınızı biraz inceledik; kitle büyüklüğünüz ve içerik ritminiz güçlü, ama birkaç şeyi paylaşmak istedik.
+
+Üç şey dikkatimizi çekti: 519K kişilik kitleniz tamamen başkasının mülkünde, web siteniz ve e-posta listeniz yok; tüm geliriniz marka işbirliklerine bağlı, kendinize ait bir ürün yok; bio&#x27;nuzdaki &quot;Eş &amp; Anne&quot; kimliği içeriklere hiç yansımıyor.
+
+Üçü bir arada şunu söylüyor: çok güçlü bir kitle var, ama o kitleyi gerçekten sahiplenip kendi varlığınıza çevirecek yapı henüz kurulmamış. Tam olarak bunu kuruyoruz. Bu bulguyu kısaca konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-9" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-9')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Selahattin Dönmez</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">374K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/selahattindonmez" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/@selahattindonmez" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-web" href="https://www.farketmedendiyet.com.tr" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>farketmedendiyet.com.tr</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'info@farketmedendiyet.com.tr')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>info@farketmedendiyet.com.tr</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/selahattin-donmez/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi selahattin-donmez</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'selahattin-donmez-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'selahattin-donmez-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'selahattin-donmez-dm-2')">C ★</button></div><span class="dm-platform">Instagram DM</span></div><div class="dm-panel" id="selahattin-donmez-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A — Gözlem Odaklı (&quot;ölü link&quot; hook&#x27;u, yardımsever tonda)</div><pre class="dm-text">Selahattin Bey merhaba, nasılsınız?
+
+Hesabınızı incelerken bir şey fark ettim ve haberiniz olsun istedim: bio&#x27;nuzdaki tek bağlantı olan selahattindonmez.com şu an açılmıyor, bir DNS arızası var (her tıklayan boş bir sayfayla karşılaşıyor).
+
+374 bin takipçinizin yönlendirildiği tek adres bu olduğu için, şu an siteye ulaşmak isteyen her potansiyel danışan kapıda kayboluyor. Genelde kolayca düzelen bir mesele ama fark edilene kadar sessizce danışan kaybettiriyor.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz; tam da bunun gibi sessizce sızdıran noktaları kapatıp sosyal medyayı danışana çeviren akışı tasarlıyoruz. İsterseniz 15 dakikalık kısa bir görüşmede bunu konuşalım, ne dersiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="selahattin-donmez-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B — Soru Odaklı</div><pre class="dm-text">Selahattin Bey merhaba, nasılsınız?
+
+30 yıllık deneyiminiz ve Hacettepe yüksek lisansınızla içeriklerinizi ilgiyle inceledim.
+
+Şunu merak ettim: 374 bin kişinin gördüğü bio&#x27;nuzdaki o tek bağlantıyı tıklayan biri bugün nereye varıyor, hiç kontrol etme fırsatınız oldu mu? (Sorma sebebim, şu an o adresin teknik bir arızayla açılmıyor olması.)
+
+Bunu sormamın nedeni, sizin gibi otorite sahibi bir ismin dijital kapısının sessizce kapalı kalmasının ciddi bir danışan kaybı demek olması. Biz Nomades olarak markaların bu dijital akışını kurguluyoruz. Kısaca konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="selahattin-donmez-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C — Analiz Odaklı (ÖNERİLEN)</div><pre class="dm-text">Selahattin Bey merhaba, nasılsınız?
+
+Hesabınızı ve dijital varlığınızı biraz inceledim; 30 yıllık deneyiminiz ve kurumsal geçmişinizle güçlü bir temeliniz var.
+
+Üç şey dikkatimi çekti: bio&#x27;nuzdaki tek bağlantı (selahattindonmez.com) şu an bir DNS arızasıyla açılmıyor, yani 374 bin takipçinin tıkladığı tek adres ölü; Doktortakvimi profiliniz açık ama içi boş, online randevu kapalı; ve Turkcell, Bayer, Sanofi gibi kurumlara verdiğiniz danışmanlık ile Royal College, Harvard, Hacettepe eğitiminiz içeriklerde neredeyse hiç görünmüyor.
+
+Bunlar birlikte tek bir şeye işaret ediyor: güçlü parçalar var ama onları danışana çeviren bir sistem kurulmamış (görünürlük yüksek, akış kopuk).
+
+Biz Nomades olarak tam da bunu, markanın dijital işletim sistemini kuruyoruz: Realm&#x27;deki 23 kişilik AI ajan ekibimizle müşterilerimiz için 30 binden fazla otomatik yanıt akışı devreye aldık, teori değil işleyen bir sistem. Bu üç bulguyu ve sizin için kurabileceğimiz akışı 15 dakikalık kısa bir görüşmede konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-10" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-10')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Emine Uluçay Mufazalova</div>
+        <div class="ch-meta">Diyetisyen / Yoga Eğitmeni</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:90%"></div></div><span class="icp-val">9</span></div>
+      <span class="ch-followers">331K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/emineuluchay" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://www.youtube.com/@EmineUlucay" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><a class="social-btn sb-li" href="https://cy.linkedin.com/in/emine-ulucay-557259b0" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-web" href="https://www.emineuluchay.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>emineuluchay.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'emineulucay@hotmail.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>emineulucay@hotmail.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/emine-ulucay/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi emine-ulucay</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'emine-ulucay-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'emine-ulucay-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'emine-ulucay-dm-2')">C ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="emine-ulucay-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (DM) — Gözlem Odaklı</div><pre class="dm-text">Emine Hanım merhaba, nasılsınız?
+
+Sitenizdeki yorumlar sayfasını okuduk: Stockholm, Londra, İstanbul, Lefkoşa&#x27;dan 30&#x27;dan fazla isimli danışan teşekkürü. Çoğu diyetisyenin sahip olamadığı bir güven kanıtı.
+
+Dikkatimizi çeken şu: bu en güçlü satış argümanınız sitenizde kalmış, 332 binlik kitlenize ulaşmıyor. İnsanlar sizi tariflerinizle tanıyor ama &quot;gerçekten uluslararası sonuç üretiyor&quot; hissini hiç almıyor.
+
+Nomades olarak markaların dijital sistemini kuruyoruz; içerik ve dağıtımı bağlıyoruz. Sizin için o referansları düzenli bir sonuç hikayesi serisine çevirip Ironman ve Monash otoritenizi de bu serinin omurgası yapabiliriz. 15 dakikalık kısa bir görüşme için uygun musunuz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="emine-ulucay-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (DM) — Soru Odaklı</div><pre class="dm-text">Emine Hanım merhaba, nasılsınız?
+
+Sizi okurken bir soru aklımıza takıldı: 30&#x27;dan fazla uluslararası danışanınız adıyla teşekkür yazmışken (Stockholm, Londra, İstanbul, Lefkoşa), bu hikayeler neden sadece sitenizde duruyor da 332 binlik kitlenize ulaşmıyor?
+
+Aynısı Ironman hikayeniz için de geçerli: Kıbrıs&#x27;ın ilk kadın finisherısınız, sporcu beslenmesi paketiniz var, ama bu kimsenin kopyalayamayacağı hikaye içerikte neredeyse görünmüyor.
+
+Bunu sormamızın sebebi, Nomades olarak markaların güven kanıtını içeriğe taşıyan sistemleri kurmamız. Sizde net bir fırsat görüyoruz. Konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="emine-ulucay-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (DM) — Analiz / Stratejist Odaklı (4+ kanıt → ÖNERİLEN DM)</div><pre class="dm-text">Emine Hanım merhaba, nasılsınız?
+
+Hesabınızı ve sitenizi biraz inceledik; profiliniz çok güçlü olduğu için yazıyoruz.
+
+Üç şey dikkatimizi çekti: sitenizde 30+ uluslararası isimli danışan referansı var ama Instagram&#x27;da görünmüyor; Kıbrıs&#x27;ın ilk kadın Ironman finisherısınız ama bu hikaye sporcu beslenmesi içeriğinizde kullanılmıyor; markanız üç hesaba bölünmüş (ana hesap, IBS, podcast), enerji dağılmış.
+
+Üçü birlikte tek bir şeyi söylüyor: malzeme birinci sınıf, eksik olan onları tek anlatıya bağlayan sistem. Nomades olarak tam bunu kuruyoruz. Bu bulguyu 15 dakikada konuşmak ister misiniz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-11" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-11')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">Berrin Yiğit</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Uzmanı</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">220K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/diyetisyenberrinyigit" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-li" href="https://www.linkedin.com/in/berrin-yigit-1b898546" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a class="social-btn sb-web" href="https://www.berrinyigit.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>berrinyigit.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'info@berrinyigit.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>info@berrinyigit.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/berrin-yigit/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi berrin-yigit</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'berrin-yigit-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'berrin-yigit-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'berrin-yigit-dm-2')">C ★</button></div><span class="dm-platform">Instagram</span></div><div class="dm-panel" id="berrin-yigit-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (etkileşim kopukluğu, gözlem odaklı)</div><pre class="dm-text">Berrin Hanım merhaba, nasılsınız?
+
+Son Reels&#x27;lerinize baktım: 221K takipçiniz var ama içerikler 300-350 beğeni bandında kalıyor, yani etkileşim %0.5&#x27;in bile altında.
+
+Bu sayı kitlenizle orantılı değil. Kitleyi büyütmüşsünüz ama içerik artık onlarla konuşamıyor, ve bunlar tek bir problem değil, iki ayrı problem.
+
+Biz Nomades olarak markalara tam bu kopuğu onaran bir içerik ve otomasyon sistemi kuruyoruz (müşterilerimizde 30.000&#x27;den fazla otomatik yanıt akışı devreye aldık). Bu kopuğun nerede başladığını sizinle kısaca konuşmak isterim, müsait misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="berrin-yigit-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (ödüllü site + SSL, yardımcı/saygılı ton)</div><pre class="dm-text">Berrin Hanım merhaba, nasılsınız?
+
+berrinyigit.com&#x27;a baktım ve önce şunu söyleyeyim: site gerçekten güzel kurulmuş, Altın Örümcek ödülünü hak etmiş.
+
+Tam da bu yüzden tek bir detayı bilmenizi istedim: SSL sertifikasının süresi dolmuş, tarayıcı ziyaretçilere &quot;güvensiz&quot; uyarısı gösteriyor. Ödüllü bir siteyle online diyet satarken bu küçük detay her ziyaretçide güven kaybına yol açıyor, oysa düzeltmesi bir saatlik iş.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz, bunun gibi görünmez sürtünmeleri kapatıp içeriği satışa bağlıyoruz. Dilerseniz bu detayı ve siteniz için birkaç hızlı kazanımı kısaca paylaşayım, uygun musunuz?
+
+Güzel yanıtınızı bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="berrin-yigit-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (analiz odaklı, 3 kanıt birleşik) ★</div><pre class="dm-text">Berrin Hanım merhaba, nasılsınız?
+
+Hesabınızı ve sitenizi biraz inceledim, 221K kitlesi ve Altın Örümcek ödüllü bir markayla karşılaşmak ilgimi çekti.
+
+Üç şey dikkatimi çekti: Reels&#x27;leriniz 300-350 beğenide kalıyor (221K için %0.5 altı etkileşim, sektörde düşük); ödüllü sitenizin SSL süresi dolmuş, &quot;güvensiz&quot; uyarısı veriyor; ve online diyet programınız tamamen WhatsApp/telefondan satılıyor, 221K kitle bu programa hiç yönlendirilmiyor.
+
+Bu üçü ayrı ayrı sorun değil, aynı eksikliğin parçaları: güçlü malzeme var ama tek bir sistem altında satışa bağlanmamış. Biz Nomades olarak tam bunu kuruyoruz (30.000&#x27;den fazla otomatik yanıt akışı, 23 AI ajanından oluşan kendi sistemimiz). Bu bulguları kısaca konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div>
+<div class="prospect-card card-dm-hazir" id="card-12" style="background:#FFFBF0; border-left:3px solid #F0AA00">
+  <div class="card-header" style="--hdr-bg:#FFF4D0; --hdr-hover:#FFE9A8; background:#FFF4D0" onclick="toggleCard('card-12')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#F0AA00"></span>
+      <div>
+        <div class="ch-name">İnci Bulut Kayalı</div>
+        <div class="ch-meta">Eczacı &amp; Diyetisyen</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:80%"></div></div><span class="icp-val">8</span></div>
+      <span class="ch-followers">261K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#FFFBF0">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/eczdytincibulut" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-yt" href="https://youtube.com/channel/UCl05FEzkNIPU7cdpdlddDzA" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg><span>YouTube</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'eczdytincibulut@gmail.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>eczdytincibulut@gmail.com</span></button><a class="social-btn sb-analysis" href="https://nomadesagency.com/analysis/inci-bulut/" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg><span>Dashboard</span></a></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">DM&#x27;i gönder</span></div><div class="cb-action"><span class="cb-action-label">VICTOR</span><span class="cb-action-val victor-action">Gönderince → <span class="cmd-wrap"><code>dm gönderildi inci-bulut</code><button class="cmd-copy" onclick="copyCmd(this)" title="Kopyala">⎘</button></span></span></div></div>
+    <div class="dm-section"><div class="dm-tabs-row"><div class="dm-tabs"><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'inci-bulut-dm-0')">A</button><button class="dm-tab" style="--tab-active:#C8900A" onclick="switchTab(this,'inci-bulut-dm-1')">B</button><button class="dm-tab recommended" style="--tab-active:#C8900A" onclick="switchTab(this,'inci-bulut-dm-2')">C ★</button></div><span class="dm-platform">Instagram DM</span></div><div class="dm-panel" id="inci-bulut-dm-0" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon A (Gözlem odaklı, ölü bio link)</div><pre class="dm-text">İnci Hanım merhaba, nasılsınız?
+
+Hesabınıza bakarken küçük ama kritik bir şey dikkatimi çekti: bio&#x27;nuzdaki tek link bir YouTube kanalına gidiyor, ama oradaki videolar 2022&#x27;den beri güncellenmemiş.
+
+261 bin kişiyi yönlendirdiğiniz yer fiilen kapalı duruyor. Yani en çok ilgi topladığınız anda, o ilgiyi karşılayacak bir hedef yok. Muhtemelen şu an en çok dönüşüm kaybettiğiniz nokta tam burası.
+
+Biz Nomades olarak markaların dijital işletim sistemini kuruyoruz; içerik ve funnel&#x27;ı tek sistemde toplayıp, müşterilerimiz için 30 binden fazla otomatik yanıt akışı devreye aldık. Bu trafiği doğru bir yere bağlamak çok kısa sürede yapılabilir bir iş.
+
+İsterseniz 15 dakikalık kısa bir görüşmede bu akışı nasıl kurguladığımızı anlatayım. Uygun olur mu?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="inci-bulut-dm-1" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon B (Soru odaklı, etkileşim varyansı)</div><pre class="dm-text">İnci Hanım merhaba, nasılsınız?
+
+&quot;FİT&quot; tarif serinizi bir süredir takip ediyorum; FİT EVLEN BENİMLE&#x27;nin 18.900 beğeniye ulaşmasını ilgiyle izledim.
+
+Şunu hiç merak ettiniz mi: aynı format, aynı hesap olmasına rağmen bir içerik 18.900 beğeni alırken diğeri 16&#x27;da kalıyor. Aradaki farkı belirleyen bir sistem yoksa, her yeni içerik aslında bir sonraki viral&#x27;i şansa oynamak demek.
+
+Biz tam da bunu öngörülebilir hale getiren tarafla ilgileniyoruz: neyin tuttuğunu okuyup tekrarlanabilir bir içerik sistemine çeviriyoruz. Bu konuyu kısaca konuşmak ister misiniz?
+
+Yanıtınızı merakla bekliyoruz, kolaylıklar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div><div class="dm-panel" id="inci-bulut-dm-2" style="display:none; background:#FFF8E0"><div class="dm-label">Varyasyon C (Analiz odaklı, ÖNERİLEN DM) ★</div><pre class="dm-text">İnci Hanım merhaba, nasılsınız?
+
+Hesabınızı biraz inceledim; eczacı ve diyetisyen olmanız bende ilk anda dikkat çekti, çünkü bu ikili yetkinlik Türkiye&#x27;de gerçekten az kişide var.
+
+Üç şey gözüme çarptı: bio&#x27;nuzdaki tek link 2022&#x27;den beri güncellenmeyen bir YouTube kanalına gidiyor (yani 261 bin kişiyi ölü bir noktaya yönlendiriyorsunuz), aynı &quot;FİT&quot; formatında bir içerik 18.900 beğeni alırken bir diğeri 16&#x27;da kalıyor, ve Doktortakvimi&#x27;ndeki 94 yorum / 5 üzerinden 5 puanınız orada gömülü kalmış, takipçileriniz bundan habersiz.
+
+Bu üçü birlikte tek bir şeyi söylüyor: parçalar güçlü ama hepsini taşıyacak bir sistem henüz kurulmamış. Biz Nomades olarak markaların dijital işletim sistemini bunun için kuruyoruz.
+
+Bu bulguları 15 dakikada konuşmak ister misiniz?
+
+Dönüşünüzü merakla bekliyoruz, iyi çalışmalar.</pre><button class="copy-btn" onclick="copyDM(this)">Kopyala</button></div></div>
+  </div>
+</div></section>
+<section style="opacity:.4"><div class="section-header"><div class="sh-left"><span class="sh-dot" style="background:#3A3A3A"></span><div><div class="sh-title">ICP Dışı</div><div class="sh-subtitle">Kapsam Dışı</div></div></div><span class="sh-count" style="background:#3A3A3A; color:#fff">1</span></div><div class="prospect-card card-icp-disi" id="card-13" style="background:#F5F5F5; border-left:3px solid #3A3A3A">
+  <div class="card-header" style="--hdr-bg:#EBEBEB; --hdr-hover:#E0E0E0; background:#EBEBEB" onclick="toggleCard('card-13')">
+    <div class="ch-left">
+      <span class="ch-dot" style="background:#3A3A3A"></span>
+      <div>
+        <div class="ch-name">Diyetisyen Dünyası</div>
+        <div class="ch-meta">Diyetisyen / Beslenme Topluluk Platformu</div>
+      </div>
+    </div>
+    <div class="ch-right">
+      <div class="icp-wrap"><span class="icp-lbl">ICP</span><div class="icp-track"><div class="icp-dot" style="left:30%"></div></div><span class="icp-val">3</span></div>
+      <span class="ch-followers">81K</span>
+      <span class="days-ok">2 gün</span>
+      <span class="ch-chevron">▸</span>
+    </div>
+  </div>
+  <div class="card-body" style="background:#F5F5F5">
+    <div class="social-btns"><a class="social-btn sb-ig" href="https://instagram.com/diyetisyendunyasi" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span></a><a class="social-btn sb-web" href="https://diyetisyendunyasi.com" target="_blank"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>diyetisyendunyasi.com</span></a><button class="social-btn sb-email" onclick="copyEmail(this, 'info@diyetisyendunyasi.com')"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>info@diyetisyendunyasi.com</span></button></div>
+    <div class="cb-actions"><div class="cb-action"><span class="cb-action-label">GALİP</span><span class="cb-action-val user-action">—</span></div></div>
+    
+  </div>
+</div></section>
+</main>
+
+<footer>
+  Nomades Agency &middot; güncelle: <code>python3 tools/generate_prospects_dashboard.py</code>
+</footer>
+
+<script>
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.card-body');
+  const header = card.querySelector('.card-header');
+  const isOpen = body.style.display === 'block';
+  body.style.display = isOpen ? 'none' : 'block';
+  header.classList.toggle('open', !isOpen);
+  if (!isOpen) {
+    const first = card.querySelector('.dm-tab');
+    if (first && !card.querySelector('.dm-tab.active')) first.click();
+  }
+}
+
+function switchTab(btn, panelId) {
+  const card = btn.closest('.prospect-card');
+  card.querySelectorAll('.dm-tab').forEach(t => t.classList.remove('active'));
+  card.querySelectorAll('.dm-panel').forEach(p => p.style.display = 'none');
+  btn.classList.add('active');
+  document.getElementById(panelId).style.display = 'block';
+}
+
+function copyDM(btn) {
+  const text = btn.previousElementSibling.textContent;
+  const feedback = () => {
+    const orig = btn.textContent;
+    btn.textContent = 'Kopyalandı ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(feedback).catch(() => fallbackCopy(text, feedback));
+  } else {
+    fallbackCopy(text, feedback);
+  }
+}
+
+function copyCmd(btn) {
+  const text = btn.previousElementSibling.textContent;
+  const feedback = () => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '⎘'; btn.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(feedback).catch(() => fallbackCopy(text, feedback));
+  } else {
+    fallbackCopy(text, feedback);
+  }
+}
+
+function copyEmail(btn, email) {
+  const span = btn.querySelector('span');
+  const origText = span.textContent;
+  const feedback = () => {
+    span.textContent = 'Kopyalandı ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { span.textContent = origText; btn.classList.remove('copied'); }, 2000);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(email).then(feedback).catch(() => fallbackCopy(email, feedback));
+  } else {
+    fallbackCopy(email, feedback);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>

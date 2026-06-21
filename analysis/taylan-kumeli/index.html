@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taylan Kümeli — İçerik Performans Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void-deep:#0B0B0E;--void-1:#1C1C1C;--void-2:#3A3A3A;
+  --bg:#0B0B0E;--surface:#141418;--surface2:#1C1C1C;--border:#1E1E22;
+  --text:#FAFAF7;--dim:#777;
+  --red:#B01C2E;--amber:#F0AA00;--gold:#F0AA00;--green:#4caf89;
+  --font:'Space Grotesk',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#FAFAF7;--surface:#FFFFFF;--surface2:#F0EFE9;--border:#E0DDD8;
+  --text:#1C1C1C;--dim:#8A8A82;--gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:15px;
+  line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+h1,h2,h3{font-family:var(--font);letter-spacing:-0.01em}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
+
+header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 28px;margin-bottom:38px;transition:background .3s}
+[data-theme="light"] header{background:rgba(250,250,247,0.94)}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:16px}
+.hlogo{width:34px;filter:invert(1);flex-shrink:0}
+[data-theme="light"] .hlogo{filter:none}
+.hlogo-div{width:1px;height:42px;background:var(--red);flex-shrink:0}
+.heyebrow{font-size:.55rem;font-weight:600;letter-spacing:.34em;color:var(--amber)}
+.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
+.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
+.htools{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--red);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--red)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
+  padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+
+section{margin-bottom:54px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-size:1.85rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero)" — ";color:var(--amber);font-weight:700}
+.shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.95rem;max-width:780px;margin-bottom:22px;line-height:1.75}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--void-2);border-radius:4px;padding:20px}
+.kpi .label{display:block;margin-bottom:10px;color:var(--amber)}
+.kpi .v{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:.8rem;color:var(--dim);font-weight:500}
+.kpi .note{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.kpi.alert{border-top-color:var(--red)}.kpi.alert .v{color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}.kpi.good .v{color:var(--amber)}
+.kpi.span2{grid-column:span 2}
+
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--border)}
+th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-space:nowrap}
+th.sortkey{color:var(--amber)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--surface)}
+.cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.bar{height:5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+.post-sub{font-size:.72rem;color:var(--dim);margin-top:3px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:14px;font-weight:700}
+
+.comment-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cc{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.cc-user{font-size:.78rem;font-weight:700;color:var(--amber);margin-bottom:4px}
+.cc-text{font-size:.9rem;line-height:1.55;margin-bottom:10px}
+.cc-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cc-post{font-size:.7rem;color:var(--dim)}
+.cc-post a{color:var(--dim);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cc-post a:hover{color:var(--amber)}
+.cc-tag{font-size:.6rem;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:2px}
+.cc-ts{font-size:.65rem;color:var(--dim)}
+
+.insight{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px;margin-bottom:12px;display:flex;gap:18px}
+.insight-icon{width:40px;height:40px;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800}
+.insight-body h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.insight-body p{font-size:.88rem;color:var(--dim);line-height:1.65}
+.insight-body .action{font-size:.8rem;color:var(--amber);margin-top:8px;font-weight:600}
+.ins-crit .insight-icon{background:rgba(176,28,46,.15);color:var(--red);border:1px solid rgba(176,28,46,.3)}
+.ins-opp .insight-icon{background:rgba(240,170,0,.12);color:var(--amber);border:1px solid rgba(240,170,0,.3)}
+.ins-warn .insight-icon{background:rgba(77,175,137,.1);color:var(--green);border:1px solid rgba(77,175,137,.3)}
+
+.theme-bar{height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;margin-top:10px}
+.theme-bar>i{display:block;height:100%;border-radius:4px}
+
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header{position:relative}
+  .btn,.no-print{display:none!important}
+}
+@media(max-width:768px){
+  .kpis{grid-template-columns:1fr 1fr}
+  .comment-cards{grid-template-columns:1fr}
+  .grid2,.grid3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <div class="hbrand">
+      <img src="nomades-agency.png" class="hlogo" alt="Nomades">
+      <div class="hlogo-div"></div>
+      <div class="htitle">
+        <div class="heyebrow">DEEPDIVE RAPORU · KLİNİK / DİYET</div>
+        <h1>Taylan Kümeli</h1>
+        <div class="sub">@taylankumelitk · 2026-01-05 – 2026-06-19 · 20 içerik analizi</div>
+      </div>
+    </div>
+    <div class="htools no-print">
+      <div class="badge">⚠ 176 YANITLANMAMIŞ YORUM</div>
+      <button class="btn" id="themeBtn" onclick="toggleTheme()">☀️ Açık Tema</button>
+      <button class="btn" onclick="window.print()">PDF Kaydet</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="banner">
+    <b>Sınırlı Veri Uyarısı:</b> Bu rapor, platformun erişime sunduğu son 20 içerik üzerinden hazırlanmıştır. Platform tüm geçmişe yönelik içerik ve etkileşim verilerini paylaşmadığından analiz, hesabın gerçek performansının tamamını yansıtmıyor olabilir. Gösterilen metrikler ve sıralamalar mevcut veri setiyle sınırlıdır.
+  </div>
+
+  <section>
+    <div class="shead">
+      <h2>Temel Metrikler</h2>
+      <span class="stag">KPI GRID</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi good">
+        <span class="label">TOPLAM BEĞENİ</span>
+        <div class="v">207K<small>+</small></div>
+        <div class="note">20 içerik toplamı</div>
+      </div>
+      <div class="kpi">
+        <span class="label">TOPLAM GÖRÜNTÜLEME</span>
+        <div class="v">3.9M</div>
+        <div class="note">Son 6 ay</div>
+      </div>
+      <div class="kpi">
+        <span class="label">TOPLAM YORUM</span>
+        <div class="v">3.374</div>
+        <div class="note">Tüm içeriklerde</div>
+      </div>
+      <div class="kpi alert">
+        <span class="label">YANITLANMAMIŞ YORUM</span>
+        <div class="v">176</div>
+        <div class="note">Sorular, teşekkürler ve sorgulamalar yanıtsız</div>
+      </div>
+      <div class="kpi good">
+        <span class="label">POST BAŞINA ORT. BEĞENİ</span>
+        <div class="v">10.4K</div>
+        <div class="note">Eski içerikler 65K'ya çıkıyor; son dönem düşük</div>
+      </div>
+      <div class="kpi span2">
+        <span class="label">EN İYİ İÇERİK</span>
+        <div class="v">65.4K <small>beğeni</small></div>
+        <div class="note">"Yemekten sonra kilo almamak için…" — 1.22M görüntüleme, 1.149 yorum (Şubat 2026)</div>
+      </div>
+      <div class="kpi">
+        <span class="label">ANALİZ EDİLEN İÇERİK</span>
+        <div class="v">20</div>
+        <div class="note">Ara: 2026-01-05 → 2026-06-19</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Post Performans Sıralaması</h2>
+      <span class="stag">BEĞENİYE GÖRE</span>
+    </div>
+    <p class="lead">En yüksek etkileşimi alan içerikler beğeni sayısına göre sıralandı. İçerik başlığına tıklayarak orijinal gönderiye ulaşabilirsiniz.</p>
+    <div style="overflow-x:auto">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>İçerik</th>
+          <th class="n sortkey">Beğeni</th>
+          <th class="n">Görüntüleme</th>
+          <th class="n">Yorum</th>
+          <th>Tarih</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DVROnAhDJhW/" target="_blank">Yemekten sonra kilo almamak için kolayca uygulayabileceğiniz tavsiyeler</a><div class="post-sub">Pratik kilo yönetimi / aksiyon içeriği</div><div class="bar"><i style="width:100%"></i></div></td>
+          <td class="n">65.405</td>
+          <td class="n">1.220.166</td>
+          <td class="n">1.149</td>
+          <td>2026-02-27</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DUtLXwzDO_S/" target="_blank">Spor yapmaya vaktim yok diyenler — bu 10 dakika sizin için</a><div class="post-sub">Zaman kısıtlı izleyici — erişilebilir hareket</div><div class="bar"><i style="width:78%"></i></div></td>
+          <td class="n">50.712</td>
+          <td class="n">990.247</td>
+          <td class="n">841</td>
+          <td>2026-02-13</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DTIxbCKDC3c/" target="_blank">Binlerce yıllık Çin tekniğiyle gençlik enerjini uyandır</a><div class="post-sub">Geleneksel tıp / merak içeriği</div><div class="bar"><i style="width:66%"></i></div></td>
+          <td class="n">43.022</td>
+          <td class="n">864.741</td>
+          <td class="n">374</td>
+          <td>2026-01-05</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZsgbjXouBQ/" target="_blank">Karın eritmek sadece mekik çekmek değildir — doğru hareketler</a><div class="post-sub">Pratik egzersiz rehberi</div><div class="bar"><i style="width:8%"></i></div></td>
+          <td class="n">5.028</td>
+          <td class="n">49.010</td>
+          <td class="n">66</td>
+          <td>2026-06-17</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZfmQZxIP0B/" target="_blank">Kilo verirken yapılan en büyük hata ne biliyor musunuz?</a><div class="post-sub">Sorgulayıcı açılış / eğitim</div><div class="bar"><i style="width:7%"></i></div></td>
+          <td class="n">4.582</td>
+          <td class="n">71.655</td>
+          <td class="n">64</td>
+          <td>2026-06-12</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZafoscIxwz/" target="_blank">Mental sağlığımı 30 gün ön plana koydum — bakın ne oldu</a><div class="post-sub">Kişisel deneyim / bütüncül yaklaşım</div><div class="bar"><i style="width:7%"></i></div></td>
+          <td class="n">4.499</td>
+          <td class="n">58.246</td>
+          <td class="n">210</td>
+          <td>2026-06-10</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZNj52MMehm/" target="_blank">Sürekli yorgun musunuz? Göbek çevresi yağlanmanız mı artıyor?</a><div class="post-sub">Semptom odaklı açılış</div><div class="bar"><i style="width:7%"></i></div></td>
+          <td class="n">4.446</td>
+          <td class="n">66.024</td>
+          <td class="n">121</td>
+          <td>2026-06-05</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZnfbqyoPr_/" target="_blank">Kilo vermek sadece daha az yemek yemek değildir</a><div class="post-sub">Yanlış inanç kırma / eğitim</div><div class="bar"><i style="width:7%"></i></div></td>
+          <td class="n">4.434</td>
+          <td class="n">80.545</td>
+          <td class="n">57</td>
+          <td>2026-06-15</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZvQJlioLhJ/" target="_blank">50 yaşından sonra değişen sadece yaşımız değil; metabolizmamız da</a><div class="post-sub">Yaş grubu odaklı içerik</div><div class="bar"><i style="width:6%"></i></div></td>
+          <td class="n">3.729</td>
+          <td class="n">48.389</td>
+          <td class="n">52</td>
+          <td>2026-06-18</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kirazın içinde sandığınızdan çok daha fazlası var</a><div class="post-sub">Mevsimsel besin bilgisi</div><div class="bar"><i style="width:5%"></i></div></td>
+          <td class="n">3.590</td>
+          <td class="n">49.971</td>
+          <td class="n">60</td>
+          <td>2026-06-16</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--dim);margin-top:12px">Not: Şubat–Ocak 2026 içerikleri Haziran 2026 içeriklerinden 10–15 kat daha yüksek performans gösteriyor. Bu erişim düşüşü, son dönemin organik ivme kaybına işaret ediyor.</p>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Cevaplanmamış Yorumlar</h2>
+      <span class="stag">176 YORUM · YANIT YOK</span>
+    </div>
+    <p class="lead">Tüm yorumlar yanıtsız kalmış. Teşekkür, soru ve uygulama yorumları yoğunlukta. Bu düzeyde yanıtsızlık takipçi bağını zayıflatıyor.</p>
+    <div class="comment-cards">
+
+      <div class="cc">
+        <div class="cc-user">@aytulbyszn</div>
+        <div class="cc-text">Teşekkür ederiz Taylan hocam ❤️🙏</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(77,175,137,.1);color:var(--green);border:1px solid rgba(77,175,137,.3)">ETKİLEŞİM</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@sebolisebo</div>
+        <div class="cc-text">Yaptım, aşil tendonum zarar gördü.</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DUtLXwzDO_S/" target="_blank">Spor yapmaya vaktim yok…</a></div>
+          <span class="cc-tag" style="background:rgba(176,28,46,.12);color:var(--red);border:1px solid rgba(176,28,46,.3)">İTİRAZ</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@mtledz</div>
+        <div class="cc-text">Ah Taylan hn biz tombişlerin sorunu bu faydalı gıdaları yemek değil, onları yemekten vazgeçememek ☺️</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(240,170,0,.12);color:var(--amber);border:1px solid rgba(240,170,0,.3)">KATILIM</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@sey1303</div>
+        <div class="cc-text">Çok doğru hocam, ben de başladım.</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZafoscIxwz/" target="_blank">Mental sağlığımı 30 gün…</a></div>
+          <span class="cc-tag" style="background:rgba(77,175,137,.1);color:var(--green);border:1px solid rgba(77,175,137,.3)">KATILIM</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@sonatalatan</div>
+        <div class="cc-text">Çok teşekkür ederiz ❤️ harikasınız 👏 bu kadar bilmiyordum 🙏</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(77,175,137,.1);color:var(--green);border:1px solid rgba(77,175,137,.3)">ETKİLEŞİM</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@aktrkemine55</div>
+        <div class="cc-text">Yemeye başlayınca 1 avuçta durabilen var mı? :))</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(240,170,0,.12);color:var(--amber);border:1px solid rgba(240,170,0,.3)">SORU</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@trendieslife</div>
+        <div class="cc-text">Soranlar için Taylan hanımın kombin detaylarını paylaştım ❤️</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(240,170,0,.12);color:var(--amber);border:1px solid rgba(240,170,0,.3)">SORU</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="cc-user">@belmadenizkanli</div>
+        <div class="cc-text">🧿🧿🧿🧿🧿</div>
+        <div class="cc-meta">
+          <div class="cc-post"><a href="https://www.instagram.com/p/DZp6-cDIggZ/" target="_blank">Bir avuç kiraz…</a></div>
+          <span class="cc-tag" style="background:rgba(77,175,137,.1);color:var(--green);border:1px solid rgba(77,175,137,.3)">ETKİLEŞİM</span>
+          <span class="cc-ts">2026-06</span>
+        </div>
+      </div>
+
+    </div>
+    <p style="color:var(--dim);font-size:.82rem;margin-top:16px">Yukarıda temsili seçki gösterilmektedir. Toplam 176 yanıtsız yorum tespit edildi.</p>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Tematik Yorum Analizi</h2>
+      <span class="stag">TEKRAR EDEN TEMALAR</span>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3 style="color:var(--amber)">Uygulama & Teşekkür Yorumları</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">En baskın kategori. "Başladım", "harikasınız", "teşekkürler" tonlu yorumlar akışın büyük çoğunluğunu oluşturuyor. Güçlü topluluğa işaret ediyor ama bu enerji topluluk yönetimiyle beslenmiyor.</p>
+        <div class="theme-bar"><i style="width:88%;background:var(--amber)"></i></div>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--red)">Sağlık Sonucu Kaygıları</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">"Yaptım, aşil tendonum zarar gördü" gibi olumsuz sonuç bildirimleri yanıtsız kaldığında ciddi güven hasarı yaratıyor. Bu tür yorumlar mutlaka yanıtlanmalı — hem sorumluluk hem otoriteye ilişkin.</p>
+        <div class="theme-bar"><i style="width:45%;background:var(--red)"></i></div>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--green)">Mevsimsel & Pratik Besin Soruları</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">Kiraz, bakla gibi mevsimsel içeriklerde "ne kadar yenilmeli", "başka meyve seçeneği var mı" soruları yoğun. Bu format doğal olarak soru üretiyor; yanıt verince etkileşim katlanıyor.</p>
+        <div class="theme-bar"><i style="width:52%;background:var(--green)"></i></div>
+      </div>
+      <div class="card">
+        <h3>Bütüncül Sağlık İlgisi</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">"Mental sağlığımı 30 gün ön plana koydum" içeriği 210 yorumla diğer Haziran içeriklerinin üstünde. Kitle beslenme ötesinde bütüncül yaklaşıma açık — bu fark yaratıcı fırsat.</p>
+        <div class="theme-bar"><i style="width:40%;background:var(--amber)"></i></div>
+      </div>
+      <div class="card">
+        <h3>50+ Yaş Grubu İlgisi</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">"50 yaşından sonra metabolizma" içeriği yoğun ilgi çekiyor. Bu segment; uzmanlık + deneyim kombosu için en değerli niş. İçerik sinyali güçlü ama seri haline getirilmemiş.</p>
+        <div class="theme-bar"><i style="width:35%;background:var(--amber)"></i></div>
+      </div>
+      <div class="card">
+        <h3>Kombin / Görünüm Soruları</h3>
+        <p style="font-size:.88rem;color:var(--dim);line-height:1.65">"Taylan hanımın kombin detaylarını paylaştım" yorumu dikkat çekici — beslenme içeriğini izleyenler aynı zamanda kişisel stile ilgi duyuyor. Bu durum marka kimliğinin bulanıklığına işaret ediyor.</p>
+        <div class="theme-bar"><i style="width:22%;background:var(--dim)"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Duygu / Ton Analizi</h2>
+      <span class="stag">YORUM DUYGU DAĞILIMI</span>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Pozitif Ton Kümeleri</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:14px;line-height:1.65">Güven ve saygı baskın. "Taylan hocam", "harikasınız" tonlu yorumlar izleyicinin bu ismi "uzman otorite" olarak gördüğüne işaret ediyor. Bu güçlü otoriter ilişki doğrudan premium danışan çekimi için potansiyel taşıyor.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(77,175,137,.12);color:var(--green);border:1px solid rgba(77,175,137,.3);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:2px">Güven/Saygı (%52)</span>
+          <span style="background:rgba(77,175,137,.12);color:var(--green);border:1px solid rgba(77,175,137,.3);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:2px">Uyguluyor (%24)</span>
+          <span style="background:rgba(77,175,137,.12);color:var(--green);border:1px solid rgba(77,175,137,.3);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:2px">Merak (%14)</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Negatif / Nötr Ton Kümeleri</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:14px;line-height:1.65">Olumsuz sonuç bildirimleri oransal olarak düşük ama yanıtsız kaldıklarında görünürlükleri diğer yorumların önüne geçiyor. "Aşil tendonum zarar gördü" yanıtsız bırakılması hukuki risk de taşıyabilir.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(176,28,46,.12);color:var(--red);border:1px solid rgba(176,28,46,.3);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:2px">Olumsuz sonuç (%6)</span>
+          <span style="background:rgba(240,170,0,.12);color:var(--amber);border:1px solid rgba(240,170,0,.3);font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:2px">Nötr/şaka (%4)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>İçerik Tipi Korelasyonu</h2>
+      <span class="stag">FORMAT ANALİZİ</span>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Pratik Rehber / "Nasıl Yapılır" Formatı</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:10px">Ort. Beğeni (erken dönem): 50K+ | Ort. Görüntüleme: 1M+</p>
+        <div class="bar"><i style="width:100%"></i></div>
+        <p style="font-size:.82rem;color:var(--dim);margin-top:8px">"Yemekten sonra kilo almamak için" ve "10 dakika sporlular için" formatı en yüksek dönüşüme sahip. Kitleye net, uygulanabilir değer veriyor.</p>
+      </div>
+      <div class="card">
+        <h3>Geleneksel / Egzotik Teknik İçerikleri</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:10px">Ort. Beğeni: ~43K | Görüntüleme: 865K</p>
+        <div class="bar"><i style="width:66%"></i></div>
+        <p style="font-size:.82rem;color:var(--dim);margin-top:8px">"Binlerce yıllık Çin tekniği" gibi merak uyandıran içerikler güçlü performans. Uzmanlık derinliğini gösteren ama erişilebilir formata sarılı içerikler.</p>
+      </div>
+      <div class="card">
+        <h3>Bütüncül / Mental Sağlık İçerikleri</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:10px">Haziran ortalamasının 2.5 katı yorum sayısı</p>
+        <div class="bar"><i style="width:42%"></i></div>
+        <p style="font-size:.82rem;color:var(--dim);margin-top:8px">"Mental sağlık 30 gün" içeriği kişisel deneyim formatında ve Haziran'ın yorum lideri. Kişisel marka derinleştirme için en güçlü koz.</p>
+      </div>
+      <div class="card">
+        <h3>Tarif / Besin Bilgisi İçerikleri</h3>
+        <p style="font-size:.88rem;color:var(--dim);margin-bottom:10px">Ort. Beğeni (son ay): ~3-5K | Düşük etkileşim bandı</p>
+        <div class="bar"><i style="width:20%"></i></div>
+        <p style="font-size:.82rem;color:var(--dim);margin-top:8px">Kiraz, granola, ratatouille içerikleri son dönemde beğeni/görüntüleme olarak en düşük performansta. "Tarif" formatı bu kitlenin beklentisiyle örtüşmüyor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Stratejik Çıkarımlar</h2>
+      <span class="stag">8 İNSIGHT</span>
+    </div>
+
+    <div class="insight ins-crit">
+      <div class="insight-icon">!</div>
+      <div class="insight-body">
+        <h4>Organik Etkileşimde Belirgin Düşüş — Erken Alarm</h4>
+        <p>Şubat 2026 içerikleri (65K beğeni, 1.22M görüntüleme) ile Haziran 2026 içerikleri (3-5K beğeni, 50-80K görüntüleme) arasında yaklaşık 10-15 kat uçurum var. Bu erişim çöküşü hesabın organik ivmesini kaybettiğine işaret ediyor. Yüksek kaliteli ilk içeriklerle kitleyle bağ kurulmuş ama son dönemde sürdürülememiş.</p>
+        <div class="action">→ Aksiyon: Erken dönem viral içerik formülünü (pratik rehber + otoriter ton) yeniden aktive et; repurpose sistemi kur</div>
+      </div>
+    </div>
+
+    <div class="insight ins-crit">
+      <div class="insight-icon">!</div>
+      <div class="insight-body">
+        <h4>"Taylan Kümeli Metodu" Var — Ama İçerikte Görünmüyor</h4>
+        <p>Web sitesinde güçlü bir "Taylan Kümeli Metodu" çerçevesi var, danışan itirafları ve başarı hikayeleriyle desteklenmiş. Ama Instagram akışında bu metodoloji neredeyse hiç işlenmiyor. ~950K kişilik kitle, onu sektördeki herkesten ayıran kartı görmüyor.</p>
+        <div class="action">→ Aksiyon: Metodoloji merkezli içerik serisi başlat; her içeriği "Taylan Kümeli Metodu" çerçevesiyle imzala</div>
+      </div>
+    </div>
+
+    <div class="insight ins-crit">
+      <div class="insight-icon">!</div>
+      <div class="insight-body">
+        <h4>176 Yanıtsız Yorum — Topluluk Bağı Zayıflıyor</h4>
+        <p>Olumsuz sonuç bildirimleri dahil tüm yorumlar yanıtsız. "Aşil tendonum zarar gördü" gibi bir yorum yanıtlanmadan kalmak hem güven hasarı hem potansiyel yasal risk. Pozitif yorumlar da yanıtsız — bu düzeyde büyük bir kitlenin teşekkürüne karşılıksız kalmak bağı aşındırıyor.</p>
+        <div class="action">→ Aksiyon: Kritik yorumlar (olumsuz sonuç / sağlık risk bildirimleri) için acil yanıt protokolü; haftalık yorum dönemi</div>
+      </div>
+    </div>
+
+    <div class="insight ins-opp">
+      <div class="insight-icon">↑</div>
+      <div class="insight-body">
+        <h4>87 Bölümlük Aktif Podcast — Instagram'da Clip Karşılığı Yok</h4>
+        <p>"Püf Lokmaları" 2026'da hâlâ aylık yeni bölümle aktif. Haftalık YouTube üretimi de sürüyor. Bu kadar güçlü akan ham içeriğin Instagram'da clip karşılığı son derece sınırlı. En düşük efor, en yüksek getiri noktası burada — yeni içerik üretmeden mevcut arşivi kaldıraçlama fırsatı.</p>
+        <div class="action">→ Aksiyon: Podcast bölümlerinden 60-90 saniyelik clip sistemi kur; "Taylan Kümeli Metodu" çerçevesiyle etiketle</div>
+      </div>
+    </div>
+
+    <div class="insight ins-opp">
+      <div class="insight-icon">↑</div>
+      <div class="insight-body">
+        <h4>LinkedIn Yok — Kurumsal Danışmanlık Için Kritik Boşluk</h4>
+        <p>Hacettepe ve ODTÜ'ye dayanan akademik kimliği ve kurumsal danışmanlık hizmetleri var ama LinkedIn'de görünür değil. O karar verici kitleye ulaşmanın en doğal kanalı kapalı duruyor. Nişantaşı klinik + akademik kimlik = B2B fırsat zemini.</p>
+        <div class="action">→ Aksiyon: LinkedIn profilini aktive et; kurumsal danışmanlık başarı hikayelerini LinkedIn formatına taşı</div>
+      </div>
+    </div>
+
+    <div class="insight ins-opp">
+      <div class="insight-icon">↑</div>
+      <div class="insight-body">
+        <h4>50+ Yaş Nişi — Ayrıştırıcı Seri Potansiyeli</h4>
+        <p>"50 yaşından sonra metabolizma" içeriği, diğer Haziran içeriklerinden %35 daha yüksek görüntüleme aldı. Bu segment; "40+ yıllık uzmanlık" ve klinik deneyimle doğal örtüşüyor. Türkiye'de bu nişte güçlü içerik yapan çok az isim var.</p>
+        <div class="action">→ Aksiyon: "50 yaş ve sonrası beslenme ve hareket" merkezli sistematik içerik serisi başlat</div>
+      </div>
+    </div>
+
+    <div class="insight ins-warn">
+      <div class="insight-icon">✓</div>
+      <div class="insight-body">
+        <h4>6+ Hizmet Kolu Var — Sosyal Medyada Funnel Dağınık</h4>
+        <p>Web sitesinde bireysel danışmanlık, kurumsal program, çocuk danışmanlığı, online kurs, seminer, kitap, detoks ürünü bulunuyor. Sosyal medyada hangisinin öne çıktığı belirsiz; içerik tek bir net çıkışı beslemiyor. Dağınık huni ile büyük kitle küçük dönüşüm üretiyor.</p>
+        <div class="action">→ Aksiyon: Öncelik sıralaması yap; en yüksek marjlı 1-2 hizmet için özel içerik hunisi kur</div>
+      </div>
+    </div>
+
+    <div class="insight ins-warn">
+      <div class="insight-icon">✓</div>
+      <div class="insight-body">
+        <h4>Tarif İçerikleri Kitlenin Beklentisiyle Örtüşmüyor</h4>
+        <p>Son dönem tarif ve besin bilgisi içerikleri (granola bar, ratatouille, 2 malzemeli kraker) bu kitlenin beklentisiyle örtüşmüyor — 3-4K beğeniyle en düşük bantta. Kitle uzmanlık ve metodoloji için burada; "tarif akışı" daha küçük bir hesabın formatı.</p>
+        <div class="action">→ Aksiyon: Tarif içeriklerini azalt veya "neden bu besin / Taylan Kümeli Metodu perspektifiyle" çerçevesiyle yeniden kurgula</div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer style="max-width:1120px;margin:0 auto;padding:32px 28px">
+  <p>Nomades Agency · @taylankumelitk · İçerik Performans Analizi</p>
+  <p>Bu rapor, platform tarafından erişime sunulan sınırlı veri örneği üzerinden hazırlanmıştır.</p>
+</footer>
+
+<script>
+function toggleTheme(){
+  const html=document.documentElement;
+  const btn=document.getElementById('themeBtn');
+  if(html.getAttribute('data-theme')==='light'){
+    html.removeAttribute('data-theme');
+    btn.textContent='☀️ Açık Tema';
+  }else{
+    html.setAttribute('data-theme','light');
+    btn.textContent='🌙 Koyu Tema';
+  }
+}
+</script>
+</body>
+</html>

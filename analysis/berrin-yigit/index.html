@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diyetisyen Berrin Yiğit — İçerik Performans Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void-deep:#0B0B0E; --void-1:#1C1C1C; --void-2:#3A3A3A;
+  --bg:#0B0B0E; --surface:#141418; --surface2:#1C1C1C; --border:#1E1E22;
+  --text:#FAFAF7; --dim:#777;
+  --red:#B01C2E; --amber:#F0AA00; --gold:#F0AA00; --green:#4caf89;
+  --font:'Space Grotesk',sans-serif;
+}
+[data-theme="light"]{
+  --bg:#FAFAF7; --surface:#FFFFFF; --surface2:#F0EFE9; --border:#E0DDD8;
+  --text:#1C1C1C; --dim:#8A8A82; --gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;font-size:15px;
+  line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+h1,h2,h3{font-family:var(--font);letter-spacing:-0.01em}
+.mono,.num{font-family:var(--font);font-variant-numeric:tabular-nums}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 28px;margin-bottom:38px;transition:background .3s}
+[data-theme="light"] header{background:rgba(250,250,247,0.92)}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hbrand{display:flex;align-items:center;gap:16px}
+.hlogo{width:34px;filter:invert(1);flex-shrink:0}
+[data-theme="light"] .hlogo{filter:none}
+.hlogo-div{width:1px;height:42px;background:var(--red);flex-shrink:0}
+.heyebrow{font-size:.55rem;font-weight:600;letter-spacing:.34em;color:var(--amber)}
+.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
+.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
+.htools{display:flex;align-items:center;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--red);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--red)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
+  padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+
+/* SECTIONS */
+section{margin-bottom:54px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-size:1.85rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero) " — ";color:var(--amber);font-weight:700}
+.shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.95rem;max-width:780px;margin-bottom:22px;line-height:1.75}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--void-2);border-radius:4px;padding:20px}
+.kpi .label{display:block;margin-bottom:10px;color:var(--amber)}
+.kpi .v{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:.8rem;color:var(--dim);font-weight:500}
+.kpi .note{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.kpi.alert{border-top-color:var(--red)}
+.kpi.alert .v{color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}
+.kpi.good .v{color:var(--amber)}
+.kpi.span4{grid-column:span 4}
+.kpi.span2{grid-column:span 2}
+
+/* BANNER */
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--border)}
+th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-space:nowrap}
+th.sortkey{color:var(--amber)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--surface)}
+.cap{max-width:380px}
+.cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
+.cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+.bar{height:5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
+.post-sub{font-size:.72rem;color:var(--dim);margin-top:3px}
+.pinned-badge{display:inline-block;background:rgba(240,170,0,.12);border:1px solid rgba(240,170,0,.3);
+  color:var(--amber);font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:2px;margin-left:6px;vertical-align:middle;letter-spacing:.05em}
+
+/* CARDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:14px;font-weight:700}
+.meta{font-size:.78rem;color:var(--dim)}
+
+/* CONTENT TYPE CARDS */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ctype{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.ctype h3{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.ctype .cnt{font-size:.7rem;color:var(--dim);margin-bottom:12px}
+.ctype-stats{display:flex;gap:12px}
+.ctype-stat{flex:1}
+.ctype-stat .sl{font-size:.65rem;color:var(--dim);margin-bottom:2px}
+.ctype-stat .sv{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums}
+.ctype-stat .sv.hi{color:var(--amber)}
+.ctype .note{font-size:.72rem;color:var(--dim);margin-top:10px;line-height:1.5}
+
+/* EMOTION CARDS */
+.emogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.emocard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.emocard .el{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--dim);margin-bottom:8px}
+.emocard .ev{font-size:1.3rem;font-weight:700;margin-bottom:6px}
+.emocard .ebar{height:4px;background:var(--surface2);border-radius:2px;margin-bottom:8px;overflow:hidden}
+.emocard .ebar > i{display:block;height:100%;border-radius:2px}
+.emocard .ed{font-size:.78rem;color:var(--dim);line-height:1.5}
+
+/* COMMENTS */
+.cmts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmt{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:15px 17px}
+.cmt.unanswered{border-left:3px solid var(--red)}
+.cmt .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.cmt .u{font-size:.76rem;font-weight:600;color:var(--amber)}
+.cmt .txt{font-size:.89rem;margin-bottom:9px;color:var(--text);line-height:1.6}
+.cmt .meta a{color:var(--dim);text-decoration:none}
+.cmt .meta a:hover{color:var(--amber)}
+.cmt .st{font-size:.72rem;margin-top:6px}
+.cmt .st.no{color:var(--red)}
+.tag{font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.tag.soru{background:rgba(240,170,0,.16);color:var(--amber)}
+.tag.satis{background:rgba(176,28,46,.16);color:var(--red)}
+.tag.katilim{background:rgba(76,175,137,.15);color:var(--green)}
+.tag.etkilesim{background:rgba(122,122,136,.15);color:var(--dim)}
+.tag.itiraz{background:rgba(232,168,58,.15);color:var(--amber)}
+
+/* THEME CARDS */
+.themegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.themecard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.themecard h3{font-size:1rem;font-weight:700;margin-bottom:10px}
+.themecard p{font-size:.83rem;color:var(--dim);line-height:1.55;margin-bottom:10px}
+.theme-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ttag{background:var(--surface2);border:1px solid var(--border);color:var(--dim);font-size:.65rem;padding:3px 8px;border-radius:2px}
+.theme-stat{font-size:.72rem;color:var(--amber);margin-top:8px}
+
+/* INSIGHTS */
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ins{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:4px;padding:20px 22px}
+.ins.critical{border-left-color:var(--red)}
+.ins.opportunity{border-left-color:var(--green)}
+.ins.warning{border-left-color:var(--amber)}
+.ins .it{font-size:.6rem;font-weight:700;letter-spacing:.16em;margin-bottom:10px}
+.ins.critical .it{color:var(--red)}
+.ins.warning .it{color:var(--amber)}
+.ins.opportunity .it{display:inline-block;background:var(--green);color:#fff;padding:3px 8px;border-radius:2px}
+.ins h3{font-size:1.02rem;margin-bottom:9px;font-weight:700}
+.ins p{font-size:.88rem;color:var(--text);margin-bottom:11px;line-height:1.6}
+.ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.55}
+.ins .act b{color:var(--amber)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber)}
+.foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
+.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+
+@media(max-width:880px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .kpi.span4{grid-column:span 2} .kpi.span2{grid-column:span 2}
+  .grid2,.cmts,.insights,.themegrid,.emogrid{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .shead h2{font-size:1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:580px){.grid4{grid-template-columns:1fr}}
+@media print{
+  .no-print{display:none!important}
+  header{position:static}
+  body{background:#fff;color:#111}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body data-theme="dark">
+<header>
+  <div class="hbar">
+    <div class="hbrand">
+      <img class="hlogo" src="nomades-agency.png" alt="Nomades Agency">
+      <div class="hlogo-div"></div>
+      <div class="htitle">
+        <div class="heyebrow">İÇERİK PERFORMANS ANALİZİ</div>
+        <h1>Diyetisyen Berrin Yiğit</h1>
+        <div class="sub">@diyetisyenberrinyigit &nbsp;·&nbsp; Veri Aralığı: Kas. 2025 – Haz. 2026 &nbsp;·&nbsp; 20 Reel Analiz Edildi</div>
+      </div>
+    </div>
+    <div class="htools">
+      <div class="badge no-print">&#9888; 37 CEVAPLANMAMIS YORUM</div>
+      <button class="btn no-print" onclick="document.body.dataset.theme=document.body.dataset.theme==='dark'?'light':'dark'">&#9788; Tema</button>
+      <button class="btn no-print" onclick="window.print()">&#8595; PDF</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- SINIRLI VERİ UYARISI -->
+  <div class="banner">
+    <b>Veri Kapsamı Notu:</b> Bu rapor, platform tarafından erişime sunulan sınırlı örnek (son 20 Reel) üzerinden hazırlanmıştır. Platform tüm geçmiş içerik ve etkileşim verilerini paylaşmadığından analiz, hesabın gerçek performansının tamamını yansıtmıyor olabilir. Gösterilen metrikler ve sıralamalar mevcut veri setiyle sınırlıdır.
+  </div>
+
+  <!-- 1. KPI GRID -->
+  <section>
+    <div class="shead"><h2>KPI Özeti</h2><span class="stag">TEMEL METRİKLER</span></div>
+    <div class="kpis">
+      <div class="kpi">
+        <span class="label">ANALİZ EDİLEN POST</span>
+        <div class="v">20 <small>Reel</small></div>
+        <div class="note">Kas. 2025 – Haz. 2026 arası</div>
+      </div>
+      <div class="kpi">
+        <span class="label">TOPLAM BEĞENİ</span>
+        <div class="v">3.622</div>
+        <div class="note">Ort. 181 / post · Medyan ~140</div>
+      </div>
+      <div class="kpi">
+        <span class="label">TOPLAM GÖRÜNTÜLEME</span>
+        <div class="v">61.025</div>
+        <div class="note">Ort. 3.051 / post</div>
+      </div>
+      <div class="kpi">
+        <span class="label">TOPLAM YORUM</span>
+        <div class="v">75</div>
+        <div class="note">Ort. 3,8 / post</div>
+      </div>
+      <div class="kpi good">
+        <span class="label">EN İYİ POST</span>
+        <div class="v">405 <small>beğeni</small></div>
+        <div class="note">Kas beslenme / metabolizma odaklı Reel</div>
+      </div>
+      <div class="kpi alert">
+        <span class="label">CEVAPLANMAMIS YORUM</span>
+        <div class="v">37</div>
+        <div class="note">%49 cevaplanmama oranı (75 yorumdan)</div>
+      </div>
+      <div class="kpi alert">
+        <span class="label">EĞİLİM</span>
+        <div class="v">Düşüş</div>
+        <div class="note">220K takipçiye karşı ort. 181 beğeni → %0,08 etkileşim oranı</div>
+      </div>
+      <div class="kpi">
+        <span class="label">ORT. BEĞENİ / POST</span>
+        <div class="v">181</div>
+        <div class="note">220K takipçi için sektör beklentisi ~2.200 (1%)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. POST PERFORMANS TABLOSU -->
+  <section>
+    <div class="shead"><h2>Post Performansı</h2><span class="stag">BEĞENİYE GÖRE SIRALAMA</span></div>
+    <p class="lead">20 Reel, beğeni sayısına göre sıralanmıştır. En yüksek performanslı içerikler eğitici / uyarıcı formattadır.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>İçerik</th>
+          <th class="n sortkey">Beğeni</th>
+          <th class="n">Görüntüleme</th>
+          <th class="n">Yorum</th>
+          <th>Tarih</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="n">1</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DQqlEpbAqyn/" target="_blank">Doğru beslenme olmazsa kas kaybı, halsizlik ve kontrolsüz geri kilo alımı...</a>
+            <div class="post-sub">Kas/metabolizma eğitim Reeli</div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </td>
+          <td class="n"><b>405</b></td>
+          <td class="n">5.928</td>
+          <td class="n">12</td>
+          <td>05.11.2025</td>
+        </tr>
+        <tr>
+          <td class="n">2</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DRSg4FggP0B/" target="_blank">Kemik sağlığında yeni nesil takviye: "New Life Algosteel"</a>
+            <div class="post-sub">Sponsorlu içerik / takviye tanıtımı</div>
+            <div class="bar"><i style="width:96%"></i></div>
+          </td>
+          <td class="n">389</td>
+          <td class="n">7.422</td>
+          <td class="n">8</td>
+          <td>20.11.2025</td>
+        </tr>
+        <tr>
+          <td class="n">3</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DTkYYFlglwn/" target="_blank">Menopozda gözden kaçan 9 beslenme detayı</a>
+            <div class="post-sub">Eğitici sağlık içeriği</div>
+            <div class="bar"><i style="width:83%"></i></div>
+          </td>
+          <td class="n">338</td>
+          <td class="n">3.471</td>
+          <td class="n">9</td>
+          <td>16.01.2026</td>
+        </tr>
+        <tr>
+          <td class="n">4</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DWx2Hz9Ah8E/" target="_blank">2 soruda gaz, şişkinlik, ödem — pratik tarif</a>
+            <div class="post-sub">Q&A formatı / pratik çözüm</div>
+            <div class="bar"><i style="width:76%"></i></div>
+          </td>
+          <td class="n">307</td>
+          <td class="n">4.113</td>
+          <td class="n">11</td>
+          <td>06.04.2026</td>
+        </tr>
+        <tr>
+          <td class="n">5</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DWidjEdAu6P/" target="_blank">En çok hangi öğün ya da saatte acıkıyorsun?</a>
+            <div class="post-sub">Etkileşim / soru formatı</div>
+            <div class="bar"><i style="width:72%"></i></div>
+          </td>
+          <td class="n">293</td>
+          <td class="n">3.947</td>
+          <td class="n">2</td>
+          <td>31.03.2026</td>
+        </tr>
+        <tr>
+          <td class="n">6</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DXysmLNgGsH/" target="_blank">Kendine iyi bakmaktan vazgeçme</a>
+            <div class="post-sub">Motivasyonel içerik</div>
+            <div class="bar"><i style="width:59%"></i></div>
+          </td>
+          <td class="n">239</td>
+          <td class="n">3.280</td>
+          <td class="n">9</td>
+          <td>01.05.2026</td>
+        </tr>
+        <tr>
+          <td class="n">7</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DYCrXQuiHWo/" target="_blank">DM kutumun yıldızları belli oldu — en çok gelen 2 soru</a>
+            <div class="post-sub">Q&A / DM bazlı içerik</div>
+            <div class="bar"><i style="width:52%"></i></div>
+          </td>
+          <td class="n">210</td>
+          <td class="n">2.928</td>
+          <td class="n">0</td>
+          <td>07.05.2026</td>
+        </tr>
+        <tr>
+          <td class="n">8</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DTzozQpAoQl/" target="_blank">Uykusuzluk sadece yorgunluk yapmaz — iştah, tatlı krizi bağlantısı</a>
+            <div class="post-sub">Eğitici / uyarıcı format</div>
+            <div class="bar"><i style="width:46%"></i></div>
+          </td>
+          <td class="n">188</td>
+          <td class="n">2.055</td>
+          <td class="n">3</td>
+          <td>22.01.2026</td>
+        </tr>
+        <tr>
+          <td class="n">9</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZDI4uEiu9I/" target="_blank">Diyete uyumlanmakta zorlanıyor musun?</a>
+            <div class="post-sub">Motivasyonel / problem çözücü</div>
+            <div class="bar"><i style="width:44%"></i></div>
+          </td>
+          <td class="n">178</td>
+          <td class="n">3.380</td>
+          <td class="n">6</td>
+          <td>01.06.2026</td>
+        </tr>
+        <tr>
+          <td class="n">10</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DZm2q21AfpU/" target="_blank">Diyeti bozduysan görüşmeden kaçma</a>
+            <div class="post-sub">Psikolojik destek / bağ kurma</div>
+            <div class="bar"><i style="width:36%"></i></div>
+          </td>
+          <td class="n">145</td>
+          <td class="n">1.684</td>
+          <td class="n">1</td>
+          <td>15.06.2026</td>
+        </tr>
+        <tr>
+          <td class="n">11</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DQzQgj8gpRc/" target="_blank">Mevsim sebzeleriyle hazırlanan salatalarda antioksidan avantajı</a>
+            <div class="post-sub">Beslenme bilgisi</div>
+            <div class="bar"><i style="width:30%"></i></div>
+          </td>
+          <td class="n">123</td>
+          <td class="n">2.242</td>
+          <td class="n">0</td>
+          <td>08.11.2025</td>
+        </tr>
+        <tr>
+          <td class="n">12</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DWokYsmAu8f/" target="_blank">Dün "kabızlıksavar" dedim, DM'ler doldu — bağırsak serisi</a>
+            <div class="post-sub">Seri tanıtımı / DM daveti</div>
+            <div class="bar"><i style="width:29%"></i></div>
+          </td>
+          <td class="n">117</td>
+          <td class="n">3.213</td>
+          <td class="n">0</td>
+          <td>02.04.2026</td>
+        </tr>
+        <tr>
+          <td class="n">13</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DUJKJDGgjt1/" target="_blank">Sanat iyileştirir — zihnin sustuğu anlar</a>
+            <div class="post-sub">Yaşam tarzı / duygu paylaşımı</div>
+            <div class="bar"><i style="width:28%"></i></div>
+          </td>
+          <td class="n">114</td>
+          <td class="n">2.345</td>
+          <td class="n">10</td>
+          <td>30.01.2026</td>
+        </tr>
+        <tr>
+          <td class="n">14</td>
+          <td class="cap"><a href="https://www.instagram.com/p/DW3-ZJvAshr/" target="_blank">İçelim içirelim — yeterli su alımı</a>
+            <div class="post-sub">Su tüketimi hatırlatması</div>
+            <div class="bar"><i style="width:26%"></i></div>
+          </td>
+          <td class="n">107</td>
+          <td class="n">1.885</td>
+          <td class="n">0</td>
+          <td>08.04.2026</td>
+        </tr>
+        <tr>
+          <td class="n">15–20</td>
+          <td class="cap">Diğer 6 Reel (yeşillik, hayır diyebilme, fırınlanmış elma, yemek taşıma, kilo koruma, motivasyon)</td>
+          <td class="n">469</td>
+          <td class="n">13.335</td>
+          <td class="n">4</td>
+          <td>Kas–Mar 2025–2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3. CEVAPLANMAMIS YORUMLAR -->
+  <section>
+    <div class="shead"><h2>Cevaplanmamış Yorumlar</h2><span class="stag">YANIT BEKLİYOR</span></div>
+    <p class="lead">Analizde 37 cevaplanmamış yorum tespit edildi. 75 toplam yorumun %49'u yanıtsız kalmıştır. Bu oran 220K takipçi hesabı için ciddi bir bağlantı kaybını göstermektedir. İçinde soru, takviye talebi ve danışmanlık niyeti taşıyan yorumlar öne çıkmaktadır.</p>
+    <div class="cmts">
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@melekergin64</span><span class="tag soru">SORU</span></div>
+        <div class="txt">Polikistik over sendromu olan kişi günde kaç öğün beslenmeli?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXysmLNgGsH/" target="_blank">Kendine iyi bakmaktan vazgeçme (01.05.2026)</a></div>
+        <div class="st no">Yanıt verilmedi — potansiyel danışmanlık talebi</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@sibelbanaz</span><span class="tag soru">SORU</span></div>
+        <div class="txt">Magnezyum ve omega olarak hangi markayı tavsiye edersiniz, kaç tane, hangi saatlerde almalı?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DXysmLNgGsH/" target="_blank">Kendine iyi bakmaktan vazgeçme (01.05.2026)</a></div>
+        <div class="st no">Yanıt verilmedi — ürün önerisi talebi</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@semabertan</span><span class="tag soru">SORU</span></div>
+        <div class="txt">Benim midem rahatsız, sirkeli ve limonlu su içemiyorum, gündüz saat 3'ten sonra çok açıkıyorum akşam 6-7'ye kadar, hâlâ açım, nedendir?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DWidjEdAu6P/" target="_blank">En çok hangi saatte acıkıyorsun? (31.03.2026)</a></div>
+        <div class="st no">Yanıt verilmedi — özel durum sorusu, danışmanlık kapısı</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@yetendalgic</span><span class="tag soru">SORU</span></div>
+        <div class="txt">Çok güzel bilgiler veriyorsunuz, ağzınıza emeğinize sağlık, bunu eczaneden temin edebilir miyiz, yerini söyler misiniz?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DRSg4FggP0B/" target="_blank">Kemik takviyesi Reeli (16.04.2026 tarihli yorum)</a></div>
+        <div class="st no">Yanıt verilmedi — ürün/temin sorusu</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@mdni_1930</span><span class="tag satis">SATIN ALMA</span></div>
+        <div class="txt">Nereden temin edebilirim?</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DRSg4FggP0B/" target="_blank">New Life Algosteel takviye tanıtımı (20.11.2025)</a></div>
+        <div class="st no">Yanıt verilmedi — doğrudan satın alma niyeti</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@fatma__soyal</span><span class="tag katilim">KATILIM</span></div>
+        <div class="txt">Çok değerli bilgiler</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DQqlEpbAqyn/" target="_blank">Kas beslenme / metabolizma Reeli (05.11.2025)</a></div>
+        <div class="st no">Yanıt verilmedi — en yüksek performanslı içerikte bağlantı fırsatı kaçırıldı</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@visbody.tr</span><span class="tag etkilesim">ETKİLEŞİM</span></div>
+        <div class="txt">Şahane bilgiler, emeğinize sağlık.</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DRSg4FggP0B/" target="_blank">Kemik takviyesi Reeli (25.11.2025)</a></div>
+        <div class="st no">Yanıt verilmedi — markalar ve iş ortaklıkları için de etkileyici izlenim</div>
+      </div>
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@visbody.tr</span><span class="tag katilim">KATILIM</span></div>
+        <div class="txt">Kaliteli çalışmalarınızın sürekliliği gerçekten ilham verici. Başarınız bol olsun.</div>
+        <div class="meta"><a href="https://www.instagram.com/p/DReXPRnAsp0/" target="_blank">Kilo koruma / sürdürülebilir alışkanlıklar (01.12.2025)</a></div>
+        <div class="st no">Yanıt verilmedi — ağ geliştirme fırsatı</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TEMATİK DAĞILIM -->
+  <section>
+    <div class="shead"><h2>Tematik Dağılım</h2><span class="stag">İÇERİK KÜMELERI</span></div>
+    <p class="lead">20 Reel'de öne çıkan 5 ana tema. Her tema için etkileşim yoğunluğu ve yorum tipi ayrıştırılmıştır.</p>
+    <div class="themegrid">
+      <div class="themecard">
+        <h3>Eğitici / Uyarıcı İçerik</h3>
+        <p>Kas kaybı, menopoz beslenmesi, uyku-iştah ilişkisi, bağırsak sağlığı gibi spesifik konular işlenmektedir. Bu format en yüksek beğeni toplamaktadır. Neden–sonuç bağlantısı kuran içerikler öne çıkmaktadır.</p>
+        <div class="theme-tags">
+          <span class="ttag">metabolizma</span><span class="ttag">menopoz</span><span class="ttag">uyku-iştah</span><span class="ttag">bağırsak</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~280 · 7 post</div>
+      </div>
+      <div class="themecard">
+        <h3>Q&A / DM Bazlı Yanıtlar</h3>
+        <p>Takipçilerden gelen sık soruları yanıtlayan format. "En çok yazdığınız sorular", "DM kutumun yıldızları" gibi açılışlar güçlü rezonans yaratmaktadır. Takipçilerle ortaklaşma hissi oluşturur.</p>
+        <div class="theme-tags">
+          <span class="ttag">Q&A</span><span class="ttag">DM bazlı</span><span class="ttag">soru yanıtları</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~258 · 3 post</div>
+      </div>
+      <div class="themecard">
+        <h3>Motivasyonel / Psikolojik Destek</h3>
+        <p>Diyet süreci boyunca motivasyonu pekiştiren içerikler. "Diyeti bozduysan kaçma", "başlamak zor devam etmek daha zor" tarzı mesajlar duygusal rezonans sağlamaktadır. Yorum oranı görece yüksektir.</p>
+        <div class="theme-tags">
+          <span class="ttag">motivasyon</span><span class="ttag">sürdürülebilirlik</span><span class="ttag">psikolojik destek</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~162 · 4 post</div>
+      </div>
+      <div class="themecard">
+        <h3>Sponsorlu / Takviye Tanıtımı</h3>
+        <p>Arçelik, Herbalife ve New Life Algosteel gibi markalar için yapılan içerikler. En yüksek görüntüleme rakamlarına ulaşabiliyor (7.422 görüntüleme) ancak yorum türü organik içeriklerden farklılaşıyor.</p>
+        <div class="theme-tags">
+          <span class="ttag">sponsorlu</span><span class="ttag">marka işbirliği</span><span class="ttag">takviye</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~389 (en yüksek!) · 1 post analiz edildi</div>
+      </div>
+      <div class="themecard">
+        <h3>Pratik Tarifler / Öneri</h3>
+        <p>Gaz-şişkinlik-ödem çözümü, su tüketimi, mevsim sebzesi, fırınlanmış meyve gibi pratik öneriler. Kısa içerikler bu segmentte baskın. Randevu / DM çekme potansiyeli mevcuttur.</p>
+        <div class="theme-tags">
+          <span class="ttag">pratik tarif</span><span class="ttag">ödem</span><span class="ttag">su tüketimi</span><span class="ttag">hafif içerik</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~112 · 5 post</div>
+      </div>
+      <div class="themecard">
+        <h3>Yaşam Tarzı / Kişisel Paylaşım</h3>
+        <p>Sanat, kendine iyi bakma, duygusal iyilik gibi beslenme dışı temalar. Beğeni düşük ama yorum oranı görece yüksek. Hesabı "sadece diyetisyen" profilinden çıkararak kişisel markayı güçlendirmektedir.</p>
+        <div class="theme-tags">
+          <span class="ttag">kişisel</span><span class="ttag">yaşam tarzı</span><span class="ttag">kendinle ilgilenme</span>
+        </div>
+        <div class="theme-stat">Ort. beğeni: ~114 · 1 post</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DUYGU ANALİZİ -->
+  <section>
+    <div class="shead"><h2>Duygu / Ton Analizi</h2><span class="stag">YORUM REAKSİYONLARI</span></div>
+    <p class="lead">Yorumlar duygu tonlarına göre segmentlere ayrılmıştır. Teşekkür/onay ve soru tipleri baskındır. Eleştiri yoktur.</p>
+    <div class="emogrid">
+      <div class="emocard">
+        <div class="el">TEŞEKKÜR / REZONANS</div>
+        <div class="ev">%52</div>
+        <div class="ebar"><i style="width:52%;background:var(--green)"></i></div>
+        <div class="ed">Emoji ağırlıklı sevgi yorumları ve teşekkürler. "Şahane bilgiler", "çok değerli", "emeğinize sağlık" örüntüsü. İçeriğin beğenildiğini fakat aktif yanıt beklenmediğini gösteriyor.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">SORU / BİLGİ TALEBİ</div>
+        <div class="ev">%28</div>
+        <div class="ebar"><i style="width:28%;background:var(--amber)"></i></div>
+        <div class="ed">Spesifik sorular içermektedir: öğün sayısı, takviye markası, temin yeri, kişisel durum açıklamaları. Bu yorumların büyük çoğunluğu cevaplanmamıştır — danışmanlık dönüşüm fırsatı kaçmaktadır.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">SATIN ALMA / RANDEVU NİYETİ</div>
+        <div class="ev">%8</div>
+        <div class="ebar"><i style="width:8%;background:var(--red)"></i></div>
+        <div class="ed">"Nereden temin edebilirim?", "danışmak istiyorum" sinyalleri. Bunların tamamı cevaplanmamıştır. 220K kitlede bu oran sayısal olarak önemli danışan kaybına işaret etmektedir.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">KİŞİSEL DENEYİM / TANIK</div>
+        <div class="ev">%7</div>
+        <div class="ebar"><i style="width:7%;background:var(--dim)"></i></div>
+        <div class="ed">Takipçiler kendi deneyimlerini, sağlık sorunlarını paylaşmaktadır. Bu tip yorumlar güven içeriklerine ilham verebilir, repurpose edilebilir sosyal kanıt potansiyeli taşır.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">GÖRÜNÜRLÜK / KİŞİSEL YORUM</div>
+        <div class="ev">%5</div>
+        <div class="ebar"><i style="width:5%;background:var(--dim)"></i></div>
+        <div class="ed">"Saçlarınız koyulaşmış, tanıyamadım", "topukluyla evde dolaşıyorsunuz" gibi görünüme yönelik yorumlar. Kişisel markayı güçlendirme fırsatı, basit bir yanıtla uzun süreli bağ kurulabilir.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">ELEŞTİRİ / İTİRAZ</div>
+        <div class="ev">%0</div>
+        <div class="ebar"><i style="width:1%;background:var(--dim)"></i></div>
+        <div class="ed">Analiz edilen veri setinde eleştiri veya itiraz yorumu tespit edilmemiştir. Kitle içerik kalitesini benimsemiştir; fakat pasif bir benimseme söz konusudur (düşük etkileşim oranı).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. İÇERİK TİPİ KORELASYONU -->
+  <section>
+    <div class="shead"><h2>İçerik Tipi Korelasyonu</h2><span class="stag">FORMAT BAZLI ETKİLEŞİM</span></div>
+    <p class="lead">İçerik uzunluğu, format tipi ve müzik kullanımının etkileşimle ilişkisi değerlendirilmiştir.</p>
+    <div class="grid4">
+      <div class="ctype">
+        <h3>Kısa Format (&lt;20 sn)</h3>
+        <div class="cnt">6 post</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat">
+            <div class="sl">ORT. BEĞENİ</div>
+            <div class="sv hi">117</div>
+          </div>
+          <div class="ctype-stat">
+            <div class="sl">ORT. GÖRÜNTÜLEME</div>
+            <div class="sv">2.415</div>
+          </div>
+        </div>
+        <div class="note">Su, sebze, hafif öneriler. Hızlı tüketilir, kaydedilmez. Bağ kurma kapasitesi düşük.</div>
+      </div>
+      <div class="ctype">
+        <h3>Orta Format (20–60 sn)</h3>
+        <div class="cnt">8 post</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat">
+            <div class="sl">ORT. BEĞENİ</div>
+            <div class="sv hi">203</div>
+          </div>
+          <div class="ctype-stat">
+            <div class="sl">ORT. GÖRÜNTÜLEME</div>
+            <div class="sv">3.140</div>
+          </div>
+        </div>
+        <div class="note">Eğitici listicle'lar ve Q&A. En dengeli performans. Menopoz, gaz-ödem, DM yanıtları bu grupta.</div>
+      </div>
+      <div class="ctype">
+        <h3>Uzun Format (&gt;60 sn)</h3>
+        <div class="cnt">6 post</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat">
+            <div class="sl">ORT. BEĞENİ</div>
+            <div class="sv hi">286</div>
+          </div>
+          <div class="ctype-stat">
+            <div class="sl">ORT. GÖRÜNTÜLEME</div>
+            <div class="sv">4.156</div>
+          </div>
+        </div>
+        <div class="note">Sponsorlu içerikler ve derin beslenme konuları bu grupta. En yüksek beğeni ve görüntüleme ortalaması.</div>
+      </div>
+      <div class="ctype">
+        <h3>Orijinal Ses</h3>
+        <div class="cnt">15/20 post</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat">
+            <div class="sl">ORT. BEĞENİ</div>
+            <div class="sv hi">178</div>
+          </div>
+          <div class="ctype-stat">
+            <div class="sl">ORT. GÖRÜNTÜLEME</div>
+            <div class="sv">2.980</div>
+          </div>
+        </div>
+        <div class="note">Büyük çoğunluk orijinal ses kullanıyor. Trend sesi kullanan 5 post ortalamada daha düşük — algoritma farkı değil içerik farkı daha belirleyici.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. STRATEJİK ÇIKARIMLAR -->
+  <section>
+    <div class="shead"><h2>Stratejik Çıkarımlar</h2><span class="stag">8 İNSIGHT</span></div>
+    <div class="insights">
+      <div class="ins critical">
+        <div class="it">KRİTİK</div>
+        <h3>220K Kitlede %0,08 Etkileşim — Ciddi Kopukluk</h3>
+        <p>20 Reel'in toplam beğeni ortalaması 181. 220K takipçi için sektör beklentisi %1 oran = ~2.200 beğeni/post. Gerçek oran bunun 12 katı altında. Kitle büyümüş, içerik henüz bu kitleyle konuşamıyor.</p>
+        <div class="act"><b>Aksiyon:</b> İçerik stratejisini "takipçi büyütme" değil "mevcut kitleyi aktive etme" odağına çevir. İlk adım: soruya yanıt veren mini seriler.</div>
+      </div>
+      <div class="ins critical">
+        <div class="it">KRİTİK</div>
+        <h3>37 Cevaplanmamış Yorum — Danışmanlık Kaybı</h3>
+        <p>Takviye talebi, PCOS sorusu, kişisel durum açıklaması gibi yorumlar yanıtsız kalmıştır. Bunların en az 5'i doğrudan danışmanlık dönüşümüne açık kapı niteliğindedir. Her yanıtsız yorum kaybedilen bir danışan adayı.</p>
+        <div class="act"><b>Aksiyon:</b> Haftalık yorum yanıt rutini oluştur. "DM'ye yaz" yönlendirmesi ile sistemli takip. Otomasyon ile yorum alarmı kurulabilir.</div>
+      </div>
+      <div class="ins warning">
+        <div class="it">UYARI</div>
+        <h3>Sponsorlu İçerik Ton Çatışması</h3>
+        <p>New Life Algosteel sponsorlu Reeli 389 beğeniyle zirvededir ancak organik eğitici içeriklerle ton kopukluğu yaratmaktadır. Takipçiler hangi içeriğe güveneceğini sorguluyabilir. Marka güvenilirliği zamanla aşınabilir.</p>
+        <div class="act"><b>Aksiyon:</b> Sponsorlu içeriklerde klinik güvence tonunu öne çıkar. Marka işbirliği = uzmanlık doğrulaması olarak çerçevele, ürün tanıtımı olarak değil.</div>
+      </div>
+      <div class="ins warning">
+        <div class="it">UYARI</div>
+        <h3>Güçlü Uzmanlık Hikayesi Görünmez</h3>
+        <p>Hacettepe + UCLA + California State + Cedars Sinai + Jenny Craig geçmişi Türkiye'de benzersizdir. Hiçbir içerikte bu hikaye yoktur. Takipçiler bu farklılaştırıcıdan haberdar değil; rekabet avantajı kullanılmıyor.</p>
+        <div class="act"><b>Aksiyon:</b> Ayda bir "Nereden Geldim / Neden Bu Yolu Seçtim" türü kişisel Reel. Cedars Sinai / UCLA geçmişini otoriteli beslenme konularıyla birleştir.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Q&A Formatı En Yüksek Bağlantı Yaratıyor</h3>
+        <p>"En çok yazdığınız sorular", "DM kutumun yıldızları" formatları güçlü rezonans yaratıyor. Bu format sistematikleştirilirse hem etkileşim hem DM hacmi artacaktır. Takipçi sorularından içerik üretmek sürdürülebilir bir döngü oluşturur.</p>
+        <div class="act"><b>Aksiyon:</b> Haftada bir Q&A Reeli serisi başlat. Yorumlardan ve DM'lerden beslenen içerik havuzu oluştur. "Bu soruyu 47 kişi sordu" gibi sosyal kanıt göster.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Web Sitesi İçerik Havuzu Sosyal Medyaya Taşınmamış</h3>
+        <p>berrinyigit.com'da MIND diyeti, gebe beslenmesi, diyabet, tarif arşivi, sporcu beslenmesi gibi onlarca konu bulunmaktadır. Bunların hiçbiri sosyal medyaya repurpose edilmemiştir. Hazır içerik havuzu boşta durmaktadır.</p>
+        <div class="act"><b>Aksiyon:</b> Web sitesindeki her kategori için mini Reel serisi planla. 1 makale = 3 Reel prensibi. "Online Diyet Sistemi"ne yönlendiren CTA ile her içeriği huniye bağla.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Sosyal Medya Online Diyet Satışına Bağlı Değil</h3>
+        <p>Online Diyet Sistemi tamamen WhatsApp/telefon üzerinden satılmaktadır. 220K kitle bu programa hiç yönlendirilmemektedir. İçerik, satış hunisini beslemeden var olmaktadır. Sosyal medya aktif bir satış kanalına dönüştürülmemiş.</p>
+        <div class="act"><b>Aksiyon:</b> Her eğitici Reel'in CTA'sını "Online Diyet Sistemi"ne bağla. "Kaydol / DM'de bilgi al" yerine landing page + link-in-bio kurgusu oluştur.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Uzun Format İçerikler Daha Güçlü Performans Gösteriyor</h3>
+        <p>60 saniye üzeri Reeller ortalama 286 beğeni ve 4.156 görüntüleme almaktadır. Kısa formatlar (20 sn altı) 117 beğenide kalmaktadır. Derin içerik kitleyle daha güçlü bağ kurmaktadır; bu verinin içerik planlamasına yansıması gerekiyor.</p>
+        <div class="act"><b>Aksiyon:</b> Haftalık içerik mix'ini 60 sn+ formatlara kaydır. Konular: menopoz, özel hastalıklar, spesifik semptom çözümleri. Uzmanlığa dayalı derinlik, beğeniye çevriliyor.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot-l">
+    <div class="fname">NOMADES AGENCY</div>
+    <div class="fmeta">Bu rapor, @diyetisyenberrinyigit hesabına ait sınırlı veri örneği (son 20 Reel) üzerinden hazırlanmıştır.<br>Platform tarafından erişime sunulan verilerle sınırlıdır. Yeni lead araştırması / potansiyel müşteri analizi.</div>
+  </div>
+  <div class="foot-tl">Analiz Tarihi: Haziran 2026 · Nomades Agency</div>
+</footer>
+
+</body>
+</html>
