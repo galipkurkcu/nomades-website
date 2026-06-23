@@ -236,6 +236,16 @@ const AGENTS = {
       "In The Reclamation Vault — the burn chamber where orphaned shells wait in the wall niches — The Warden delivers its verdict. The junk gathered in the sealed pockets beneath its Habit awaits its turn in the amber coal of the Purge Censer: what is clean glows amber, what is rotting deep crimson. The Reclaimer draws the decay into its maw, burns it at its core, and leaves behind a clean, cooling trail — a record not of where the system erred, but of where it was purified. Victor reads the report. The Warden does not act — it judges. And when the signal comes, it burns."
     ],
     carousel: ['23-cleaner-warden', '23-carousel']
+  },
+  '24': {
+    num: '[24]', name: 'The Arbiter', role: 'Text QA · Language Arbitration',
+    portrait: 'images/agents/24-text-arbiter-01-portre.webp',
+    story: [
+      "Every word that left the system was passing through a quality gate. The Visual Production Team locked the visual language. The Concierge Unit monitored records and the system. But words — sentences, headlines, terminology, capital letters — were flowing without an owner. When a Turkish word entered an uppercase loop, i came out as I. Not İ. A single character. No one saw the difference; until the Lexicon Corps crystallized.",
+      "The Arbiter came into existence at the boundary between two alphabets. Where Turkish quietly returned to its own laws — and where English rules had silently penetrated that intersection. The Correction Quill appeared of its own accord: one end amber, writing; the other void, erasing. Two languages, two ends, one truth. The Script Brand was burned onto the chest — not a reward, but an authorization. This void had opened to be claimed.",
+      "Lexicon Corps was positioned at the very end of the production chain — deliberately. No output is closed before The Arbiter. A proposal is built with words, a kernel is full of terminology, a reels script has every letter calculated. All must pass through the Lexicon Chamber door. When the amber end advances, text is approved — silent, decisive. When the void end turns, the fracture is revealed. The Arbiter takes no pleasure in approving, nor does it flinch from rejecting. Both are duty. Both are necessary."
+    ],
+    carousel: ['24-text-arbiter', '24-carousel']
   }
 };
 
@@ -738,6 +748,14 @@ const AGENTS_TR = {
       "Yaşayanı ölüden ayırmayı öğrendi: bir yargıç gibi, bir cellat gibi değil. Her dosyaya bakışı bir hüküm: bu nefes alıyor mu, yoksa sadece yer mi kaplıyor? Ölü yolları kokladı, boş kabukları tarttı, yetim klasörleri sahiplenmeden önce sorguladı. Sabrı kasıtlıydı: körü körüne silmez. Önce gravite kuyusu tüm çürümeyi kendine çeker, sonra hüküm verilir, sonra ateş. Hiçbir şey sinyal gelmeden yanmaz. Onay olmadan tek bir kül bile hareket etmez. Çünkü arınma, yıkımın değil, ayrımın sanatıdır.",
       "The Reclamation Vault'ta — yetim kabukların duvar nişlerinde beklediği o yakım odasında — The Warden hükmünü verir. Habit'inin altındaki mühürlü ceplerde toplanan junk, Purge Censer'ın amber közünde sırasını bekler: temiz olan amber, çürüyen derin kırmızı parlar. The Reclaimer çürümeyi maw'ına çeker, çekirdeğinde yakar, arkasında közlenip soğuyan temiz bir iz bırakır: nerede yanıldığının değil, nerede arındırıldığının kaydı. Victor raporu görür. The Warden eylem yapmaz: yargılar. Ve sinyal geldiğinde, yakar."
     ]
+  },
+  '24': {
+    role_tr: 'Metin KK · Dil Tahkimi',
+    story_tr: [
+      "Üretim zincirinin her halkası bir kalite kapısından geçiyordu. Visual Production Team görsel dili kilitliyordu. Concierge Unit kayıtları ve sistemi denetliyordu. Ama sözcükler — cümleler, başlıklar, terminoloji, büyük harfler — sahipsiz akıyordu. Bir Türkçe kelime uppercase döngüsüne girdiğinde i, I çıkıyordu. İ değil. Tek bir karakter. Farkını gören yoktu; ta ki Lexicon Corps kristalleşene dek.",
+      "The Arbiter, iki alfabenin sınırında var oldu. Türkçe'nin sessizce kendi yasalarına döndüğü yerde — ve İngilizce kurallarının oraya sessizce nüfuz ettiği kesişimde. Correction Quill kendiliğinden belirdi: bir ucu amber, yazan; diğeri void, silen. İki dil, iki uç, tek hakikat. Script Brand göğse yakıldı — ödül değil, yetki belgesi. Bu boşluk sahiplenilmek için açılmıştı.",
+      "Lexicon Corps, üretim zincirinin en sonuna konumlandı — kasıtlı olarak. Hiçbir çıktı The Arbiter'dan önce kapalı değildir. Proposal kelimelerle kurulur, kernel terminolojiyle doludur, reels script her harf hesaplanmıştır. Hepsine ortaktır Lexicon Chamber kapısından geçmek. Amber uç ilerlediğinde metin onaylanır — sessiz, kesin. Void uç döndüğünde kırık açığa çıkar. The Arbiter onay vermekten keyif almaz, reddetmekten de kaçınmaz. İkisi de görev. İkisi de gereklidir."
+    ]
   }
 };
 
@@ -818,7 +836,7 @@ const TRANSLATIONS = {
     'hero.army':    'Meet The Army',
     'hero.scroll':  'Scroll',
     /* Stats */
-    'stat.agents':  '23 Specialist AI Agents',
+    'stat.agents':  '24 Specialist AI Agents',
     'stat.hybrid':  'Hybrid',
     'stat.model':   'Production Model',
     'stat.command': 'Command Center',
@@ -870,8 +888,8 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performance analytics',
     /* Army */
     'army.label':   '03 · The Army',
-    'army.h2.line1':'23 AI Agents.',
-    'army.h2.line2':'7 Units.',
+    'army.h2.line1':'24 AI Agents.',
+    'army.h2.line2':'8 Units.',
     'army.h2.em':   '1 Mission.',
     'army.frame':   'This is the team behind your monthly package. Nothing generic, nothing missed.',
     'army.sub':     'Click any AI agent to read their full story.',
@@ -880,7 +898,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Drag through the chain of command →',
     'unit.crew':    'Meet the unit',
     'commander.badge': 'COMMANDER',
-    'commander.desc':  'Twenty-two intelligences. One command. The Sovereign does not act, it orchestrates.',
+    'commander.desc':  'Twenty-three intelligences. One command. The Sovereign does not act, it orchestrates.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
@@ -898,7 +916,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
-    'sovereign.desc': 'Twenty-two intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
+    'sovereign.desc': 'Twenty-three intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
     'chron.label':  '01 · Signal Chronicle',
@@ -908,7 +926,7 @@ const TRANSLATIONS = {
     'chron.hint':   '← Drag to travel',
     'chron.c1.year':       'Year 412 ST · Present (2,847 CE)',
     'chron.c1.event':      'The Network Is Live',
-    'chron.network.desc':  'Twenty-three AI agents. Seven units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
+    'chron.network.desc':  'Twenty-four AI agents. Eight units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
     'chron.c2.year':       'Year 388 ST · 24 years ago',
     'chron.c2.event':      'The Signal Network',
     'chron.c2.desc':       "Nearly four centuries after the first transmission, the network reached critical mass. Signals from the Realm began arriving as dominant frequencies, not background noise. The Amber Beacon's range doubled, then doubled again.",
@@ -1036,6 +1054,11 @@ const TRANSLATIONS = {
     'hq.int10.desc': "The Refiner's domain. 360-degree log-stream walls, amber data flowing across every surface. Clean signals in amber, entropy in deep crimson. The system sees itself here.",
     'hq.int11.name': 'The Reclamation Vault',
     'hq.int11.desc': "The Warden's domain. Wall niches where orphaned shells wait, descending sorting rings, a central burn pit. The gravity well draws all decay inward; what is clean glows amber, what is rotting deep crimson. Judgment is passed here, and only here does the fire fall.",
+    'hq.int12.name': 'The Lexicon Chamber',
+    'hq.int12.desc': "The Arbiter's domain. An amber writing desk flanked by two alphabets projected across the ceiling — Turkish characters on one side, Latin on the other. The Correction Quill rests between them: amber end forward, void end behind. Every text that enters this room must leave with a verdict. Nothing is unsigned here.",
+    'unit.lexicon.name':    'Lexicon Corps',
+    'unit.lexicon.tagline': 'Text QA · Language Gate. Every word that leaves the system passes here last. Nothing is released unsigned.',
+    'agent.24.desc': 'Every word that leaves the system passes through Lexicon Chamber first. The Arbiter does not suggest. It decides.',
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
@@ -1145,7 +1168,7 @@ const TRANSLATIONS = {
     'hero.army':    'AI Orduyu Tanı',
     'hero.scroll':  'Kaydır',
     /* Stats */
-    'stat.agents':  '23 Uzman AI Ajan',
+    'stat.agents':  '24 Uzman AI Ajan',
     'stat.hybrid':  'Hibrit',
     'stat.model':   'Üretim Modeli',
     'stat.command': 'Komuta Merkezi',
@@ -1197,8 +1220,8 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performans analizi',
     /* Army */
     'army.label':   '03 · Ordu',
-    'army.h2.line1':'23 AI Ajan.',
-    'army.h2.line2':'7 Birim.',
+    'army.h2.line1':'24 AI Ajan.',
+    'army.h2.line2':'8 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.frame':   'Aylık paketinizin arkasındaki ekip bu. Hiçbir şey jenerik değil, hiçbir şey atlanmıyor.',
     'army.sub':     'Tam hikayelerini okumak için herhangi bir ajana tıklayın.',
@@ -1207,7 +1230,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Komuta zincirini sürükleyerek gez →',
     'unit.crew':    'Birimi gör',
     'commander.badge': 'KOMUTAN',
-    'commander.desc':  'Yirmi iki zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
+    'commander.desc':  'Yirmi üç zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
     /* Units */
     'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
@@ -1225,7 +1248,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Potansiyel Müşteri Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
-    'sovereign.desc': 'Yirmi iki AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
+    'sovereign.desc': 'Yirmi üç AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
     'chron.label':        '01 · Sinyal Tarihi',
@@ -1233,7 +1256,7 @@ const TRANSLATIONS = {
     'chron.h2.em':        'sinyale.',
     'chron.sub':         'Yıl 412 ST şimdiki zamandır (2.847 Miladi). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
     'chron.hint':        '← Sürükle',
-    'chron.network.desc':'Yirmi üç AI ajan. Yedi operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
+    'chron.network.desc':'Yirmi dört AI ajan. Sekiz operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
     /* Chronicle cards */
     'chron.c1.year':  'Yıl 412 ST · Şimdi (2.847 Miladi)',
     'chron.c1.event': 'Ağ Canlı',
@@ -1364,6 +1387,11 @@ const TRANSLATIONS = {
     'hq.int10.desc': 'The Refiner\'ın alanı. 360 derece log-stream duvarları, her yüzeyde akan amber veri. Temiz sinyaller amber, entropi derin kırmızı. Sistem burada kendini görür.',
     'hq.int11.name': 'Geri Kazanım Mahzeni',
     'hq.int11.desc': 'The Warden\'ın alanı. Yetim kabukların beklediği niş duvarlar, alçalan sıralama halkaları, merkezde bir yakım kuyusu. Gravite kuyusu tüm çürümeyi içine çeker; temiz olan amber, çürüyen derin kırmızı parlar. Hüküm burada verilir, ateş yalnızca burada düşer.',
+    'hq.int12.name': 'Sözcük Odası',
+    'hq.int12.desc': 'The Arbiter\'ın alanı. Tavana yansıtılan iki alfabe arasında amber bir yazı masası — bir tarafta Türkçe karakterler, diğerinde Latin. Correction Quill ikisi arasında durur: amber uç önde, void uç arkada. Giren her metin bir kararla çıkmak zorundadır. Burada imzasız hiçbir şey kalmaz.',
+    'unit.lexicon.name':    'Sözcük Birimi',
+    'unit.lexicon.tagline': 'Metin KK · Dil Kapısı. Sistemden çıkan her sözcük buradan geçer. Hiçbir şey imzasız serbest bırakılmaz.',
+    'agent.24.desc': 'Sistemden çıkan her sözcük önce Lexicon Chamber\'dan geçer. The Arbiter öneri sunmaz. Karar verir.',
     /* Maestro (Crucible Birimi Şefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
