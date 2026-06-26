@@ -25,6 +25,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:
   line-height:1.6;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
 h1,h2,h3{font-family:var(--font);letter-spacing:-0.01em}
+.mono,.num{font-family:var(--font);font-variant-numeric:tabular-nums}
 .label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
 
 /* HEADER */
@@ -40,13 +41,11 @@ header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.92);backdrop-
 .htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
 .htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
 .htools{display:flex;align-items:center;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--amber);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--amber)}
 .btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
   padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
 .btn:hover{border-color:var(--amber);color:var(--amber)}
-
-/* BANNER */
-.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
-.banner b{color:var(--amber);font-weight:700}
 
 /* SECTIONS */
 section{margin-bottom:54px;counter-increment:secnum}
@@ -69,6 +68,10 @@ section{margin-bottom:54px;counter-increment:secnum}
 .kpi.good .v{color:var(--amber)}
 .kpi.span4{grid-column:span 4}
 
+/* BANNER */
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
+
 /* TABLE */
 table{width:100%;border-collapse:collapse;font-size:.88rem}
 th,td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--border)}
@@ -90,18 +93,10 @@ tr:hover td{background:var(--surface)}
 
 /* THEME LISTS */
 .tlist .trow{display:flex;align-items:center;gap:12px;margin-bottom:11px}
-.tlist .tname{flex:0 0 190px;font-size:.84rem}
+.tlist .tname{flex:0 0 180px;font-size:.84rem}
 .tlist .tbar{flex:1;height:16px;background:var(--surface2);border-radius:2px;overflow:hidden}
 .tlist .tbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
-.tlist .tval{flex:0 0 70px;text-align:right;font-size:.78rem;color:var(--dim);font-variant-numeric:tabular-nums}
-
-/* COMMENT CATEGORY */
-.cmtcat{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ccat{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
-.ccat .cname{font-size:.84rem;font-weight:700;margin-bottom:6px}
-.ccat .ccount{font-size:1.6rem;font-weight:800;color:var(--amber);line-height:1;margin-bottom:8px}
-.ccat .cdesc{font-size:.8rem;color:var(--dim);line-height:1.55}
-.ccat.high .ccount{color:var(--amber)}
+.tlist .tval{flex:0 0 80px;text-align:right;font-size:.78rem;color:var(--dim);font-variant-numeric:tabular-nums}
 
 /* INSIGHTS */
 .insights{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -118,24 +113,23 @@ tr:hover td{background:var(--surface)}
 .ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.55}
 .ins .act b{color:var(--amber)}
 
-/* SENTIMENT */
-.sentbox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.sent{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
-.sent .stitle{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);margin-bottom:8px}
-.sent .spct{font-size:1.8rem;font-weight:800;line-height:1;color:var(--amber)}
-.sent .sdesc{font-size:.79rem;color:var(--dim);margin-top:7px;line-height:1.5}
+/* YORUM KATEGORİ */
+.catlist{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.catcard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px}
+.catcard .cn{font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:6px}
+.catcard h4{font-size:.96rem;font-weight:700;margin-bottom:6px}
+.catcard .cc{font-size:1.5rem;font-weight:800;color:var(--amber);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.catcard p{font-size:.83rem;color:var(--dim);line-height:1.55}
 
 /* FOOTER */
 footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber)}
 .foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
-.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
-.flogo{width:28px;filter:invert(1);opacity:.5}
-[data-theme="light"] .flogo{filter:none}
+.foot-r{font-size:.78rem;color:var(--dim);font-style:italic}
 
 @media(max-width:880px){
   .kpis{grid-template-columns:repeat(2,1fr)} .kpi.span4{grid-column:span 2}
-  .grid2,.cmtcat,.insights,.sentbox{grid-template-columns:1fr}
+  .grid2,.catlist,.insights{grid-template-columns:1fr}
   .shead h2{font-size:1.5rem}
   footer{flex-direction:column;align-items:flex-start}
 }
@@ -146,7 +140,24 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   section{page-break-inside:avoid}
 }
-</style>
+
+/* COMMENT CATEGORY */
+.cmtcat{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ccat{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
+.ccat .cname{font-size:.84rem;font-weight:700;margin-bottom:6px}
+.ccat .ccount{font-size:1.6rem;font-weight:800;color:var(--amber);line-height:1;margin-bottom:8px}
+.ccat .cdesc{font-size:.8rem;color:var(--dim);line-height:1.55}
+.ccat.high .ccount{color:var(--amber)}
+/* SENTIMENT */
+.sentbox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sent{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
+.sent .stitle{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);margin-bottom:8px}
+.sent .spct{font-size:1.8rem;font-weight:800;line-height:1;color:var(--amber)}
+.sent .sdesc{font-size:.79rem;color:var(--dim);margin-top:7px;line-height:1.5}
+.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+.flogo{width:28px;filter:invert(1);opacity:.5}
+[data-theme="light"] .flogo{filter:none}
+.grid2,.cmtcat,.insights,.sentbox{grid-template-columns:1fr}</style>
 </head>
 <body data-theme="dark">
 <header>
@@ -414,7 +425,7 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
       <p class="fname" style="margin-top:8px">NOMADES AGENCY</p>
       <p class="fmeta">@diyetisyenberrinyigit · İçerik Performans Analizi · Veri: 2 Kasım 2025 – 15 Haziran 2026 (20 Reel)<br>Tüm metrikler ham veriden türetilmiştir · Gizli / Dahili Kullanım</p>
     </div>
-    <p class="foot-tl">we don't settle for good, we seek perfection</p>
+    <p class="foot-r">we don't settle for good, we seek perfection</p>
   </footer>
 </div>
 

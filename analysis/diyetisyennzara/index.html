@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ersin Özdemir — Diyabetli Diyetisyen — İçerik Performans Analizi</title>
+<title>Diyetisyen Zara Bekar — İçerik Performans Analizi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -141,6 +141,10 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
   section{page-break-inside:avoid}
 }
 
+.post-sub{font-size:.72rem;color:var(--dim);margin-top:3px}
+.pinned-badge{display:inline-block;background:rgba(240,170,0,.12);border:1px solid rgba(240,170,0,.3);
+  color:var(--amber);font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:2px;margin-left:6px;vertical-align:middle;letter-spacing:.05em}
+/* CONTENT TYPE CARDS */
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .ctype{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
 .ctype h3{font-size:.95rem;font-weight:700;margin-bottom:4px}
@@ -151,6 +155,7 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
 .ctype-stat .sv{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums}
 .ctype-stat .sv.hi{color:var(--amber)}
 .ctype .note{font-size:.72rem;color:var(--dim);margin-top:10px;line-height:1.5}
+/* EMOTION CARDS */
 .emogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .emocard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
 .emocard .el{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--dim);margin-bottom:8px}
@@ -158,6 +163,7 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
 .emocard .ebar{height:4px;background:var(--surface2);border-radius:2px;margin-bottom:8px;overflow:hidden}
 .emocard .ebar > i{display:block;height:100%;border-radius:2px}
 .emocard .ed{font-size:.78rem;color:var(--dim);line-height:1.5}
+/* COMMENTS */
 .cmts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cmt{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:15px 17px}
 .cmt.unanswered{border-left:3px solid var(--red)}
@@ -176,6 +182,7 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
 .tag.katilim{background:rgba(76,175,137,.15);color:var(--green)}
 .tag.etkilesim{background:rgba(122,122,136,.15);color:var(--dim)}
 .tag.itiraz{background:rgba(232,168,58,.15);color:var(--amber)}
+/* THEME CARDS */
 .themegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .themecard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px}
 .themecard h3{font-size:1rem;font-weight:700;margin-bottom:10px}
@@ -183,6 +190,11 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
 .theme-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .ttag{background:var(--surface2);border:1px solid var(--border);color:var(--dim);font-size:.65rem;padding:3px 8px;border-radius:2px}
 .theme-stat{font-size:.72rem;color:var(--amber);margin-top:8px}
+/* KOPYA KUTUSU */
+.kopya-box{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-top:16px}
+.kopya-box .kl{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--dim);margin-bottom:8px}
+.kopya-box p{font-size:.84rem;color:var(--text);line-height:1.6}
+/* TABLE NOTE */
 .tnote{margin-top:12px;font-size:.72rem;color:var(--dim)}
 .foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
 .grid2,.cmts,.insights,.themegrid,.emogrid{grid-template-columns:1fr}
@@ -196,12 +208,12 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
       <div class="hlogo-div"></div>
       <div class="htitle">
         <p class="heyebrow">İÇERİK PERFORMANS ANALİZİ</p>
-        <h1>Ersin Özdemir — Diyabetli Diyetisyen — @diyabetli.diyetisyen</h1>
-        <div class="sub">Veri aralığı: 25 May 2026 — 12 Haz 2026 · 5 içerik analiz edildi · Klinik / Estetik / Sağlık</div>
+        <h1>Diyetisyen Zara Bekar — @diyetisyennzara</h1>
+        <div class="sub">Veri aralığı: 27 Nisan 2026 — 18 Haziran 2026 · 20 içerik analiz edildi · Klinik / Sağlık sektörü</div>
       </div>
     </div>
     <div class="htools no-print">
-      <span class="badge">2 Yanıtsız Soru/Talep</span>
+      <span class="badge">15 Yanıtsız Soru</span>
       <button class="btn" id="pdfBtn">PDF olarak Kaydet</button>
       <button class="btn" id="themeBtn">🌙</button>
     </div>
@@ -211,30 +223,28 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
 <div class="wrap">
 
   <div class="banner">
-    <b>Veri kapsamı notu:</b> Bu rapor, veri kaynağının erişime sunduğu sınırlı örneklem üzerinden hazırlanmıştır. Platform, tüm geçmişe yönelik içerik ve etkileşim verilerini paylaşmadığından analiz, hesabın gerçek performansının tamamını yansıtmıyor olabilir. Gösterilen metrikler ve sıralamalar mevcut veri setiyle sınırlıdır.
+    <b>Veri kapsamı notu:</b> Bu analiz, veri kaynağının erişime sunduğu 20 içerik (27 Nisan 2026 – 18 Haziran 2026, ~52 günlük pencere) üzerinden hazırlanmıştır. Hesabın geçmiş arşivinin tamamını yansıtmaz; gösterilen sıralama ve oranlar bu örneklemle sınırlıdır. Tüm metrikler ham veriden türetilmiştir.
   </div>
 
-  <!-- 01 KPI -->
+  <!-- KPI -->
   <section>
-    <div class="shead"><h2>Temel Metrikler</h2><span class="stag">SON 5 İÇERİK</span></div>
+    <div class="shead"><h2>Temel Metrikler</h2><span class="stag">SON 20 İÇERİK</span></div>
     <div class="kpis">
-      <div class="kpi"><span class="label">TOPLAM BEĞENİ</span><div class="v">6.4K</div><div class="note">5 içerik genelinde</div></div>
-      <div class="kpi good"><span class="label">TOPLAM GÖRÜNTÜLEME</span><div class="v">167.5K</div><div class="note">Tekil görüntüleme (view)</div></div>
-      <div class="kpi"><span class="label">TOPLAM İZLENME</span><div class="v">515.2K</div><div class="note">Tekrarlı oynatma dahil</div></div>
-      <div class="kpi"><span class="label">TOPLAM YORUM</span><div class="v">187</div><div class="note">5 içerik genelinde</div></div>
-      <div class="kpi alert"><span class="label">YANITSIZ YORUM</span><div class="v">44</div><div class="note">Örneklem yorumlarında yanıtsız kalan</div></div>
-      <div class="kpi"><span class="label">ORT. BEĞENİ / İÇERİK</span><div class="v">1.3K</div><div class="note">Medyan: 839 beğeni</div></div>
-      <div class="kpi good"><span class="label">EN İYİ İÇERİK</span><div class="v">3.5K</div><div class="note"><a href="https://www.instagram.com/p/DZVVW2LsTAw/" target="_blank" style="color:var(--amber);text-decoration:none">🥑✨ AVOKADO YAĞININ KULLANIM ALANLARI
-
-Avokado yağı…</a></div></div>
-      <div class="kpi"><span class="label">ANALİZ EDİLEN</span><div class="v">5</div><div class="note">Tümü Video (Reels) formatı · Yanıt oranı: %0</div></div>
+      <div class="kpi"><span class="label">TOPLAM BEĞENİ</span><div class="v">3.457</div><div class="note">20 içerik genelinde</div></div>
+      <div class="kpi good"><span class="label">TOPLAM GÖRÜNTÜLEME</span><div class="v">131<small>K</small></div><div class="note">Tekil görüntüleme (view)</div></div>
+      <div class="kpi"><span class="label">TOPLAM İZLENME</span><div class="v">376<small>K</small></div><div class="note">Tekrarlı oynatma dahil</div></div>
+      <div class="kpi"><span class="label">TOPLAM YORUM</span><div class="v">151</div><div class="note">20 içerik genelinde</div></div>
+      <div class="kpi alert"><span class="label">YANITSIZ SORU</span><div class="v">15</div><div class="note">57 takipçi yorumunda 15 soru yanıtsız</div></div>
+      <div class="kpi"><span class="label">ORT. BEĞENİ / İÇERİK</span><div class="v">172<small>.8</small></div><div class="note">Medyan: 89 beğeni</div></div>
+      <div class="kpi good"><span class="label">EN İYİ İÇERİK</span><div class="v">1.877</div><div class="note">Şişkinlik smoothie — 84K görüntüleme</div></div>
+      <div class="kpi"><span class="label">ANALİZ EDİLEN</span><div class="v">20</div><div class="note">Hepsi Video (Reels) formatı</div></div>
     </div>
   </section>
 
-  <!-- 02 POST PERF -->
+  <!-- POST PERF -->
   <section>
     <div class="shead"><h2>İçerik Performans Sıralaması</h2><span class="stag">BEĞENİYE GÖRE</span></div>
-    <p class="lead">Tablo <b style="color:var(--amber)">en yüksek beğeniden en düşüğe</b> doğru sıralanmıştır. Beğenisi bulunmayan içerikler (platform kısıtı) tabloda görünmez.</p>
+    <p class="lead">Tablo <b style="color:var(--amber)">en yüksek beğeniden en düşüğe</b> doğru sıralanmıştır. Şişkinlik smoothie serisi açık ara önde — "Derdine Göre Smoothie" hesabın en güçlü formatı.</p>
     <table>
       <thead>
         <tr>
@@ -250,410 +260,467 @@ Avokado yağı…</a></div></div>
         <tr>
           <td style="color:var(--dim);font-size:.78rem">1</td>
           <td class="cap">
-            <a href="https://www.instagram.com/p/DZVVW2LsTAw/" target="_blank" rel="noopener">🥑✨ AVOKADO YAĞININ KULLANIM ALANLARI  Avokado yağı, içerdiği sağlıklı yağlar ve </a>
+            <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank" rel="noopener">Derdine Göre Smoothie — Şişkinlik</a>
+            <span class="pinned-badge">PİNLİ</span>
             <div class="bar"><i style="width:100%"></i></div>
+            <div class="post-sub">18 sn kısa video · orijinal ses</div>
           </td>
-          <td class="n">3.5K</td>
-          <td class="n">99.9K<br><span style='font-size:.7rem;color:var(--dim)'>2.9x tekrar</span></td>
-          <td class="n">61</td>
-          <td class="n" style="color:var(--dim)">8 Haz 2026</td>
+          <td class="n">1.877</td>
+          <td class="n">84.139<br><span style="font-size:.7rem;color:var(--dim)">2.62x tekrar</span></td>
+          <td class="n">56</td>
+          <td class="n" style="color:var(--dim)">2 Haz 2026</td>
         </tr>
         <tr>
           <td style="color:var(--dim);font-size:.78rem">2</td>
           <td class="cap">
-            <a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok önemli, Bu konuda sen hangi ci</a>
-            <div class="bar"><i style="width:27%"></i></div>
+            <a href="https://www.instagram.com/p/DXpBdFQjONu/" target="_blank" rel="noopener">Sofra dolu ama neden doymuyoruz? — Beyin ve doyma</a>
+            <div class="bar"><i style="width:12%"></i></div>
+            <div class="post-sub">45 sn · eğitim formatı</div>
           </td>
-          <td class="n">964</td>
-          <td class="n">14.0K<br><span style='font-size:.7rem;color:var(--dim)'>3.5x tekrar</span></td>
-          <td class="n">24</td>
-          <td class="n" style="color:var(--dim)">7 Haz 2026</td>
+          <td class="n">220</td>
+          <td class="n">8.677<br><span style="font-size:.7rem;color:var(--dim)">4.08x tekrar</span></td>
+          <td class="n">8</td>
+          <td class="n" style="color:var(--dim)">27 Nis 2026</td>
         </tr>
         <tr>
           <td style="color:var(--dim);font-size:.78rem">3</td>
           <td class="cap">
-            <a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sanatçımız @ilkerozdemirofficial ‘</a>
-            <div class="bar"><i style="width:24%"></i></div>
+            <a href="https://www.instagram.com/p/DXw8Ao3skP9/" target="_blank" rel="noopener">Protein tozu — sihirli çözüm mü, takviye mi?</a>
+            <div class="bar"><i style="width:9%"></i></div>
+            <div class="post-sub">53 sn · trend debunk formatı</div>
           </td>
-          <td class="n">839</td>
-          <td class="n">10.6K<br><span style='font-size:.7rem;color:var(--dim)'>3.6x tekrar</span></td>
-          <td class="n">43</td>
-          <td class="n" style="color:var(--dim)">12 Haz 2026</td>
+          <td class="n">178</td>
+          <td class="n">8.664<br><span style="font-size:.7rem;color:var(--dim)">3.04x tekrar</span></td>
+          <td class="n">20</td>
+          <td class="n" style="color:var(--dim)">30 Nis 2026</td>
         </tr>
         <tr>
           <td style="color:var(--dim);font-size:.78rem">4</td>
           <td class="cap">
-            <a href="https://www.instagram.com/p/DY2QZHGsmth/" target="_blank" rel="noopener">İyi bayramlar Türkiye’de artan çocuk hastalıklarına Büyük bir adım atabilirsin. </a>
-            <div class="bar"><i style="width:22%"></i></div>
+            <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank" rel="noopener">Bayram sonrası smoothie — detoks değil denge</a>
+            <div class="bar"><i style="width:9%"></i></div>
+            <div class="post-sub">11 sn kısa video</div>
           </td>
-          <td class="n">798</td>
-          <td class="n">25.1K<br><span style='font-size:.7rem;color:var(--dim)'>3.0x tekrar</span></td>
-          <td class="n">32</td>
-          <td class="n" style="color:var(--dim)">27 May 2026</td>
+          <td class="n">165</td>
+          <td class="n">3.329<br><span style="font-size:.7rem;color:var(--dim)">2.95x tekrar</span></td>
+          <td class="n">6</td>
+          <td class="n" style="color:var(--dim)">1 Haz 2026</td>
         </tr>
         <tr>
           <td style="color:var(--dim);font-size:.78rem">5</td>
           <td class="cap">
-            <a href="https://www.instagram.com/p/DYxLq0eMS0X/" target="_blank" rel="noopener">2026’da Yunan Adaları seni bekliyor 🌊☀️  Samos’ta yüz, Patmos’ta keşfet, Midilli</a>
-            <div class="bar"><i style="width:9%"></i></div>
+            <a href="https://www.instagram.com/p/DYPttANMdzx/" target="_blank" rel="noopener">Whoosh Effect — bir anda incelme hissi</a>
+            <div class="bar"><i style="width:7%"></i></div>
+            <div class="post-sub">50 sn · eğitim formatı</div>
           </td>
-          <td class="n">332</td>
-          <td class="n">17.8K<br><span style='font-size:.7rem;color:var(--dim)'>3.4x tekrar</span></td>
-          <td class="n">27</td>
-          <td class="n" style="color:var(--dim)">25 May 2026</td>
+          <td class="n">131</td>
+          <td class="n">2.442<br><span style="font-size:.7rem;color:var(--dim)">3.20x tekrar</span></td>
+          <td class="n">5</td>
+          <td class="n" style="color:var(--dim)">12 May 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">6</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DZIct4PuAwJ/" target="_blank" rel="noopener">Derdine Göre Smoothie — Şişkinlik (2. versiyon)</a>
+            <div class="bar"><i style="width:6%"></i></div>
+            <div class="post-sub">18 sn · aynı içerik, farklı post</div>
+          </td>
+          <td class="n">112</td>
+          <td class="n">4.208</td>
+          <td class="n">4</td>
+          <td class="n" style="color:var(--dim)">3 Haz 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">7</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DYXWXnlsZlN/" target="_blank" rel="noopener">Gece acıktın, sokak yemeği — kötünün iyisi</a>
+            <div class="bar"><i style="width:6%"></i></div>
+            <div class="post-sub">62 sn · pratik içerik</div>
+          </td>
+          <td class="n">108</td>
+          <td class="n">3.703</td>
+          <td class="n">1</td>
+          <td class="n" style="color:var(--dim)">15 May 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">8</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DYAL1w0MkyX/" target="_blank" rel="noopener">Erkekler neden daha hızlı kilo veriyor?</a>
+            <div class="bar"><i style="width:5%"></i></div>
+            <div class="post-sub">55 sn · tartışma formatı</div>
+          </td>
+          <td class="n">97</td>
+          <td class="n">1.917</td>
+          <td class="n">10</td>
+          <td class="n" style="color:var(--dim)">6 May 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">9</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DZIZ-rcNMzv/" target="_blank" rel="noopener">Derdine Göre Smoothie — Tatlı krizi</a>
+            <div class="bar"><i style="width:5%"></i></div>
+            <div class="post-sub">15 sn kısa video</div>
+          </td>
+          <td class="n">92</td>
+          <td class="n">2.417</td>
+          <td class="n">6</td>
+          <td class="n" style="color:var(--dim)">3 Haz 2026</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-size:.78rem">10</td>
+          <td class="cap">
+            <a href="https://www.instagram.com/p/DZX0QWEsP8i/" target="_blank" rel="noopener">Danışan Hikayesi — Dilara Hanım</a>
+            <div class="bar"><i style="width:5%"></i></div>
+            <div class="post-sub">168 sn uzun vlog formatı</div>
+          </td>
+          <td class="n">89</td>
+          <td class="n">1.244</td>
+          <td class="n">14</td>
+          <td class="n" style="color:var(--dim)">9 Haz 2026</td>
         </tr>
       </tbody>
     </table>
-    <div class="tnote">* Beğeni sayısı −1 olan içerikler platform tarafından gizlenmiştir; tabloya dahil edilmemiştir.</div>
+    <div class="tnote">Not: 7 içerikte caption tekrarı tespit edildi — bu postlar orijinalin 1/10–1/17 düzeyinde performans gösteriyor.</div>
   </section>
 
-  <!-- 03 UNANSWERED -->
+  <!-- İÇERİK TİPİ KORELASYONU -->
   <section>
-    <div class="shead"><h2>Yanıtsız Yorum Analizi</h2><span class="stag">FIRSAT PENCERESI</span></div>
-    <p class="lead">Aşağıdaki yorumlar, hesap sahibinin yanıt vermediği ve potansiyel etkileşim/dönüşüm fırsatı içeren mesajlardır. <b style="color:var(--red)">1 satın alma sinyali</b> ve <b style="color:var(--amber)">1 soru</b> cevaplanmayı bekliyor.</p>
-    <div class="cmts">
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@0zdemircemal</span>
-          <span class="tag etkilesim">Etkileşim</span>
+    <div class="shead"><h2>İçerik Tipi Performans Korelasyonu</h2><span class="stag">FORMAT–PERFORMANS</span></div>
+    <div class="grid4">
+      <div class="ctype" style="border-top:2px solid var(--amber)">
+        <h3>Tarif / Smoothie</h3>
+        <div class="cnt">6 içerik · kısa format (10–19 sn)</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">Ort. Beğeni</div><div class="sv hi">386</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Görüntüleme</div><div class="sv">16.029</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Yorum</div><div class="sv">12.3</div></div>
         </div>
-        <div class="txt">👏👏👏👏👏</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
+        <div class="note">Hesabın açık ara en güçlü formatı. Viral post bu kategoriden çıktı. Seri formatı tutarlı etkileşim sağlıyor.</div>
       </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@dogalbal_diyari</span>
-          <span class="tag etkilesim">Etkileşim</span>
+      <div class="ctype" style="border-top:2px solid var(--gold)">
+        <h3>Trend Debunk</h3>
+        <div class="cnt">6 içerik · orta format (45–65 sn)</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">Ort. Beğeni</div><div class="sv">94</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Görüntüleme</div><div class="sv">3.245</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Yorum</div><div class="sv">6.7</div></div>
         </div>
-        <div class="txt">Başarılar Türkiyem.🧿🇹🇷</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
+        <div class="note">İkinci en güçlü format. Yüksek tekrar izlenme oranı (4x+) — içerik not alınan türden. Tartışma ve merak üretiyor.</div>
       </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@zuhalcelalcaglar</span>
-          <span class="tag etkilesim">Etkileşim</span>
+      <div class="ctype" style="border-top:2px solid var(--green)">
+        <h3>Bilimsel / Eğitim</h3>
+        <div class="cnt">6 içerik · orta format (50–66 sn)</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">Ort. Beğeni</div><div class="sv">81</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Görüntüleme</div><div class="sv">2.403</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Yorum</div><div class="sv">3.8</div></div>
         </div>
-        <div class="txt">❤️❤️❤️❤️❤️❤️❤️</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
+        <div class="note">Güven inşa eden içerik ama etkileşim en düşük kategoride. Tarif formatıyla bütünleştirildiğinde güçlenebilir.</div>
       </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@kckkck46</span>
-          <span class="tag etkilesim">Etkileşim</span>
+      <div class="ctype" style="border-top:2px solid var(--red)">
+        <h3>Danışan Hikayesi</h3>
+        <div class="cnt">2 içerik · uzun format (168 sn)</div>
+        <div class="ctype-stats">
+          <div class="ctype-stat"><div class="sl">Ort. Beğeni</div><div class="sv">45</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Görüntüleme</div><div class="sv">683</div></div>
+          <div class="ctype-stat"><div class="sl">Ort. Yorum</div><div class="sv">7.0</div></div>
         </div>
-        <div class="txt">❤️❤️❤️</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
+        <div class="note">Rakamsal olarak en zayıf. Ama yorum kalitesi en yüksek: "hayatımı değiştirdin" — dönüşüm değeri yüksek, erişim düşük.</div>
       </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@ozlemta</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">❤️❤️❤️</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@asumnnn</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">👏👏🇹🇷🇹🇷</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZffK4ZsRuN/" target="_blank" rel="noopener">Dünya kupası ve milli takımımız için kıymetli sana…</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@yitiksifann_pesinde</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Hocam çok siyah çay tüketebilen biri değilim, genelde bitki çayı tercih ediyorum. Ama siyah çay içerken karanfil, tarçın, kakule, bergamot gibi aromal</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@bedirnurten34</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Camdan asla vaz geçmemiş herşeyde</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@eminecatanak</span>
-          <span class="tag satis">Satın Alma</span>
-        </div>
-        <div class="txt">Hocam saygılar sizlere çok teşrkkür ediyorum cam bardakda evimde demledihim rize çayı  teşekkürler hafta sonu piknikde cam bardak göyürdüm arkadsşları</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@sseda_celk</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Bu ben yollarda bardağımı yanıma alırım dışarıda pek bir sey içmem içsemde tercihim cam eğer yoksa hiç içmem hocam yıllardır böyle</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@8denizsz888</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Örnek olması dileğiyle ve duasıyla İnşaALLAH Aminnn Aminnn Aminnn 💫</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@8denizsz888</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Bu kıymetli farkındalık dolu paylaşım için çoook teşekkür ediyorum</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@8denizsz888</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Rabbim sizden razı olsun 💫 Aminnn</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@selmaozozdur</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Sağolun Hocam harikasınız  teşekkür ederim bilgiler çok değerli❤️</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@fuldagrigo</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">👏👏👏👏</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
-      <div class="cmt unanswered">
-        <div class="top">
-          <span class="u">@fatma_9057</span>
-          <span class="tag etkilesim">Etkileşim</span>
-        </div>
-        <div class="txt">Hocam bende bir diyabet li olarak odem için ne önerirsiniz lütfen 🙌❤️❤️❤️</div>
-        <div class="meta"><a href="https://www.instagram.com/p/DZSnHo3szve/" target="_blank" rel="noopener">Özellikle sıcak içecekleri içtiğin kap çeşidi çok …</a></div>
-        <div class="st no">✗ Yanıtsız</div>
-      </div>
+    </div>
+    <div class="kopya-box">
+      <div class="kl">KOPYA POST SORUNU</div>
+      <p>20 içeriğin <strong>7'sinde aynı caption kullanılmış</strong> — dosyalar farklı, metin birebir tekrar ediyor. Bu postlar orijinalin ortalama <strong>%3–12 beğenisini</strong> alıyor. İzlenme verisi bölünüyor, algoritma sinyali zayıflıyor, aynı URL'ye link vermek imkânsız hale geliyor. Düzenli bir içerik planı bu çakışmaları tamamen ortadan kaldırır.</p>
     </div>
   </section>
 
-  <!-- 04 THEMATIC -->
+  <!-- YANITLANMAMIŞ YORUMLAR -->
   <section>
-    <div class="shead"><h2>Tematik Yorum Dağılımı</h2><span class="stag">YORUM KÜMELERİ</span></div>
+    <div class="shead"><h2>Yanıtsız Yorum Analizi</h2><span class="stag">15 YANITSIZ SORU</span></div>
+    <p class="lead">72 takipçi yorumundan 15'i cevap bekleyen soru içeriyor. En yoğun yanıtsız küme viral smoothie postunda (56 yorum, 7+ soru yanıtsız). Yorum yanıt oranı düşük — büyük bir bağlantı fırsatı bekliyor.</p>
+    <div class="cmts">
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@humeyra_halilcan35</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Kahvaltı yerine mi hocam"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a> · 17 Haz 2026</div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@kbr_inci_86</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Öğün yerine mi, ara öğün mü, sabah aç karnına mı.."</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a> · 14 Haz 2026</div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@nurcan67761</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Bunu ne zamanlar kullanmalı"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a></div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@ageanhorizon</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Ne zaman içmek uygun"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a></div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@erhan.habibe21</span><span class="tag satis">SATINALMA</span></div>
+        <div class="txt">"Tarifi dm den yazarmisn"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a></div>
+        <div class="st no">Yanıt verilmedi — DM talebi!</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@erhan.habibe21</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"İşe yariyormu gercekten"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a></div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@bozbetull</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Ne zaman içilmeli"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a></div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@nursellseyyar</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Nezaman içilmeli bu? Ayrıca birde kefirli elmalı salatalık lı bir daha içicek varsa yazar mısın"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a></div>
+        <div class="st no">Yanıt verilmedi — içerik talebi!</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@1sunay_</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Ne zaman içilmeli?❤️"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZDQRbgOZyt/" target="_blank">Bayram sonrası smoothie</a></div>
+        <div class="st no">Yanıt verilmedi</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@_elifdemirciii</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Peki hocam kortizolü düşürmek için destekleyici içerikte ne tüketebiliriz yiyecek ya da takviye olarak"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZfjeV1sC1g/" target="_blank">Kortizol / Stres içeriği</a></div>
+        <div class="st no">Yanıt verilmedi — takviye sorusu (Farmakoloji nişi!)</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@mert_gullu__</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Kilo almak istiyorum ben ne yapmalıyım kullanmalı mıyım yararını görürmüyüm"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DXw8Ao3skP9/" target="_blank">Protein tozu içeriği</a> · 30 Nis 2026</div>
+        <div class="st no">Yanıt verilmedi — potansiyel danışan!</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@srktdrya16</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"onları koyduğunuz makinenin ismi nedir"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZFtmYTMuCs/" target="_blank">Şişkinlik smoothie (viral post)</a></div>
+        <div class="st no">Yanıt verilmedi — ürün sorusu</div>
+      </div>
+
+      <div class="cmt answered">
+        <div class="top"><span class="u">@dyg.svr</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Ne zaman tüketilmeli?"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZIct4PuAwJ/" target="_blank">Smoothie tarifi</a></div>
+        <div class="st yes">Yanıtlandı: "Sabah aç karnına tercih edebilirsiniz"</div>
+      </div>
+
+      <div class="cmt answered">
+        <div class="top"><span class="u">@nalan_cumen_72</span><span class="tag soru">SORU</span></div>
+        <div class="txt">"Bu smoothie kaç kalori"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZIZ-rcNMzv/" target="_blank">Tatlı krizi smoothie</a></div>
+        <div class="st yes">Yanıtlandı: "Yaklaşık 260 kcal"</div>
+      </div>
+
+      <div class="cmt unanswered">
+        <div class="top"><span class="u">@dlrozdmrr</span><span class="tag katilim">KATILIM</span></div>
+        <div class="txt">"Ağlayarak izledim iyi ki varsın evimizin diyetisyeni iyi ki hayatımı değiştirdin"</div>
+        <div class="meta">Post: <a href="https://www.instagram.com/p/DZX0QWEsP8i/" target="_blank">Danışan hikayesi</a> · 9 Haz 2026</div>
+        <div class="st no">Güçlü güven sinyali — yanıt yok</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEMATİK YORUM ANALİZİ -->
+  <section>
+    <div class="shead"><h2>Tematik Yorum Dağılımı</h2><span class="stag">YORUM KATEGORİLERİ</span></div>
     <div class="themegrid">
       <div class="themecard">
-        <h3>Sağlık Mitleri ve Gerçekler</h3>
-        <p>En yüksek etkileşimli tema. Avokado yağı, çikolata, gazlı içecekler, airfryer gibi konularda "markaların söylediği vs. gerçek" formatı kitleyi çekiyor. Eleştirel-eğitici ton güçlü rezonans yaratıyor.</p>
-        <div class="theme-tags"><span class="ttag">avokado yağı</span><span class="ttag">sıcak içecek</span><span class="ttag">D vitamini</span><span class="ttag">safra sağlığı</span></div>
-        <div class="theme-stat">↑ En yüksek beğeni bu kategoride</div>
+        <h3>Smoothie Tarifleri — Kullanım Soruları</h3>
+        <p>En yüksek yorum hacmi bu temada. "Ne zaman içilmeli", "kahvaltı yerine mi", "kefir yerine ne olur" soruları tekrar eden kalıplar. Yanıt oranı düşük — izleyici merak ediyor ama rehberlik almıyor.</p>
+        <div class="theme-tags">
+          <span class="ttag">#smoothie</span>
+          <span class="ttag">#şişkinlik</span>
+          <span class="ttag">#chia</span>
+          <span class="ttag">#tatlıkrizi</span>
+        </div>
+        <div class="theme-stat">40+ yorum · En fazla soru tipi</div>
       </div>
       <div class="themecard">
-        <h3>Güncel / Trend Konular</h3>
-        <p>Dünya kupası, bayram gibi anlık gündemle bağlantılı içerikler. Yüksek yorum alıyor ama beğeni oranı düşük — "konuşturan" ama "kaydettirenin" altında bir formaat.</p>
-        <div class="theme-tags"><span class="ttag">dünya kupası</span><span class="ttag">milli takım</span><span class="ttag">bayram</span><span class="ttag">gündem</span></div>
-        <div class="theme-stat">↑ Yorum oranı yüksek</div>
+        <h3>Güven ve Bağ İfadeleri</h3>
+        <p>Danışan hikayesi videosu ve viral smoothie postunda güçlü duygusal bağ ifadeleri: "evimizin diyetisyeni", "hayatımı değiştirdin", "Zara hocam özlemişim sizi". Güven inşa edilmiş ama sistematik değil.</p>
+        <div class="theme-tags">
+          <span class="ttag">danışan hikayeleri</span>
+          <span class="ttag">güven</span>
+          <span class="ttag">sadakat</span>
+        </div>
+        <div class="theme-stat">10+ yorum · Yüksek duygusal rezonans</div>
       </div>
       <div class="themecard">
-        <h3>Çocuk Hastalıkları ve Aile Sağlığı</h3>
-        <p>"Türkiye'de artan çocuk hastalıkları" temalı içerik yüksek etkileşim aldı. Ebeveyn kitlesi güçlü ve duygusal rezonans yaratıyor; bu temada daha fazla içerik potansiyel görünüyor.</p>
-        <div class="theme-tags"><span class="ttag">çocuk sağlığı</span><span class="ttag">anne-çocuk</span><span class="ttag">koruyucu beslenme</span></div>
-        <div class="theme-stat">↑ 798 beğeni, 32 yorum</div>
+        <h3>Trend Eleştirisi ve Debunk</h3>
+        <p>Protein tozu, su diyeti, erkek-kadın metabolizması karşılaştırması içerikleri hem katılım hem itiraz üretiyor. "Haksızlık bu", "erkolar kapatılsın" gibi mizahi tepkiler — viral potansiyel taşıyor.</p>
+        <div class="theme-tags">
+          <span class="ttag">#protein tozu</span>
+          <span class="ttag">#otofaji</span>
+          <span class="ttag">#erkek metabolizması</span>
+        </div>
+        <div class="theme-stat">20+ yorum · Tartışma formatı işe yarıyor</div>
       </div>
       <div class="themecard">
-        <h3>Yaşam Tarzı / Seyahat</h3>
-        <p>Yunan adaları seyahat içeriği düşük etkileşim aldı — kitle beslenme-uzmanlık içeriği için takip ediyor, kişisel seyahat için değil. Format hizalaması gerekli.</p>
-        <div class="theme-tags"><span class="ttag">seyahat</span><span class="ttag">yunan adaları</span><span class="ttag">yaşam tarzı</span></div>
-        <div class="theme-stat">↓ En düşük beğeni bu kategoride</div>
+        <h3>Takviye ve Farmakoloji Soruları</h3>
+        <p>"Kortizolü düşürmek için takviye olarak ne tüketebiliriz" — yalnızca 1 yorum ama kritik: Farmakoloji yüksek lisansı olan bir diyetisyene bu soru sorulmuş ve yanıtsız kalmış. Bu nişin içeriklerde yansıma potansiyeli büyük.</p>
+        <div class="theme-tags">
+          <span class="ttag">kortizol</span>
+          <span class="ttag">takviye</span>
+          <span class="ttag">farmakoloji nişi</span>
+        </div>
+        <div class="theme-stat">1 yorum · Yüksek değer nişi — kullanılmıyor</div>
       </div>
     </div>
   </section>
 
-  <!-- 05 EMOTION -->
+  <!-- DUYGU ANALİZİ -->
   <section>
-    <div class="shead"><h2>Duygu ve Ton Analizi</h2><span class="stag">KİTLE REZONANS</span></div>
+    <div class="shead"><h2>Duygu ve Ton Analizi</h2><span class="stag">YORUM DUYGU HARİTASI</span></div>
     <div class="emogrid">
       <div class="emocard">
-        <div class="el">GÜVEN / DESTEK</div>
-        <div class="ev">Dominant</div>
-        <div class="ebar"><i style="width:72%;background:var(--amber)"></i></div>
-        <div class="ed">Yorumların büyük çoğunluğu "Rabbim sizi korusun", "teşekkür ederim hocam", "destekliyoruz" tonunda. Hesap güvenilir bir otorite olarak algılanıyor.</div>
+        <div class="el">REZONANS / TANINMA</div>
+        <div class="ev">Yüksek</div>
+        <div class="ebar"><i style="width:85%;background:var(--green)"></i></div>
+        <div class="ed">"Bizi anlattınız galiba", "ben inceldim sandım" — izleyici kendini içeriklerde buluyor. Acı noktalar iyi seçilmiş.</div>
       </div>
       <div class="emocard">
-        <div class="el">MERAK / BİLGİ TALEBİ</div>
-        <div class="ev">Güçlü</div>
-        <div class="ebar"><i style="width:50%;background:var(--green)"></i></div>
-        <div class="ed">Çay kabı sorusu, beslenme merakı içeren yorumlar var. Kitle bilgi almak için hesabı takip ediyor; bu sinyali içerik stratejisine çevirmek mümkün.</div>
+        <div class="el">GÜVEN / BAĞLILIK</div>
+        <div class="ev">Çok Yüksek</div>
+        <div class="ebar"><i style="width:90%;background:var(--green)"></i></div>
+        <div class="ed">"Evimizin diyetisyeni", "iyi ki tanımışım", "hayatımı değiştirdin" — klinik için nadir güçlü güven ifadeleri.</div>
       </div>
       <div class="emocard">
-        <div class="el">SORGULAMA / İTİRAZ</div>
-        <div class="ev">Sınırlı</div>
-        <div class="ebar"><i style="width:18%;background:var(--red)"></i></div>
-        <div class="ed">"Kac para verdiler, değer mi, değmez" tarzı birkaç yorum var. Ücretli işbirliği şüphesi. Şeffaf sponsorluk bildirimi bu segmentin endişesini gidebilir.</div>
+        <div class="el">MERAK / SORU</div>
+        <div class="ev">Yüksek</div>
+        <div class="ebar"><i style="width:80%;background:var(--amber)"></i></div>
+        <div class="ed">Tarif ve teknik içeriklerde yoğun soru trafiği. Yanıt beklentisi yüksek ama karşılanma oranı düşük.</div>
       </div>
       <div class="emocard">
-        <div class="el">DUYGUSAL REZONANS</div>
+        <div class="el">MİZAH / HAFİF İTİRAZ</div>
         <div class="ev">Orta</div>
-        <div class="ebar"><i style="width:40%;background:var(--amber)"></i></div>
-        <div class="ed">Çocuk hastalıkları içeriği duygusal ağırlıklı yorumlar çekti. Kişisel Tip 1 diyabet hikayesi sistematik kullanılırsa bu oran yükselebilir.</div>
-      </div>
-      <div class="emocard">
-        <div class="el">EĞLENTİ / MİZAH</div>
-        <div class="ev">Düşük</div>
-        <div class="ebar"><i style="width:12%;background:var(--dim)"></i></div>
-        <div class="ed">İçerik ve yorum tonu ağırlıklı olarak eğitici/ciddi. Mizah içerikleri gelecekte hedef kitleyle bağ kurmak için bir formaat olabilir.</div>
+        <div class="ebar"><i style="width:45%;background:var(--amber)"></i></div>
+        <div class="ed">"Erkolar kapatılsın", "kendime sürekli ödül maması veriyorum" — kadın izleyici kitlesi espriyle katılıyor.</div>
       </div>
       <div class="emocard">
         <div class="el">SATIN ALMA NİYETİ</div>
-        <div class="ev">Düşük — Açık</div>
-        <div class="ebar"><i style="width:10%;background:var(--red)"></i></div>
-        <div class="ed">Örneklemde yalnızca 1 açık satın alma sinyali tespit edildi. Danışmanlık talebi içerik değil DM üzerinden geliyor; bu, potansiyelin görünmez olduğu anlamına gelir.</div>
+        <div class="ev">Düşük-Orta</div>
+        <div class="ebar"><i style="width:30%;background:var(--red)"></i></div>
+        <div class="ed">"Tarifi dm'den yazar mısın", "kilo almak istiyorum ne yapmalıyım" — DM yönlendirmesi yok, dönüşüm mekanizması eksik.</div>
+      </div>
+      <div class="emocard">
+        <div class="el">ŞÜPHE / SORGULAMA</div>
+        <div class="ev">Düşük</div>
+        <div class="ebar"><i style="width:20%;background:var(--dim)"></i></div>
+        <div class="ed">"İşe yarıyor mu gerçekten" — marjinal şüphe var. Debunk içerikleri güven inşasına katkıda bulunuyor.</div>
       </div>
     </div>
   </section>
 
-  <!-- 06 CONTENT TYPE -->
+  <!-- STRATEJİK ÇIKARIMLAR -->
   <section>
-    <div class="shead"><h2>İçerik Tipi Korelasyonu</h2><span class="stag">FORMAT ANALİZİ</span></div>
-    <div class="grid4">
-      <div class="ctype">
-        <h3>Eğitici / Bilgi Reels</h3>
-        <div class="cnt">3 içerik</div>
-        <div class="ctype-stats">
-          <div class="ctype-stat"><div class="sl">ORT. BEĞENİ</div><div class="sv hi">1.749</div></div>
-          <div class="ctype-stat"><div class="sl">ORT. GÖRÜNTÜLEME</div><div class="sv">76K</div></div>
-        </div>
-        <div class="note">Avokado yağı, çay kabı, çocuk sağlığı. Formatın açık ara en güçlü performansı — bilgi odaklı içerik çekirdek kitleyi aktif tutuyor.</div>
+    <div class="shead"><h2>Stratejik Çıkarımlar</h2><span class="stag">KANITA DAYALI</span></div>
+    <div class="insights">
+
+      <div class="ins critical">
+        <div class="it">KRİTİK SORUN</div>
+        <h3>Viral post 1.877 beğeni aldı, 56 soru yanıtsız kaldı</h3>
+        <p>Şişkinlik smoothie içeriği 84.000+ görüntüleme ve 56 yorum aldı. Bu yorumların en az 7'si doğrudan soru — "ne zaman içilmeli", "kahvaltı yerine mi", "tarifi DM'den yaz". Her yanıtsız soru, bir güven anını ve potansiyel dönüşüm fırsatını bekletmektedir.</p>
+        <div class="act"><b>Aksiyon:</b> Viral postlarda yorum yanıt rutini: her 10 yorum başına en az 3 yanıt, soru yorumları öncelikli. Tekrarlayan sorular ayrı içerik fikrine dönüştürülmeli.</div>
       </div>
-      <div class="ctype">
-        <h3>Gündem / Trend İçerik</h3>
-        <div class="cnt">1 içerik</div>
-        <div class="ctype-stats">
-          <div class="ctype-stat"><div class="sl">BEĞENİ</div><div class="sv">839</div></div>
-          <div class="ctype-stat"><div class="sl">YORUM</div><div class="sv hi">43</div></div>
-        </div>
-        <div class="note">Dünya kupası içeriği konuşturuyor ama beğeni orta seviyede kalıyor. Anlık gündem içeriği kısa ömürlü etkileşim üretiyor.</div>
+
+      <div class="ins critical">
+        <div class="it">KRİTİK SORUN</div>
+        <h3>7 içerikte aynı caption tekrarlanmış — içerik kaynağı bölünüyor</h3>
+        <p>Dosyalar farklı, ancak caption metni birebir aynı. Bu postlar orijinalin %3–12'si kadar beğeni alıyor. Yorum trafiği bölünüyor, algoritma sinyali zayıflıyor, aynı URL'ye link vermek imkânsız hale geliyor.</p>
+        <div class="act"><b>Aksiyon:</b> Tekrar eden caption'lar olan postlar gözden geçirilmeli, orijinal post pinleme ve story arşivleme ile öne taşınmalı. İçerik takvimi sistemi kurulmalı.</div>
       </div>
-      <div class="ctype">
-        <h3>Yaşam Tarzı / Seyahat</h3>
-        <div class="cnt">1 içerik</div>
-        <div class="ctype-stats">
-          <div class="ctype-stat"><div class="sl">BEĞENİ</div><div class="sv">332</div></div>
-          <div class="ctype-stat"><div class="sl">GÖRÜNTÜLEME</div><div class="sv">17K</div></div>
-        </div>
-        <div class="note">En düşük performanslı format. Kitle uzmanlık içeriği için hesabı takip ediyor — kişisel seyahat içeriği bağlam dışı kalıyor.</div>
+
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Tarif serisi hesabın motorudur — ama sürdürülemez</h3>
+        <p>"Derdine Göre Smoothie" serisi 3 içerikle toplam beğeni havuzunun %64'ünü aldı. Ort. beğeni 386, diğer tüm kategorilerin 4 katı. Bu seri sistematik hale getirilmeli: haftada 1 tarif, seri numaralandırması, her tarifin altında bir "danışmanlık CTA" ile kapanması.</p>
+        <div class="act"><b>Aksiyon:</b> Seriye isim ve numara standardı: "Derdine Göre #01 — Şişkinlik". Her tarif postunun altına sabit yorum yanıtı: "Bireysel beslenme planı için DM." Aylık 4 tarif hedefi.</div>
       </div>
-      <div class="ctype">
-        <h3>Kolab / Etiket İçerik</h3>
-        <div class="cnt">1 içerik (zayıflama iğnesi)</div>
-        <div class="ctype-stats">
-          <div class="ctype-stat"><div class="sl">BEĞENİ</div><div class="sv">336</div></div>
-          <div class="ctype-stat"><div class="sl">GÖRÜNTÜLEME</div><div class="sv">21K</div></div>
-        </div>
-        <div class="note">Etiketli kolab içeriği orta performansta. İşbirliği seçimi kitle uyumuyla doğrusal gittiğinde bu format potansiyel taşıyor.</div>
+
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Farmakoloji uzmanlığı henüz içeriklerde sahneye çıkmamış</h3>
+        <p>Tıbbi Farmakoloji yüksek lisansı, Türkiye'deki diyetisyen kitlesinde neredeyse doldurulamayan bir niş. "Bitkisel takviye + ilaç etkileşimi" veya "diyetisyen gözüyle takviye gerçekleri" formatı için rakip sayısı sıfıra yakın — bu derinliği içeriklere taşımak güçlü bir farklılaştırıcı olur.</p>
+        <div class="act"><b>Aksiyon:</b> Aylık 1–2 "Farmakoloji + Beslenme" içeriği: "Magnezyum alıyorsanız bunu bilmeniz gerekiyor" formatı. Bu içerikler hem keşfet trafiği hem de uzmanlık inşası için güçlü.</div>
       </div>
+
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Kısa format açık ara kazanıyor — uzun format boşa harcanan enerji</h3>
+        <p>10–19 saniye videolar 16.000+ ort. görüntüleme alırken, 167 saniyelik danışan videoları 683 görüntülemede kaldı. Uzun format her içerik kategorisinde 20 kat daha düşük performans gösteriyor. Uzun format için harcanan süre kısa formata yönlendirilmeli.</p>
+        <div class="act"><b>Aksiyon:</b> İçerik dağılımı: %60 kısa (15–30 sn), %30 orta (45–65 sn), %10 uzun. Danışan hikayeleri, Reels yerine story veya podcast formatında değerlendirilmeli.</div>
+      </div>
+
+      <div class="ins warning">
+        <div class="it">UYARI</div>
+        <h3>Danışana dönüştürecek köprü içerik yok</h3>
+        <p>İzleyiciler Zara'yı seviyor ("evimizin diyetisyeni"), içeriklerini izliyor, soru soruyor — ama "benimle çalış" adımını atmıyor. "DM at", "link bio'da", "randevu için tıkla" gibi bir CTA mekanizması hiçbir içerikte sistematik kullanılmıyor.</p>
+        <div class="act"><b>Aksiyon:</b> Her tarif postuna sabit CTA son karesi: "Kişisel beslenme programı için DM at." Haftada 1 "danışmanlık tanıtım" içeriği: "Nasıl çalışıyoruz?" formatı.</div>
+      </div>
+
+      <div class="ins opportunity">
+        <div class="it">FIRSAT</div>
+        <h3>Tekrar izlenme oranı içeriklerin derinliğini kanıtlıyor</h3>
+        <p>En iyi postlar 2.6x–4.5x tekrar oynatma oranına sahip. Bu, izleyicilerin içeriği not almak veya tariften malzemeleri okumak için geri sardığını gösteriyor. Metin overlay (malzeme listesi, adım adım) ve on-screen grafik bu davranışı daha da güçlendirir.</p>
+        <div class="act"><b>Aksiyon:</b> Tarif videolarına açık metin overlay ekle: malzeme listesi, gram değerleri, alternatif malzeme. Bu tekrar izlenme oranını daha da artırır ve kaydet sayısını yükseltir.</div>
+      </div>
+
+      <div class="ins critical">
+        <div class="it">KRİTİK SORUN</div>
+        <h3>Web mülkü sıfır — tüm dijital varlık tek platforma bağımlı</h3>
+        <p>Klinik aktif, 49 hizmet alanı var, online danışmanlık yapıyor — ama dijital altyapı tamamen üçüncü parti platformlara bağımlı. Hesap kapanırsa veya erişim kısıtlanırsa tüm iletişim kanalı yok. E-posta listesi yok, web sitesi yok, arama motorunda hiç görünüm yok.</p>
+        <div class="act"><b>Aksiyon:</b> Minimal web varlığı: tek sayfalık site (Bio + Hizmetler + Randevu). E-posta toplama: "Ücretsiz beslenme rehberi indir" mekaniği. Bu hesap içeriğini uzun vadeli sürdürülebilir hale getirir.</div>
+      </div>
+
     </div>
-  </section>
-
-  <!-- 07 INSIGHTS -->
-  <section>
-    <div class="shead"><h2>Stratejik Çıkarımlar</h2><span class="stag">AKSİYON ÖNERİLERİ</span></div>
-<div class="insights">
-
-  <div class="ins critical">
-    <div class="it">KRİTİK</div>
-    <h3>634K Kitleye Sıfır Yanıt: Yorum Bölümü Susmuş</h3>
-    <p>Örneklemdeki <b>5 içerikten hiçbirinde</b> hesap sahibinden yanıt yok. 44 yanıtsız yorum birikmiş; içinde satın alma niyeti ve klinik sorular var. Yorum bölümü bir sosyal kanıt alanı değil, dolup taşan bir kuyruk gibi görünüyor.</p>
-    <div class="act"><b>Aksiyon:</b> Günlük 15 dakika yorum yanıt protokolü; özellikle soru ve teşekkür yorumları önceliklendirilmeli. Yanıt oranı şu an %0.</div>
-  </div>
-  <div class="ins critical">
-    <div class="it">KRİTİK</div>
-    <h3>İçerik Satışı Desteklemiyor — "DM at" Tek Köprü</h3>
-    <p>Tüm danışmanlık trafiği "Diyet için DM" bio ibaresine yükleniyor. Hangi program, nasıl çalışılıyor, süre, fiyat bandı — bunların hiçbiri içerikte yer almıyor. 634K kişi içeriği izliyor ama başvuru yolunu bilemiyor.</p>
-    <div class="act"><b>Aksiyon:</b> Her içeriğe minimum bir "nasıl çalışıyoruz" CTA zinciri ekle; hizmet türlerini stories highlight'larıyla görünür kıl.</div>
-  </div>
-  <div class="ins warning">
-    <div class="it">DİKKAT</div>
-    <h3>Yüksek Görüntüleme — Düşük Beğeni: Viral Uçurum</h3>
-    <p>Avokado yağı içeriği 99K görüntülemeye karşı sadece 3.485 beğeni aldı — yani izleyenlerin yaklaşık %3,5'i beğendi. Bu oran klinik/sağlık içerikleri için oldukça düşük; izleme var ama bağlanma yok.</p>
-    <div class="act"><b>Aksiyon:</b> İçerik kapanışlarında net "bunu kaydedersen işine yarar" tarzı bir bağlanma daveti ekle; save'i optimize eden format dene.</div>
-  </div>
-  <div class="ins warning">
-    <div class="it">DİKKAT</div>
-    <h3>Bio'daki 5 Link İçerik Gösteriyor, Dönüşüm Değil</h3>
-    <p>Instagram bio'sundaki 5 link bir "buradan başvur" hub'ına değil içerik sayfalarına bağlı. 634K trafiği var ama onu yakalayacak tek bir dönüşüm noktası yok; her ziyaretçi kapıda buluşup dağılıyor.</p>
-    <div class="act"><b>Aksiyon:</b> Bir link-in-bio funneli kur; ilk link her zaman "Danışmanlık Başvurusu" olmalı, diğerleri sıralanmalı.</div>
-  </div>
-  <div class="ins opportunity">
-    <div class="it">FIRSAT</div>
-    <h3>Tip 1 Diyabet Hikayesi: Kullanılmayan En Güçlü Koz</h3>
-    <p>2015'ten beri Tip 1 diyabetle yaşayan bir diyetisyen — bu, binlerce diyetisyenden ayıran, taklit edilemeyen bir kimlik. Ama içeriklerde bazen öne çıkıyor, bazen kaybolup gidiyor. Sistematik bir marka sesine dönüşmemiş.</p>
-    <div class="act"><b>Aksiyon:</b> Her haftanın en az 1 içeriğini bu kimlik üzerine kur; "Diyabetli Diyetisyen" çerçevesi içerik omurgasına yerleştirilmeli.</div>
-  </div>
-  <div class="ins opportunity">
-    <div class="it">FIRSAT</div>
-    <h3>TRT 1 + Büyük YouTube Programları: Birikmeyen Medya Sermayesi</h3>
-    <p>TRT 1, Pijama Sohbetleri, GZT gibi büyük mecralarda çıkışlar var ama her görünüm tek seferlik kalıyor; birikimli sosyal kanıta, arşive veya içerik seriye dönüşmüyor.</p>
-    <div class="act"><b>Aksiyon:</b> Her medya çıkışından sonra "bugün X'te konuştum, işte özet" formatında bir içerik üret; klipler, alıntılar ve highlight'lar ile medya sermayesini besle.</div>
-  </div>
-  <div class="ins opportunity">
-    <div class="it">FIRSAT</div>
-    <h3>634K Instagram'a Karşı LinkedIn'de 348 Kişi</h3>
-    <p>LinkedIn neredeyse pasif. B2B, kurumsal danışmanlık, referans hatları ve iş dünyası tamamen boş — oysa "Diyabetli Diyetisyen" kimliği kurumsal beslenme danışmanlığı için güçlü bir açıcı.</p>
-    <div class="act"><b>Aksiyon:</b> Haftada 1 LinkedIn paylaşımı; IG içeriğini adapte et. Kurumsal işbirlikleri için LinkedIn CTA'sı bio'ya ekle.</div>
-  </div>
-  <div class="ins critical">
-    <div class="it">KRİTİK</div>
-    <h3>Kişisel Web Sitesi Yok: Tek Platform Riski</h3>
-    <p>ersinozdemir.com ve diyabetlidiyetisyen.com erişilemiyor. Tüm dijital ağırlık tek platforma yüklü — algoritma değişikliği veya hesap sorunu durumunda kitle ile bağlantı tamamen kopabilir.</p>
-    <div class="act"><b>Aksiyon:</b> En azından temel bir "randevu ve başvuru" sayfası olan kişisel site kur; e-mail listesi oluştur, platform bağımsız bir hattı sağlamlaştır.</div>
-  </div>
-
-</div>
   </section>
 
   <footer>
     <div class="foot-l">
-      <div class="fname">NOMADES AGENCY</div>
-      <div class="fmeta">@diyabetli.diyetisyen · İçerik Performans Analizi · 25 May 2026 – 12 Haz 2026<br>5 içerik · Klinik / Estetik / Sağlık</div>
+      <p class="fname">NOMADES AGENCY</p>
+      <p class="fmeta">@diyetisyennzara · İçerik Performans Analizi · Veri: 27 Nisan 2026 — 18 Haziran 2026 (20 içerik)<br>Tüm metrikler ham veriden türetilmiştir · Confidential</p>
     </div>
-    <div class="foot-r">Bu rapor Nomades Agency tarafından hazırlanmıştır. Gizlidir.</div>
+    <p class="foot-r">we don't settle for good, we seek perfection</p>
   </footer>
 </div>
 
 <script>
 const tb = document.getElementById('themeBtn');
-const pb = document.getElementById('pdfBtn');
-let dark = true;
-tb.addEventListener('click', () => {
-  dark = !dark;
-  document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
-  tb.textContent = dark ? '🌙' : '☀️';
-  document.querySelector('header').style.background = dark
-    ? 'rgba(11,11,14,0.92)' : 'rgba(250,250,247,0.92)';
+tb.addEventListener('click', ()=>{
+  const cur = document.body.getAttribute('data-theme');
+  const nx = cur==='dark'?'light':'dark';
+  document.body.setAttribute('data-theme', nx);
+  tb.textContent = nx==='dark'?'🌙':'☀️';
 });
-pb.addEventListener('click', () => window.print());
+document.getElementById('pdfBtn').addEventListener('click', ()=>window.print());
 </script>
 </body>
 </html>

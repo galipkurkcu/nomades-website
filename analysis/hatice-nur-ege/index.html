@@ -17,7 +17,7 @@
 }
 [data-theme="light"]{
   --bg:#FAFAF7; --surface:#FFFFFF; --surface2:#F0EFE9; --border:#E0DDD8;
-  --text:#1C1C1C; --dim:#8A8A82; --gold:#B8860B; --amber:#C88C00;
+  --text:#1C1C1C; --dim:#8A8A82; --gold:#B8860B;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -41,6 +41,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(11,11,14,0.92);backdrop-
 .htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-top:3px}
 .htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
 .htools{display:flex;align-items:center;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--amber);
+  border-radius:2px;padding:6px 13px;font-size:.66rem;font-weight:600;letter-spacing:.12em;color:var(--amber)}
 .btn{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:3px;
   padding:8px 13px;font-family:var(--font);font-size:.7rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:.2s}
 .btn:hover{border-color:var(--amber);color:var(--amber)}
@@ -53,10 +55,6 @@ section{margin-bottom:54px;counter-increment:secnum}
 .shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
 .lead{color:var(--dim);font-size:.95rem;max-width:780px;margin-bottom:22px;line-height:1.75}
 
-/* BANNER */
-.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
-.banner b{color:var(--amber);font-weight:700}
-
 /* KPI */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--void-2);border-radius:4px;padding:20px}
@@ -68,6 +66,11 @@ section{margin-bottom:54px;counter-increment:secnum}
 .kpi.alert .v{color:var(--red)}
 .kpi.good{border-top-color:var(--amber)}
 .kpi.good .v{color:var(--amber)}
+.kpi.span4{grid-column:span 4}
+
+/* BANNER */
+.banner{border:1px solid var(--border);border-left:3px solid var(--amber);background:var(--surface);border-radius:4px;padding:18px 22px;margin-bottom:26px;font-size:.9rem;line-height:1.7;color:var(--dim)}
+.banner b{color:var(--amber);font-weight:700}
 
 /* TABLE */
 table{width:100%;border-collapse:collapse;font-size:.88rem}
@@ -76,7 +79,7 @@ th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-
 th.sortkey{color:var(--amber)}
 td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 tr:hover td{background:var(--surface)}
-.cap{max-width:360px}
+.cap{max-width:380px}
 .cap a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--border)}
 .cap a:hover{color:var(--amber);border-bottom-color:var(--amber)}
 .bar{height:5px;background:var(--surface2);border-radius:2px;overflow:hidden;margin-top:6px}
@@ -95,13 +98,6 @@ tr:hover td{background:var(--surface)}
 .tlist .tbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--amber))}
 .tlist .tval{flex:0 0 80px;text-align:right;font-size:.78rem;color:var(--dim);font-variant-numeric:tabular-nums}
 
-/* YORUM KATEGORİLERİ */
-.cmtcat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
-.ccat{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
-.ccat .clabel{font-size:.6rem;font-weight:700;letter-spacing:.18em;color:var(--amber);margin-bottom:8px}
-.ccat .cnum{font-size:1.6rem;font-weight:800;letter-spacing:-0.02em}
-.ccat .cdesc{font-size:.78rem;color:var(--dim);margin-top:6px;line-height:1.5}
-
 /* INSIGHTS */
 .insights{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .ins{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:4px;padding:20px 22px}
@@ -117,19 +113,23 @@ tr:hover td{background:var(--surface)}
 .ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.55}
 .ins .act b{color:var(--amber)}
 
-/* COLLAB NOTE */
-.collab-note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--dim);border-radius:4px;padding:14px 18px;font-size:.82rem;color:var(--dim);margin-bottom:22px;line-height:1.6}
-.collab-note b{color:var(--text);font-weight:600}
+/* YORUM KATEGORİ */
+.catlist{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.catcard{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px}
+.catcard .cn{font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:6px}
+.catcard h4{font-size:.96rem;font-weight:700;margin-bottom:6px}
+.catcard .cc{font-size:1.5rem;font-weight:800;color:var(--amber);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.catcard p{font-size:.83rem;color:var(--dim);line-height:1.55}
 
 /* FOOTER */
 footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber)}
 .foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
-.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+.foot-r{font-size:.78rem;color:var(--dim);font-style:italic}
 
 @media(max-width:880px){
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .grid2,.cmtcat,.insights{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)} .kpi.span4{grid-column:span 2}
+  .grid2,.catlist,.insights{grid-template-columns:1fr}
   .shead h2{font-size:1.5rem}
   footer{flex-direction:column;align-items:flex-start}
 }
@@ -140,7 +140,18 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   section{page-break-inside:avoid}
 }
-</style>
+
+/* YORUM KATEGORİLERİ */
+.cmtcat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.ccat{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
+.ccat .clabel{font-size:.6rem;font-weight:700;letter-spacing:.18em;color:var(--amber);margin-bottom:8px}
+.ccat .cnum{font-size:1.6rem;font-weight:800;letter-spacing:-0.02em}
+.ccat .cdesc{font-size:.78rem;color:var(--dim);margin-top:6px;line-height:1.5}
+/* COLLAB NOTE */
+.collab-note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--dim);border-radius:4px;padding:14px 18px;font-size:.82rem;color:var(--dim);margin-bottom:22px;line-height:1.6}
+.collab-note b{color:var(--text);font-weight:600}
+.foot-tl{font-size:.78rem;color:var(--dim);font-style:italic}
+.grid2,.cmtcat,.insights{grid-template-columns:1fr}</style>
 </head>
 <body data-theme="dark">
 <header>
@@ -402,7 +413,7 @@ footer{border-top:1px solid var(--border);margin-top:56px;padding-top:26px;displ
       <p class="fname">NOMADES AGENCY</p>
       <p class="fmeta">@diyetisyenhaticenurege · İçerik Performans Analizi · Veri: 24 Mayıs – 22 Haziran 2026 (19 reel)<br>Tüm metrikler ham veriden türetilmiştir · Gizli</p>
     </div>
-    <p class="foot-tl">we don't settle for good, we seek perfection</p>
+    <p class="foot-r">we don't settle for good, we seek perfection</p>
   </footer>
 </div>
 
