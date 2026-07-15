@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DYTSS — Newsletter Arşivi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0B0E;
+  --surface:#141418;
+  --surface2:#1C1C1C;
+  --border:#1E1E22;
+  --text:#FAFAF7;
+  --dim:#777;
+  --font:'Space Grotesk',sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#FAFAF7;
+    --surface:#FFFFFF;
+    --surface2:#F0EFE9;
+    --border:#E0DDD8;
+    --text:#1C1C1C;
+    --dim:#8A8A82;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.card{
+  width:100%;
+  max-width:420px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px 32px;
+}
+h1{
+  font-size:15px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:24px;
+  text-align:center;
+}
+#gate form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+#gate input[type="password"]{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 16px;
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+}
+#gate button{
+  background:var(--text);
+  color:var(--bg);
+  border:none;
+  border-radius:8px;
+  padding:14px 16px;
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+#gate .error{
+  color:#B01C2E;
+  font-size:13px;
+  text-align:center;
+  min-height:16px;
+}
+#archive{ display:none; }
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.list a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:20px;
+  font-size:22px;
+  font-weight:700;
+  color:var(--text);
+  text-decoration:none;
+  transition:opacity .15s ease;
+}
+.list a:hover{ opacity:.7; }
+</style>
+</head>
+<body>
+
+<div class="card" id="gate">
+  <h1>DYTSS Newsletter Arşivi</h1>
+  <form id="password-form" autocomplete="off">
+    <input type="password" id="password-input" placeholder="Şifre" autofocus>
+    <button type="submit">Giriş</button>
+    <div class="error" id="password-error"></div>
+  </form>
+</div>
+
+<div class="card" id="archive">
+  <h1>DYTSS Newsletter Arşivi</h1>
+  <div class="list">
+    <a href="01.html">01</a>
+    <a href="02.html">02</a>
+    <a href="03.html">03</a>
+    <a href="04.html">04</a>
+    <a href="05.html">05</a>
+    <a href="08.html">08</a>
+    <a href="09.html">09</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PASSWORD = "dytss00";
+  var gate = document.getElementById('gate');
+  var archive = document.getElementById('archive');
+  var form = document.getElementById('password-form');
+  var input = document.getElementById('password-input');
+  var error = document.getElementById('password-error');
+
+  function unlock(){
+    gate.style.display = 'none';
+    archive.style.display = 'block';
+  }
+
+  if (sessionStorage.getItem('dytss_nl_auth') === '1') {
+    unlock();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (input.value === PASSWORD) {
+      sessionStorage.setItem('dytss_nl_auth', '1');
+      unlock();
+    } else {
+      error.textContent = 'Hatalı şifre.';
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
