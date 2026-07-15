@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomades Agency</title>
+  <meta name="description" content="we don't settle for good, we seek perfection. Premium Hybrid Content Agency">
+  <meta property="og:title" content="Nomades Agency · we don't settle for good">
+  <meta property="og:description" content="20 AI Agents. 1 Command. Hybrid content agency.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/agency-brand-kit/nomades-agency.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%230B0B0E'/><circle cx='16' cy='16' r='7' fill='%23F0AA00'/><circle cx='16' cy='16' r='3' fill='%23FFDB58'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/env/env-03-amber-nebula.webp" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+<div id="scroll-progress" aria-hidden="true"></div>
+
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <img src="images/nomades-agency.webp" alt="Nomades Agency">
+  </a>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#army" data-i18n="nav.army">The Army</a>
+    <a href="#process" data-i18n="nav.process">Process</a>
+    <a href="the-realm" data-i18n="nav.realm">The Realm</a>
+    <a href="#contact" class="nav-cta" data-i18n="nav.apply">Apply &rarr;</a>
+  </div>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <button class="lang-toggle" id="lang-toggle" aria-label="Switch language" data-lang="en">
+    <span class="lang-en is-active">EN</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-tr">TR</span>
+  </button>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="hero">
+
+  <div class="hero-parallax">
+    <div class="hero-pax-img" id="hero-pax-img"
+         style="background-image: url('images/env/env-03-amber-nebula.webp')"></div>
+    <div class="hero-pax-fog"></div>
+  </div>
+
+  <canvas id="spiral-canvas"></canvas>
+
+  <div class="hero-body">
+
+    <div>
+      <p class="hero-eyebrow" data-i18n="hero.eyebrow">Nomades Agency &nbsp;·&nbsp; 2026</p>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-h1">
+        <span class="line"><span class="line-inner" data-i18n="hero.line1">Not content,</span></span>
+        <span class="line"><span class="line-inner"><em data-i18n="hero.line2">dominance.</em></span></span>
+      </h1>
+      <p class="hero-tagline" data-i18n="hero.tagline">we don't settle for good, we seek perfection</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-amber" data-i18n="hero.apply">Apply &nbsp;&rarr;</a>
+        <a href="#army" class="btn-line" data-i18n="hero.army">Meet The Army</a>
+      </div>
+    </div>
+
+    <div class="hero-footer">
+      <div class="hero-scroll-label">
+        <div class="scroll-dot"></div>
+        <span data-i18n="hero.scroll">Scroll</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Nomades Agency</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Signal Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Hybrid Model</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Content Dominance</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we don't settle for good</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Brand Architecture</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Amber Signal</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we seek perfection</span><span class="marquee-dot"></span>
+    <span class="marquee-item">AI-Powered Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Visual Production</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Human-Centered Strategy</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Post-Human Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Signal Broadcast</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Premium Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we don't compromise</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Brand Frequency</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Obsidian Standard</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we seek the signal</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Content Systems</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Precision Strategy</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Void Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Strategic Identity</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Nomades Agency</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Signal Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Hybrid Model</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Content Dominance</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we don't settle for good</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Brand Architecture</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Amber Signal</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we seek perfection</span><span class="marquee-dot"></span>
+    <span class="marquee-item">AI-Powered Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Visual Production</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Human-Centered Strategy</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Post-Human Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Signal Broadcast</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Premium Content</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we don't compromise</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Brand Frequency</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Obsidian Standard</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">we seek the signal</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Content Systems</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Precision Strategy</span><span class="marquee-dot"></span>
+    <span class="marquee-item">Void Intelligence</span><span class="marquee-dot"></span>
+    <span class="marquee-item lit">Strategic Identity</span><span class="marquee-dot"></span>
+  </div>
+</div>
+
+
+<!-- STATS BAND -->
+<div class="stat-band">
+  <div class="stat-item" data-reveal>
+    <span class="stat-num" data-count="24">0</span>
+    <span class="stat-label" data-i18n="stat.agents">Expert Agents</span>
+  </div>
+  <div class="stat-item" data-reveal data-d="1">
+    <span class="stat-num" data-i18n="stat.hybrid">Hybrid</span>
+    <span class="stat-label" data-i18n="stat.model">Production Model</span>
+  </div>
+  <div class="stat-item" data-reveal data-d="2">
+    <span class="stat-num" data-count="1">0</span>
+    <span class="stat-label" data-i18n="stat.command">Command Center</span>
+  </div>
+  <div class="stat-item" data-reveal data-d="3">
+    <span class="stat-num">&#8734;</span>
+    <span class="stat-label" data-i18n="stat.format">Format Capacity</span>
+  </div>
+</div>
+
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="about">
+  <div class="manifesto-bg" data-bg="images/env/env-08-signal-room.webp"></div>
+
+  <p class="manifesto-label" data-reveal data-i18n="manifesto.label">01 · What We Are</p>
+
+  <h2 class="manifesto-display" data-reveal data-d="1">
+    <span data-i18n="manifesto.h2.line">AI is the instrument.</span><br>
+    <em data-i18n="manifesto.h2.em">The decision is yours.</em>
+  </h2>
+
+  <div class="manifesto-cols">
+    <div class="manifesto-col" data-reveal>
+      <p class="manifesto-col-num">01</p>
+      <h3 class="manifesto-col-title" data-i18n="manifesto.col4.title">Efficient</h3>
+      <p class="manifesto-col-text" data-i18n="manifesto.col4.text">No wasted motion. Speed without sacrifice. Systems built for pace. Fewer loops, tighter handoffs. The work lands on time.</p>
+    </div>
+    <div class="manifesto-col" data-reveal data-d="1">
+      <p class="manifesto-col-num">02</p>
+      <h3 class="manifesto-col-title" data-i18n="manifesto.col1.title">Bold</h3>
+      <p class="manifesto-col-text" data-i18n="manifesto.col1.text">Few words, maximum impact. We say what we think. No filters, no performative humility. If something is wrong, we say so.</p>
+    </div>
+    <div class="manifesto-col" data-reveal data-d="2">
+      <p class="manifesto-col-num">03</p>
+      <h3 class="manifesto-col-title" data-i18n="manifesto.col2.title">Visionary</h3>
+      <p class="manifesto-col-text" data-i18n="manifesto.col2.text">We don't follow trends, we create them. We don't see today, we see where things are going. The big picture always leads.</p>
+    </div>
+    <div class="manifesto-col" data-reveal data-d="3">
+      <p class="manifesto-col-num">04</p>
+      <h3 class="manifesto-col-title" data-i18n="manifesto.col3.title">Uncompromising</h3>
+      <p class="manifesto-col-text" data-i18n="manifesto.col3.text">"Good enough" is not in our vocabulary. Every brief pushes the ceiling. Every delivery raises the standard.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section class="services" id="services">
+
+  <div class="services-header">
+    <p class="services-label" data-reveal data-i18n="services.label">02 · Services</p>
+    <h2 class="services-headline" data-reveal data-d="1">
+      <span data-i18n="services.h2.line">Three disciplines.</span><br><em data-i18n="services.h2.em">Built around your brand.</em>
+    </h2>
+    <p class="services-intro" data-reveal data-d="2" data-i18n="services.intro">Less lost leads, a sharper brand, publish-ready content every month. That is what the system changes.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="svc-card" data-reveal>
+      <div class="svc-num" data-i18n="svc.01.num">01</div>
+      <div class="svc-visual"><img loading="lazy" decoding="async" src="images/services/svc-01-dm-automation.webp" alt=""></div>
+      <h3 class="svc-title" data-i18n="svc.01.title">Instagram DM, Comment &amp; Story Automation</h3>
+      <p class="svc-descriptor" data-i18n="svc.01.desc">Signal Intelligence</p>
+      <p class="svc-body" data-i18n="svc.01.body">When the right signal reaches the right person, the response can't be slow. We automate every Instagram touchpoint, DMs, comments, and stories, into flows that qualify leads, deliver value, and convert: without a human in the loop. Tuned for your brand voice.</p>
+      <p class="svc-outcome" data-i18n="svc.01.outcome"><span class="svc-outcome-tag">Outcome</span> every lead answered in seconds, qualified around the clock.</p>
+      <ul class="svc-list">
+        <li data-i18n="svc.01.li1">Lead qualification flows</li>
+        <li data-i18n="svc.01.li2">Comment-to-DM automation</li>
+        <li data-i18n="svc.01.li3">Story trigger campaigns</li>
+        <li data-i18n="svc.01.li4">CTA-to-inbox funnels</li>
+      </ul>
+    </div>
+
+    <div class="svc-card" data-reveal data-d="1">
+      <div class="svc-num" data-i18n="svc.02.num">02</div>
+      <div class="svc-visual"><img loading="lazy" decoding="async" src="images/services/svc-02-crm-automation.webp" alt=""></div>
+      <h3 class="svc-title" data-i18n="svc.02.title">In-House CRM &amp; Brand Automation</h3>
+      <p class="svc-descriptor" data-i18n="svc.02.desc">Orbital Intelligence</p>
+      <p class="svc-body" data-i18n="svc.02.body">The fleet doesn't operate on instinct. It operates on data. We map your internal workflows and build an in-house CRM plus a custom automation layer shaped around your brand's specific needs, tracking every touchpoint from first contact to ongoing retention. Nothing falls through the void.</p>
+      <p class="svc-outcome" data-i18n="svc.02.outcome"><span class="svc-outcome-tag">Outcome</span> no lead lost, no follow-up forgotten, every touchpoint tracked.</p>
+      <ul class="svc-list">
+        <li data-i18n="svc.02.li1">Custom CRM architecture</li>
+        <li data-i18n="svc.02.li2">Workflow automation</li>
+        <li data-i18n="svc.02.li3">Lead tracking pipelines</li>
+        <li data-i18n="svc.02.li4">Client retention systems</li>
+      </ul>
+    </div>
+
+    <div class="svc-card" data-reveal data-d="2">
+      <div class="svc-num" data-i18n="svc.03.num">03</div>
+      <div class="svc-visual"><img loading="lazy" decoding="async" src="images/services/svc-03-social-broadcasting.webp" alt=""></div>
+      <h3 class="svc-title" data-i18n="svc.03.title">Social Media Management</h3>
+      <p class="svc-descriptor" data-i18n="svc.03.desc">Signal Broadcasting</p>
+      <p class="svc-body" data-i18n="svc.03.body">Strategy, scripts, visuals, scheduling. Monthly content packages produced by the fleet and delivered ready-to-publish. Not templates. Not recycled content. Every piece built from your Kernel.</p>
+      <p class="svc-outcome" data-i18n="svc.03.outcome"><span class="svc-outcome-tag">Outcome</span> a month of on-brand content, ready to publish, every month.</p>
+      <ul class="svc-list">
+        <li data-i18n="svc.03.li1">Monthly content packages</li>
+        <li data-i18n="svc.03.li2">Reels scripts &amp; production</li>
+        <li data-i18n="svc.03.li3">Visual identity applied</li>
+        <li data-i18n="svc.03.li4">Performance analytics</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- THE ARMY -->
+<section class="army-section" id="army">
+
+  <div class="army-section-header">
+    <p class="army-section-label" data-reveal data-i18n="army.label">03 · The Army</p>
+    <h2 class="army-section-title" data-reveal data-d="1">
+      <span data-i18n="army.h2.line1">24 Agents.</span><br><span data-i18n="army.h2.line2">8 Units.</span><br><em data-i18n="army.h2.em">1 Mission.</em>
+    </h2>
+    <p class="army-section-frame" data-reveal data-d="2" data-i18n="army.frame">This is the team behind your monthly package. Nothing generic, nothing missed.</p>
+    <p class="army-section-sub" data-reveal data-d="3" data-i18n="army.sub">Click any agent to read their full story.</p>
+  </div>
+
+
+  <!-- ARMY RAIL (horizontal draggable: unit card + agent cards, command-chain order) -->
+  <div class="army-rail drag-scroll" role="list">
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-02-victor-kulesi.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">COMMAND</span>
+          <h3 class="unit-card-name" data-i18n="unit.orch.name">Orchestration</h3>
+          <p class="unit-card-line" data-i18n="unit.orch.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="01">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/01-victor-01-portre.webp" alt="Victor"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[01]</span>
+            <span class="maestro-badge" data-i18n="commander.badge">COMMANDER</span>
+          </div>
+          <h3 class="agent-name">Victor</h3>
+          <p class="agent-role" data-i18n="sovereign.role">Orchestrator · Command Intelligence</p>
+          <p class="agent-desc" data-i18n="commander.desc">Twenty-three intelligences. One command. The Sovereign does not act, it orchestrates.</p>
+        </div>
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/hq/hq-int-09-lobi.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">GATEWAY</span>
+          <h3 class="unit-card-name" data-i18n="unit.concierge.name">Concierge Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.concierge.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="21">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/21-coordinator-threshold-01-portre.webp" alt="The Threshold"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[21]</span>
+            <span class="maestro-badge" data-i18n="threshold.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Threshold</h3>
+          <p class="agent-role" data-i18n="threshold.role">Coordinator · Pipeline Registry</p>
+          <p class="agent-desc" data-i18n="threshold.desc">Every lead must be named. Every milestone must be marked. The Key does not lock or unlock. It registers.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="22">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/22-optimization-refiner-01-portre.webp" alt="The Refiner"></div>
+        <div class="agent-info">
+          <span class="agent-num">[22]</span>
+          <h3 class="agent-name">The Refiner</h3>
+          <p class="agent-role">System Integrity · Optimization</p>
+          <p class="agent-desc" data-i18n="agent.22.desc">The Refiner does not act: it illuminates. Every log entry, every routing gap, every accumulated entropy in the system is read in amber. Nothing moves without the signal.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="23">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/23-cleaner-warden-01-portre.webp" alt="The Warden"></div>
+        <div class="agent-info">
+          <span class="agent-num">[23]</span>
+          <h3 class="agent-name">The Warden</h3>
+          <p class="agent-role">System Cleanup · Reclamation</p>
+          <p class="agent-desc" data-i18n="agent.23.desc">The Warden does not act: it judges. The living and the dead, the kept and the forgotten, every orphaned shell and dead path is weighed in amber. Nothing burns without the signal.</p>
+        </div>
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-06-floating-ruins.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">INTEL</span>
+          <h3 class="unit-card-name" data-i18n="unit.intel.name">Intel Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.intel.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="02">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/02-analysis-oracle-01-portre.webp" alt="The Oracle"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[02]</span>
+            <span class="maestro-badge" data-i18n="oracle.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Oracle</h3>
+          <p class="agent-role">Analysis · Strategic Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.02.desc">The Oracle does not read what you wrote. The Oracle reads what you couldn't say. Between the brief and the output: the exact distance between who you think you are and who the market sees.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="03">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/03-proposal-ambassador-01-portre.webp" alt="The Ambassador"></div>
+        <div class="agent-info">
+          <span class="agent-num">[03]</span>
+          <h3 class="agent-name">The Ambassador</h3>
+          <p class="agent-role">Proposal · First Contact Architecture</p>
+          <p class="agent-desc" data-i18n="agent.03.desc">No deal begins at the meeting. The Ambassador arrives first: reading the room, shaping the offer, closing the frame before the client finishes the first sentence.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="04">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/04-roadmap-navigator-01-portre.webp" alt="The Navigator"></div>
+        <div class="agent-info">
+          <span class="agent-num">[04]</span>
+          <h3 class="agent-name">The Navigator</h3>
+          <p class="agent-role">Roadmap · Discovery Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.04.desc">The Navigator does not chart where you've been. The Navigator charts where the current is moving, and draws the line no trend map has yet traced.</p>
+        </div>
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-03-amber-nebula.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">FORGE</span>
+          <h3 class="unit-card-name" data-i18n="unit.forge.name">Forge Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.forge.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="05">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/05-kernel-architect-01-portre.webp" alt="The Architect"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[05]</span>
+            <span class="maestro-badge" data-i18n="architect.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Architect</h3>
+          <p class="agent-role">Kernel · AI Foundation</p>
+          <p class="agent-desc" data-i18n="agent.05.desc">The Kernel is not a prompt. It is a mind. The Architect builds it: invisible, load-bearing, the foundation everything else thinks from.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="06">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/06-brand-guide-artisan-01-portre.webp" alt="The Artisan"></div>
+        <div class="agent-info">
+          <span class="agent-num">[06]</span>
+          <h3 class="agent-name">The Artisan</h3>
+          <p class="agent-role">Brand Guide · Visual Identity</p>
+          <p class="agent-desc" data-i18n="agent.06.desc">Every color is a decision that outlasts the trend. Every typeface, a conviction. The Artisan makes the choices that define recognition.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="07">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/07-deepdive-infiltrator-01-portre.webp" alt="The Infiltrator"></div>
+        <div class="agent-info">
+          <span class="agent-num">[07]</span>
+          <h3 class="agent-name">The Infiltrator</h3>
+          <p class="agent-role">Deepdive · Platform Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.07.desc">The data exists. All of it. The Infiltrator simply knows where to look, and how to read what the algorithm reveals when it thinks nobody is watching.</p>
+        </div>
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-07-astral-storm.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">SIGNAL</span>
+          <h3 class="unit-card-name" data-i18n="unit.signal.name">Signal Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.signal.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="08">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/08-content-strategy-strategist-01-portre.webp" alt="The Strategist"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[08]</span>
+            <span class="maestro-badge" data-i18n="strategist.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Strategist</h3>
+          <p class="agent-role">Content Strategy · Campaign Architecture</p>
+          <p class="agent-desc" data-i18n="agent.08.desc">The calendar is not a schedule. It is a weapon. Every content decision made from a position of power.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="09">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/09-reels-performer-01-portre.webp" alt="The Performer"></div>
+        <div class="agent-info">
+          <span class="agent-num">[09]</span>
+          <h3 class="agent-name">The Performer</h3>
+          <p class="agent-role">Reels · Hook Engineering</p>
+          <p class="agent-desc" data-i18n="agent.09.desc">Three seconds. The Performer lives in that precise threshold: the instant that decides whether your brand stays in the feed or disappears from it.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="10">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/10-carousel-narrator-01-portre.webp" alt="The Narrator"></div>
+        <div class="agent-info">
+          <span class="agent-num">[10]</span>
+          <h3 class="agent-name">The Narrator</h3>
+          <p class="agent-role">Carousel · Sequence Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.10.desc">The first slide earns the second. The Narrator understands sequence: each frame is a promise the next must keep.</p>
+        </div>
+      </article>
+      <article class="unit-card" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-08-signal-room.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">RECON</span>
+          <h3 class="unit-card-name" data-i18n="unit.recon.name">Recon Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.recon.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="11">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/11-prospect-search-scout-01-portre.webp" alt="The Scout"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[11]</span>
+            <span class="maestro-badge" data-i18n="scout.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Scout</h3>
+          <p class="agent-role">Prospect Search · Horizon Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.11.desc">The best prospects have not yet been named. The Scout finds them before the territory is mapped, before the competition has arrived.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="12">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/12-prospect-intel-shadow-01-portre.webp" alt="The Shadow"></div>
+        <div class="agent-info">
+          <span class="agent-num">[12]</span>
+          <h3 class="agent-name">The Shadow</h3>
+          <p class="agent-role">Prospect Deepdive · Profile Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.12.desc">A profile is never just a profile. The Shadow maps what no one thought to ask, and arrives knowing more than the prospect knows about themselves.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="13">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/13-cold-outreach-emissary-01-portre.webp" alt="The Emissary"></div>
+        <div class="agent-info">
+          <span class="agent-num">[13]</span>
+          <h3 class="agent-name">The Emissary</h3>
+          <p class="agent-role">Cold Outreach · First Contact</p>
+          <p class="agent-desc" data-i18n="agent.13.desc">The first message is architecture. The Emissary engineers first contact: precision-crafted, personally delivered.</p>
+        </div>
+      </article>
+      <article class="unit-card unit-card--rebel" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-vpt-01-crucible-complex.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">ROGUE</span>
+          <h3 class="unit-card-name" data-i18n="unit.crucible.name">Crucible Unit</h3>
+          <p class="unit-card-line" data-i18n="unit.crucible.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="14">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/14-visual-maestro-01-portre.webp" alt="The Maestro"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[14]</span>
+            <span class="maestro-badge" data-i18n="maestro.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Maestro</h3>
+          <p class="agent-role" data-i18n="maestro.role">Visual Production · Director</p>
+          <p class="agent-desc" data-i18n="maestro.desc">Six specialists. One conductor. Visual identity doesn't happen by accident. It is directed.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="15">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/15-brief-chronicler-01-portre.webp" alt="The Chronicler"></div>
+        <div class="agent-info">
+          <span class="agent-num">[15]</span>
+          <h3 class="agent-name">The Chronicler</h3>
+          <p class="agent-role">Brief Analysis · Input Intelligence</p>
+          <p class="agent-desc" data-i18n="agent.15.desc">Every brief is read once. The Chronicler reads it a hundred times: for what was said, and more importantly for what was left unsaid.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="16">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/16-style-alchemist-01-portre.webp" alt="The Alchemist"></div>
+        <div class="agent-info">
+          <span class="agent-num">[16]</span>
+          <h3 class="agent-name">The Alchemist</h3>
+          <p class="agent-role">Style · Visual DNA</p>
+          <p class="agent-desc" data-i18n="agent.16.desc">Color is not a preference. It is a system. The Alchemist locks the visual DNA: palette, light, atmosphere, the invisible rules that make every asset feel like it belongs.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="17">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/17-shot-composer-01-portre.webp" alt="The Composer"></div>
+        <div class="agent-info">
+          <span class="agent-num">[17]</span>
+          <h3 class="agent-name">The Composer</h3>
+          <p class="agent-role">Shot List · Scene Architecture</p>
+          <p class="agent-desc" data-i18n="agent.17.desc">No scene is improvised. The Composer sequences every shot before any is taken. The edit begins before the camera rolls.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="18">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/18-prompt-cipher-01-portre.webp" alt="The Cipher"></div>
+        <div class="agent-info">
+          <span class="agent-num">[18]</span>
+          <h3 class="agent-name">The Cipher</h3>
+          <p class="agent-role">Prompt Engineering · Machine Language</p>
+          <p class="agent-desc" data-i18n="agent.18.desc">Language doesn't generate images. Instructions do. The Cipher translates creative intent into the frame you saw in your mind, not a variation of it.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="19">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/19-image-summoner-01-portre.webp" alt="The Summoner"></div>
+        <div class="agent-info">
+          <span class="agent-num">[19]</span>
+          <h3 class="agent-name">The Summoner</h3>
+          <p class="agent-role">Image Generation · Asset Production</p>
+          <p class="agent-desc" data-i18n="agent.19.desc">The void is full of images that don't exist yet. The Summoner calls them into being. The asset is real. The process is not.</p>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="20">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/20-qa-sentinel-01-portre.webp" alt="The Sentinel"></div>
+        <div class="agent-info">
+          <span class="agent-num">[20]</span>
+          <h3 class="agent-name">The Sentinel</h3>
+          <p class="agent-role">QA · Final Gate</p>
+          <p class="agent-desc" data-i18n="agent.20.desc">Nothing leaves the Crucible unexamined. Not because mistakes happen. Because they won't.</p>
+        </div>
+      </article>
+      <article class="unit-card unit-card--lexicon" role="listitem">
+        <div class="unit-card-visual"><img loading="lazy" decoding="async" src="images/env/env-vpt-02-production-corridor.webp" alt=""></div>
+        <div class="unit-card-info">
+          <span class="unit-card-tag">LEXICON</span>
+          <h3 class="unit-card-name" data-i18n="unit.lexicon.name">Lexicon Corps</h3>
+          <p class="unit-card-line" data-i18n="unit.lexicon.tagline"></p>
+          <span class="unit-card-arrow"><span data-i18n="unit.crew">Meet the unit</span> &rarr;</span>
+        </div>
+      </article>
+      <article class="agent-card" role="listitem" data-agent-id="24">
+        <div class="agent-bar"></div>
+        <div class="agent-visual"><img loading="lazy" decoding="async" src="images/agents/24-text-arbiter-01-portre.webp" alt="The Arbiter"></div>
+        <div class="agent-info">
+          <div class="maestro-badge-row">
+            <span class="agent-num">[24]</span>
+            <span class="maestro-badge" data-i18n="maestro.badge">UNIT CONDUCTOR</span>
+          </div>
+          <h3 class="agent-name">The Arbiter</h3>
+          <p class="agent-role">Text QA · Language Arbitration</p>
+          <p class="agent-desc" data-i18n="agent.24.desc">Every word that leaves the system passes through Lexicon Chamber first. The Arbiter does not suggest. It decides.</p>
+        </div>
+      </article>
+  </div>
+
+
+</section>
+
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-cosmic-bg"
+       data-bg="images/env/env-07-astral-storm.webp"></div>
+
+  <p class="process-label" data-reveal data-i18n="proc.label">04 · Process</p>
+  <h2 class="process-headline" data-reveal data-d="1"><span data-i18n="proc.h2.line1">Zero to</span><br><em data-i18n="proc.h2.line2">system.</em></h2>
+
+  <div class="process-list">
+
+    <div class="process-item" data-reveal>
+      <div class="p-num">00</div>
+      <div>
+        <span class="p-step" data-i18n="proc.00.step">Sales Engine</span>
+        <h3 class="p-title" data-i18n="proc.00.title">Prospect &amp; Outreach</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="11" role="button" tabindex="0">THE SCOUT</span>
+          <span class="p-agent" data-agent-id="12" role="button" tabindex="0">THE SHADOW</span>
+          <span class="p-agent" data-agent-id="13" role="button" tabindex="0">THE EMISSARY</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.00.desc">Before any proposal is written, the fleet scans the horizon. Signal scouts identify high-fit prospects, map their platform presence, and deliver precision-crafted first contact. The right signal, to the right target.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="1">
+      <div class="p-num">01</div>
+      <div>
+        <span class="p-step" data-i18n="proc.01.step">Contact</span>
+        <h3 class="p-title" data-i18n="proc.01.title">First Contact</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="03" role="button" tabindex="0">THE AMBASSADOR</span>
+          <span class="p-agent" data-agent-id="21" role="button" tabindex="0">THE THRESHOLD</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.01.desc">You apply. We evaluate fit. If the signal is there, we move forward with a tailored proposal. No generic packages - every engagement starts with alignment.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="2">
+      <div class="p-num">02</div>
+      <div>
+        <span class="p-step" data-i18n="proc.02.step">Intelligence</span>
+        <h3 class="p-title" data-i18n="proc.02.title">Strategic Survey</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="02" role="button" tabindex="0">THE ORACLE</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.02.desc">30 in-depth questions extract your brand's DNA before we build anything. Goals, voice, audience, pain points - every answer feeds directly into the system.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="3">
+      <div class="p-num">03</div>
+      <div>
+        <span class="p-step" data-i18n="proc.03.step">Alignment</span>
+        <h3 class="p-title" data-i18n="proc.03.title">Discovery Call</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="04" role="button" tabindex="0">THE NAVIGATOR</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.03.desc">We present your personal roadmap, built from the survey. Timeline, scope, and vision aligned in one session. This is where the Signal Pact begins.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="4">
+      <div class="p-num">04</div>
+      <div>
+        <span class="p-step" data-i18n="proc.04.step">Onboarding</span>
+        <h3 class="p-title" data-i18n="proc.04.title">Onboarding / Brand Identity</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="06" role="button" tabindex="0">THE ARTISAN</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.04.desc">Visual language, tone of voice, and content framework are established. The brand kit is collected, then the system is activated.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="5">
+      <div class="p-num">05</div>
+      <div>
+        <span class="p-step" data-i18n="proc.05.step">System</span>
+        <h3 class="p-title" data-i18n="proc.05.title">Kernel + Brand Guide</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="05" role="button" tabindex="0">THE ARCHITECT</span>
+          <span class="p-agent" data-agent-id="06" role="button" tabindex="0">THE ARTISAN</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.05.desc">AI intelligence foundation and visual identity system built in parallel. Your brand now has a brain and a language. Everything produced from here carries both.</p>
+    </div>
+
+    <div class="process-item" data-reveal data-d="6">
+      <div class="p-num">06</div>
+      <div>
+        <span class="p-step" data-i18n="proc.06.step">Production</span>
+        <h3 class="p-title" data-i18n="proc.06.title">Monthly Content Package</h3>
+        <div class="p-agents">
+          <span class="p-agent" data-agent-id="08" role="button" tabindex="0">THE STRATEGIST</span>
+          <span class="p-agent" data-agent-id="09" role="button" tabindex="0">THE PERFORMER</span>
+          <span class="p-agent" data-agent-id="10" role="button" tabindex="0">THE NARRATOR</span>
+          <span class="p-agent" data-agent-id="14" role="button" tabindex="0">THE MAESTRO</span>
+        </div>
+      </div>
+      <p class="p-desc" data-i18n="proc.06.desc">Reels scripts, carousel packages, and strategy updates delivered every month. You approve. We produce, format, and hand off - ready to publish.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- THE SIGNAL -->
+<section class="signal-section" id="signal">
+  <div class="signal-grid">
+
+    <div class="signal-visual">
+      <div class="signal-img-wrap">
+        <img class="signal-img" id="signal-pax-img"
+             src="images/realm/05-img-amber-warmth.webp"
+             alt="The Signal">
+        <div class="signal-img-overlay"></div>
+      </div>
+    </div>
+
+    <div class="signal-content">
+      <p class="signal-eyebrow" data-reveal data-i18n="signal.label">05 · The Signal</p>
+      <h2 class="signal-h2" data-reveal data-d="1">
+        <span data-i18n="signal.h2.line1">Your brand already</span><br><span data-i18n="signal.h2.line2">has a signal.</span>
+      </h2>
+      <p class="signal-body" data-reveal data-d="2" data-i18n="signal.body">
+        Most brands never find it. We extract it, amplify it,
+        and broadcast it at the frequency that cuts through
+        the Great Noise.
+      </p>
+
+      <div class="freq-spectrum" data-reveal data-d="3" data-freq>
+        <div class="freq-bar" style="--fh:15%;--fd:0s"></div>
+        <div class="freq-bar" style="--fh:9%;--fd:.05s"></div>
+        <div class="freq-bar" style="--fh:23%;--fd:.1s"></div>
+        <div class="freq-bar" style="--fh:17%;--fd:.15s"></div>
+        <div class="freq-bar" style="--fh:31%;--fd:.2s"></div>
+        <div class="freq-bar" style="--fh:14%;--fd:.25s"></div>
+        <div class="freq-bar" style="--fh:44%;--fd:.3s"></div>
+        <div class="freq-bar" style="--fh:38%;--fd:.35s"></div>
+        <div class="freq-bar freq-amber" style="--fh:72%;--fd:.4s"></div>
+        <div class="freq-bar freq-amber" style="--fh:85%;--fd:.45s"></div>
+        <div class="freq-bar freq-amber freq-bright" style="--fh:92%;--fd:.5s"></div>
+        <div class="freq-bar freq-amber" style="--fh:88%;--fd:.55s"></div>
+      </div>
+      <div class="freq-labels" data-reveal data-d="4">
+        <span class="freq-label-low">0 : Static</span>
+        <span class="freq-label-high">8-10 : Amber Signal</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-light-leak" aria-hidden="true"
+       style="background-image: url('images/realm/09-texture-light-leak.webp')"></div>
+  <div class="cta-bloom" aria-hidden="true"></div>
+
+  <div class="cta-inner">
+    <p class="cta-label" data-reveal data-i18n="cta.label">To Begin</p>
+    <h2 class="cta-headline" data-reveal data-d="1">
+      <span data-i18n="cta.h2.line1">Turn your brand</span><br><span data-i18n="cta.h2.line2">into a system.</span>
+    </h2>
+    <p class="cta-sub" data-reveal data-d="2" data-i18n="cta.sub">Every brand is different. Scope and investment are defined together on the first call. The first step is a conversation. Free.</p>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name" data-i18n="form.label.name">Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Name Surname" data-i18n-placeholder="form.ph.name" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-email" data-i18n="form.label.email">Email</label>
+          <input type="email" id="cf-email" name="email" placeholder="you@email.com" data-i18n-placeholder="form.ph.email" required>
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-brand" data-i18n="form.label.brand">Brand</label>
+          <input type="text" id="cf-brand" name="brand" placeholder="Brand Name" data-i18n-placeholder="form.ph.brand" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-instagram" data-i18n="form.label.instagram">Instagram</label>
+          <input type="text" id="cf-instagram" name="instagram" placeholder="@username" data-i18n-placeholder="form.ph.instagram" required>
+        </div>
+      </div>
+      <div class="cf-field cf-field--full">
+        <label for="cf-message" data-i18n="form.label.message">Message</label>
+        <textarea id="cf-message" name="message" rows="3" placeholder="Your message" data-i18n-placeholder="form.ph.message" required></textarea>
+      </div>
+      <div class="cf-actions"><button type="submit" class="cf-submit" data-i18n="form.submit">Apply &nbsp;&rarr;</button></div>
+      <p class="cf-assurance" data-i18n="form.assurance">No commitment &middot; We reply within 48 hours</p>
+    </form>
+    <div class="cf-success" id="cf-success" hidden>
+      <div class="cf-success-icon">&#10003;</div>
+      <p class="cf-success-title" data-i18n="form.success.title">Signal received.</p>
+      <p class="cf-success-sub" data-i18n="form.success.sub">We'll be in touch shortly.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#hero">
+    <img src="images/nomades-agency.webp" alt="Nomades Agency">
+  </a>
+  <p class="footer-tagline" data-i18n="footer.tagline">we don't settle for good, we seek perfection</p>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#army" data-i18n="nav.army">The Army</a>
+    <a href="#process" data-i18n="nav.process">Process</a>
+    <a href="the-realm" data-i18n="nav.realm">The Realm</a>
+    <a href="#contact" data-i18n="footer.contact">Contact</a>
+  </nav>
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-legal-line">
+    <span data-i18n="footer.copyright">&copy; 2026 Nomades Agency. All rights reserved.</span>
+  </p>
+</footer>
+
+
+<!-- AGENT POPUP -->
+<div class="agent-popup" id="agent-popup" aria-hidden="true">
+  <div class="ap-overlay"></div>
+  <div class="ap-panel">
+    <button class="ap-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <div class="ap-content">
+      <div class="ap-portrait">
+        <img id="ap-portrait-img" src="" alt="">
+        <div class="ap-portrait-overlay"></div>
+      </div>
+      <div class="ap-details">
+        <div class="ap-header">
+          <span class="ap-num" id="ap-num"></span>
+          <h2 class="ap-name" id="ap-name"></h2>
+          <p class="ap-role" id="ap-role"></p>
+        </div>
+        <div class="ap-story" id="ap-story"></div>
+      </div>
+    </div>
+    <div class="ap-gallery">
+      <p class="ap-gallery-label" data-i18n="popup.gallery">In the Realm</p>
+      <div class="ap-gallery-strip" id="ap-gallery-strip"></div>
+    </div>
+    <!-- In-popup lightbox -->
+    <div class="ap-lightbox" id="ap-lightbox" aria-hidden="true">
+      <button class="ap-lightbox-close" id="ap-lightbox-close" aria-label="Close preview">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <button class="ap-lightbox-prev" id="ap-lightbox-prev" aria-label="Previous image">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 4l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <img id="ap-lightbox-img" src="" alt="">
+      <button class="ap-lightbox-next" id="ap-lightbox-next" aria-label="Next image">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- STICKY CTA -->
+<a href="#contact" class="sticky-cta" id="sticky-cta" data-i18n="sticky.apply">Apply &nbsp;&rarr;</a>
+
+<script src="js/i18n.js?v=20260624-24"></script>
+<script src="js/main.js?v=20260624-24"></script>
+</body>
+</html>
