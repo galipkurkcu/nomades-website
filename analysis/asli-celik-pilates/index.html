@@ -250,7 +250,6 @@ footer{
     </div>
     <div class="htools no-print">
       <span class="badge">161 günlük veri penceresi</span>
-      <button class="btn" id="pdfBtn">PDF olarak Kaydet</button>
       <button class="btn" id="themeBtn">🌙</button>
     </div>
   </div>
@@ -472,7 +471,6 @@ themeBtn.addEventListener('click', () => {
   body.dataset.theme = isLight ? 'dark' : 'light';
   themeBtn.textContent = isLight ? '🌙' : '☀️';
 });
-document.getElementById('pdfBtn').addEventListener('click', () => window.print());
 
 // Türkçe-güvenli uppercase (CSS text-transform:uppercase i→İ hatasını önler)
 document.querySelectorAll('.label, .badge, .shead .stag, th, .catcard .cn, .ins .it').forEach(el => {

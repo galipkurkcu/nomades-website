@@ -64,16 +64,16 @@ header{
   transition:background .3s;
 }
 [data-theme="light"] header{background:rgba(250,250,247,0.92)}
-.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.hbrand{display:flex;align-items:center;gap:16px;min-width:0}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
+.hbrand{display:flex;align-items:center;gap:16px;min-width:0;flex:1 1 auto;overflow:hidden}
 .hlogo{width:34px;filter:invert(1);flex-shrink:0}
 [data-theme="light"] .hlogo{filter:none}
 .hlogo-div{width:1px;height:42px;background:var(--red);flex-shrink:0}
 .heyebrow{font-size:.55rem;font-weight:600;letter-spacing:.34em;color:var(--amber)}
-.htitle{min-width:0}
-.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-top:3px}
-.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em}
-.htools{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.htitle{min-width:0;overflow:hidden}
+.htitle h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.htitle .sub{font-size:.72rem;color:var(--dim);margin-top:5px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.htools{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;flex-shrink:0}
 .badge{
   display:inline-flex;
   align-items:center;
@@ -207,6 +207,7 @@ footer{
 @media(max-width:880px){
   .wrap{padding-left:20px;padding-right:20px}
   header{padding-left:20px;padding-right:20px}
+  .hbar{flex-wrap:wrap}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .grid2,.catlist,.insights{grid-template-columns:1fr}
   .shead{align-items:flex-start;flex-direction:column;gap:8px}
@@ -218,6 +219,7 @@ footer{
   body{font-size:14px}
   .kpis{grid-template-columns:1fr}
   .hbrand{align-items:flex-start}
+  .htitle h1,.htitle .sub{white-space:normal;text-overflow:clip}
   .hlogo-div{height:58px}
   .htitle h1{font-size:1.12rem}
   table{font-size:.78rem}
