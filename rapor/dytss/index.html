@@ -85,28 +85,6 @@ h1{
   text-align:center;
   min-height:16px;
 }
-#archive{ display:none; }
-.list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.list a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:20px;
-  font-size:17px;
-  font-weight:700;
-  color:var(--text);
-  text-decoration:none;
-  text-align:center;
-  transition:opacity .15s ease;
-}
-.list a:hover{ opacity:.7; }
 </style>
 </head>
 <body>
@@ -120,25 +98,15 @@ h1{
   </form>
 </div>
 
-<div class="card" id="archive">
-  <h1>Diyetisyen Sıla Saraç — Rapor Onayı</h1>
-  <div class="list">
-    <a href="analiz.html">1 Yıllık Reels Performans Analizi</a>
-  </div>
-</div>
-
 <script>
 (function(){
-  var PASSWORD = "DYTSS00";
-  var gate = document.getElementById('gate');
-  var archive = document.getElementById('archive');
+  var PASSWORD = "dytss00";
   var form = document.getElementById('password-form');
   var input = document.getElementById('password-input');
   var error = document.getElementById('password-error');
 
   function unlock(){
-    gate.style.display = 'none';
-    archive.style.display = 'block';
+    window.location.href = 'analiz.html';
   }
 
   if (sessionStorage.getItem('dytss_rapor_auth') === '1') {
