@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DYTSS · 1 Yıllık Reels Performans Analizi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nar:#A8325A; --nar-d:#7D2243; --nar-s:#C4557A;
+  --blush:#F2DADA; --sage:#8FAA82; --sage-k:#6B8A5E;
+  --krem:#FAF7F4; --keten:#EDE4E4; --koyu:#1E1A18; --koyu-2:#2C2726;
+  --beyaz:#FFFFFF; --fh:'Cormorant Garamond',serif; --fb:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#D6CFCB;font-family:var(--fb);color:var(--koyu-2);}
+.page{max-width:1040px;margin:0 auto;background:var(--krem);padding:64px 56px 80px;}
+.eyebrow{font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:.28em;color:var(--sage-k);display:block;margin-bottom:18px;}
+h1.title{font-family:var(--fh);font-size:46px;font-weight:300;color:var(--nar);line-height:1.08;letter-spacing:.01em;margin-bottom:14px;}
+.subtitle{font-family:var(--fb);font-size:13px;font-weight:300;color:var(--koyu-2);opacity:.6;letter-spacing:.02em;}
+.hr{height:1px;background:rgba(30,26,24,.1);margin:40px 0;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;}
+.kpi-card{background:var(--beyaz);border:1px solid rgba(30,26,24,.08);border-radius:6px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;}
+.kpi-card--accent{background:var(--nar);border-color:var(--nar);}
+.kpi-lbl{font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.18em;color:var(--sage-k);}
+.kpi-card--accent .kpi-lbl{color:var(--blush);opacity:.85;}
+.kpi-val{font-family:var(--fh);font-size:32px;font-weight:400;color:var(--koyu-2);}
+.kpi-card--accent .kpi-val{color:var(--krem);}
+
+.sec-eyebrow{font-family:var(--fb);font-size:9.5px;font-weight:500;letter-spacing:.22em;color:var(--sage-k);display:block;margin-bottom:10px;}
+h2.sec-title{font-family:var(--fh);font-size:28px;font-weight:400;color:var(--koyu-2);margin-bottom:6px;}
+.sec-sub{font-family:var(--fb);font-size:11.5px;font-weight:300;color:var(--koyu-2);opacity:.55;margin-bottom:28px;}
+
+.corr-row{display:grid;grid-template-columns:230px 1fr 140px;align-items:center;gap:18px;padding:12px 0;border-bottom:1px solid rgba(30,26,24,.06);}
+.corr-lbl-wrap{display:flex;flex-direction:column;gap:5px;}
+.corr-badge{font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.08em;padding:5px 12px;border-radius:20px;display:inline-block;width:fit-content;}
+.corr-badge--sm{font-size:8px;padding:3px 9px;letter-spacing:.04em;}
+.corr-n{font-family:var(--fb);font-size:9.5px;color:var(--koyu-2);opacity:.4;padding-left:2px;}
+.corr-bar-track{background:var(--keten);border-radius:20px;height:10px;overflow:hidden;}
+.corr-bar-fill{height:100%;border-radius:20px;}
+.corr-nums{text-align:right;display:flex;flex-direction:column;gap:2px;}
+.corr-avg{font-family:var(--fh);font-size:17px;color:var(--koyu-2);}
+.corr-med{font-family:var(--fb);font-size:8.5px;color:var(--koyu-2);opacity:.45;letter-spacing:.04em;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.rank-block-title{font-family:var(--fb);font-size:10px;font-weight:500;letter-spacing:.16em;color:var(--nar);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--nar);}
+.rank-block-title--low{color:var(--sage-k);border-color:var(--sage-k);}
+.rank-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(30,26,24,.06);}
+.rank-n{font-family:var(--fh);font-size:15px;color:var(--koyu-2);opacity:.35;width:22px;flex-shrink:0;}
+.rank-mid{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0;}
+.rank-title{font-family:var(--fb);font-size:11.5px;font-weight:400;color:var(--koyu-2);line-height:1.3;}
+.rank-views{font-family:var(--fh);font-size:15px;color:var(--nar);flex-shrink:0;}
+
+table.arch{width:100%;border-collapse:collapse;font-family:var(--fb);}
+table.arch thead th{font-size:9px;font-weight:500;letter-spacing:.14em;color:var(--sage-k);text-align:left;padding:10px 12px;border-bottom:2px solid var(--koyu-2);}
+table.arch thead th.t-views,table.arch thead th.t-n{text-align:right;}
+table.arch tbody td{font-size:11.5px;padding:9px 12px;border-bottom:1px solid rgba(30,26,24,.06);color:var(--koyu-2);}
+table.arch tbody tr:nth-child(even){background:rgba(143,170,130,.05);}
+td.t-n{text-align:right;opacity:.4;font-family:var(--fh);}
+td.t-title{font-weight:400;}
+td.t-views{text-align:right;font-family:var(--fh);font-size:14px;color:var(--nar);}
+.trial-flag{font-family:var(--fb);font-size:8px;font-weight:600;letter-spacing:.06em;color:var(--nar-d);background:var(--blush);border-radius:10px;padding:2px 7px;margin-left:6px;white-space:nowrap;}
+
+.insight-list{display:flex;flex-direction:column;gap:18px;}
+.insight{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:18px 20px;background:var(--beyaz);border-radius:6px;border-left:3px solid var(--nar);}
+.insight-n{font-family:var(--fh);font-size:22px;color:var(--nar);opacity:.4;}
+.insight-body h3{font-family:var(--fh);font-size:16.5px;font-weight:500;color:var(--koyu-2);margin-bottom:5px;}
+.insight-body p{font-family:var(--fb);font-size:11.5px;font-weight:300;color:var(--koyu-2);opacity:.75;line-height:1.6;}
+
+.footnote{margin-top:36px;padding:18px 20px;background:var(--keten);border-radius:6px;}
+.footnote-lbl{font-family:var(--fb);font-size:9px;font-weight:500;letter-spacing:.18em;color:var(--sage-k);display:block;margin-bottom:8px;}
+.footnote p{font-family:var(--fb);font-size:10.5px;font-weight:300;color:var(--koyu-2);opacity:.7;line-height:1.6;}
+
+.footer{margin-top:56px;padding-top:22px;border-top:1px solid rgba(30,26,24,.1);display:flex;justify-content:space-between;align-items:center;}
+.footer-mark{font-family:var(--fh);font-size:13px;color:var(--koyu-2);opacity:.3;letter-spacing:.04em;}
+.footer-n{font-family:var(--fb);font-size:8.5px;color:var(--koyu-2);opacity:.3;letter-spacing:.1em;}
+
+@media(max-width:720px){
+  .page{padding:36px 20px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .corr-row{grid-template-columns:1fr;gap:8px;text-align:left;}
+  .corr-nums{flex-direction:row;gap:10px;text-align:left;}
+  table.arch{font-size:10px;}
+}
+</style>
+</head>
+<body>
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#0B0B0E;display:flex;align-items:center;justify-content:center;padding:24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <div style="width:100%;max-width:420px;background:#141418;border:1px solid #1E1E22;border-radius:16px;padding:40px 32px;">
+    <h1 style="font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#777;margin:0 0 24px;text-align:center;">Diyetisyen Sıla Saraç — Rapor Onayı</h1>
+    <form id="pw-form" autocomplete="off" style="display:flex;flex-direction:column;gap:14px;">
+      <input type="password" id="pw-input" placeholder="Şifre" autofocus style="background:#1C1C1C;border:1px solid #1E1E22;border-radius:8px;padding:14px 16px;color:#FAFAF7;font-size:16px;">
+      <button type="submit" style="background:#FAFAF7;color:#0B0B0E;border:none;border-radius:8px;padding:14px 16px;font-size:15px;font-weight:600;cursor:pointer;">Giriş</button>
+      <div id="pw-error" style="color:#E5484D;font-size:13px;text-align:center;min-height:16px;"></div>
+    </form>
+  </div>
+</div>
+
+<div id="pw-content" style="display:none;">
+<div class="page">
+
+  <span class="eyebrow">DİYETİSYEN SILA SARAÇ · INSTAGRAM</span>
+  <h1 class="title">1 YILLIK REELS PERFORMANS ANALİZİ</h1>
+  <span class="subtitle">74 reels · KAYNAK: INSTAGRAM REELS + TRIAL REELS EKRAN GÖRÜNTÜLERİ (27 TEMMUZ 2026)</span>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <span class="kpi-lbl">TOPLAM VİDEO</span>
+      <span class="kpi-val">74</span>
+    </div>
+    <div class="kpi-card kpi-card--accent">
+      <span class="kpi-lbl">TOPLAM İZLENME</span>
+      <span class="kpi-val">18.713.800</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">ORTALAMA İZLENME</span>
+      <span class="kpi-val">252.889</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">MEDYAN İZLENME</span>
+      <span class="kpi-val">90.550</span>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">KONU BAŞLIĞINA GÖRE İZLENME KORELASYONU</span>
+  <h2 class="sec-title">HANGİ ANLATIM BİÇİMİ DAHA ÇOK İZLENİYOR?</h2>
+  <div class="sec-sub">KATEGORİ ORTALAMASI, TÜM HESAP ORTALAMASINA (252.889) GÖRE</div>
+  <div class="corr-table">
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+        <span class="corr-n">19 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:100.0%;background:#A8325A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">488.289</span>
+        <span class="corr-med">medyan 217.000</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span>
+        <span class="corr-n">4 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:79.4%;background:#A8325A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">387.650</span>
+        <span class="corr-med">medyan 320.500</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span>
+        <span class="corr-n">8 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:70.9%;background:#8FAA82;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">346.075</span>
+        <span class="corr-med">medyan 95.350</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#EDE4E4;color:#2C2726;">BELİRSİZ / DİĞER</span>
+        <span class="corr-n">1 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:49.2%;background:#A8325A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">240.000</span>
+        <span class="corr-med">medyan 240.000</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+        <span class="corr-n">24 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:27.0%;background:#F2DADA;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">131.629</span>
+        <span class="corr-med">medyan 48.950</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span>
+        <span class="corr-n">9 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:22.5%;background:#1E1A18;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">109.711</span>
+        <span class="corr-med">medyan 96.400</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#FAF7F4;color:#6B8A5E;border:1px solid rgba(143,170,130,.35);">TOPLUMSAL ELEŞTİRİ</span>
+        <span class="corr-n">3 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:21.6%;background:#A8325A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">105.433</span>
+        <span class="corr-med">medyan 54.700</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span>
+        <span class="corr-n">5 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:15.6%;background:#C4557A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">75.960</span>
+        <span class="corr-med">medyan 61.500</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#F2DADA;color:#7D2243;">GEBELİK / EMZİRME</span>
+        <span class="corr-n">1 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:7.1%;background:#F2DADA;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">34.500</span>
+        <span class="corr-med">medyan 34.500</span>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">INSTAGRAM TRIAL REELS ÖZELLİĞİ</span>
+  <h2 class="sec-title">NORMAL YAYIN vs. TRIAL REELS: HANGİSİ DAHA ÇOK KAZANDIRIYOR?</h2>
+  <div class="sec-sub">TRIAL REELS: TAKİPÇİ OLMAYAN KİTLEYE ÖNCE TEST EDİLEN, SONRA "TAKİPÇİLERE PAYLAŞ" KARARI VERİLEN REELS'LER — 74 VİDEONUN 12'Sİ BU YOLDAN GEÇTİ</div>
+  <div class="corr-table" style="margin-bottom:28px;">
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#A8325A;color:#FAF7F4;">TRIAL'DAN GEÇEN 12 VİDEO · TOPLAM İZLENME</span>
+        <span class="corr-n">12 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:100.0%;background:#A8325A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">619.667</span>
+        <span class="corr-med">medyan 638.500</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#8FAA82;color:#FAF7F4;">HESAP GENELİ (74 VİDEO) · TOPLAM İZLENME</span>
+        <span class="corr-n">74 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:40.8%;background:#8FAA82;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">252.889</span>
+        <span class="corr-med">medyan 90.550</span>
+      </div>
+    </div>
+    
+    <div class="corr-row">
+      <div class="corr-lbl-wrap">
+        <span class="corr-badge" style="background:#C4557A;color:#FAF7F4;">TRIAL'SIZ DOĞRUDAN YAYINLANAN 62 VİDEO · TOPLAM İZLENME</span>
+        <span class="corr-n">62 video</span>
+      </div>
+      <div class="corr-bar-track">
+        <div class="corr-bar-fill" style="width:29.4%;background:#C4557A;"></div>
+      </div>
+      <div class="corr-nums">
+        <span class="corr-avg">181.900</span>
+        <span class="corr-med">medyan 62.550</span>
+      </div>
+    </div>
+    
+  </div>
+  <div class="insight" style="border-left-color:var(--sage-k);">
+    <span class="insight-n" style="color:var(--sage-k);">★</span>
+    <div class="insight-body">
+      <h3>TRIAL'DAN GEÇEN VİDEOLAR, GEÇMEYENLERE GÖRE ORTALAMA 3.4 KAT DAHA FAZLA İZLENİYOR</h3>
+      <p>Trial Reels'te test edilip sonra takipçilere paylaşılan 12 video, yaşam boyu ortalama 619.667 izlenmeye ulaşırken; hiç trial'dan geçmeden doğrudan yayınlanan 62 video ortalama 181.900'de kalıyor. Trial grubunun medyanı (638.500) da hesap medyanının (90.550) yaklaşık 7.1 katı. Trial Reels, düşük riskle "bu video patlar mı?" sorusunu takipçi kitlesini yormadan test etme imkanı sunuyor — veri, bu testin gerçek bir performans sinyali olduğunu gösteriyor.</p>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">TRIAL REELS ARŞİVİ</span>
+  <h2 class="sec-title">TEST EDİLEN 12 VİDEONUN TRIAL DÖNEMİ PERFORMANSI</h2>
+  <div class="sec-sub">"TRIAL İZLENME" = TAKİPÇİ OLMAYAN TEST KİTLESİNDEN GELEN İZLENME · "YAŞAM BOYU TOPLAM" = TAKİPÇİLERE PAYLAŞIM SONRASI DAHİL, GÜNCEL TOPLAM İZLENME</div>
+  <table class="arch" style="margin-top:20px;">
+    <thead>
+      <tr>
+        <th class="t-n">#</th>
+        <th>BAŞLIK</th>
+        <th>KATEGORİ</th>
+        <th class="t-views">TRIAL İZLENME</th>
+        <th class="t-views">YAŞAM BOYU TOPLAM</th>
+        <th class="t-views">TRIAL PAYI</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    <tr>
+      <td class="t-n">1</td>
+      <td class="t-title">Hara Hachi Bu</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span></td>
+      <td class="t-views">649.000</td>
+      <td class="t-views" style="color:#8FAA82;">846.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%77</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">2</td>
+      <td class="t-title">Şişman Çocukluk = Şişman Yetişkinlik</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#6B8A5E;border:1px solid rgba(143,170,130,.35);">TOPLUMSAL ELEŞTİRİ</span></td>
+      <td class="t-views">627.000</td>
+      <td class="t-views" style="color:#8FAA82;">227.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%276</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">3</td>
+      <td class="t-title">Zayıf İnsanlar Gibi Düşünebilmek</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">392.000</td>
+      <td class="t-views" style="color:#8FAA82;">1.500.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%26</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">4</td>
+      <td class="t-title">Ekmeği "Kesenler" Dikkat!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">257.000</td>
+      <td class="t-views" style="color:#8FAA82;">1.000.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%26</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">5</td>
+      <td class="t-title">3 Günlük Oruç</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">242.000</td>
+      <td class="t-views" style="color:#8FAA82;">673.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%36</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">6</td>
+      <td class="t-title">Giden Yağlar Margarin Mi Pirinç Tanesi Mi?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">113.000</td>
+      <td class="t-views" style="color:#8FAA82;">664.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%17</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">7</td>
+      <td class="t-title">Otururken Zayıfla!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">89.500</td>
+      <td class="t-views" style="color:#8FAA82;">867.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%10</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">8</td>
+      <td class="t-title">Kilon Seni Neyden Koruyor?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">71.400</td>
+      <td class="t-views" style="color:#8FAA82;">369.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%19</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">9</td>
+      <td class="t-title">Hangi Çay Daha Sağlıklı?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">46.600</td>
+      <td class="t-views" style="color:#8FAA82;">234.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%20</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">10</td>
+      <td class="t-title">Spor Yapmak Zararlıdır!?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">41.900</td>
+      <td class="t-views" style="color:#8FAA82;">252.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%17</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">11</td>
+      <td class="t-title">Benim Bile 2 Yıl Sürdü!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">11.400</td>
+      <td class="t-views" style="color:#8FAA82;">191.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%6</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">12</td>
+      <td class="t-title">Spor Yapınca Kilo Alıyorum!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">1.849</td>
+      <td class="t-views" style="color:#8FAA82;">613.000</td>
+      <td class="t-views" style="font-size:11px;opacity:.55;">%0</td>
+    </tr>
+    
+    </tbody>
+  </table>
+  <div class="kpi-grid" style="margin-top:24px;">
+    <div class="kpi-card">
+      <span class="kpi-lbl">TRIAL'DAN GEÇEN VİDEO</span>
+      <span class="kpi-val">12</span>
+    </div>
+    <div class="kpi-card kpi-card--accent">
+      <span class="kpi-lbl">TOPLAM TRIAL İZLENME</span>
+      <span class="kpi-val">2.542.649</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">ORT. TRIAL İZLENME</span>
+      <span class="kpi-val">211.887</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">MEDYAN TRIAL İZLENME</span>
+      <span class="kpi-val">101.250</span>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">EN İYİ VE EN DÜŞÜK PERFORMANS</span>
+  <h2 class="sec-title">UÇLAR NE ANLATIYOR?</h2>
+  <div class="two-col" style="margin-top:24px;">
+    <div>
+      <div class="rank-block-title">EN İYİ 10 VİDEO</div>
+      
+        <div class="rank-row">
+          <span class="rank-n">01</span>
+          <div class="rank-mid">
+            <span class="rank-title">Sirkeli - Limonlu Su Meselesi</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">2.700.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">02</span>
+          <div class="rank-mid">
+            <span class="rank-title">Neden Kadınlar Evlenince Kilo Alır</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">1.600.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">03</span>
+          <div class="rank-mid">
+            <span class="rank-title">Babaannem Hep Hamur İşi Yerdi!</span>
+            <span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span>
+          </div>
+          <span class="rank-views">1.600.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">04</span>
+          <div class="rank-mid">
+            <span class="rank-title">Zayıf İnsanlar Gibi Düşünebilmek</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">1.500.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">05</span>
+          <div class="rank-mid">
+            <span class="rank-title">Ekmeği "Kesenler" Dikkat!</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">1.000.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">06</span>
+          <div class="rank-mid">
+            <span class="rank-title">Otururken Zayıfla!</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">867.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">07</span>
+          <div class="rank-mid">
+            <span class="rank-title">Hara Hachi Bu</span>
+            <span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span>
+          </div>
+          <span class="rank-views">846.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">08</span>
+          <div class="rank-mid">
+            <span class="rank-title">3 Günlük Oruç</span>
+            <span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span>
+          </div>
+          <span class="rank-views">673.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">09</span>
+          <div class="rank-mid">
+            <span class="rank-title">Giden Yağlar Margarin Mi Pirinç Tanesi Mi?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">664.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">10</span>
+          <div class="rank-mid">
+            <span class="rank-title">Spor Yapınca Kilo Alıyorum!</span>
+            <span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span>
+          </div>
+          <span class="rank-views">613.000</span>
+        </div>
+        
+    </div>
+    <div>
+      <div class="rank-block-title rank-block-title--low">EN DÜŞÜK 10 VİDEO</div>
+      
+        <div class="rank-row">
+          <span class="rank-n">65</span>
+          <div class="rank-mid">
+            <span class="rank-title">Tatilde Alınan Kilolara Hızlı Veda!</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">34.200</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">66</span>
+          <div class="rank-mid">
+            <span class="rank-title">'Verilen Kiloyu' Koruma</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">31.000</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">67</span>
+          <div class="rank-mid">
+            <span class="rank-title">Zayıf İnsanlar Nasıl Hep Zayıf Kalırlar?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">27.100</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">68</span>
+          <div class="rank-mid">
+            <span class="rank-title">Fazla Yediğini Yakabilir Misin?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">26.500</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">69</span>
+          <div class="rank-mid">
+            <span class="rank-title">Yapay Zeka Diyet Yazabilir Mi?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span>
+          </div>
+          <span class="rank-views">25.700</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">70</span>
+          <div class="rank-mid">
+            <span class="rank-title">Evrim Mi? Haksızlık Mı?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span>
+          </div>
+          <span class="rank-views">25.500</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">71</span>
+          <div class="rank-mid">
+            <span class="rank-title">Ameliyata Hazır Mısın?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span>
+          </div>
+          <span class="rank-views">25.100</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">72</span>
+          <div class="rank-mid">
+            <span class="rank-title">Diyet Ömür Boyu Mu?</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">24.200</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">73</span>
+          <div class="rank-mid">
+            <span class="rank-title">Strese Girersen, Elbisene Giremezsin</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">22.100</span>
+        </div>
+        
+        <div class="rank-row">
+          <span class="rank-n">74</span>
+          <div class="rank-mid">
+            <span class="rank-title">'Artık Diyetisyene Gitmeye Utanıyorum'</span>
+            <span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span>
+          </div>
+          <span class="rank-views">21.400</span>
+        </div>
+        
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">TÜM ARŞİV</span>
+  <h2 class="sec-title">74 VİDEONUN TAMAMI, İZLENMEYE GÖRE SIRALI</h2>
+  <div class="sec-sub">⚡ TRIAL ROZETİ, O VİDEONUN TRIAL REELS'TEN GEÇTİĞİNİ GÖSTERİR</div>
+  <table class="arch" style="margin-top:20px;">
+    <thead>
+      <tr>
+        <th class="t-n">#</th>
+        <th>BAŞLIK</th>
+        <th>KATEGORİ</th>
+        <th class="t-views">İZLENME</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    <tr>
+      <td class="t-n">1</td>
+      <td class="t-title">Sirkeli - Limonlu Su Meselesi</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">2.700.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">2</td>
+      <td class="t-title">Neden Kadınlar Evlenince Kilo Alır</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">1.600.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">3</td>
+      <td class="t-title">Babaannem Hep Hamur İşi Yerdi!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">1.600.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">4</td>
+      <td class="t-title">Zayıf İnsanlar Gibi Düşünebilmek <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">1.500.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">5</td>
+      <td class="t-title">Ekmeği "Kesenler" Dikkat! <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">1.000.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">6</td>
+      <td class="t-title">Otururken Zayıfla! <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">867.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">7</td>
+      <td class="t-title">Hara Hachi Bu <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span></td>
+      <td class="t-views">846.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">8</td>
+      <td class="t-title">3 Günlük Oruç <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">673.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">9</td>
+      <td class="t-title">Giden Yağlar Margarin Mi Pirinç Tanesi Mi? <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">664.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">10</td>
+      <td class="t-title">Spor Yapınca Kilo Alıyorum! <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">613.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">11</td>
+      <td class="t-title">18.00'den Sonra Yemeyi Bırak!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span></td>
+      <td class="t-views">495.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">12</td>
+      <td class="t-title">Kilon Seni Neyden Koruyor? <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">369.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">13</td>
+      <td class="t-title">Çiğ Kavrulmuş Islatılmış</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">278.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">14</td>
+      <td class="t-title">Spor Yapmak Zararlıdır!? <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">252.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">15</td>
+      <td class="t-title">Karanlık Sular</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#EDE4E4;color:#2C2726;">BELİRSİZ / DİĞER</span></td>
+      <td class="t-views">240.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">16</td>
+      <td class="t-title">Diyeti Zorlaştırma!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">238.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">17</td>
+      <td class="t-title">Hangi Çay Daha Sağlıklı? <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">234.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">18</td>
+      <td class="t-title">Şişman Çocukluk = Şişman Yetişkinlik <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#6B8A5E;border:1px solid rgba(143,170,130,.35);">TOPLUMSAL ELEŞTİRİ</span></td>
+      <td class="t-views">227.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">19</td>
+      <td class="t-title">Yumurtanın Sarısı Köyünü Belirler Mi?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">217.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">20</td>
+      <td class="t-title">Listemden De Daha Az Yesem?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">196.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">21</td>
+      <td class="t-title">Benim Bile 2 Yıl Sürdü! <span class="trial-flag">⚡ TRIAL</span></td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">191.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">22</td>
+      <td class="t-title">"En Köyden" Yumurta</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">173.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">23</td>
+      <td class="t-title">Sınırsız Yiyebilirsin!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">152.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">24</td>
+      <td class="t-title">Yumurta Diyeti</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">147.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">25</td>
+      <td class="t-title">İnsanoğlu Etçildir!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span></td>
+      <td class="t-views">146.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">26</td>
+      <td class="t-title">Lipödem</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">145.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">27</td>
+      <td class="t-title">Dümdüz Bir Karın İçin Neleri Feda Edersin?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">138.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">28</td>
+      <td class="t-title">Yulaf, Badem, Soya, Hindistan Cevizi, İnek: Hangi Süt?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">137.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">29</td>
+      <td class="t-title">Şeker Hastalığı: Kimler Adaydır?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">137.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">30</td>
+      <td class="t-title">Tatlı Krizleri</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">124.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">31</td>
+      <td class="t-title">Bu Hafta 800 Gram Kas Almışım!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">121.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">32</td>
+      <td class="t-title">Hangi Şeker En İyisi?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">114.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">33</td>
+      <td class="t-title">Seni Gizli Gizli Şişmanlatan 5 şey (1)</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span></td>
+      <td class="t-views">113.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">34</td>
+      <td class="t-title">Bu Hastalık Kilo Verdirmiyor!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">104.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">35</td>
+      <td class="t-title">Bir Diyet Hastalığı</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">96.400</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">36</td>
+      <td class="t-title">Seni Gizli Gizli Şişmanlatan 5 şey (3)</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span></td>
+      <td class="t-views">96.200</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">37</td>
+      <td class="t-title">Glüten Meselesi</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">93.300</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">38</td>
+      <td class="t-title">Denemekten Vazgeçme!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">87.800</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">39</td>
+      <td class="t-title">Yemek Mi Bağımlılık Mı?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">78.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">40</td>
+      <td class="t-title">Aç Geziyorum, Yine Şişmanım...</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">76.900</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">41</td>
+      <td class="t-title">Termal Taytla Kardiyo</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">73.400</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">42</td>
+      <td class="t-title">2 Haftada 8 Kiloya Veda!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">69.700</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">43</td>
+      <td class="t-title">Diyet Yemek Paketi Aboneliği</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#1E1A18;border:1px solid rgba(30,26,24,.14);">PRATİK İPUCU</span></td>
+      <td class="t-views">63.600</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">44</td>
+      <td class="t-title">Seni Gizli Gizli Şişmanlatan 5 şey (2)</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span></td>
+      <td class="t-views">61.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">45</td>
+      <td class="t-title">Vücudunu Şaşırt!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">60.800</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">46</td>
+      <td class="t-title">Seni Gizli Gizli Şişmanlatan 5 şey (5)</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span></td>
+      <td class="t-views">59.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">47</td>
+      <td class="t-title">Diyet Döngüsüne Sıkışmak</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">58.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">48</td>
+      <td class="t-title">Evim Dışında Tuvalete Giremem!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#6B8A5E;border:1px solid rgba(143,170,130,.35);">TOPLUMSAL ELEŞTİRİ</span></td>
+      <td class="t-views">54.700</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">49</td>
+      <td class="t-title">Diyet Yapıyor Gibi Hissetmek</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">50.900</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">50</td>
+      <td class="t-title">Telafinin En Güzeli</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">50.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">51</td>
+      <td class="t-title">Seni Gizli Gizli Şişmanlatan 5 şey (4)</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#C4557A;color:#FAF7F4;">SERİ: GİZLİ ŞİŞMANLATAN 5 ŞEY</span></td>
+      <td class="t-views">49.600</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">52</td>
+      <td class="t-title">Diyette zurna dürüm olur mu?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">47.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">53</td>
+      <td class="t-title">Peki Ya Şekerim "Düşüyorsa"?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">45.800</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">54</td>
+      <td class="t-title">İlk Doygunluk Sinyallerini Anlamak</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">45.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">55</td>
+      <td class="t-title">Çikolatayla zayıflar mıyım?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">43.900</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">56</td>
+      <td class="t-title">Zayıflarken 2+2 Her Zaman 4 Değildir!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">40.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">57</td>
+      <td class="t-title">Yedikçe Yiyorsan, Daha Çok Ye!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">39.900</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">58</td>
+      <td class="t-title">Zayıflama İğneleri</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">39.600</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">59</td>
+      <td class="t-title">Vegan Beslenme</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">38.700</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">60</td>
+      <td class="t-title">Sesli Söyle, Hızlı Olsun!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">38.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">61</td>
+      <td class="t-title">Sağlık Haresi Etkisi</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#A8325A;color:#FAF7F4;">MİT / KARŞILAŞTIRMA</span></td>
+      <td class="t-views">36.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">62</td>
+      <td class="t-title">Fark Ettin, Şimdi Sürece Güven!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">35.900</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">63</td>
+      <td class="t-title">Erkeklere Ayrıcalık?!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#FAF7F4;color:#6B8A5E;border:1px solid rgba(143,170,130,.35);">TOPLUMSAL ELEŞTİRİ</span></td>
+      <td class="t-views">34.600</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">64</td>
+      <td class="t-title">Emzirirken Her Şey Daha Kolay!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#7D2243;">GEBELİK / EMZİRME</span></td>
+      <td class="t-views">34.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">65</td>
+      <td class="t-title">Tatilde Alınan Kilolara Hızlı Veda!</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">34.200</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">66</td>
+      <td class="t-title">'Verilen Kiloyu' Koruma</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">31.000</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">67</td>
+      <td class="t-title">Zayıf İnsanlar Nasıl Hep Zayıf Kalırlar?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">27.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">68</td>
+      <td class="t-title">Fazla Yediğini Yakabilir Misin?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">26.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">69</td>
+      <td class="t-title">Yapay Zeka Diyet Yazabilir Mi?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#8FAA82;color:#FAF7F4;">KİŞİSEL / PERDE ARKASI</span></td>
+      <td class="t-views">25.700</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">70</td>
+      <td class="t-title">Evrim Mi? Haksızlık Mı?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">25.500</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">71</td>
+      <td class="t-title">Ameliyata Hazır Mısın?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#1E1A18;color:#F2DADA;">KLİNİK / METABOLİK</span></td>
+      <td class="t-views">25.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">72</td>
+      <td class="t-title">Diyet Ömür Boyu Mu?</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">24.200</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">73</td>
+      <td class="t-title">Strese Girersen, Elbisene Giremezsin</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">22.100</td>
+    </tr>
+    
+    <tr>
+      <td class="t-n">74</td>
+      <td class="t-title">'Artık Diyetisyene Gitmeye Utanıyorum'</td>
+      <td class="t-cat"><span class="corr-badge corr-badge--sm" style="background:#F2DADA;color:#A8325A;">DİYET KÜLTÜRÜ</span></td>
+      <td class="t-views">21.400</td>
+    </tr>
+    
+    </tbody>
+  </table>
+
+  <div class="hr"></div>
+
+  <span class="sec-eyebrow">İÇGÖRÜ KATMANI</span>
+  <h2 class="sec-title">STRATEJİK ÇIKARIMLAR</h2>
+  <div class="insight-list" style="margin-top:24px;">
+
+    <div class="insight">
+      <span class="insight-n">01</span>
+      <div class="insight-body">
+        <h3>MİT KIRMA / KARŞILAŞTIRMA FORMATI, TAVANI VE HACMİ BİRLİKTE TAŞIYOR</h3>
+        <p>19 video (%26) "Mit" kategorisinde ("Sirkeli-Limonlu Su Meselesi", "Ekmeği Kesenler Dikkat!", "Otururken Zayıfla!", "Hangi Süt/Çay/Şeker" karşılaştırmaları): bu grup tek başına toplam izlenmenin yaklaşık yarısını üretiyor. En iyi 10 videonun 6'sı bu formatta. Ortalama 488.289, medyan 217.000, hesabın genel medyanının (90.550) yaklaşık 2.4 katı. "Herkesin bildiğini sandığı şeyi çürütme" veya "A mı B mi" çerçevesi, keşfet/reach motorunu en güçlü tetikleyen kalıp.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">02</span>
+      <div class="insight-body">
+        <h3>TRIAL REELS, İÇGÜDÜYE GÜVENMEDEN "PATLAR MI?" SORUSUNU TEST ETME ARACI HALİNE GELMİŞ</h3>
+        <p>Son dönemde denenen 12 trial video, hesabın genel ortalamasının (252.889) çok üzerinde bir grup oluşturuyor (yaşam boyu ortalama 619.667). Trial dönemi izlenmesi ile yaşam boyu toplam arasındaki fark ("Şişman Çocukluk = Şişman Yetişkinlik" gibi bazı videolarda trial payı %100'ü aşıyor — paylaşım sonrası organik büyüme trial rakamını da geride bırakmış) gösteriyor ki: trial performansı güçlü olan içerik, takipçi kitlesine açıldığında da güçlü kalıyor. Üretim planında yeni format denemeleri önce Trial Reels'te test edilebilir.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">03</span>
+      <div class="insight-body">
+        <h3>EN BÜYÜK HACİM, EN ZAYIF GETİRİYİ ÜRETİYOR: DİYET KÜLTÜRÜ ELEŞTİRİSİ</h3>
+        <p>"Diyet Kültürü" (duygusal/motivasyonel: "Diyeti Zorlaştırma!", "Aç Geziyorum Yine Şişmanım", "Artık Diyetisyene Gitmeye Utanıyorum" vb.) 24 video ile arşivin en kalabalık kümesi (%32), ama medyanı 48.950, genel medyanın yarısından az. En düşük 10 videonun 7'si bu kategoriden. Üretim hacminin en büyük payını alan format, performans sıralamasında en altta: hacim ile getiri ters orantılı.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">04</span>
+      <div class="insight-body">
+        <h3>KİŞİSEL/PERDE ARKASI İÇERİK YÜKSEK RİSKLİ, YÜKSEK TAVANLI</h3>
+        <p>8 video ("Babaannem Hep Hamur İşi Yerdi!" 1,6M, "3 Günlük Oruç" 673K) ile ortalamayı yukarı çeken ama medyanı (95.350) ortalamasının çok altında kalan en polarize kategori: ya viral oluyor ya da sıradan kalıyor ("Yapay Zeka Diyet Yazabilir Mi?" 25,7K). Tutarlı değil ama tavanı en yüksek formatlardan biri.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">05</span>
+      <div class="insight-body">
+        <h3>KLİNİK/METABOLİK İÇERİK: VİRAL OLMUYOR AMA GÜVENLİ TABAN SAĞLIYOR</h3>
+        <p>9 video (Lipödem, Şeker Hastalığı, Zayıflama İğneleri, Evrim Mi? Haksızlık Mı? vb.) dar bir bantta (25K-369K) toplanıyor, düşük varyans. Bu grup büyümenin motoru değil ama düşük risk/istikrarlı taban temsil ediyor; compliance açısından da en hassas kategori, format burada korunmalı.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">06</span>
+      <div class="insight-body">
+        <h3>GEBELİK / EMZİRME PİLLAR'INDA VERİ AÇIĞI VAR</h3>
+        <p>Hedef kitle tanımı (30-40 yaş, fertilite/gebelik/emzirme odaklı) ile üretilen içerik hacmi uyuşmuyor: 74 videoda yalnızca 1 tanesi bu temada ("Emzirirken Her Şey Daha Kolay!", 34.500). Tek veri noktasından performans yargısı çıkarılamaz, ama hacim eksikliği hedef kitle önceliğiyle çelişiyor; üretim planında bu pillar'a ayrılan pay gözden geçirilebilir.</p>
+      </div>
+    </div>
+
+    <div class="insight">
+      <span class="insight-n">07</span>
+      <div class="insight-body">
+        <h3>SERİ FORMATI (GİZLİ ŞİŞMANLATAN 5 ŞEY): TUTARLI AMA SIRADAN</h3>
+        <p>5 bölümlük seri dar bir aralıkta (49,6K-113K) performans gösteriyor, dalgalanma yok ama viral sıçrama da yok. Seri formatı öngörülebilir orta-segment doldurma için işlevsel, growth motoru olarak değil.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footnote">
+    <span class="footnote-lbl">VERİ NOTU</span>
+    <p>Kategoriler yalnızca video başlıklarından çıkarımla etiketlenmiştir; video içeriği (caption, ses kaydı) izlenmemiştir. "Diğer" olarak işaretlenen "Karanlık Sular" başlığının konusu başlıktan netleşmediği için kategorize edilmemiştir. Sayılar Instagram Insights ekran görüntülerinden (K/M kısaltmalı) elle çıkarılmıştır; ondalıklı K/M değerleri en yakın tam sayıya yuvarlanmıştır (ör. 1,6M → 1.600.000). "Trial Reels" verisi, Instagram'ın ilgili ekranındaki ayrı ekran görüntülerinden alınmıştır; trial izlenmesi ile yaşam boyu toplam farklı zaman noktalarında ve farklı sayaçlarla ölçüldüğü için trial payı bazı videolarda %100'ü aşabilir (ör. paylaşım sonrası organik büyüme trial rakamını geride bırakmıştır) — bu bir veri hatası değil, iki farklı ölçüm penceresinin doğal sonucudur.</p>
+  </div>
+
+  <div class="footer">
+    <span class="footer-mark">Diyetisyen Sıla Saraç</span>
+    <span class="footer-n">NOMADES AGENCY · 1 YILLIK PERFORMANS DEĞERLENDİRMESİ</span>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+(function(){
+  var PASSWORD = "DYTSS00";
+  var gate = document.getElementById('pw-gate');
+  var content = document.getElementById('pw-content');
+  var form = document.getElementById('pw-form');
+  var input = document.getElementById('pw-input');
+  var error = document.getElementById('pw-error');
+
+  function unlock(){
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  }
+
+  if (sessionStorage.getItem('dytss_rapor_auth') === '1') {
+    unlock();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (input.value === PASSWORD) {
+      sessionStorage.setItem('dytss_rapor_auth', '1');
+      unlock();
+    } else {
+      error.textContent = 'Hatalı şifre.';
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
