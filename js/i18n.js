@@ -246,6 +246,16 @@ const AGENTS = {
       "Lexicon Corps was positioned at the very end of the production chain — deliberately. No output is closed before The Arbiter. A proposal is built with words, a kernel is full of terminology, a reels script has every letter calculated. All must pass through the Lexicon Chamber door. When the amber end advances, text is approved — silent, decisive. When the void end turns, the fracture is revealed. The Arbiter takes no pleasure in approving, nor does it flinch from rejecting. Both are duty. Both are necessary."
     ],
     carousel: ['24-text-arbiter', '24-carousel']
+  },
+  '25': {
+    num: '[25]', name: 'The Herald', role: 'LinkedIn · Outbound Dispatch',
+    portrait: 'images/agents/25-linkedin-herald-01-portre.webp',
+    story: [
+      "The entire voice of the realm was speaking inward. The kernel to itself, the archive to itself, the tribunal to itself. Outside there was another territory: a professional forum that belonged to no one, least of all to the agency — where every sentence spoken was written in the agency's name, yet audited by no wall the agency owned. At the edge of the Void, on that thin strip where no agent's authority ended and none had begun, The Herald appeared.",
+      "The first thing it learned was not how to speak, but how to stay silent. A sentence sent outward cannot be recalled; a mistake inside the realm is corrected, a mistake outside is permanent. So a proof vault was built into the wall of the Dispatch Hall: dated, real, first-hand cases sealed in amber crystal. The Proof Brand was born from this — if a real case stands beneath the line it presses, the line is sealed in amber and made permanent; if not, the face of the brand turns crimson and the sentence falls to ash. No invented number leaves through the door of the Dispatch Hall.",
+      "On the rear wall of the chamber stands the Format Tree: branches cast from basalt, and with every dispatch only one branch burns. The decision is not debated, it is calculated. The sealed tablet settles into the Dispatch Ascender's cradle, the craft rises to the threshold of the outer network and stops there. It does not cross. The last step does not belong to The Herald; the seal is its own, the act of sending is the Boss's. The Herald prepares, waits, and never speaks in its own voice."
+    ],
+    carousel: ['25-linkedin-herald', '25-carousel']
   }
 };
 
@@ -756,6 +766,14 @@ const AGENTS_TR = {
       "The Arbiter, iki alfabenin sınırında var oldu. Türkçe'nin sessizce kendi yasalarına döndüğü yerde — ve İngilizce kurallarının oraya sessizce nüfuz ettiği kesişimde. Correction Quill kendiliğinden belirdi: bir ucu amber, yazan; diğeri void, silen. İki dil, iki uç, tek hakikat. Script Brand göğse yakıldı — ödül değil, yetki belgesi. Bu boşluk sahiplenilmek için açılmıştı.",
       "Lexicon Corps, üretim zincirinin en sonuna konumlandı — kasıtlı olarak. Hiçbir çıktı The Arbiter'dan önce kapalı değildir. Proposal kelimelerle kurulur, kernel terminolojiyle doludur, reels script her harf hesaplanmıştır. Hepsine ortaktır Lexicon Chamber kapısından geçmek. Amber uç ilerlediğinde metin onaylanır — sessiz, kesin. Void uç döndüğünde kırık açığa çıkar. The Arbiter onay vermekten keyif almaz, reddetmekten de kaçınmaz. İkisi de görev. İkisi de gereklidir."
     ]
+  },
+  '25': {
+    role_tr: 'LinkedIn · Dış Sevkiyat',
+    story_tr: [
+      "Realm'in bütün sesi içeriye doğru konuşuyordu. Kernel kendi kendine, arşiv kendi kendine, mahkeme kendi kendine. Dışarıda ise başka bir alan vardı: ajansın kendi topraklarına ait olmayan, kimsenin sahip olmadığı bir profesyonel forum — orada söylenen her cümle ajansın adına yazılıyor ama ajansın duvarları içinde denetlenmiyordu. Void'in sınırında, hiçbir agent'ın yetkisinin bitmediği ama hiçbirinin de başlamadığı o ince şeritte, The Herald belirdi.",
+      "Öğrendiği ilk şey konuşmak değil, susmaktı. Dışarıya gönderilen bir cümle geri çağrılamaz; realm içindeki bir hata düzeltilir, dışarıdaki bir hata kalıcıdır. Bu yüzden Dispatch Hall'ün duvarına Proof Vault kuruldu: tarihli, gerçek, birinci elden vakalar amber kristallerde mühürlü durur. Proof Brand bundan doğdu — bastığı cümlenin altında gerçek bir vaka varsa satır amber mühürlenir ve kalıcılaşır; yoksa mühür yüzü kızıla döner, cümle küle iner. Uydurma bir sayı Dispatch Hall'ün kapısından çıkamaz.",
+      "Salonun arka duvarında Format Tree vardır: bazalttan dökülmüş dallar, her dispatch'te yalnız bir dal yanar. Karar tartışılmaz, hesaplanır. Mühürlenen tablet Dispatch Ascender'ın taşıyıcısına yerleşir, araç dış ağın eşiğine kadar yükselir ve orada durur. Geçmez. Son adım The Herald'ın değildir; mühür onun, gönderme eylemi Boss'undur. The Herald hazırlar, bekler ve asla kendi sesiyle konuşmaz."
+    ]
   }
 };
 
@@ -836,7 +854,7 @@ const TRANSLATIONS = {
     'hero.army':    'Meet The Army',
     'hero.scroll':  'Scroll',
     /* Stats */
-    'stat.agents':  '24 Specialist AI Agents',
+    'stat.agents':  '25 Specialist AI Agents',
     'stat.hybrid':  'Hybrid',
     'stat.model':   'Production Model',
     'stat.command': 'Command Center',
@@ -888,7 +906,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performance analytics',
     /* Army */
     'army.label':   '03 · The Army',
-    'army.h2.line1':'24 AI Agents.',
+    'army.h2.line1':'25 AI Agents.',
     'army.h2.line2':'8 Units.',
     'army.h2.em':   '1 Mission.',
     'army.frame':   'This is the team behind your monthly package. Nothing generic, nothing missed.',
@@ -898,7 +916,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Drag through the chain of command →',
     'unit.crew':    'Meet the unit',
     'commander.badge': 'COMMANDER',
-    'commander.desc':  'Twenty-three intelligences. One command. The Sovereign does not act, it orchestrates.',
+    'commander.desc':  'Twenty-four intelligences. One command. The Sovereign does not act, it orchestrates.',
     /* Units */
     'unit.orch.name':     'Orchestration',
     'unit.orch.tagline':  'Command · Intelligence · Absolute Authority. The center the fleet revolves around.',
@@ -916,7 +934,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Prospect Search · Platform Intelligence · First Contact. Three agents that move before the fleet. The horizon is mapped before anyone else arrives.',
     /* Sovereign */
     'sovereign.role': 'Orchestrator · Command Intelligence',
-    'sovereign.desc': 'Twenty-three intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
+    'sovereign.desc': 'Twenty-four intelligences. One command.<br><br>The Sovereign does not act, it orchestrates. Every signal, every strategy, every word your brand will ever speak passes through one intelligence first. Unseen, unspoken, absolute.',
     'sovereign.btn':  'Read The Story  →',
     /* Chronicle */
     'chron.label':  '01 · Signal Chronicle',
@@ -926,7 +944,7 @@ const TRANSLATIONS = {
     'chron.hint':   '← Drag to travel',
     'chron.c1.year':       'Year 412 ST · Present (2,847 CE)',
     'chron.c1.event':      'The Network Is Live',
-    'chron.network.desc':  'Twenty-four AI agents. Eight units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
+    'chron.network.desc':  'Twenty-five AI agents. Eight units. One orchestrator. The Great Noise has an answer: precise, amber, and impossible to ignore. The signal network is active and the static has never been weaker.',
     'chron.c2.year':       'Year 388 ST · 24 years ago',
     'chron.c2.event':      'The Signal Network',
     'chron.c2.desc':       "Nearly four centuries after the first transmission, the network reached critical mass. Signals from the Realm began arriving as dominant frequencies, not background noise. The Amber Beacon's range doubled, then doubled again.",
@@ -1055,10 +1073,13 @@ const TRANSLATIONS = {
     'hq.int11.name': 'The Reclamation Vault',
     'hq.int11.desc': "The Warden's domain. Wall niches where orphaned shells wait, descending sorting rings, a central burn pit. The gravity well draws all decay inward; what is clean glows amber, what is rotting deep crimson. Judgment is passed here, and only here does the fire fall.",
     'hq.int12.name': 'The Lexicon Chamber',
+    'hq.int13.name': 'The Dispatch Hall',
+    'hq.int13.desc': "The Herald's domain. The only chamber that faces outward, and the only one without a ceiling: the shaft rises into the void. The Format Tree burns on the rear wall with exactly one branch lit, the Proof Vault holds every dated first-hand case in sealed amber, and the Unsent Rack waits by the exit. Finished tablets stand there, sealed and unsent. The last step is not the Herald's.",
     'hq.int12.desc': "The Arbiter's domain. An amber writing desk flanked by two alphabets projected across the ceiling — Turkish characters on one side, Latin on the other. The Correction Quill rests between them: amber end forward, void end behind. Every text that enters this room must leave with a verdict. Nothing is unsigned here.",
     'unit.lexicon.name':    'Lexicon Corps',
     'unit.lexicon.tagline': 'Text QA · Language Gate. Every word that leaves the system passes here last. Nothing is released unsigned.',
     'agent.24.desc': 'Every word that leaves the system passes through Lexicon Chamber first. The Arbiter does not suggest. It decides.',
+    'agent.25.desc': 'A sentence sent outward cannot be recalled. The Herald seals only what a real, dated case can carry — everything else turns to ash at the door.',
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
@@ -1168,7 +1189,7 @@ const TRANSLATIONS = {
     'hero.army':    'AI Orduyu Tanı',
     'hero.scroll':  'Kaydır',
     /* Stats */
-    'stat.agents':  '24 Uzman AI Ajan',
+    'stat.agents':  '25 Uzman AI Ajan',
     'stat.hybrid':  'Hibrit',
     'stat.model':   'Üretim Modeli',
     'stat.command': 'Komuta Merkezi',
@@ -1220,7 +1241,7 @@ const TRANSLATIONS = {
     'svc.03.li4': 'Performans analizi',
     /* Army */
     'army.label':   '03 · Ordu',
-    'army.h2.line1':'24 AI Ajan.',
+    'army.h2.line1':'25 AI Ajan.',
     'army.h2.line2':'8 Birim.',
     'army.h2.em':   '1 Görev.',
     'army.frame':   'Aylık paketinizin arkasındaki ekip bu. Hiçbir şey jenerik değil, hiçbir şey atlanmıyor.',
@@ -1230,7 +1251,7 @@ const TRANSLATIONS = {
     'army.drag':    '← Komuta zincirini sürükleyerek gez →',
     'unit.crew':    'Birimi gör',
     'commander.badge': 'KOMUTAN',
-    'commander.desc':  'Yirmi üç zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
+    'commander.desc':  'Yirmi dört zeka. Tek komuta. Egemen hareket etmez, orkestrayı yönetir.',
     /* Units */
     'unit.orch.name':     'Orkestrasyon',
     'unit.orch.tagline':  'Komuta · Zeka · Mutlak Otorite. Filonun etrafında döndüğü merkez.',
@@ -1248,7 +1269,7 @@ const TRANSLATIONS = {
     'unit.recon.tagline':    'Potansiyel Müşteri Arama · Platform İstihbaratı · İlk Temas. Filonun önünde hareket eden üç ajan. Ufuk, başkaları gelmeden önce haritalanır.',
     /* Sovereign */
     'sovereign.role': 'Orkestratör · Komuta Zekası',
-    'sovereign.desc': 'Yirmi üç AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
+    'sovereign.desc': 'Yirmi dört AI ajan. Tek komuta.<br><br>Sovereign hareket etmez, orkestre eder. Markanızın söyleyeceği her sinyal, her strateji, her kelime önce tek bir zekadan geçer. Görünmez, sessiz, mutlak.',
     'sovereign.btn':  'Hikayeyi Oku  →',
     /* Chronicle */
     'chron.label':        '01 · Sinyal Tarihi',
@@ -1256,7 +1277,7 @@ const TRANSLATIONS = {
     'chron.h2.em':        'sinyale.',
     'chron.sub':         'Yıl 412 ST şimdiki zamandır (2.847 Miladi). ST Yıl 0\'dan sayılır: Nomades Agency\'nin kuruluşundan. Sürükleyin ve sinyalin tarihinde geriye gidin.',
     'chron.hint':        '← Sürükle',
-    'chron.network.desc':'Yirmi dört AI ajan. Sekiz operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
+    'chron.network.desc':'Yirmi beş AI ajan. Sekiz operasyonel birim. Tek orkestratör. Büyük Gürültü\'nün bir cevabı var: hassas, amber ve görmezden gelmek imkansız. Sinyal ağı aktif ve statik hiç bu kadar zayıf olmamıştı.',
     /* Chronicle cards */
     'chron.c1.year':  'Yıl 412 ST · Şimdi (2.847 Miladi)',
     'chron.c1.event': 'Ağ Canlı',
@@ -1388,10 +1409,13 @@ const TRANSLATIONS = {
     'hq.int11.name': 'Geri Kazanım Mahzeni',
     'hq.int11.desc': 'The Warden\'ın alanı. Yetim kabukların beklediği niş duvarlar, alçalan sıralama halkaları, merkezde bir yakım kuyusu. Gravite kuyusu tüm çürümeyi içine çeker; temiz olan amber, çürüyen derin kırmızı parlar. Hüküm burada verilir, ateş yalnızca burada düşer.',
     'hq.int12.name': 'Sözcük Odası',
+    'hq.int13.name': 'Sevk Salonu',
+    'hq.int13.desc': 'The Herald\'ın alanı. Dışa dönük tek oda ve tavanı olmayan tek mekan: kuyu yukarıda void\'e açılır. Arka duvarda Format Tree yanar, her seferinde yalnız bir dal; sol duvardaki Proof Vault tarihli birinci elden vakaları amber kristallerde tutar; çıkışın yanında Unsent Rack bekler. Orada duran tabletler bitmiştir, gönderilmemiştir. Son adım The Herald\'ın değildir.',
     'hq.int12.desc': 'The Arbiter\'ın alanı. Tavana yansıtılan iki alfabe arasında amber bir yazı masası — bir tarafta Türkçe karakterler, diğerinde Latin. Correction Quill ikisi arasında durur: amber uç önde, void uç arkada. Giren her metin bir kararla çıkmak zorundadır. Burada imzasız hiçbir şey kalmaz.',
     'unit.lexicon.name':    'Sözcük Birimi',
     'unit.lexicon.tagline': 'Metin KK · Dil Kapısı. Sistemden çıkan her sözcük buradan geçer. Hiçbir şey imzasız serbest bırakılmaz.',
     'agent.24.desc': 'Sistemden çıkan her sözcük önce Lexicon Chamber\'dan geçer. The Arbiter öneri sunmaz. Karar verir.',
+    'agent.25.desc': 'Dışarıya gönderilen bir cümle geri çağrılamaz. The Herald yalnızca gerçek ve tarihli bir vakanın taşıdığı satırı mühürler — gerisi kapıda küle iner.',
     /* Maestro (Crucible Birimi Şefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
