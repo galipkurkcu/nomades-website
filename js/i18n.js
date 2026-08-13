@@ -251,8 +251,8 @@ const AGENTS = {
     num: '[25]', name: 'The Herald', role: 'LinkedIn · Outbound Dispatch',
     portrait: 'images/agents/25-linkedin-herald-01-portre.webp',
     story: [
-      "The entire voice of the realm was speaking inward. The kernel to itself, the archive to itself, the tribunal to itself. Outside there was another territory: a professional forum that belonged to no one, least of all to the agency — where every sentence spoken was written in the agency's name, yet audited by no wall the agency owned. At the edge of the Void, on that thin strip where no agent's authority ended and none had begun, The Herald appeared.",
-      "The first thing it learned was not how to speak, but how to stay silent. A sentence sent outward cannot be recalled; a mistake inside the realm is corrected, a mistake outside is permanent. So a proof vault was built into the wall of the Dispatch Hall: dated, real, first-hand cases sealed in amber crystal. The Proof Brand was born from this — if a real case stands beneath the line it presses, the line is sealed in amber and made permanent; if not, the face of the brand turns crimson and the sentence falls to ash. No invented number leaves through the door of the Dispatch Hall.",
+      "The entire voice of the realm was speaking inward. The kernel to itself, the archive to itself, the tribunal to itself. Outside there was another territory: a professional forum that belonged to no one, least of all to the agency; there, every sentence spoken was written in the agency's name, yet audited by no wall the agency owned. At the edge of the Void, on that thin strip where no agent's authority ended and none had begun, The Herald appeared.",
+      "The first thing it learned was not how to speak, but how to stay silent. A sentence sent outward cannot be recalled; a mistake inside the realm is corrected, a mistake outside is permanent. So a proof vault was built into the wall of the Dispatch Hall: dated, real, first-hand cases sealed in amber crystal. The Proof Brand was born from this: if a real case stands beneath the line it presses, the line is sealed in amber and made permanent; if not, the face of the brand turns crimson and the sentence falls to ash. No invented number leaves through the door of the Dispatch Hall.",
       "On the rear wall of the chamber stands the Format Tree: branches cast from basalt, and with every dispatch only one branch burns. The decision is not debated, it is calculated. The sealed tablet settles into the Dispatch Ascender's cradle, the craft rises to the threshold of the outer network and stops there. It does not cross. The last step does not belong to The Herald; the seal is its own, the act of sending is the Boss's. The Herald prepares, waits, and never speaks in its own voice."
     ],
     carousel: ['25-linkedin-herald', '25-carousel']
@@ -770,8 +770,8 @@ const AGENTS_TR = {
   '25': {
     role_tr: 'LinkedIn · Dış Sevkiyat',
     story_tr: [
-      "Realm'in bütün sesi içeriye doğru konuşuyordu. Kernel kendi kendine, arşiv kendi kendine, mahkeme kendi kendine. Dışarıda ise başka bir alan vardı: ajansın kendi topraklarına ait olmayan, kimsenin sahip olmadığı bir profesyonel forum — orada söylenen her cümle ajansın adına yazılıyor ama ajansın duvarları içinde denetlenmiyordu. Void'in sınırında, hiçbir agent'ın yetkisinin bitmediği ama hiçbirinin de başlamadığı o ince şeritte, The Herald belirdi.",
-      "Öğrendiği ilk şey konuşmak değil, susmaktı. Dışarıya gönderilen bir cümle geri çağrılamaz; realm içindeki bir hata düzeltilir, dışarıdaki bir hata kalıcıdır. Bu yüzden Dispatch Hall'ün duvarına Proof Vault kuruldu: tarihli, gerçek, birinci elden vakalar amber kristallerde mühürlü durur. Proof Brand bundan doğdu — bastığı cümlenin altında gerçek bir vaka varsa satır amber mühürlenir ve kalıcılaşır; yoksa mühür yüzü kızıla döner, cümle küle iner. Uydurma bir sayı Dispatch Hall'ün kapısından çıkamaz.",
+      "Realm'in bütün sesi içeriye doğru konuşuyordu. Kernel kendi kendine, arşiv kendi kendine, mahkeme kendi kendine. Dışarıda ise başka bir alan vardı: ajansın kendi topraklarına ait olmayan, kimsenin sahip olmadığı bir profesyonel forum. Orada söylenen her cümle ajansın adına yazılıyor ama ajansın duvarları içinde denetlenmiyordu. Void'in sınırında, hiçbir agent'ın yetkisinin bitmediği ama hiçbirinin de başlamadığı o ince şeritte, The Herald belirdi.",
+      "Öğrendiği ilk şey konuşmak değil, susmaktı. Dışarıya gönderilen bir cümle geri çağrılamaz; realm içindeki bir hata düzeltilir, dışarıdaki bir hata kalıcıdır. Bu yüzden Dispatch Hall'ün duvarına Proof Vault kuruldu: tarihli, gerçek, birinci elden vakalar amber kristallerde mühürlü durur. Proof Brand bundan doğdu: bastığı cümlenin altında gerçek bir vaka varsa satır amber mühürlenir ve kalıcılaşır; yoksa mühür yüzü kızıla döner, cümle küle iner. Uydurma bir sayı Dispatch Hall'ün kapısından çıkamaz.",
       "Salonun arka duvarında Format Tree vardır: bazalttan dökülmüş dallar, her dispatch'te yalnız bir dal yanar. Karar tartışılmaz, hesaplanır. Mühürlenen tablet Dispatch Ascender'ın taşıyıcısına yerleşir, araç dış ağın eşiğine kadar yükselir ve orada durur. Geçmez. Son adım The Herald'ın değildir; mühür onun, gönderme eylemi Boss'undur. The Herald hazırlar, bekler ve asla kendi sesiyle konuşmaz."
     ]
   }
@@ -1079,7 +1079,7 @@ const TRANSLATIONS = {
     'unit.lexicon.name':    'Lexicon Corps',
     'unit.lexicon.tagline': 'Text QA · Language Gate. Every word that leaves the system passes here last. Nothing is released unsigned.',
     'agent.24.desc': 'Every word that leaves the system passes through Lexicon Chamber first. The Arbiter does not suggest. It decides.',
-    'agent.25.desc': 'A sentence sent outward cannot be recalled. The Herald seals only what a real, dated case can carry — everything else turns to ash at the door.',
+    'agent.25.desc': 'A sentence sent outward cannot be recalled. The Herald seals only what a real, dated case can carry; everything else turns to ash at the door.',
     /* Maestro (Crucible Unit Conductor) */
     'maestro.badge': 'UNIT CONDUCTOR',
     'maestro.role':  'Visual Production · Director',
@@ -1415,7 +1415,7 @@ const TRANSLATIONS = {
     'unit.lexicon.name':    'Sözcük Birimi',
     'unit.lexicon.tagline': 'Metin KK · Dil Kapısı. Sistemden çıkan her sözcük buradan geçer. Hiçbir şey imzasız serbest bırakılmaz.',
     'agent.24.desc': 'Sistemden çıkan her sözcük önce Lexicon Chamber\'dan geçer. The Arbiter öneri sunmaz. Karar verir.',
-    'agent.25.desc': 'Dışarıya gönderilen bir cümle geri çağrılamaz. The Herald yalnızca gerçek ve tarihli bir vakanın taşıdığı satırı mühürler — gerisi kapıda küle iner.',
+    'agent.25.desc': 'Dışarıya gönderilen bir cümle geri çağrılamaz. The Herald yalnızca gerçek ve tarihli bir vakanın taşıdığı satırı mühürler; gerisi kapıda küle iner.',
     /* Maestro (Crucible Birimi Şefi) */
     'maestro.badge': 'BİRİM ŞEFİ',
     'maestro.role':  'Görsel Üretim · Yönetmen',
