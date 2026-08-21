@@ -3,208 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DYTSS — Newsletter Arşivi</title>
+<meta name="robots" content="noindex, nofollow">
+<title>DYTSS Newsletter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0B0B0E;
-  --surface:#141418;
-  --surface2:#1C1C1C;
-  --border:#1E1E22;
-  --text:#FAFAF7;
-  --dim:#777;
+  --bg:#0B0B0E; --surface:#141418; --surface2:#1C1C1C;
+  --border:#1E1E22; --text:#FAFAF7; --dim:#777;
   --font:'Space Grotesk',sans-serif;
 }
 @media (prefers-color-scheme: light){
   :root{
-    --bg:#FAFAF7;
-    --surface:#FFFFFF;
-    --surface2:#F0EFE9;
-    --border:#E0DDD8;
-    --text:#1C1C1C;
-    --dim:#8A8A82;
+    --bg:#FAFAF7; --surface:#FFFFFF; --surface2:#F0EFE9;
+    --border:#E0DDD8; --text:#1C1C1C; --dim:#8A8A82;
   }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--font);
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background:var(--bg); color:var(--text); font-family:var(--font);
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
   padding:24px;
 }
 .card{
-  width:100%;
-  max-width:420px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:40px 32px;
+  width:100%; max-width:420px; background:var(--surface);
+  border:1px solid var(--border); border-radius:16px; padding:40px 32px;
 }
 h1{
-  font-size:15px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--dim);
-  margin-bottom:24px;
-  text-align:center;
+  font-size:15px; letter-spacing:.08em; color:var(--dim);
+  margin-bottom:24px; text-align:center;
 }
-#gate form{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+form{ display:flex; flex-direction:column; gap:14px; }
+input[type="password"]{
+  background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+  padding:14px 16px; color:var(--text); font-family:var(--font); font-size:16px;
 }
-#gate input[type="password"]{
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:14px 16px;
-  color:var(--text);
-  font-family:var(--font);
-  font-size:16px;
-}
-#gate button{
-  background:var(--text);
-  color:var(--bg);
-  border:none;
-  border-radius:8px;
-  padding:14px 16px;
-  font-family:var(--font);
-  font-size:15px;
-  font-weight:600;
+button{
+  background:var(--text); color:var(--bg); border:none; border-radius:8px;
+  padding:14px 16px; font-family:var(--font); font-size:15px; font-weight:600;
   cursor:pointer;
 }
-#gate .error{
-  color:#B01C2E;
-  font-size:13px;
-  text-align:center;
-  min-height:16px;
-}
-#archive{ display:none; }
-.list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.list a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:20px;
-  font-size:22px;
-  font-weight:700;
-  color:var(--text);
-  text-decoration:none;
-  transition:opacity .15s ease;
-}
-.list a:hover{ opacity:.7; }
+button[disabled]{ opacity:.55; cursor:default; }
+.msg{ color:#B01C2E; font-size:13px; text-align:center; min-height:16px; }
+.note{ color:var(--dim); font-size:12px; text-align:center; margin-top:14px; line-height:1.5; }
 </style>
 </head>
 <body>
 
 <div class="card" id="gate">
-  <h1>DYTSS Newsletter Arşivi</h1>
-  <form id="password-form" autocomplete="off">
-    <input type="password" id="password-input" placeholder="Şifre" autofocus>
-    <button type="submit">Giriş</button>
-    <div class="error" id="password-error"></div>
+  <h1>DYTSS NEWSLETTER ARŞİVİ</h1>
+  <form id="f" autocomplete="off">
+    <input type="password" id="pw" placeholder="ŞİFRE" autofocus autocomplete="current-password">
+    <button type="submit" id="go">GİRİŞ</button>
+    <div class="msg" id="msg"></div>
   </form>
+  <div class="note" id="note"></div>
 </div>
 
-<div class="card" id="archive">
-  <h1>DYTSS Newsletter Arşivi</h1>
-  <div class="list">
-    <a href="01.html">01</a>
-    <a href="02.html">02</a>
-    <a href="03.html">03</a>
-    <a href="04.html">04</a>
-    <a href="05.html">05</a>
-    <a href="06.html">06</a>
-    <a href="07.html">07</a>
-    <a href="08.html">08</a>
-    <a href="09.html">09</a>
-    <a href="10.html">10</a>
-    <a href="11.html">11</a>
-    <a href="12.html">12</a>
-    <a href="13.html">13</a>
-    <a href="14.html">14</a>
-    <a href="15.html">15</a>
-    <a href="16.html">16</a>
-    <a href="17.html">17</a>
-    <a href="18.html">18</a>
-    <a href="19.html">19</a>
-    <a href="20.html">20</a>
-    <a href="21.html">21</a>
-    <a href="22.html">22</a>
-    <a href="23.html">23</a>
-    <a href="24.html">24</a>
-    <a href="25.html">25</a>
-    <a href="26.html">26</a>
-    <a href="27.html">27</a>
-    <a href="28.html">28</a>
-    <a href="29.html">29</a>
-    <a href="30.html">30</a>
-    <a href="31.html">31</a>
-    <a href="32.html">32</a>
-    <a href="33.html">33</a>
-    <a href="34.html">34</a>
-    <a href="35.html">35</a>
-    <a href="36.html">36</a>
-    <a href="37.html">37</a>
-    <a href="38.html">38</a>
-    <a href="39.html">39</a>
-    <a href="40.html">40</a>
-    <a href="41.html">41</a>
-    <a href="42.html">42</a>
-    <a href="43.html">43</a>
-    <a href="44.html">44</a>
-    <a href="45.html">45</a>
-    <a href="46.html">46</a>
-    <a href="47.html">47</a>
-    <a href="48.html">48</a>
-    <a href="49.html">49</a>
-    <a href="50.html">50</a>
-    <a href="51.html">51</a>
-    <a href="52.html">52</a>
-  </div>
-</div>
-
+<script id="payload" type="application/json">{"v":1,"ns":"dytss_nl","kdf":"PBKDF2-SHA256","iter":600000,"salt":"99RCsuRoTu8PvABvEr9SCQ==","iv":"NU++XbtlQgCxBrup","ct":"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"}</script>
 <script>
 (function(){
-  var PASSWORD = "dytss00";
+  var P = JSON.parse(document.getElementById('payload').textContent);
+  var CACHE = 'nomades_key_' + P.ns;
   var gate = document.getElementById('gate');
-  var archive = document.getElementById('archive');
-  var form = document.getElementById('password-form');
-  var input = document.getElementById('password-input');
-  var error = document.getElementById('password-error');
+  var form = document.getElementById('f');
+  var input = document.getElementById('pw');
+  var button = document.getElementById('go');
+  var msg = document.getElementById('msg');
+  var note = document.getElementById('note');
 
-  function unlock(){
-    gate.style.display = 'none';
-    archive.style.display = 'block';
+  if (!window.crypto || !window.crypto.subtle) {
+    msg.textContent = 'Bu tarayici sayfayi cozemiyor. Guncel bir tarayici kullanin.';
+    button.disabled = true;
+    return;
   }
 
-  if (sessionStorage.getItem('dytss_nl_auth') === '1') {
-    unlock();
+  function b64d(s){
+    var raw = atob(s), out = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+    return out;
+  }
+  function b64e(bytes){
+    var s = '';
+    for (var i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+    return btoa(s);
+  }
+
+  function deriveKey(password){
+    return crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']
+    ).then(function(base){
+      return crypto.subtle.deriveBits({
+        name:'PBKDF2', salt:b64d(P.salt), iterations:P.iter, hash:'SHA-256'
+      }, base, 256);
+    }).then(function(bits){ return new Uint8Array(bits); });
+  }
+
+  function decryptWith(rawKey){
+    return crypto.subtle.importKey('raw', rawKey, 'AES-GCM', false, ['decrypt'])
+      .then(function(key){
+        return crypto.subtle.decrypt({name:'AES-GCM', iv:b64d(P.iv)}, key, b64d(P.ct));
+      })
+      .then(function(plain){ return new TextDecoder('utf-8').decode(plain); });
+  }
+
+  function render(html){
+    document.open();
+    document.write(html);
+    document.close();
+  }
+
+  var cached = null;
+  try { cached = sessionStorage.getItem(CACHE); } catch (e) { cached = null; }
+
+  function showGate(){
+    gate.style.display = 'block';
+    input.focus();
+  }
+
+  if (cached) {
+    // Anahtar zaten oturumda: kapiyi hic gostermeden coz
+    gate.style.display = 'none';
+    decryptWith(b64d(cached)).then(render).catch(function(){
+      try { sessionStorage.removeItem(CACHE); } catch (e) {}
+      showGate();
+    });
+  } else {
+    showGate();
   }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    if (input.value === PASSWORD) {
-      sessionStorage.setItem('dytss_nl_auth', '1');
-      unlock();
-    } else {
-      error.textContent = 'Hatalı şifre.';
+    var pw = input.value;
+    if (!pw) return;
+    button.disabled = true;
+    msg.textContent = '';
+    note.textContent = 'Cozuluyor, birkac saniye surebilir.';
+
+    deriveKey(pw).then(function(rawKey){
+      return decryptWith(rawKey).then(function(html){
+        try { sessionStorage.setItem(CACHE, b64e(rawKey)); } catch (e) {}
+        render(html);
+      });
+    }).catch(function(){
+      note.textContent = '';
+      msg.textContent = 'Hatali sifre.';
       input.value = '';
+      button.disabled = false;
       input.focus();
-    }
+    });
   });
 })();
 </script>
