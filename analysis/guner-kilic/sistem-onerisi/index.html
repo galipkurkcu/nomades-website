@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Güner Kılıç - Kendi Operasyon Altyapısı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7;
+  --surface:#FFFFFF;
+  --surface2:#F0EFE9;
+  --border:#E0DDD8;
+  --text:#1C1C1C;
+  --dim:#6E6E68;
+  --muted:#B7B2AA;
+  --red:#B01C2E;
+  --amber:#B8860B;
+  --amber-ink:#8F6400;
+  --font:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 90px;counter-reset:secnum}
+h1,h2,h3,h4{font-family:var(--font);letter-spacing:-0.01em}
+.num{font-variant-numeric:tabular-nums}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--dim)}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(250,250,247,0.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:16px 28px;
+  margin-bottom:38px;
+}
+.hbar{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
+.hbrand{display:flex;align-items:center;gap:16px;min-width:0}
+.hlogo{height:44px;width:auto;display:block;flex:none}
+.hlogo-div{width:1px;height:44px;background:var(--border);flex:none}
+.htitle{min-width:0}
+.heyebrow{font-size:.58rem;font-weight:700;letter-spacing:.24em;color:var(--amber-ink);margin-bottom:5px}
+.htitle h1{font-size:1.24rem;font-weight:700;letter-spacing:-0.01em;line-height:1.2}
+.htitle .sub{font-size:.75rem;color:var(--dim);margin-top:4px;line-height:1.5}
+.htools{display:flex;align-items:center;gap:10px;flex:none}
+.badge{
+  font-size:.6rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  border:1px solid var(--border);
+  border-radius:3px;
+  padding:7px 11px;
+  color:var(--amber-ink);
+  white-space:nowrap;
+}
+.banner{
+  border:1px solid var(--border);
+  border-left:3px solid var(--amber);
+  background:var(--surface);
+  border-radius:4px;
+  padding:18px 22px;
+  margin-bottom:30px;
+  font-size:.9rem;
+  line-height:1.75;
+  color:var(--dim);
+}
+.banner b{color:var(--amber-ink);font-weight:700}
+
+section{margin-bottom:56px;counter-increment:secnum}
+.shead{display:flex;align-items:center;gap:16px;margin-bottom:22px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.shead h2{font-size:1.85rem;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.shead h2::before{content:counter(secnum,decimal-leading-zero) " - ";color:var(--amber);font-weight:700}
+.shead .stag{margin-left:auto;font-size:.6rem;font-weight:700;letter-spacing:.24em;color:var(--dim);white-space:nowrap}
+.lead{color:var(--dim);font-size:.95rem;max-width:820px;margin-bottom:24px;line-height:1.75}
+.lead b{color:var(--text);font-weight:600}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--muted);border-radius:4px;padding:20px}
+.kpi .label{display:block;margin-bottom:10px;color:var(--amber-ink)}
+.kpi .v{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.kpi .note{font-size:.73rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.kpi.alert{border-top-color:var(--red)}
+.kpi.alert .v{color:var(--red)}
+.kpi.good{border-top-color:var(--amber)}
+.kpi.good .v{color:var(--amber)}
+
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+.tscroll{overflow-x:auto;border:1px solid var(--border);border-radius:4px;background:var(--surface)}
+th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--dim);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.axis{font-weight:600;width:24%;min-width:170px}
+td.rent{color:var(--dim)}
+td.own{color:var(--text)}
+th.col-rent{color:var(--red)}
+th.col-own{color:var(--amber-ink)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:22px 24px}
+.card h3{font-size:1.05rem;margin-bottom:12px;font-weight:700}
+.card p{font-size:.88rem;color:var(--dim);line-height:1.7}
+.card p+p{margin-top:10px}
+.card p b{color:var(--text);font-weight:600}
+
+.ins{background:var(--surface);border:1px solid var(--border);border-left-width:3px;border-radius:4px;padding:20px 22px}
+.ins.critical{border-left-color:var(--red)}
+.ins.opportunity{border-left-color:var(--amber)}
+.ins .it{font-size:.6rem;font-weight:700;letter-spacing:.16em;margin-bottom:10px}
+.ins.critical .it{color:var(--red)}
+.ins.opportunity .it{display:inline-block;background:var(--amber);color:#1C1C1C;padding:3px 8px;border-radius:2px}
+.ins h3{font-size:1.02rem;margin-bottom:9px;font-weight:700}
+.ins p{font-size:.88rem;color:var(--text);margin-bottom:11px;line-height:1.65}
+.ins .act{font-size:.82rem;color:var(--dim);border-top:1px solid var(--border);padding-top:10px;line-height:1.6}
+.ins .act b{color:var(--amber-ink)}
+
+.mod{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:0;overflow:hidden}
+.mod .mtop{padding:20px 24px 18px;border-bottom:1px solid var(--border)}
+.mod .mnum{font-size:.6rem;font-weight:700;letter-spacing:.2em;color:var(--amber-ink);margin-bottom:8px}
+.mod h3{font-size:1.08rem;font-weight:700;margin-bottom:10px;line-height:1.35}
+.mod .mdesc{font-size:.87rem;color:var(--dim);line-height:1.7}
+.mod ul{list-style:none;padding:16px 24px 6px}
+.mod li{font-size:.84rem;color:var(--dim);line-height:1.6;padding-left:18px;position:relative;margin-bottom:9px}
+.mod li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:1px;background:var(--amber)}
+.mod .mown{margin:6px 24px 22px;background:var(--surface2);border-radius:3px;padding:12px 14px;font-size:.8rem;color:var(--dim);line-height:1.6}
+.mod .mown b{color:var(--amber-ink);font-weight:700;letter-spacing:.1em;font-size:.62rem;display:block;margin-bottom:5px}
+
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.fnode{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;position:relative}
+.fnode .fn{font-size:.58rem;font-weight:700;letter-spacing:.2em;color:var(--amber-ink);margin-bottom:7px}
+.fnode h4{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.35}
+.fnode p{font-size:.78rem;color:var(--dim);line-height:1.55}
+.fnode.own{border-color:rgba(240,170,0,.4)}
+.floop{
+  border:1px dashed rgba(240,170,0,.45);
+  border-radius:4px;
+  padding:14px 18px;
+  font-size:.84rem;
+  color:var(--dim);
+  line-height:1.65;
+  background:rgba(240,170,0,.05);
+}
+.floop b{color:var(--amber-ink)}
+
+.tl{border-left:1px solid var(--border);margin-left:8px;padding-left:26px}
+.tlrow{position:relative;padding-bottom:26px}
+.tlrow:last-child{padding-bottom:0}
+.tlrow::before{content:"";position:absolute;left:-31px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--amber)}
+.tlrow .tlp{font-size:.6rem;font-weight:700;letter-spacing:.2em;color:var(--amber-ink);margin-bottom:6px}
+.tlrow h4{font-size:1rem;font-weight:700;margin-bottom:7px}
+.tlrow p{font-size:.86rem;color:var(--dim);line-height:1.7}
+.tlrow .dur{font-size:.72rem;color:var(--dim);margin-top:7px;font-style:italic}
+
+.cta{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-top:3px solid var(--amber);
+  border-radius:4px;
+  padding:32px 34px;
+}
+.cta h3{font-size:1.4rem;font-weight:800;margin-bottom:14px;letter-spacing:-0.01em}
+.cta p{font-size:.92rem;color:var(--dim);line-height:1.75;max-width:760px}
+.cta p+p{margin-top:12px}
+.cta p b{color:var(--text)}
+.ctarow{display:flex;gap:28px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.ctaitem .cv{font-size:1.45rem;font-weight:800;color:var(--amber);line-height:1;font-variant-numeric:tabular-nums}
+.ctaitem .cl{font-size:.74rem;color:var(--dim);margin-top:6px}
+
+.srcs{font-size:.76rem;color:var(--dim);line-height:1.8;margin-top:14px}
+.srcs a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+.srcs a:hover{color:var(--amber-ink)}
+.srcs .stitle{font-size:.6rem;font-weight:700;letter-spacing:.2em;color:var(--dim);margin-bottom:9px}
+
+footer{
+  border-top:1px solid var(--border);
+  margin-top:56px;
+  padding-top:26px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.foot-l .fname{font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--amber-ink)}
+.foot-l .fmeta{font-size:.72rem;color:var(--dim);margin-top:6px;line-height:1.6}
+.foot-r{font-size:.78rem;color:var(--dim);font-style:italic}
+
+@media(max-width:980px){
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .grid3{grid-template-columns:1fr}
+}
+@media(max-width:880px){
+  .wrap{padding-left:20px;padding-right:20px}
+  header{padding-left:20px;padding-right:20px}
+  .hbar{flex-wrap:wrap}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid2{grid-template-columns:1fr}
+  .shead{align-items:flex-start;flex-direction:column;gap:8px}
+  .shead h2{font-size:1.5rem}
+  .shead .stag{margin-left:0}
+  footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  body{font-size:14px}
+  .kpis,.flow{grid-template-columns:1fr}
+  .hbrand{align-items:flex-start}
+  .htitle h1,.htitle .sub{white-space:normal}
+  .hlogo-div{height:58px}
+  .htitle h1{font-size:1.1rem}
+  .cta{padding:24px 22px}
+}
+@media print{
+  .no-print{display:none!important}
+  header{position:static}
+  body{background:#fff;color:#111}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:avoid}
+}
+
+/* icerik koruma katmani */
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+img{-webkit-user-drag:none;user-drag:none}
+a{-webkit-user-select:none;user-select:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <div class="hbrand">
+      <img class="hlogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkQAAAJDCAYAAADq5QviAAAACXBIWXMAAC4jAAAuIwF4pT92AAAGoGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgNzkuZGVlM2E3NzAzLCAyMDIyLzA4LzE4LTE2OjUwOjMwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjIuNCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMTAtMThUMDA6NDE6NDkrMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI1LTA2LTA3VDE4OjUzOjE0KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI1LTA2LTA3VDE4OjUzOjE0KzAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1NWEwNTJhMS0zM2NhLTQxZmUtYTdjMy03ZTdmY2M0ZDViYWYiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo0ZTc4OGE3Yi1jM2Q0LTYxNDQtYjY5Yi0zNDVkZjJjZWQ3NWIiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2N2MyNjY1OS1hNWQxLTQ5ODktOTE1ZS0zMjg3ZjIzZmNmMDIiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjY3YzI2NjU5LWE1ZDEtNDk4OS05MTVlLTMyODdmMjNmY2YwMiIgc3RFdnQ6d2hlbj0iMjAyMS0xMC0xOFQwMDo0MTo0OSswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIyLjQgKE1hY2ludG9zaCkiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmE1ZTEyNjg3LWMxNzEtNDJkZi04YWJiLTEyZDg2MGMzYzk3ZiIgc3RFdnQ6d2hlbj0iMjAyMS0xMC0xOFQwMDo0NToxNCswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIyLjQgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjU1YTA1MmExLTMzY2EtNDFmZS1hN2MzLTdlN2ZjYzRkNWJhZiIgc3RFdnQ6d2hlbj0iMjAyNS0wNi0wN1QxODo1MzoxNCswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjUgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+cJFFaAAAPKlJREFUeJzt3U9u48jC7um3GmfQQDdgfyuwv9EdWgcIcHjt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" alt="Nomades Agency">
+      <div class="hlogo-div"></div>
+      <div class="htitle">
+        <p class="heyebrow">NOMADES AGENCY - SİSTEM ÖNERİSİ</p>
+        <h1>Güner Kılıç - Kendi Operasyon Altyapısı</h1>
+        <div class="sub">@gunerkilic_venussigorta · Sigorta Danışmanlığı · İçerik Performans Analizi'nin Devamı · 8 Eylül 2026</div>
+      </div>
+    </div>
+    <div class="htools no-print">
+      <span class="badge">KARAR DOKÜMANI</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="banner">
+    <b>Bu doküman ne değildir:</b> teklif değildir, fiyat içermez. 8 Eylül 2026 tarihli içerik performans analizinin devamıdır. O rapor talebin nerede biriktiğini gösterdi. Bu doküman, o talebi taşıyacak sistemin nasıl kurulacağını ve bu sistemin neden kiralanan bir panelde değil, kendi altyapında durması gerektiğini anlatır. Rakamların tamamı ya analiz raporundan ya da kaynağı bölüm sonunda verilen kamuya açık duyurulardan alınmıştır.
+  </div>
+
+  <section>
+    <div class="shead"><h2>Başlangıç Noktası</h2><span class="stag">ANALİZDEN DEVİR</span></div>
+    <p class="lead">İçerik tarafı çalışıyor. 53 günde 17 içerikle 3,3 milyonun üzerinde görüntüleme ve 30 Temmuz'da 10.090 olan takipçi sayısının 8 Eylül'de 18.694'e çıkması, sıfırdan başlayan bir hesap için istisnai bir eğri. Buna karşılık son sekiz günde günlük takipçi kazanımı 250'den 75'e, yayın aralığı da 2,2 günden 6 güne geriledi. Sorun görünürlükte değil, <b>görünürlüğün arkasında duran taşıyıcı sistemde</b>. Üretilen talep şu anda yorum alanında bekliyor ve orada bozuluyor.</p>
+    <div class="kpis">
+      <div class="kpi good">
+        <span class="label">TOPLAM ERİŞİM</span>
+        <div class="v num">3.349.690</div>
+        <div class="note">53 günde, 17 içerikle. Üretim tarafı sorunlu değil.</div>
+      </div>
+      <div class="kpi alert">
+        <span class="label">BEKLEYEN TALEP</span>
+        <div class="v num">~495</div>
+        <div class="note">Doğrudan bilgi, fiyat veya iletişim talebi içeren yorum. Bir önceki ölçümde 475'ti, büyümeye devam ediyor.</div>
+      </div>
+      <div class="kpi alert">
+        <span class="label">YÖNLENDİRME</span>
+        <div class="v num">2 / 17</div>
+        <div class="note">İçeriklerin yalnızca ikisinde bir sonraki adım tarif ediliyor.</div>
+      </div>
+      <div class="kpi good">
+        <span class="label">TAKİPÇİ</span>
+        <div class="v num">18.694</div>
+        <div class="note">30 Temmuz'da 10.090'dı. Kitle büyüyor, hiçbir yerde kayıt altına alınmıyor.</div>
+      </div>
+    </div>
+    <div class="ins opportunity" style="margin-top:16px">
+      <div class="it">ÖLÇÜLMÜŞ KANIT</div>
+      <h3>Yönlendirme bu hesapta bir kez denendi ve çalıştı</h3>
+      <p>30 Ağustos tarihli içerik, arşivde ilk kez açıklamasında profildeki forma yönlendirme yaptı. Örneklemindeki 15 yorumun 14'ü doğrudan talep oldu ve içerik, arşivin en yüksek talep yoğunluğunu erişiminin onda biriyle üretti.</p>
+      <div class="act"><b>Bu bir varsayım değil, senin hesabında ölçülmüş bir sonuç.</b> Kalan on beş içerikte aynı adımın kurulmamış olması, dönüşümün tek eksiğinin teknik bir katman olduğunu gösteriyor.</div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="ins critical">
+        <div class="it">TESPİT</div>
+        <h3>Talep üretiliyor, sistem yakalamıyor</h3>
+        <p>Yaklaşık 495 nitelikli temas 53 gün içinde oluştu ve hiçbiri kayıt altına alınmadı. İncelenen 254 yorumluk örneklemin tamamında hesap adına verilmiş tek bir yanıt görünmüyor. Sigortacılıkta karar penceresi dar olduğu için yanıtsız kalan talep genellikle rakip bir kanala gidiyor ve geri dönmüyor.</p>
+        <div class="act"><b>Bu bir içerik sorunu değil.</b> Karşılama, kayıt ve takip katmanının hiç kurulmamış olmasının sonucu.</div>
+      </div>
+      <div class="ins critical">
+        <div class="it">TESPİT</div>
+        <h3>Poliçe sonrası hiç kurulmamış</h3>
+        <p>Veri setinde yenileme, teminat değişikliği veya dönemsel kontrol takibine dair hiçbir iz yok. Sigortacılıkta gelirin önemli bölümü ilk satıştan değil, yenilemeden gelir.</p>
+        <div class="act"><b>Bugünün müşterisi, kayıt altına alınmazsa gelecek yılın geliri olmaz.</b> Bu katman en geç ilk poliçe akışıyla birlikte kurulmalıdır.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>İki Model</h2><span class="stag">YAPISAL KARŞILAŞTIRMA</span></div>
+    <p class="lead">Bu işi yapmanın iki yolu var. Hazır bir panele abone olmak, ya da aynı işlemleri kendi hesaplarında çalışan bir altyapıyla kurmak. İkisi de aynı sonucu üretiyor gibi görünür. <b>Fark, ilk gün değil, ikinci yıl ortaya çıkar.</b></p>
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr>
+            <th>KARŞILAŞTIRMA EKSENİ</th>
+            <th class="col-rent">KİRALIK PANEL</th>
+            <th class="col-own">SAHİPLİ ALTYAPI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="axis">Verinin durduğu yer</td>
+            <td class="rent">Sağlayıcının sunucusunda. Müşteri kayıtları, konuşma geçmişi ve liste onların veri tabanında tutulur.</td>
+            <td class="own">Kendi kurumsal hesabında. Kayıtlar, dosyalar ve liste senin alanında durur.</td>
+          </tr>
+          <tr>
+            <td class="axis">Maliyet eğrisi</td>
+            <td class="rent">Kullanıcı, depolama ve mesaj hacmine göre artan aylık abonelik. Büyüdükçe pahalılaşır.</td>
+            <td class="own">Bir kez kurulum, sonra düşük tempolu bakım. Hacim büyüdükçe birim maliyet düşer.</td>
+          </tr>
+          <tr>
+            <td class="axis">Fiyat değiştiğinde</td>
+            <td class="rent">Karar sağlayıcıya aittir. Zam açıklandığında seçenek ödemek veya taşınmaktır, taşınmak da veriyi kaybetmek demektir.</td>
+            <td class="own">Altyapı ücretsiz veya sabit maliyetli katmanlarda çalışır. Zam kararı bir üçüncü tarafın elinde değildir.</td>
+          </tr>
+          <tr>
+            <td class="axis">Özelleştirme sınırı</td>
+            <td class="rent">Panelin sunduğu menüyle sınırlı. ÖBYG hesabı, doğum poliçesi takvimi gibi kendi iş kuralların menüde yoksa yapılamaz.</td>
+            <td class="own">Sınır yok. Kendi iş kuralın koda yazılır, sektöre değil sana göre çalışır.</td>
+          </tr>
+          <tr>
+            <td class="axis">Rakiple farkın</td>
+            <td class="rent">Aynı paneli kullanan her danışman aynı akışı, aynı şablonu ve aynı deneyimi sunar.</td>
+            <td class="own">Akış senin danışmanlık yönteminden çıkar. Kopyalanabilmesi için önce anlaşılması gerekir.</td>
+          </tr>
+          <tr>
+            <td class="axis">İlişki biterse</td>
+            <td class="rent">Abonelik durur, sistem durur. Dışa aktarılan şey genelde bir tablo dosyasıdır, çalışan akış değildir.</td>
+            <td class="own">Kod, veri ve otomasyonlar senin hesabında kalmaya devam eder. Sistem sen istemedikçe durmaz.</td>
+          </tr>
+          <tr>
+            <td class="axis">Uzun vadeli konum</td>
+            <td class="rent">Her ay ödenen kira, hiçbir zaman varlığa dönüşmez.</td>
+            <td class="own">Her ay eklenen kayıt, doğrudan işletmenin değerine yazılır.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Kirayı Ne İçin Ödüyorsun</h2><span class="stag">ARACI KATMAN</span></div>
+    <p class="lead">Hazır iletişim panellerinin büyük bölümü kendi ileti altyapısını kurmaz. Mesajlaşmayı platformların resmî arayüzleri üzerinden, e-postayı gönderim servisleri üzerinden, takvim ve tablo işlerini yine hazır servisler üzerinden yürütür. <b>Panelin ürettiği değer bu servislerin kendisi değil, hepsini tek ekranda toplayan arayüzdür.</b> Bu gerçek bir değerdir, ama kiraya değil kuruluma karşılık gelir.</p>
+    <div class="grid3">
+      <div class="card">
+        <h3>Aynı kapılar, iki ayrı kapı ücreti</h3>
+        <p>Panel, mesajlaşma platformunun resmî arayüzüne bağlanır ve o arayüzün ücretini öder. Sen de panele abonelik ödersin. <b>Aynı işlem için iki katman ödeme yapılır.</b></p>
+        <p>Kendi altyapında aynı resmî arayüze doğrudan bağlanırsın. Aradaki katman ve onun aylık bedeli ortadan kalkar.</p>
+      </div>
+      <div class="card">
+        <h3>Zam yukarıdan gelir, sana panel fiyatı olarak yansır</h3>
+        <p>Panel de aynı platformların fiyat kararlarına tabidir. Yukarıda bir fiyat değişikliği olduğunda panel bunu kendi marjıyla birlikte sana yansıtır.</p>
+        <p><b>İki kez zamlanan bir zincirin en alt halkasında olmak, kaçınılabilir bir konumdur.</b></p>
+      </div>
+      <div class="card">
+        <h3>Kurulum bir kez yapılır, kira her ay ödenir</h3>
+        <p>Bir akışın kurulması sonlu bir iştir. Kurulduktan sonra çalışması için her ay yeni bir emek gerekmez.</p>
+        <p>Kiralık modelde ödeme, iş bittikten sonra da devam eder. <b>Sahipli modelde ödemenin karşılığı, kalıcı olarak sende duran bir varlıktır.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Kanal Kararı</h2><span class="stag">WHATSAPP VE E-POSTA</span></div>
+    <p class="lead">Müşteri ilişkisini hangi kanalın taşıyacağı, panelden daha önemli bir karardır. Mesajlaşma hızlı bir ilk temas kanalıdır ve bu haliyle değerlidir. Buna karşılık <b>ilişkinin sürekliliğini taşıyan kanal olmaya uygun değildir</b>, üstelik bunun sebebi tercih değil, kuralların kimin elinde olduğudur.</p>
+    <div class="grid2" style="margin-bottom:18px">
+      <div class="ins critical">
+        <div class="it">1 EKİM 2026</div>
+        <h3>Mesajlaşma tarafında ücret modeli yeniden değişiyor</h3>
+        <p>10 Ağustos 2026 tarihli duyuruya göre 1 Ekim 2026 itibarıyla, 24 saatlik hizmet penceresi içinde gönderilen serbest metin yanıtlar ve aynı pencerede gönderilen bilgilendirme şablonları ücretlendirilmeye başlıyor. Bu yanıtlar Temmuz 2025'ten bu yana ücretsizdi. Ücret ülkeye göre belirleniyor ve ilgili ülkedeki bilgilendirme şablonu tarifesiyle aynı seviyede uygulanıyor.</p>
+        <div class="act"><b>Asıl mesele tutar değil, öngörülemezlik.</b> Aynı kanalın ücret modeli Kasım 2024, Temmuz 2025 ve Ekim 2026'da olmak üzere iki yılda üç kez değişti. Bir sonraki değişikliğin zamanına ve yönüne karar veren taraf sen değilsin.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">YAPISAL FARK</div>
+        <h3>Yenileme takibi, kapalı pencerenin arkasında kalır</h3>
+        <p>Sigortada asıl gelir yenilemededir ve yenileme teması poliçeden aylar sonra kurulur. O tarihte 24 saatlik pencere çoktan kapanmıştır. Kapalı pencerede müşteriye ulaşmak, önceden onaylanmış şablon, mesaj başına ücret ve platform kuralına uygunluk gerektirir.</p>
+        <div class="act"><b>Aynı hatırlatma e-postada</b> onay kapısı, şablon onayı ve mesaj başı ücret olmadan, kendi listenden gönderilir. Yenileme takibi doğası gereği e-posta işidir.</div>
+      </div>
+    </div>
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr>
+            <th>EKSEN</th>
+            <th class="col-rent">MESAJLAŞMA KANALI</th>
+            <th class="col-own">E-POSTA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="axis">Temas hakkı</td>
+            <td class="rent">24 saatlik pencereye bağlı. Pencere kapandığında erişim şablon onayına tabidir.</td>
+            <td class="own">Zaman sınırı yok. Aboneyle ilişki, abone çıkana kadar sürer.</td>
+          </tr>
+          <tr>
+            <td class="axis">Maliyet modeli</td>
+            <td class="rent">Mesaj başına, ülkeye göre değişen tarife. Model son iki yılda üç kez değişti.</td>
+            <td class="own">Abone başına sabit ve öngörülebilir. Gönderim sayısı maliyeti belirlemez.</td>
+          </tr>
+          <tr>
+            <td class="axis">Listenin sahibi</td>
+            <td class="rent">Numara listesi platformun kurallarına bağlı çalışır, taşınabilirliği sınırlıdır.</td>
+            <td class="own">Liste senin. Dışa aktarılır, taşınır, hiçbir platformun iznine bağlı değildir.</td>
+          </tr>
+          <tr>
+            <td class="axis">İçerik kapasitesi</td>
+            <td class="rent">Kısa ve işlemsel. Bilgilendirici anlatım için uygun bir alan değil.</td>
+            <td class="own">Uzun anlatıma uygun. ÖBYG, beyan yükümlülüğü, doğum poliçesi gibi konular burada anlatılabilir.</td>
+          </tr>
+          <tr>
+            <td class="axis">İzin yükümlülüğü</td>
+            <td class="rent">Açık izin gerekir.</td>
+            <td class="own">Açık izin gerekir. İYS kaydı ve 6563 sayılı kanun uyumu kurulum aşamasında yapılır.</td>
+          </tr>
+          <tr>
+            <td class="axis">Getiri</td>
+            <td class="rent">İlk temasta güçlü, sürdürülebilir ilişkide zayıf.</td>
+            <td class="own">Sektör ortalamalarında e-postanın getiri oranı 36:1, sosyal medyada 5,2:1.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="banner" style="margin-top:18px;margin-bottom:0">
+      <b>Dürüst kayıt:</b> mesajlaşmayı bırakmanı önermiyoruz. İlk temasta hızlıdır ve yerinde kullanılır. Önerimiz, ilişkinin taşıyıcısını mesajlaşmadan e-postaya almak, mesajlaşmayı da bu listeyi besleyen giriş kanalı olarak kullanmaktır. Kural değişikliği o zaman operasyonunu değil, yalnızca bir kanalını etkiler.
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Kurulacak Sistem</h2><span class="stag">DÖRT MODÜL</span></div>
+    <p class="lead">Dört modül birlikte tek bir akış oluşturur. Hiçbiri tek başına satılmaz, çünkü tek başına çalıştıklarında zincir kopar. Tamamı senin kurumsal hesabının içinde, senin alanında kurulur.</p>
+    <div class="grid2">
+      <div class="mod">
+        <div class="mtop">
+          <div class="mnum">MODÜL 01</div>
+          <h3>Instagram karşılama ve nitelendirme katmanı</h3>
+          <p class="mdesc">Yorum, DM ve hikâye yanıtları saniyeler içinde karşılanır. Otomasyon satış yapmaz, ilgiyi doğru şekilde karşılar ve niteliğini belirler.</p>
+        </div>
+        <ul>
+          <li>Yorumdan DM'e otomatik geçiş, her içeriğe özel tetikleyici</li>
+          <li>Hangi poliçe, kimin için, hangi şehir sorularıyla ön nitelendirme</li>
+          <li>İletişim bilgisinin izinli olarak toplanması</li>
+          <li>Yanıt gerektiren özel durumların sana işaretlenerek aktarılması</li>
+        </ul>
+        <div class="mown"><b>SENDE KALAN</b>Akış şeması, tetikleyici kurgusu ve toplanan her kaydın kendisi. Otomasyon durdurulsa bile birikmiş kayıt sende kalır.</div>
+      </div>
+      <div class="mod">
+        <div class="mtop">
+          <div class="mnum">MODÜL 02</div>
+          <h3>Kendi CRM'in: sana özel yazılan yönetim katmanı</h3>
+          <p class="mdesc">Kurumsal e-posta, tablo ve doküman altyapının üzerine, senin hesabının içinde çalışacak şekilde yazılır. Hazır bir CRM ürününe abone olunmaz, sana ait bir CRM yazılır.</p>
+        </div>
+        <ul>
+          <li>Talep, teklif, poliçe ve yenileme kayıtlarının tek yerde tutulması</li>
+          <li>Instagram, e-posta, telefon ve web formundan gelen taleplerin aynı tabloda birleşmesi</li>
+          <li>Poliçe dokümanlarının müşteri kaydına bağlı arşivlenmesi</li>
+          <li>Takvim, e-posta ve doküman katmanlarının aynı proje içinde birbirine bağlanması</li>
+        </ul>
+        <div class="mown"><b>SENDE KALAN</b>Yazılan kodun tamamı, tablolar ve dosyalar. Hepsi kendi kurumsal hesabının içinde, üçüncü bir tarafın sunucusunda değil.</div>
+      </div>
+      <div class="mod">
+        <div class="mtop">
+          <div class="mnum">MODÜL 03</div>
+          <h3>Sahipli liste ve e-bülten</h3>
+          <p class="mdesc">Instagram erişimi platformun kararına bağlıdır. Liste ise senindir. Bu modül, kitleyi kiralanan alandan sahip olunan alana taşır.</p>
+        </div>
+        <ul>
+          <li>İzinli kayıt akışı, İYS ve 6563 sayılı kanun uyumu kurulumda yapılır</li>
+          <li>Kaydolan herkese otomatik başlayan karşılama serisi</li>
+          <li>Bireysel, kurumsal, doğum ve evcil hayvan segmentlerinin ayrı takibi</li>
+          <li>Teknik gönderim kurulumu: kimlik doğrulama kayıtları ve tek tıkla çıkış</li>
+        </ul>
+        <div class="mown"><b>SENDE KALAN</b>Abone listesi ve izin kayıtları. Dışa aktarılabilir, taşınabilir, hiçbir sağlayıcının iznine bağlı değildir.</div>
+      </div>
+      <div class="mod">
+        <div class="mtop">
+          <div class="mnum">MODÜL 04</div>
+          <h3>Poliçe yenileme ve takip döngüsü</h3>
+          <p class="mdesc">Analiz raporundaki en net boşluk. Sigortada tekrar eden gelir buradan çıkar ve bugün bu katman hiç kurulmamış durumda.</p>
+        </div>
+        <ul>
+          <li>Yenileme tarihinden geriye doğru otomatik hatırlatma zinciri</li>
+          <li>Teminat değişikliği ve yıllık kontrol temasları</li>
+          <li>Doğum poliçesinde bebeğin eklenmesi gibi tarihe bağlı kritik adımlar</li>
+          <li>Yenilenmeyen poliçelerin sebebiyle birlikte kaydı ve geri kazanım akışı</li>
+        </ul>
+        <div class="mown"><b>SENDE KALAN</b>Yenileme takvimi ve müşteri geçmişi. Bu kayıt zamanla portföyünün en değerli parçası haline gelir.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Akış</h2><span class="stag">İÇERİKTEN YENİLEMEYE</span></div>
+    <p class="lead">Yedi adımın tamamı bugün kısmen veya hiç kurulmamış durumda. İlk iki adım bir hafta içinde çalışır hale gelir, geri kalanı sırayla üzerine eklenir.</p>
+    <div class="flow">
+      <div class="fnode"><div class="fn">ADIM 01</div><h4>İçerik yayınlanır</h4><p>Bugün zaten çalışan tek katman. 53 günde 3,3 milyon görüntüleme üretti.</p></div>
+      <div class="fnode"><div class="fn">ADIM 02</div><h4>Yorum ve DM karşılanır</h4><p>Otomatik yanıt saniyeler içinde gider. Bugün bu adım yok, talep yorum alanında kalıyor.</p></div>
+      <div class="fnode"><div class="fn">ADIM 03</div><h4>İhtiyaç nitelendirilir</h4><p>Hangi poliçe, kimin için, hangi aciliyet. Konuşma sana geldiğinde soru sorulmuş olur.</p></div>
+      <div class="fnode fnode own"><div class="fn">ADIM 04</div><h4>Kayıt CRM'e düşer</h4><p>Kendi kurumsal hesabında. Kaynağı, tarihi ve talebiyle birlikte.</p></div>
+      <div class="fnode fnode own"><div class="fn">ADIM 05</div><h4>Listeye izinli kayıt</h4><p>Poliçe almasa da ilişki kurulur. Kitle kiralanan alandan sahip olunan alana geçer.</p></div>
+      <div class="fnode fnode own"><div class="fn">ADIM 06</div><h4>Teklif ve poliçe</h4><p>Teklif süreci ve doküman arşivi aynı kayıt üzerinde yürür.</p></div>
+      <div class="fnode fnode own"><div class="fn">ADIM 07</div><h4>Yenileme döngüsü</h4><p>Tarihe bağlı hatırlatmalar otomatik yürür. Tekrar eden gelir buradan çıkar.</p></div>
+      <div class="fnode"><div class="fn">GERİ BESLEME</div><h4>Veri içeriğe döner</h4><p>Gelen soruların konu dağılımı, bir sonraki ayın içerik başlıklarını veriyle seçtirir.</p></div>
+    </div>
+    <div class="floop">
+      <b>Döngü burada kapanır:</b> içerik talebi üretir, sistem talebi kayda çevirir, kayıt yenilemeyle geliri tekrar eder, gelen sorular bir sonraki içeriği belirler. Kiralık panelde bu döngünün ortadaki üç adımı sağlayıcının veri tabanında durur. Sahipli kurulumda tamamı seninle kalır.
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Sahiplik Testi</h2><span class="stag">YARIN AYRILIRSAK</span></div>
+    <p class="lead">Bir sistemin gerçekten senin olup olmadığını anlamanın tek yolu şu soruyu sormaktır: <b>bu ilişki yarın biterse elimde ne kalır?</b> Cevabı önceden yazılı olmayan her kurulum, farkında olunmayan bir bağımlılıktır.</p>
+    <div class="grid3">
+      <div class="ins critical">
+        <div class="it">KİRALIK PANELDE</div>
+        <h3>Abonelik durunca sistem durur</h3>
+        <p>Akışlar sağlayıcının arayüzünde tanımlıdır ve taşınamaz. Dışa aktarılabilen genellikle ham bir tablo dosyasıdır. Konuşma geçmişi, otomasyon mantığı ve kurulmuş entegrasyonlar geride kalır.</p>
+        <div class="act">Geriye kalan: <b>bir dosya.</b> Yeniden kurulum sıfırdan başlar.</div>
+      </div>
+      <div class="ins opportunity">
+        <div class="it">SAHİPLİ KURULUMDA</div>
+        <h3>Ayrılık sistemi durdurmaz</h3>
+        <p>Sistem kendi hesabında çalıştığı için, danışmanlık ilişkisi bitse bile otomasyonlar çalışmaya devam eder. Devir bir taşınma işlemi değildir, çünkü sistem zaten sende durmaktadır.</p>
+        <div class="act">Geriye kalan: <b>çalışan sistemin kendisi.</b></div>
+      </div>
+      <div class="card">
+        <h3>Devir paketi, kurulumun parçasıdır</h3>
+        <p>Yazılı devir paketi ilk günden tanımlanır ve teslim edilir: yazılan kodun tamamı ve dokümantasyonu, tüm otomasyon akışlarının şeması, erişim ve yetki listesi, abone listesi ve izin kayıtları, sistemi bizsiz sürdürmek için gereken kullanım rehberi.</p>
+        <p><b>Bunu isteyeceğin günü beklemiyoruz, en baştan veriyoruz.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Sana Özel Olan</h2><span class="stag">SİGORTAYA GÖRE, SANA GÖRE</span></div>
+    <p class="lead">Aşağıdaki beş akış hazır panellerin menüsünde yer almaz, çünkü hiçbiri genel bir ihtiyaç değildir. Beşi de kendi izleyicinin yorumlarından çıkarıldı ve <b>yalnızca kendi iş kuralını yazabildiğin bir sistemde</b> hayata geçer.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Kazanılmış hak ve ÖBYG akışı</h3>
+        <p>Yorumlardaki en sık tekrar eden soru kümesi: kurumsal poliçeden bireysele geçişte hakların ne olacağı. Sisteme yazıldığında, gelen her talep otomatik olarak bu akışa girer, doğru soruları sorar ve sana hazır bir dosyayla ulaşır.</p>
+      </div>
+      <div class="card">
+        <h3>Doğum poliçesi ve bebeğin eklenmesi takvimi</h3>
+        <p>Bebeğin doğumdan kaç gün sonra poliçeye ekleneceği hem soru hem mağduriyet anlatısı olarak dönüyor. Tarihe bağlı bir hatırlatma zinciri, bu konuyu içerik başlığı olmaktan çıkarıp hizmete dönüştürür.</p>
+      </div>
+      <div class="card">
+        <h3>Evcil hayvan dikeyi</h3>
+        <p>İki içerikten alınan 30 yorumluk örneklemin yüzde 87'si doğrudan talep; sağlık sigortası içeriklerinde aynı oran yüzde 14. 30 Ağustos içeriği 99.515 görüntülemeyle 308 yorum topladı, yani erişim başına talep yoğunluğu arşivin en yükseği. Ayrı segment, ayrı karşılama akışı ve ayrı liste, bu dikeyi mevcut kitleyle çakışmadan büyütür.</p>
+      </div>
+      <div class="card">
+        <h3>Vergi iadesi sezonu</h3>
+        <p>Tek içerikle 929.192 görüntüleme üretti ve yorumlardaki en yoğun soru kümesi bu konuda: emekli, memur, şirket sahibi ve kira geliri olanların yararlanıp yararlanamayacağı. Sezonluk bir taleptir ve takvime bağlanabilir. Kayıtlı listede, bu yıl konuyla gelen herkes bir sonraki sezonda tekrar temas edilebilir hale gelir.</p>
+      </div>
+    </div>
+    <div class="ins opportunity" style="margin-top:16px">
+      <div class="it">TEMEL FARK</div>
+      <h3>Panelde bunlar şablondur, kendi sisteminde iş kuralıdır</h3>
+      <p>Hazır bir panelde bu beş konu, ancak hazır menülerin izin verdiği ölçüde, birbirinden bağımsız beş mesaj şablonuna dönüşür. Kendi altyapında ise her biri tarih, koşul ve müşteri geçmişine bağlı çalışan birer kuraldır. İlkinde otomasyon konuşur, ikincisinde <b>sistem senin yerine düşünür.</b></p>
+      <div class="act"><b>Rakiplerinden ayrıştığın yer burasıdır:</b> aynı paneli kullanan herkes aynı akışı sunar, kendi kuralını yazan tek kişi sensin.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Kurulum Planı</h2><span class="stag">DÖRT FAZ</span></div>
+    <p class="lead">Faz sıralaması gelir üretme hızına göre kuruldu. En hızlı sonucu veren katman önce açılır, altyapı onun üzerine eklenir. <b>Hiçbir faz, önceki faz doğrulanmadan başlamaz.</b></p>
+    <div class="tl">
+      <div class="tlrow">
+        <div class="tlp">FAZ 0</div>
+        <h4>Keşif ve haritalama</h4>
+        <p>Mevcut süreç haritalanır: talep nereden geliyor, kim yanıtlıyor, kayıt nerede tutuluyor, yenileme nasıl takip ediliyor. Sistem kurmadan önce bugünkü akışın yazılı hale getirilmesi zorunludur.</p>
+        <div class="dur">Yaklaşık 1 hafta</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlp">FAZ 1</div>
+        <h4>Karşılama katmanı devreye alınır</h4>
+        <p>Yorum ve DM otomasyonu çalışmaya başlar. Analiz raporundaki bekleyen talep hacmi bu fazda karşılanır hale gelir. İlk ölçülebilir sonuç bu fazda alınır.</p>
+        <div class="dur">Yaklaşık 2 hafta</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlp">FAZ 2</div>
+        <h4>CRM katmanı kurulur</h4>
+        <p>Yönetim katmanı yazılır, kayıt yapısı kurulur, karşılama katmanı buraya bağlanır. Bu fazın sonunda hiçbir talep kayıtsız kalmaz.</p>
+        <div class="dur">Yaklaşık 2 ila 3 hafta</div>
+      </div>
+      <div class="tlrow">
+        <div class="tlp">FAZ 3</div>
+        <h4>Liste ve yenileme döngüsü açılır</h4>
+        <p>İzinli liste altyapısı, karşılama serisi ve yenileme hatırlatma zinciri kurulur. Döngü bu fazda kapanır ve sistem tekrar eden gelir üretmeye başlar.</p>
+        <div class="dur">Yaklaşık 2 hafta</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Ne Değişir</h2><span class="stag">ÖNCE VE SONRA</span></div>
+    <div class="tscroll">
+      <table>
+        <thead>
+          <tr>
+            <th>ALAN</th>
+            <th class="col-rent">BUGÜN</th>
+            <th class="col-own">KURULUM SONRASI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="axis">Gelen talep</td>
+            <td class="rent">Yorum alanında birikiyor, örneklemde yanıt akışı görünmüyor.</td>
+            <td class="own">Saniyeler içinde karşılanıyor, nitelendiriliyor ve kayda geçiyor.</td>
+          </tr>
+          <tr>
+            <td class="axis">Kayıt</td>
+            <td class="rent">Talebin kaynağı, tarihi ve içeriği sistematik olarak tutulmuyor.</td>
+            <td class="own">Her temas kaynağıyla birlikte kendi CRM'inde. Kaybolan kayıt yok.</td>
+          </tr>
+          <tr>
+            <td class="axis">Kitle</td>
+            <td class="rent">18.694 takipçi, tamamı tek platformun erişim kararına bağlı.</td>
+            <td class="own">Takipçinin bir bölümü izinli listede. Platform ne yaparsa yapsın ulaşılabilir.</td>
+          </tr>
+          <tr>
+            <td class="axis">Yenileme</td>
+            <td class="rent">Takip elle ve hatırlamaya bağlı. Veri setinde kurulu bir döngü görünmüyor.</td>
+            <td class="own">Tarihe bağlı otomatik zincir. Tekrar eden gelir hesaplanabilir hale geliyor.</td>
+          </tr>
+          <tr>
+            <td class="axis">İçerik kararı</td>
+            <td class="rent">Sezgiyle seçiliyor. Tekrar eden sorular içerik planına dönmüyor.</td>
+            <td class="own">Gelen soruların konu dağılımı bir sonraki ayın başlıklarını belirliyor.</td>
+          </tr>
+          <tr>
+            <td class="axis">Altyapı</td>
+            <td class="rent">Kiralanan alan. Fiyat ve kural kararı üçüncü tarafta.</td>
+            <td class="own">Kendi hesabın. Kod, veri ve liste sende. Karar sende.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead"><h2>Sıradaki Adım</h2><span class="stag">KURULUM GÖRÜŞMESİ</span></div>
+    <div class="cta">
+      <h3>Bu sistemi kurmak bir yazılım satın almak değil, bir varlık inşa etmektir.</h3>
+      <p>Kiralanan panelde geçen her ay, o panelde biriken veri kadar bağımlılık üretir. <b>Aynı emek kendi altyapında harcandığında, geriye kalan şey işletmenin değerine yazılır.</b> Analiz raporu talebin var olduğunu gösterdi; bu doküman o talebi kimin altyapısında karşılayacağın sorusunu masaya koyuyor.</p>
+      <p>Ticari model tek seferlik kurulum ve düşük tempolu bakım üzerine kuruludur. Rakamı, kapsam netleştikten sonra görüşmede konuşuruz. <b>Sıradaki adım 30 dakikalık bir kurulum görüşmesi:</b> mevcut akışını haritalar, hangi fazın önce hangi sonucu üreteceğini birlikte netleştiririz.</p>
+      <div class="ctarow">
+        <div class="ctaitem"><div class="cv num">25</div><div class="cl">Uzman AI ajanla yürüyen üretim hattı</div></div>
+        <div class="ctaitem"><div class="cv num">30.000+</div><div class="cl">Son bir yılda müşterilerimiz adına verilen anlık yanıt</div></div>
+        <div class="ctaitem"><div class="cv num">~495</div><div class="cl">Hesabında şu anda karşılanmayı bekleyen talep</div></div>
+      </div>
+    </div>
+    <div class="srcs">
+      <div class="stitle">KAYNAKLAR VE VERİ NOTU</div>
+      Hesaba ait tüm metrikler 8 Eylül 2026 tarihli içerik performans analizinden alınmıştır: 16 Temmuz 2026 ile 6 Eylül 2026 arasında yayınlanan 17 içeriğin tamamı, 254 yorumluk örneklem üzerinden oransal projeksiyon. Yorum kategorileri yaklaşık değerlerdir. 6 Eylül tarihli içerik ölçüm anında iki günlüktü, eğilim hesaplarına dahil edilmemiştir.<br>
+      Mesajlaşma kanalındaki ücret değişikliği, 10 Ağustos 2026 tarihli duyuruya dayanır ve 1 Ekim 2026 itibarıyla yürürlüğe girer. Ülke bazlı tarifeler ilgili platform tarafından yayınlanır. Kaynaklar: <a href="https://support.zendesk.com/hc/en-us/articles/11113277351322-Announcing-upcoming-changes-to-WhatsApp-Business-messaging-pricing" target="_blank" rel="noopener">Zendesk duyuru özeti</a>, <a href="https://www.wati.io/en/blog/whatsapp-service-message-pricing/" target="_blank" rel="noopener">hizmet mesajı fiyatlandırma analizi</a>, <a href="https://developers.facebook.com/docs/whatsapp/pricing/" target="_blank" rel="noopener">platformun resmî fiyatlandırma dokümanı</a>.<br>
+      E-posta ve sosyal medya getiri oranları sektör ortalamalarıdır ve kanal karşılaştırması için referans olarak kullanılmıştır.
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-l">
+      <div class="fname">NOMADES AGENCY</div>
+      <div class="fmeta">Güner Kılıç için hazırlanmıştır · 8 Eylül 2026<br>İçerik Performans Analizi'nin devamı · nomadesagency.com</div>
+    </div>
+    <div class="foot-r">Kiralanan panel her ay gider yazar, kurulan sistem her ay değer yazar.</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var blok=function(e){ e.preventDefault(); return false; };
+  ['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(olay){
+    document.addEventListener(olay, blok, {capture:true});
+  });
+  document.addEventListener('keydown', function(e){
+    if(!(e.ctrlKey || e.metaKey)) return;
+    var t = (e.key || '').toLowerCase();
+    if(t==='c' || t==='x' || t==='a' || t==='s' || t==='u' || t==='p'){ e.preventDefault(); return false; }
+  }, {capture:true});
+})();
+</script>
+</body>
+</html>
