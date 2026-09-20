@@ -798,26 +798,32 @@
       <div class="cf-row">
         <div class="cf-field">
           <label for="cf-name" data-i18n="form.label.name">Name</label>
-          <input type="text" id="cf-name" name="name" placeholder="Name Surname" data-i18n-placeholder="form.ph.name" required>
+          <input type="text" id="cf-name" name="name" placeholder="Name Surname" data-i18n-placeholder="form.ph.name" maxlength="120" required>
         </div>
         <div class="cf-field">
           <label for="cf-email" data-i18n="form.label.email">Email</label>
-          <input type="email" id="cf-email" name="email" placeholder="you@email.com" data-i18n-placeholder="form.ph.email" required>
+          <input type="email" id="cf-email" name="email" placeholder="you@email.com" data-i18n-placeholder="form.ph.email" maxlength="160" required>
         </div>
       </div>
       <div class="cf-row">
         <div class="cf-field">
           <label for="cf-brand" data-i18n="form.label.brand">Brand</label>
-          <input type="text" id="cf-brand" name="brand" placeholder="Brand Name" data-i18n-placeholder="form.ph.brand" required>
+          <input type="text" id="cf-brand" name="brand" placeholder="Brand Name" data-i18n-placeholder="form.ph.brand" maxlength="120" required>
         </div>
         <div class="cf-field">
           <label for="cf-instagram" data-i18n="form.label.instagram">Instagram</label>
-          <input type="text" id="cf-instagram" name="instagram" placeholder="@username" data-i18n-placeholder="form.ph.instagram" required>
+          <input type="text" id="cf-instagram" name="instagram" placeholder="@username" data-i18n-placeholder="form.ph.instagram" maxlength="120" required>
         </div>
       </div>
       <div class="cf-field cf-field--full">
         <label for="cf-message" data-i18n="form.label.message">Message</label>
-        <textarea id="cf-message" name="message" rows="3" placeholder="Your message" data-i18n-placeholder="form.ph.message" required></textarea>
+        <textarea id="cf-message" name="message" rows="3" placeholder="Your message" data-i18n-placeholder="form.ph.message" maxlength="4000" required></textarea>
+      </div>
+      <!-- Tuzak alan: ekranda gorunmez, ekran okuyucudan gizli, klavye ile ulasilamaz.
+           Yalnizca formu otomatik dolduran botlar isaretler; sunucu dolu gelen kaydi sessizce atar. -->
+      <div class="cf-trap" aria-hidden="true">
+        <label for="cf-company">Company</label>
+        <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
       </div>
       <div class="cf-actions"><button type="submit" class="cf-submit" data-i18n="form.submit">Apply &nbsp;&rarr;</button></div>
       <p class="cf-assurance" data-i18n="form.assurance">No commitment &middot; We reply within 48 hours</p>

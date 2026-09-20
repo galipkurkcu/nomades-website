@@ -626,6 +626,9 @@ function initContactForm() {
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEN0bBZTpCTIPRphjvezleR-7r-3oCKqEUUJ4a10LWL8LlivL4cWDwCGD87HfhFhJlJw/exec';
   const form = document.getElementById('contact-form');
   if (!form) return;
+  // Formun ekranda belirdigi an. Gonderim bundan birkac yuz milisaniye sonra
+  // geliyorsa insan doldurmamistir; sunucu bu kaydi sessizce atar.
+  const acilisMs = Date.now();
   // Stricter than the browser default: requires @ and a real domain with a dot (e.g. name@site.com)
   const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
 
@@ -664,13 +667,17 @@ function initContactForm() {
     }
 
     const btn = form.querySelector('.cf-submit');
+    // Uzunluk siniri sunucuda da var; buradaki kirpma yalnizca gereksiz
+    // buyuklukteki gonderimi agdan once keser.
+    const kirp = (alan, sinir) => String(alan ? alan.value : '').trim().slice(0, sinir);
     const payload = {
-      name:      form.elements.name.value.trim(),
-      email:     form.elements.email.value.trim(),
-      brand:     form.elements.brand.value.trim(),
-      instagram: form.elements.instagram.value.trim(),
-      message:   form.elements.message.value.trim(),
-      timestamp: new Date().toISOString()
+      name:      kirp(form.elements.name, 120),
+      email:     kirp(form.elements.email, 160),
+      brand:     kirp(form.elements.brand, 120),
+      instagram: kirp(form.elements.instagram, 120),
+      message:   kirp(form.elements.message, 4000),
+      company:   kirp(form.elements.company, 120),   // tuzak alan: doluysa bot
+      _ms:       Date.now() - acilisMs
     };
     btn.disabled = true;
     const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;

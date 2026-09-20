@@ -1982,6 +1982,18 @@ body {
   margin-bottom: 48px;
 }
 .cf-field--full { margin-bottom: 48px; }
+
+/* Tuzak alan: goz ve ekran okuyucu icin yok, DOM icin var. display:none
+   KULLANILMAZ, bazi botlar gizli alanlari atlamak icin ona bakar. */
+.cf-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 .cf-field label {
   display: block;
   font-size: 9px;
