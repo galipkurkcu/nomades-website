@@ -242,7 +242,8 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 @keyframes ln{0%{transform:scaleX(0);opacity:1}25%,55%{transform:scaleX(1);opacity:1}75%,100%{transform:scaleX(1);opacity:.1}}
 @keyframes dim{0%,55%{opacity:1}75%,100%{opacity:.28}}
 @keyframes tx{0%,55%{opacity:0}75%,100%{opacity:1}}
-@media(max-width:900px){.three{grid-template-columns:1fr}.pro{min-height:0}}
+@media(max-width:900px){.three{grid-template-columns:1fr}.pro{min-height:0}.viz.link,.viz.vault{height:150px;flex:none}}
+@media(max-width:420px){.link .tx{letter-spacing:.08em;font-size:10.5px}.link .n{width:80px}.link .ln{left:80px;right:80px}}
 
 /* anahtar teslim */
 .bgart{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -318,7 +319,7 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 .stats b{font-size:clamp(40px,5vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1;display:block;background:linear-gradient(120deg,var(--g1),var(--g2) 60%,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
 .stats>div:nth-child(even) b{background-image:linear-gradient(120deg,var(--g2),var(--g3))}
 .stats span{font-size:13px;color:var(--t2);letter-spacing:.04em;display:block;margin-top:10px}
-@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.stats>div:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - 8px)}}
 
 /* ÜYE YOLCULUĞU */
 .jr{display:grid;grid-template-columns:.62fr 1.38fr;gap:48px;margin-top:56px;align-items:center}
@@ -562,7 +563,7 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 .fact{padding:18px 20px}
 .fact b{font-size:30px;letter-spacing:-.02em;display:block;line-height:1.1}
 .fact span{font-size:13.5px;color:var(--t3)}
-@media(max-width:1000px){.gal{grid-template-columns:1fr}.gl{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.gb[aria-pressed=true]{transform:none}.gst{min-height:520px}.gcl{height:240px}.gcl img{--w:96px!important}.gmeta{grid-template-columns:1fr}.brandbar{grid-template-columns:1fr}.facts{grid-template-columns:1fr}}
+@media(max-width:1000px){.gal{grid-template-columns:1fr}.gl{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.gb[aria-pressed=true]{transform:none}.gst{min-height:520px}.gcl{height:240px}.gcl img{--x:0px!important;--w:clamp(52px,17vw,96px)!important}.gcl img:nth-child(1){--w:clamp(84px,27vw,150px)!important;z-index:3}.gcl img:nth-child(2){left:27%;z-index:2}.gcl img:nth-child(3){left:73%;z-index:2}.gcl img:nth-child(4){left:10%;--w:clamp(40px,12vw,70px)!important;z-index:1}.gcl img:nth-child(5){left:90%;--w:clamp(40px,12vw,70px)!important;z-index:1}.gmeta{grid-template-columns:1fr}.brandbar{grid-template-columns:1fr}.facts{grid-template-columns:1fr}}
 
 /* sizin tarzınız */
 .cz{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:56px;align-items:center}
@@ -600,6 +601,8 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 .cflow i:after{content:'';position:absolute;top:0;left:-40%;width:40%;height:100%;background:#fff;animation:flow 1.8s linear infinite}
 @keyframes flow{to{left:110%}}
 .custom .btn{margin-top:22px}
+@keyframes flowv{to{top:110%}}
+@media(max-width:600px){.cflow{flex-direction:column;align-items:flex-start;gap:0}.cflow i{width:2px;height:30px;margin-left:26px;background:linear-gradient(180deg,var(--amber),rgba(240,170,0,.25))}.cflow i:after{left:0;top:-40%;width:100%;height:40%;animation-name:flowv}}
 @media(max-width:900px){.cz{grid-template-columns:1fr}.mp{grid-template-columns:96px 1fr}.mp .kp{grid-template-columns:repeat(2,1fr)}.custom{grid-template-columns:1fr;padding:32px 26px}}
 
 /* güven */
@@ -725,11 +728,11 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 .cf-ok p{color:var(--t3)}
 @media(max-width:900px){.cta .wrap{grid-template-columns:1fr;gap:40px}.cf-row{grid-template-columns:1fr}.cform{padding:24px}}
 footer{border-top:1px solid var(--line);padding:42px 0;color:var(--mute);font-size:13px}
-footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+footer .wrap{display:flex;flex-direction:column;justify-content:center;gap:24px;align-items:center;text-align:center}
 footer .tg2{font-style:italic;color:var(--dim2);margin-top:6px}
 footer b{letter-spacing:.2em;color:var(--ink);font-size:12px}
 /* marka kiti: açık zeminde logo ters (koyu) sürüm */
-footer img{transition:filter .4s}
+footer img{transition:filter .4s;margin-left:auto;margin-right:auto}
 html[data-theme=light] footer img{filter:invert(1)}
 
 .lb{position:fixed;inset:0;z-index:100;background:rgba(5,5,7,.92);display:none;place-items:center;padding:28px;cursor:zoom-out;backdrop-filter:blur(6px)}
@@ -1328,7 +1331,7 @@ html[data-theme=light] footer img{filter:invert(1)}
       <b>NOMADES AGENCY</b> · <span lang="en">Studio Ops Suite</span> · Ankara
       <div class="tg2">we don't settle for good, we seek perfection</div>
     </div>
-    <div style="text-align:right">Ürün kapsamı: v6.12.0 · 12 Ekim 2026<br>Kurulum öncesinde canlı hesap doğrulaması yapılır.</div>
+    <div>Ürün kapsamı: v6.12.0 · 12 Ekim 2026<br>Kurulum öncesinde canlı hesap doğrulaması yapılır.</div>
   </div>
 </footer>
 
