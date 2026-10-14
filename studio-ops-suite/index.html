@@ -165,6 +165,28 @@ html:not([data-theme=light]) .tgl .mo,html[data-theme=light] .tgl .su{stroke:#1a
 .sit .card{padding:22px 24px;display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;transition:border-color .3s,transform .4s var(--ease)}
 .sit .card:hover{border-color:var(--abord);transform:translateX(6px)}
 .sit .no{width:44px;height:44px;border-radius:12px;background:var(--bg4);border:1px solid var(--line3);display:grid;place-items:center;font-weight:700;color:var(--amber-t);font-size:15px}
+.sit .no svg{width:28px;height:28px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;overflow:visible}
+.sit .no rect{transform-box:fill-box}
+.sa1,.sa2,.sa3,.sf1,.sf2,.sf3{fill:currentColor;fill-opacity:.22}
+.sa1{animation:sa1 4.2s var(--ease) infinite}.sa2{animation:sa2 4.2s var(--ease) infinite}.sa3{animation:sa3 4.2s var(--ease) infinite}
+@keyframes sa1{0%,12%{transform:translate(-1px,0) rotate(-4deg)}42%,82%{transform:translate(5px,0) rotate(0)}100%{transform:translate(-1px,0) rotate(-4deg)}}
+@keyframes sa2{0%,12%{transform:translate(2px,0) rotate(3deg)}42%,82%{transform:translate(-5px,0) rotate(0)}100%{transform:translate(2px,0) rotate(3deg)}}
+@keyframes sa3{0%,12%{transform:translate(-2px,0) rotate(-3deg)}42%,82%{transform:translate(4px,0) rotate(0)}100%{transform:translate(-2px,0) rotate(-3deg)}}
+.sb1{fill:currentColor;fill-opacity:.3}
+.sb2{stroke:var(--red);fill:var(--red);fill-opacity:.18;animation:sb2 4.2s var(--ease) infinite}
+@keyframes sb2{0%,25%{transform:translateY(0);stroke:var(--red)}55%,85%{transform:translateY(10px);stroke:currentColor}100%{transform:translateY(0);stroke:var(--red)}}
+.sc1{stroke-dasharray:69;stroke-dashoffset:22;animation:sc1 4s var(--ease) infinite}
+@keyframes sc1{0%{stroke-dashoffset:69}60%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:69}}
+.sc2{stroke-dasharray:22;stroke-dashoffset:0;animation:sc2 4s var(--ease) infinite}
+@keyframes sc2{0%,55%{stroke-dashoffset:22}70%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:22}}
+.sd1{animation:sd1 4s var(--ease) infinite}
+@keyframes sd1{0%,15%{transform:translateY(-4px)}40%,85%{transform:translateY(0)}100%{transform:translateY(-4px)}}
+.sd2{animation:sd2 4s ease infinite}
+@keyframes sd2{0%,35%{opacity:.2}50%,85%{opacity:1}100%{opacity:.2}}
+.se1{stroke-dasharray:22;stroke-dashoffset:0;animation:sc2 3.6s var(--ease) infinite}
+.sf1,.sf2,.sf3{transform-origin:50% 100%}
+.sf1{animation:sf 4s var(--ease) infinite}.sf2{animation:sf 4s var(--ease) .25s infinite}.sf3{animation:sf 4s var(--ease) .5s infinite}
+@keyframes sf{0%{transform:scaleY(.25)}35%,85%{transform:scaleY(1)}100%{transform:scaleY(.25)}}
 .sit h3{font-size:18px;margin-bottom:4px}
 .sit p{color:var(--t3);font-size:14.5px}
 .sit .arrow{color:var(--amber-t);font-weight:700}
@@ -885,12 +907,12 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 
     <p class="sub rv">ŞU DURUMDAYSANIZ TAM SİZE GÖRE</p>
     <div class="sit">
-      <div class="card rv"><span class="no">01</span><div><h3>Üyeleri tablo, defter ya da mesajlarla takip ediyorsunuz</h3><p><span class="arrow">→</span> Tek panelde üye kartı, paket ve ödeme.</p></div></div>
-      <div class="card rv" style="--d:.06s"><span class="no">02</span><div><h3>Birden fazla eğitmen, salon ve cihazla çalışıyorsunuz</h3><p><span class="arrow">→</span> Çakışmayı sistem yakalar, eğitmen kendi panelini kullanır.</p></div></div>
-      <div class="card rv"><span class="no">03</span><div><h3>Kalan dersi ve paket bitişini elle sayıyorsunuz</h3><p><span class="arrow">→</span> Paket haftası, eksik ders ve son gün otomatik hesaplanır.</p></div></div>
-      <div class="card rv" style="--d:.06s"><span class="no">04</span><div><h3>Eğitmen hak edişi her dönem kafa karıştırıyor</h3><p><span class="arrow">→</span> Hesap ders günü donar, dönem raporu PDF olur.</p></div></div>
-      <div class="card rv"><span class="no">05</span><div><h3>Verinizi başkasının platformunda tutmak istemiyorsunuz</h3><p><span class="arrow">→</span> Her şey kendi Google hesabınızda kalır.</p></div></div>
-      <div class="card rv" style="--d:.06s"><span class="no">06</span><div><h3>Büyüyorsunuz ve düzenin onunla büyümesini istiyorsunuz</h3><p><span class="arrow">→</span> Yeni paket, eğitmen ya da özellik, çoğu zaman bir ayar.</p></div></div>
+      <div class="card rv"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><rect class="sa1" x="4" y="6" width="14" height="4.5" rx="1.6"/><rect class="sa2" x="13" y="14" width="15" height="4.5" rx="1.6"/><rect class="sa3" x="6" y="22" width="13" height="4.5" rx="1.6"/></svg></span><div><h3>Üyeleri tablo, defter ya da mesajlarla takip ediyorsunuz</h3><p><span class="arrow">→</span> Tek panelde üye kartı, paket ve ödeme.</p></div></div>
+      <div class="card rv" style="--d:.06s"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="5"/><rect class="sb1" x="8" y="9" width="16" height="5" rx="1.6"/><rect class="sb2" x="8" y="9" width="16" height="5" rx="1.6"/></svg></span><div><h3>Birden fazla eğitmen, salon ve cihazla çalışıyorsunuz</h3><p><span class="arrow">→</span> Çakışmayı sistem yakalar, eğitmen kendi panelini kullanır.</p></div></div>
+      <div class="card rv"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" style="opacity:.25"/><circle class="sc1" cx="16" cy="16" r="11" transform="rotate(-90 16 16)"/><path class="sc2" d="M11.5 16.5l3.2 3.2 6-6.4"/></svg></span><div><h3>Kalan dersi ve paket bitişini elle sayıyorsunuz</h3><p><span class="arrow">→</span> Paket haftası, eksik ders ve son gün otomatik hesaplanır.</p></div></div>
+      <div class="card rv" style="--d:.06s"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="7" y="15" width="18" height="13" rx="3.5"/><path class="sd1" d="M11 15v-4a5 5 0 0 1 10 0v4"/><circle class="sd2" cx="16" cy="21.5" r="1.6" style="fill:currentColor;stroke:none"/></svg></span><div><h3>Eğitmen hak edişi her dönem kafa karıştırıyor</h3><p><span class="arrow">→</span> Hesap ders günü donar, dönem raporu PDF olur.</p></div></div>
+      <div class="card rv"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 10a3 3 0 0 1 3-3h6l3 4h9a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path class="se1" d="M11 19.5l3.6 3.6 6.4-7.2"/></svg></span><div><h3>Verinizi başkasının platformunda tutmak istemiyorsunuz</h3><p><span class="arrow">→</span> Her şey kendi Google hesabınızda kalır.</p></div></div>
+      <div class="card rv" style="--d:.06s"><span class="no" aria-hidden="true"><svg viewBox="0 0 32 32"><rect class="sf1" x="5" y="17" width="5.5" height="10" rx="1.4"/><rect class="sf2" x="13.2" y="11" width="5.5" height="16" rx="1.4"/><rect class="sf3" x="21.5" y="5" width="5.5" height="22" rx="1.4"/></svg></span><div><h3>Büyüyorsunuz ve düzenin sizinle büyümesini istiyorsunuz</h3><p><span class="arrow">→</span> Yeni paket, eğitmen ya da özellik, çoğu zaman bir ayar.</p></div></div>
     </div>
 
     <div class="fitnote rv">
