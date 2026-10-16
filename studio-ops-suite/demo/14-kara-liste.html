@@ -70,6 +70,8 @@ a{color:var(--birincil,#89AC76)}
 .sekme[aria-selected="true"]{background:var(--birincil,#89AC76);color:#fff}
 .yan-alt{margin-top:auto;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:8px}
 .yan-kisi{font-size:.82rem;color:rgba(255,255,255,.62);overflow-wrap:anywhere}
+.yan-surum{font-size:.76rem;color:rgba(255,255,255,.5);padding:0 2px;overflow-wrap:anywhere}
+.yan-surum.uyari{color:#f3c969;font-weight:600}
 .yan-alt button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;
                 width:100%;text-align:center}
 .yan-alt button:hover{background:rgba(255,255,255,.16)}
@@ -641,7 +643,34 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
   .paket-satir>button{grid-column:span 1}
 }
 
-.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}.ana{max-width:none}</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}@media (min-width:900px){.fin-kpi8{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.fin-ust{display:grid;gap:12px 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end;margin:8px 0 8px}
+.fin-ust>*{min-width:0}
+.fin-ust label{margin-top:0}
+.fin-dugme{margin-top:0}
+.fin-ayyil{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fin-cubuklar{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;margin:16px 0 8px}
+button.fin-kolon{background:transparent;border:1px solid transparent;border-radius:10px;padding:6px 0 4px;
+  flex-direction:column;align-items:stretch;justify-content:flex-end;gap:6px;color:var(--ikincil,#8a7a65);font-weight:500;font-size:.78rem;min-width:0}
+button.fin-kolon:hover{filter:none;background:color-mix(in srgb,var(--birincil,#89AC76) 8%,transparent)}
+button.fin-kolon[aria-pressed="true"]{border-color:var(--birincil,#89AC76);color:var(--metin,#2a2420);
+  background:color-mix(in srgb,var(--birincil,#89AC76) 12%,transparent)}
+.fin-ikili{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:150px;width:100%}
+.fin-ikili i{display:block;flex:0 0 auto;width:28%;max-width:11px;border-radius:4px 4px 0 0;min-height:2px}
+button.fin-kolon.fin-gelecek .fin-ikili{opacity:.45}
+.fin-r{background:var(--birincil,#89AC76)}
+.fin-t{background:color-mix(in srgb,var(--birincil,#89AC76) 38%,#fff);border:1px solid var(--birincil,#89AC76)}
+.fin-g{background:var(--ikincil,#8a7a65)}
+.fin-ozet{display:flex;gap:16px;flex-wrap:wrap;color:var(--ikincil,#8a7a65);font-size:.85rem}
+i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+.fin-eksi{color:var(--kritik,#c23d3d)}
+.fin-kat{display:grid;grid-template-columns:minmax(80px,1fr) minmax(0,2fr) auto;gap:12px;align-items:center;padding:6px 0}
+.fin-kat-cubuk{display:block;height:10px;background:var(--cizgi-yumusak);border-radius:6px;overflow:hidden}
+.fin-kat-cubuk i{display:block;height:100%;background:var(--birincil,#89AC76);border-radius:6px}
+.fin-kat b{font-variant-numeric:tabular-nums;font-weight:600}
+@media (max-width:640px){.fin-kat{grid-template-columns:1fr auto}.fin-kat-cubuk{grid-column:1/-1;order:3}}
+</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <g id="i-genel"><path d="M3 12h4l2.2-5 3.6 10 2.2-5H21"/></g>
     <g id="i-takvim"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></g>
@@ -679,6 +708,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
     <button class="sekme" role="tab" data-sayfa="egitmenler" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-egitmen"/></svg><span>Eğitmenler</span></button>
     <button class="sekme" role="tab" data-sayfa="dersler" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-ders"/></svg><span>Dersler</span></button>
     <button class="sekme" role="tab" data-sayfa="hakedis" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-hakedis"/></svg><span>Hak Ediş</span></button>
+    <button class="sekme" role="tab" data-sayfa="finans" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-para"/></svg><span>Finans</span></button>
     <button class="sekme" role="tab" data-sayfa="notlar" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-not"/></svg><span>Notlar</span></button>
     <div class="sekme-grup" id="ayar-grup">
       <button class="sekme" role="tab" data-sayfa="ayarlar" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-ayar"/></svg><span>Ayarlar</span></button>
@@ -695,7 +725,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
       </div>
     </div>
       </nav>
-<div class="yan-alt"><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
+<div class="yan-alt"><span class="yan-surum" id="ust-surum">Versiyon: 7.1.0</span><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
 <main class="ana"><div class="ana-ust"><span class="ana-ustyazi">STÜDYO PANELİ</span><h1 class="ana-baslik">Üyeler · Kara Liste</h1></div>
 <section class="sayfa"><h2>Kara Liste</h2><p class="kucuk">Bu kişilere mail gitmez; formu yeniden doldurursa kayıt açılmaz ve size uyarı gelir. Drive klasörleri paylaşımdan çıkarılıp 01-uyeler/kara-liste/ altına taşınmıştır. Kayıtları silinmez. Kara listeye almak için üye kartını açın.</p><div class="kart "><h3><span>Kara listede </span><span class="rozet kritik">8</span></h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Üye No</th><th>Ad Soyad</th><th>Sebep</th><th>Tarih</th><th>Alan</th><th>Başvuru denemesi</th></tr></thead><tbody><tr><td data-baslik="Üye No">1019</td><td data-baslik="Ad Soyad">Gizem Yalçın</td><td data-baslik="Sebep">Ödeme yapmadı</td><td data-baslik="Tarih">03.08.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi"><span class="rozet uyari">2</span></td></tr><tr><td data-baslik="Üye No">1036</td><td data-baslik="Ad Soyad">Orhan Eren</td><td data-baslik="Sebep">Uygunsuz davranış</td><td data-baslik="Tarih">21.09.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi">-</td></tr><tr><td data-baslik="Üye No">1042</td><td data-baslik="Ad Soyad">Selma Kaçar</td><td data-baslik="Sebep">Habersiz devamsızlık</td><td data-baslik="Tarih">09.09.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi"><span class="rozet uyari">1</span></td></tr><tr><td data-baslik="Üye No">1049</td><td data-baslik="Ad Soyad">Tolga Demirci</td><td data-baslik="Sebep">Ödeme yapmadı</td><td data-baslik="Tarih">30.09.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi">-</td></tr><tr><td data-baslik="Üye No">1053</td><td data-baslik="Ad Soyad">Ufuk Sönmez</td><td data-baslik="Sebep">Uygunsuz davranış</td><td data-baslik="Tarih">04.10.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi"><span class="rozet uyari">3</span></td></tr><tr><td data-baslik="Üye No">1056</td><td data-baslik="Ad Soyad">Vildan Özkan</td><td data-baslik="Sebep">Habersiz devamsızlık</td><td data-baslik="Tarih">06.10.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi">-</td></tr><tr><td data-baslik="Üye No">1060</td><td data-baslik="Ad Soyad">Yiğit Balcı</td><td data-baslik="Sebep">Ödeme yapmadı</td><td data-baslik="Tarih">08.10.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi">-</td></tr><tr><td data-baslik="Üye No">1061</td><td data-baslik="Ad Soyad">Zerrin Kutlu</td><td data-baslik="Sebep">Uygunsuz davranış</td><td data-baslik="Tarih">09.10.2026</td><td data-baslik="Alan">Stüdyo</td><td data-baslik="Başvuru denemesi"><span class="rozet uyari">1</span></td></tr></tbody></table></div></div><div class="kart "><h3>Başvuru denemeleri ve ad benzerlikleri</h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Tarih</th><th>Başvuran</th><th>İletişim</th><th>Kara listedeki kayıt</th><th>Eşleşen</th><th>Sonuç</th></tr></thead><tbody><tr><td data-baslik="Tarih">09.10.2026</td><td data-baslik="Başvuran">Gizem Yalcin</td><td data-baslik="İletişim">gy@ornek.com</td><td data-baslik="Kara listedeki kayıt">Gizem Yalçın (1019)</td><td data-baslik="Eşleşen"><span class="nb">e-posta</span></td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr><tr><td data-baslik="Tarih">30.09.2026</td><td data-baslik="Başvuran">Gizem Yalçın</td><td data-baslik="İletişim">gya@ornek.com</td><td data-baslik="Kara listedeki kayıt">Gizem Yalçın (1019)</td><td data-baslik="Eşleşen">yalnız ad soyad</td><td data-baslik="Sonuç"><span class="rozet uyari">kayıt açıldı · 1058</span></td></tr><tr><td data-baslik="Tarih">02.10.2026</td><td data-baslik="Başvuran">Orhan E.</td><td data-baslik="İletişim">0532 000 00 36</td><td data-baslik="Kara listedeki kayıt">Orhan Eren (1036)</td><td data-baslik="Eşleşen">telefon</td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr><tr><td data-baslik="Tarih">06.10.2026</td><td data-baslik="Başvuran">Selma K.</td><td data-baslik="İletişim">0532 000 00 42</td><td data-baslik="Kara listedeki kayıt">Selma Kaçar (1042)</td><td data-baslik="Eşleşen">telefon</td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr><tr><td data-baslik="Tarih">08.10.2026</td><td data-baslik="Başvuran">Ufuk Sönmez</td><td data-baslik="İletişim">us@ornek.com</td><td data-baslik="Kara listedeki kayıt">Ufuk Sönmez (1053)</td><td data-baslik="Eşleşen">ad soyad + doğum tarihi</td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr><tr><td data-baslik="Tarih">09.10.2026</td><td data-baslik="Başvuran">Yigit Balci</td><td data-baslik="İletişim">yb@ornek.com</td><td data-baslik="Kara listedeki kayıt">Yiğit Balcı (1060)</td><td data-baslik="Eşleşen"><span class="nb">e-posta</span></td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr><tr><td data-baslik="Tarih">10.10.2026</td><td data-baslik="Başvuran">Zerrin K.</td><td data-baslik="İletişim">0532 000 00 61</td><td data-baslik="Kara listedeki kayıt">Zerrin Kutlu (1061)</td><td data-baslik="Eşleşen">telefon</td><td data-baslik="Sonuç"><span class="rozet kritik">kayıt açılmadı</span></td></tr></tbody></table></div></div><div class="kart "><h3>Kara listeden çıkarılanlar</h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Ad Soyad</th><th>Sebep</th><th>Çıkaran</th><th>Çıkarma tarihi</th><th>Çıkarma sebebi</th></tr></thead><tbody><tr><td data-baslik="Ad Soyad">Tuna Aksoy</td><td data-baslik="Sebep">Habersiz devamsızlık</td><td data-baslik="Çıkaran">Stüdyo</td><td data-baslik="Çıkarma tarihi">12.09.2026</td><td data-baslik="Çıkarma sebebi">Durum giderildi</td></tr><tr><td data-baslik="Ad Soyad">Ebru Tan</td><td data-baslik="Sebep">Ödeme yapmadı</td><td data-baslik="Çıkaran">Stüdyo</td><td data-baslik="Çıkarma tarihi">28.08.2026</td><td data-baslik="Çıkarma sebebi">Borç kapandı</td></tr></tbody></table></div></div></section></main></div><style>
 .cd-hl{outline:3px solid #F0AA00!important;outline-offset:4px;border-radius:14px;

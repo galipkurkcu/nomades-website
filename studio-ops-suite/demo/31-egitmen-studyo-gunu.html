@@ -70,6 +70,8 @@ a{color:var(--birincil,#89AC76)}
 .sekme[aria-selected="true"]{background:var(--birincil,#89AC76);color:#fff}
 .yan-alt{margin-top:auto;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:8px}
 .yan-kisi{font-size:.82rem;color:rgba(255,255,255,.62);overflow-wrap:anywhere}
+.yan-surum{font-size:.76rem;color:rgba(255,255,255,.5);padding:0 2px;overflow-wrap:anywhere}
+.yan-surum.uyari{color:#f3c969;font-weight:600}
 .yan-alt button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;
                 width:100%;text-align:center}
 .yan-alt button:hover{background:rgba(255,255,255,.16)}
@@ -641,7 +643,34 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
   .paket-satir>button{grid-column:span 1}
 }
 
-.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}.ana{max-width:none}</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}@media (min-width:900px){.fin-kpi8{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.fin-ust{display:grid;gap:12px 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end;margin:8px 0 8px}
+.fin-ust>*{min-width:0}
+.fin-ust label{margin-top:0}
+.fin-dugme{margin-top:0}
+.fin-ayyil{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fin-cubuklar{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;margin:16px 0 8px}
+button.fin-kolon{background:transparent;border:1px solid transparent;border-radius:10px;padding:6px 0 4px;
+  flex-direction:column;align-items:stretch;justify-content:flex-end;gap:6px;color:var(--ikincil,#8a7a65);font-weight:500;font-size:.78rem;min-width:0}
+button.fin-kolon:hover{filter:none;background:color-mix(in srgb,var(--birincil,#89AC76) 8%,transparent)}
+button.fin-kolon[aria-pressed="true"]{border-color:var(--birincil,#89AC76);color:var(--metin,#2a2420);
+  background:color-mix(in srgb,var(--birincil,#89AC76) 12%,transparent)}
+.fin-ikili{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:150px;width:100%}
+.fin-ikili i{display:block;flex:0 0 auto;width:28%;max-width:11px;border-radius:4px 4px 0 0;min-height:2px}
+button.fin-kolon.fin-gelecek .fin-ikili{opacity:.45}
+.fin-r{background:var(--birincil,#89AC76)}
+.fin-t{background:color-mix(in srgb,var(--birincil,#89AC76) 38%,#fff);border:1px solid var(--birincil,#89AC76)}
+.fin-g{background:var(--ikincil,#8a7a65)}
+.fin-ozet{display:flex;gap:16px;flex-wrap:wrap;color:var(--ikincil,#8a7a65);font-size:.85rem}
+i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+.fin-eksi{color:var(--kritik,#c23d3d)}
+.fin-kat{display:grid;grid-template-columns:minmax(80px,1fr) minmax(0,2fr) auto;gap:12px;align-items:center;padding:6px 0}
+.fin-kat-cubuk{display:block;height:10px;background:var(--cizgi-yumusak);border-radius:6px;overflow:hidden}
+.fin-kat-cubuk i{display:block;height:100%;background:var(--birincil,#89AC76);border-radius:6px}
+.fin-kat b{font-variant-numeric:tabular-nums;font-weight:600}
+@media (max-width:640px){.fin-kat{grid-template-columns:1fr auto}.fin-kat-cubuk{grid-column:1/-1;order:3}}
+</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <g id="i-genel"><path d="M3 12h4l2.2-5 3.6 10 2.2-5H21"/></g>
     <g id="i-takvim"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></g>
@@ -677,7 +706,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
     </div>
     <button class="sekme" role="tab" data-sayfa="notlarim" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-not"/></svg><span>Notlarım</span></button>
       </nav>
-<div class="yan-alt"><span class="yan-kisi">Elif Kaya</span><button class="ikincil" type="button">Takvim rengim</button><button class="ikincil" type="button">Şifre değiştir</button><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
+<div class="yan-alt"><span class="yan-kisi">Elif Kaya</span><button class="ikincil" type="button">Takvim rengim</button><button class="ikincil" type="button">Şifre değiştir</button><span class="yan-surum" id="ust-surum">Versiyon: 7.1.0</span><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
 <main class="ana"><div class="ana-ust"><span class="ana-ustyazi">EĞİTMEN PANELİ</span><h1 class="ana-baslik">Stüdyo</h1></div>
 <section class="sayfa"><div class="kart "><h3><span>Günün bütün dersleri </span><span class="kucuk">· 14.10.2026 bugün</span></h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Saat</th><th>Eğitmen</th><th>Salon / cihaz</th><th>Üyeler</th><th></th></tr></thead><tbody><tr><td data-baslik="Saat"><span class="nb">08:00–08:50</span></td><td data-baslik="Eğitmen"><span><span>Mert Aydın</span></span></td><td data-baslik="Salon / cihaz">Salon B</td><td data-baslik="Üyeler">Gökhan Öztürk</td><td data-baslik=""><button class="ikincil" type="button">Görüntüle</button></td></tr><tr><td data-baslik="Saat"><span class="nb">10:30–11:20</span></td><td data-baslik="Eğitmen"><span><span>Elif Kaya</span> <span class="rozet ok">siz</span></span></td><td data-baslik="Salon / cihaz">Salon B · Reformer 1</td><td data-baslik="Üyeler">Hande Aksoy · Fatma Çelik</td><td data-baslik=""><button class="ikincil" type="button">Aç / düzenle</button></td></tr><tr><td data-baslik="Saat"><span class="nb">12:00–12:50</span></td><td data-baslik="Eğitmen"><span><span>Selin Demir</span></span></td><td data-baslik="Salon / cihaz">Salon A</td><td data-baslik="Üyeler">Ece Korkmaz</td><td data-baslik=""><button class="ikincil" type="button">Görüntüle</button></td></tr><tr><td data-baslik="Saat"><span class="nb">15:00–15:50</span></td><td data-baslik="Eğitmen"><span><span>Eğitmen bekliyor</span></span></td><td data-baslik="Salon / cihaz">Salon B</td><td data-baslik="Üyeler">İrem Polat</td><td data-baslik=""><button class="ikincil" type="button">Görüntüle</button></td></tr><tr><td data-baslik="Saat"><span class="nb">17:00–17:50</span></td><td data-baslik="Eğitmen"><span><span>Elif Kaya</span> <span class="rozet ok">siz</span></span></td><td data-baslik="Salon / cihaz">Salon A · Reformer 2</td><td data-baslik="Üyeler">Kerem Yıldız · Naz Tekin · Pelin Acar</td><td data-baslik=""><button class="ikincil" type="button">Aç / düzenle</button></td></tr><tr><td data-baslik="Saat"><span class="nb">18:00–18:50</span></td><td data-baslik="Eğitmen"><span><span>Mert Aydın</span></span></td><td data-baslik="Salon / cihaz">Salon B</td><td data-baslik="Üyeler">Leyla Güneş</td><td data-baslik=""><button class="ikincil" type="button">Görüntüle</button></td></tr></tbody></table></div></div><div class="kart "><h3>Salon ve cihaz doluluğu</h3><div style="padding:9px 0;border-bottom:1px solid #eee7dd"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Salon A</b><span class="kucuk">salon</span></div><div class="kucuk"><span class="nb">12:00–12:50</span> · Selin Demir · Ece Korkmaz</div><div class="kucuk"><span class="nb">17:00–17:50</span> · Elif Kaya (siz) · Kerem Yıldız · Naz Tekin · Pelin Acar</div></div><div style="padding:9px 0;border-bottom:1px solid #eee7dd"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Salon B</b><span class="kucuk">salon</span></div><div class="kucuk"><span class="nb">08:00–08:50</span> · Mert Aydın · Gökhan Öztürk</div><div class="kucuk"><span class="nb">10:30–11:20</span> · Elif Kaya (siz) · Hande Aksoy · Fatma Çelik</div><div class="kucuk"><span class="nb">15:00–15:50</span> · eğitmen bekleniyor · İrem Polat</div><div class="kucuk"><span class="nb">18:00–18:50</span> · Mert Aydın · Leyla Güneş</div></div><div style="padding:9px 0;border-bottom:1px solid #eee7dd"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b>Salon C</b><span class="kucuk">salon</span></div><div class=kucuk>gün boyunca boş</div></div></div><p class="kucuk">Bugünün dersleri, bütün eğitmenler için. Yalnız kendi derslerinizi açıp düzenleyebilirsiniz. Başka bir güne bakmak için Takvim'i kullanın.</p></section></main></div><style>
 .cd-hl{outline:3px solid #F0AA00!important;outline-offset:4px;border-radius:14px;

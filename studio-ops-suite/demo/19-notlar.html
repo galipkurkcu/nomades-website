@@ -70,6 +70,8 @@ a{color:var(--birincil,#89AC76)}
 .sekme[aria-selected="true"]{background:var(--birincil,#89AC76);color:#fff}
 .yan-alt{margin-top:auto;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.12);display:grid;gap:8px}
 .yan-kisi{font-size:.82rem;color:rgba(255,255,255,.62);overflow-wrap:anywhere}
+.yan-surum{font-size:.76rem;color:rgba(255,255,255,.5);padding:0 2px;overflow-wrap:anywhere}
+.yan-surum.uyari{color:#f3c969;font-weight:600}
 .yan-alt button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;
                 width:100%;text-align:center}
 .yan-alt button:hover{background:rgba(255,255,255,.16)}
@@ -641,7 +643,34 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
   .paket-satir>button{grid-column:span 1}
 }
 
-.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}.ana{max-width:none}</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}@media (min-width:900px){.fin-kpi8{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.fin-ust{display:grid;gap:12px 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end;margin:8px 0 8px}
+.fin-ust>*{min-width:0}
+.fin-ust label{margin-top:0}
+.fin-dugme{margin-top:0}
+.fin-ayyil{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fin-cubuklar{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;margin:16px 0 8px}
+button.fin-kolon{background:transparent;border:1px solid transparent;border-radius:10px;padding:6px 0 4px;
+  flex-direction:column;align-items:stretch;justify-content:flex-end;gap:6px;color:var(--ikincil,#8a7a65);font-weight:500;font-size:.78rem;min-width:0}
+button.fin-kolon:hover{filter:none;background:color-mix(in srgb,var(--birincil,#89AC76) 8%,transparent)}
+button.fin-kolon[aria-pressed="true"]{border-color:var(--birincil,#89AC76);color:var(--metin,#2a2420);
+  background:color-mix(in srgb,var(--birincil,#89AC76) 12%,transparent)}
+.fin-ikili{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:150px;width:100%}
+.fin-ikili i{display:block;flex:0 0 auto;width:28%;max-width:11px;border-radius:4px 4px 0 0;min-height:2px}
+button.fin-kolon.fin-gelecek .fin-ikili{opacity:.45}
+.fin-r{background:var(--birincil,#89AC76)}
+.fin-t{background:color-mix(in srgb,var(--birincil,#89AC76) 38%,#fff);border:1px solid var(--birincil,#89AC76)}
+.fin-g{background:var(--ikincil,#8a7a65)}
+.fin-ozet{display:flex;gap:16px;flex-wrap:wrap;color:var(--ikincil,#8a7a65);font-size:.85rem}
+i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+.fin-eksi{color:var(--kritik,#c23d3d)}
+.fin-kat{display:grid;grid-template-columns:minmax(80px,1fr) minmax(0,2fr) auto;gap:12px;align-items:center;padding:6px 0}
+.fin-kat-cubuk{display:block;height:10px;background:var(--cizgi-yumusak);border-radius:6px;overflow:hidden}
+.fin-kat-cubuk i{display:block;height:100%;background:var(--birincil,#89AC76);border-radius:6px}
+.fin-kat b{font-variant-numeric:tabular-nums;font-weight:600}
+@media (max-width:640px){.fin-kat{grid-template-columns:1fr auto}.fin-kat-cubuk{grid-column:1/-1;order:3}}
+</style><body><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <g id="i-genel"><path d="M3 12h4l2.2-5 3.6 10 2.2-5H21"/></g>
     <g id="i-takvim"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></g>
@@ -679,6 +708,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
     <button class="sekme" role="tab" data-sayfa="egitmenler" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-egitmen"/></svg><span>Eğitmenler</span></button>
     <button class="sekme" role="tab" data-sayfa="dersler" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-ders"/></svg><span>Dersler</span></button>
     <button class="sekme" role="tab" data-sayfa="hakedis" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-hakedis"/></svg><span>Hak Ediş</span></button>
+    <button class="sekme" role="tab" data-sayfa="finans" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-para"/></svg><span>Finans</span></button>
     <button class="sekme" role="tab" data-sayfa="notlar" aria-selected="true"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-not"/></svg><span>Notlar</span></button>
     <div class="sekme-grup" id="ayar-grup">
       <button class="sekme" role="tab" data-sayfa="ayarlar" aria-selected="false"><svg viewBox="0 0 24 24" class="ikon"><use href="#i-ayar"/></svg><span>Ayarlar</span></button>
@@ -695,7 +725,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
       </div>
     </div>
       </nav>
-<div class="yan-alt"><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
+<div class="yan-alt"><span class="yan-surum" id="ust-surum">Versiyon: 7.1.0</span><button class="ikincil" id="ust-cikis" type="button">Çıkış</button></div></aside>
 <main class="ana"><div class="ana-ust"><span class="ana-ustyazi">STÜDYO PANELİ</span><h1 class="ana-baslik">Notlar</h1></div>
 <section class="sayfa"><div class="kart "><h3>Stüdyoya gelen notlar</h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Tarih</th><th>-</th><th>Yazan</th><th>Konu</th><th>Mesaj</th><th></th></tr></thead><tbody><tr><td data-baslik="Tarih">12.10.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Mert Aydın</td><td data-baslik="Konu">ekipman</td><td data-baslik="Mesaj">Salon B’deki cihazın yayı gıcırdıyor, bakım gerekebilir.</td><td data-baslik=""><button class="ikincil" type="button">Kapat</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">10.10.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Selin Demir</td><td data-baslik="Konu">takvim</td><td data-baslik="Mesaj">Salı 19:00 grubunu 19:30’a alabilir miyiz?</td><td data-baslik=""><button class="ikincil" type="button">Kapat</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">07.10.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Elif Kaya</td><td data-baslik="Konu">işleyiş</td><td data-baslik="Mesaj">Yeni üyeler için karşılama notu hazırladım.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">03.10.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Selin Demir</td><td data-baslik="Konu">ekipman</td><td data-baslik="Mesaj">Salon A’da mat sayısı yetersiz kalıyor.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">01.10.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Mert Aydın</td><td data-baslik="Konu">takvim</td><td data-baslik="Mesaj">Cuma 17:30 grubunu Salon B’ye alabilir miyiz?</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">28.09.2026</td><td data-baslik="-">-</td><td data-baslik="Yazan">Elif Kaya</td><td data-baslik="Konu">işleyiş</td><td data-baslik="Mesaj">Ders sonrası havlu toplama için bir kutu rica ediyorum.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr></tbody></table></div></div><div class="kart "><h3>Üye notları</h3><div class="tablosar "><table class="kartlasir"><thead><tr><th>Tarih</th><th>Üye No</th><th>Yazan</th><th>Kategori</th><th>Not</th><th></th></tr></thead><tbody><tr><td data-baslik="Tarih">13.10.2026</td><td data-baslik="Üye No">1001</td><td data-baslik="Yazan">Elif Kaya</td><td data-baslik="Kategori">sağlık</td><td data-baslik="Not">Bel ağrısı şikayeti var; reformer’da yükü hafif tutalım.</td><td data-baslik=""><button class="ikincil" type="button">Kapat</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">12.10.2026</td><td data-baslik="Üye No">1002</td><td data-baslik="Yazan">Selin Demir</td><td data-baslik="Kategori">ders</td><td data-baslik="Not">Haftada 3 ders istiyor, paket yükseltmek isteyebilir.</td><td data-baslik=""><button class="ikincil" type="button">Kapat</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">09.10.2026</td><td data-baslik="Üye No">1017</td><td data-baslik="Yazan">Stüdyo</td><td data-baslik="Kategori">ödeme</td><td data-baslik="Not">Ödemeyi ay sonuna kadar uzatmak istedi, sözlü onay verildi.</td><td data-baslik=""><button class="ikincil" type="button">Kapat</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">05.10.2026</td><td data-baslik="Üye No">1010</td><td data-baslik="Yazan">Mert Aydın</td><td data-baslik="Kategori">genel</td><td data-baslik="Not">Gruplu derslerde Leyla ile çalışmayı seviyor.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">02.10.2026</td><td data-baslik="Üye No">1004</td><td data-baslik="Yazan">Selin Demir</td><td data-baslik="Kategori">sağlık</td><td data-baslik="Not">Omuz toparlanmış, normal yüke dönebilir.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">30.09.2026</td><td data-baslik="Üye No">1024</td><td data-baslik="Yazan">Stüdyo</td><td data-baslik="Kategori">ödeme</td><td data-baslik="Not">Kalan tutarı iki taksitte ödeyecek.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr><tr><td data-baslik="Tarih">26.09.2026</td><td data-baslik="Üye No">1008</td><td data-baslik="Yazan">Elif Kaya</td><td data-baslik="Kategori">ders</td><td data-baslik="Not">Sabah derslerini tercih ediyor, 08:00 boşluğu varsa önerelim.</td><td data-baslik=""><button class="ikincil" type="button">Yeniden aç</button> <button class="ikincil" type="button">Sil</button></td></tr></tbody></table></div></div><div class="kart "><h3>Yeni üye notu</h3><div class="not-form"><label>Üye</label><input type="search" placeholder="Üye adı veya numarası yazın"><label>Kategori</label><select><option>genel</option></select><label>Yeni not</label><textarea rows="3" placeholder="Bu üyeyle ilgili notunuz…"></textarea><div class="dugmeler satir-ici"><button class="kaydet-dugme" type="button">Notu kaydet</button><button class="ikincil" type="button">Vazgeç</button></div></div></div></section></main></div><style>
 .cd-hl{outline:3px solid #F0AA00!important;outline-offset:4px;border-radius:14px;
