@@ -790,7 +790,12 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 #canli .cd-note a{color:var(--amber-t);text-decoration:underline;text-underline-offset:3px}
 /* tam ekran: yerel Fullscreen API ya da (iOS vb.) sayfa üstü sahte tam ekran */
 .cd-wrap.cd-fs{background:var(--void);padding:14px;margin:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:12px;overflow:auto;width:100%;height:100%}
-.cd-wrap.cd-sahte{position:fixed;inset:0;z-index:300;height:auto}
+.cd-wrap.cd-sahte{position:fixed;inset:0;z-index:300;height:100vh;height:100dvh;overscroll-behavior:contain}
+/* sahte tam ekran açıkken: bölümün z-index'li katman bağlamı kalkar (yoksa 300 numaralı katman başlık ve alt çubuğun altında kalır), sayfa krom'u gizlenir */
+body.cd-kilit nav,body.cd-kilit .prog,body.cd-kilit .mbar{display:none!important}
+body.cd-kilit #canli{overflow:visible}
+body.cd-kilit #canli>.wrap{z-index:auto}
+.cd-teklif,.cd-sayac{display:none}
 .cd-fs .cd-bar{margin:0;grid-column:1/-1}
 #canli .cd-mobil{margin:0 0 16px;padding:12px 16px;border:1px solid var(--line3);border-radius:10px;background:var(--bg3);font-size:14px;color:var(--t2);max-width:520px}
 #canli .cd-mobil[hidden]{display:none}
@@ -833,6 +838,23 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
   .cd-fs.cd-turda .cd-tour h3{font-size:17px;margin-bottom:4px}
   .cd-fs.cd-turda .cd-acts .btn{padding:8px 6px;font-size:13px}
   .cd-fs.cd-turda .cd-tour{gap:6px}
+  /* telefon: üst satır = panel seçimi + Siteye dön + Teklif al; alt kart = ince ilerleme, başlık, [Önceki · 3/13 · Sonraki] */
+  .cd-wrap.cd-mob.cd-fs{padding:8px 8px max(8px,env(safe-area-inset-bottom))}
+  #canli .cd-wrap.cd-mob.cd-fs .cd-bar{flex-wrap:nowrap;gap:6px;margin:0}
+  #canli .cd-wrap.cd-mob.cd-fs .cd-bar .cd-seg{flex:1 1 0;min-width:0}
+  .cd-wrap.cd-mob.cd-fs .cd-bar .cd-seg button{flex:1 1 0;min-width:0;padding:10px 4px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-fsb{padding:10px 10px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-fsb svg{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-teklif{display:inline-flex;flex:0 0 auto;padding:10px 11px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs.cd-turda .cd-tour.on{display:flex;flex-direction:column;gap:6px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-prog{order:0;flex:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-step{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour>div:last-child{order:1}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts{order:2;flex-wrap:nowrap;align-items:stretch}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-next{flex:1.4 1 0}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-sayac{display:flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:54px;font-size:13px;font-weight:700;color:var(--amber-t);letter-spacing:.04em;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-tour.cd-son .cd-sayac{display:none}
   .cd-tour .cd-more{display:inline-flex;padding:0;margin:0 0 6px;color:var(--amber-t);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
   .cd-tour:not(.cd-acik) p,.cd-tour:not(.cd-acik) ul{display:none}
   .cd-tour.cd-son p{display:block}
@@ -843,6 +865,32 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
   .cd-fsb{margin-left:0;flex:1 1 100%;justify-content:center}
   .cd-view{min-height:420px}
   .cd-band{padding:28px 0}
+}
+/* TELEFON YATAY (yükseklik ≤ 520 px, dokunmatik): üst satır aynı, panel solda, tur kartı sağda */
+@media(max-height:520px) and (pointer:coarse) and (orientation:landscape){
+  .cd-wrap.cd-mob.cd-fs{padding:6px 8px;gap:6px;grid-template-rows:auto minmax(0,1fr)}
+  #canli .cd-wrap.cd-mob.cd-fs .cd-bar{flex-wrap:nowrap;gap:6px;margin:0}
+  #canli .cd-wrap.cd-mob.cd-fs .cd-bar .cd-seg{flex:0 1 300px;min-width:0}
+  .cd-wrap.cd-mob.cd-fs .cd-bar .cd-seg button{flex:1 1 0;min-width:0;padding:8px 8px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-pal,.cd-wrap.cd-mob.cd-fs .cd-chrome{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-fsb{margin-left:auto;padding:8px 10px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-fsb svg{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-teklif{display:inline-flex;flex:0 0 auto;padding:8px 12px;font-size:12.5px;white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-stage[data-dev=telefon]{max-width:none;border-radius:10px;border-width:1px;margin:0;grid-row:2;grid-column:1}
+  .cd-wrap.cd-mob.cd-fs.cd-turda{grid-template-columns:minmax(0,1fr) 300px;grid-template-rows:auto minmax(0,1fr)}
+  .cd-wrap.cd-mob.cd-fs.cd-turda .cd-tour.on{display:flex;flex-direction:column;gap:8px;grid-row:2;grid-column:2;max-height:none;align-self:stretch;overflow:auto;padding:10px 12px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-prog{order:0;flex:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-step,.cd-wrap.cd-mob.cd-fs .cd-tour .cd-more{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour>div:last-child{order:1;flex:1 1 auto}
+  .cd-wrap.cd-mob.cd-fs .cd-tour h3{font-size:16px;margin-bottom:4px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour p{display:block;font-size:13px;line-height:1.5}
+  .cd-wrap.cd-mob.cd-fs .cd-tour ul{margin-top:8px;gap:5px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour li{font-size:12.5px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts{order:2;flex-wrap:nowrap;flex:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts .btn{padding:8px 6px;font-size:12.5px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:none}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-sayac{display:flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:46px;font-size:12.5px;font-weight:700;color:var(--amber-t);white-space:nowrap}
+  .cd-wrap.cd-mob.cd-fs .cd-tour.cd-son .cd-sayac{display:none}
 }
 /* /CANLI DEMO */
 /* mobil sabit alt çubuk: hero geçilince ve iletişim bölümü görünmüyorken çıkar */
@@ -996,6 +1044,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
         <button type="button" class="cd-fsb" id="cd-fs" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span id="cd-fs-t">Tam ekran</span>
         </button>
+        <button type="button" class="btn btn-a cd-teklif" id="cd-teklif">Teklif al</button>
       </div>
       <p class="cd-mobil" id="cd-mobil" hidden>Şu an mobilde olduğunuz için sadece mobil canlı demoyu görebiliyorsunuz.</p>
       <div class="cd-stage rv" id="cd-stage" data-dev="masaustu">
@@ -1009,6 +1058,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
         <div class="cd-step" id="cd-step"></div>
         <div class="cd-acts">
           <button class="btn btn-g" type="button" id="cd-prev">&larr; Önceki</button>
+          <span class="cd-sayac" id="cd-sayac" aria-hidden="true"></span>
           <button class="btn btn-a" type="button" id="cd-next">Sonraki &rarr;</button>
           <button class="btn btn-g" type="button" id="cd-end">Turu bitir</button>
         </div>
@@ -1823,7 +1873,8 @@ onScroll();
       stepEl=document.getElementById('cd-step'), tEl=document.getElementById('cd-t'), pEl=document.getElementById('cd-p'),
       liEl=document.getElementById('cd-li'),
       bPrev=document.getElementById('cd-prev'), bNext=document.getElementById('cd-next'), bEnd=document.getElementById('cd-end'),
-      bar=document.getElementById('cd-bar'), bFs=document.getElementById('cd-fs'), fsT=document.getElementById('cd-fs-t');
+      bar=document.getElementById('cd-bar'), bFs=document.getElementById('cd-fs'), fsT=document.getElementById('cd-fs-t'),
+      sayacEl=document.getElementById('cd-sayac'), bTeklif=document.getElementById('cd-teklif');
   /* Stüdyo Ayarlar menüsü gerçek panelle aynı: Paketler, Salonlar ve cihazlar, Erişim, Mailler, Geri alınabilir işlemler.
      Eşikler ve saatler, Rozetler, Yedekler ve Form ajans bölümüdür, stüdyo menüsünde yoktur. */
   var AYAR={paketler:'20-ayarlar-paketler',kaynaklar:'21-ayarlar-salonlar-cihazlar',erisim:'22-ayarlar-erisim',mailler:'23-ayarlar-mailler',geriAlma:'27-ayarlar-geri-alinabilir-islemler'};
@@ -1909,7 +1960,7 @@ onScroll();
     var r=ROL[rol], n=r.tur.length;
     wrap.classList.toggle('cd-turda',adim>=0);
     tur.classList.toggle('cd-son',son);
-    if(adim<0){ tur.classList.remove('on'); return; }
+    if(adim<0){ tur.classList.remove('on'); sayacEl.textContent=''; return; }
     var a=r.tur[adim];
     tur.classList.add('on');
     if(son){
@@ -1926,6 +1977,7 @@ onScroll();
     }
     bPrev.textContent='\u2190 Önceki'; bEnd.textContent='Turu bitir';
     stepEl.textContent='ADIM '+(adim+1)+' / '+n+' · '+r.ad;
+    sayacEl.textContent=(adim+1)+' / '+n;
     tEl.textContent=a.t; pEl.textContent=a.p;
     liEl.textContent='';
     (a.li||[]).forEach(function(x){ var l=document.createElement('li'); l.textContent=x; liEl.appendChild(l); });
@@ -2020,23 +2072,32 @@ onScroll();
   var sahte=false;
   function fsCiz(ac){
     wrap.classList.toggle('cd-fs',ac); if(!ac) wrap.classList.remove('cd-sahte');
-    bFs.setAttribute('aria-pressed',String(ac)); fsT.textContent=ac?(MOBIL?'Kapat':'Tam ekrandan çık'):'Tam ekran';
+    bFs.setAttribute('aria-pressed',String(ac)); fsT.textContent=ac?(MOBIL?'Siteye dön':'Tam ekrandan çık'):'Tam ekran';
     setTimeout(sigdir,60);
   }
   function fsAc(){
+    /* telefon: yerel Fullscreen API'ye güvenme (iOS'ta yok ya da sessizce çalışmıyor); sahte tam ekran her yerde aynı davranır */
+    if(MOBIL){ sahteAc(); return; }
     var f=wrap.requestFullscreen||wrap.webkitRequestFullscreen;
     if(f){
       try{ var r=f.call(wrap); if(r&&r.catch) r.catch(function(){ sahteAc(); }); return; }catch(x){}
     }
     sahteAc();
   }
-  function sahteAc(){ sahte=true; wrap.classList.add('cd-sahte'); fsCiz(true); document.documentElement.style.overflow='hidden'; }
+  function sahteAc(){ sahte=true; wrap.classList.add('cd-sahte'); document.body.classList.add('cd-kilit'); fsCiz(true); document.documentElement.style.overflow='hidden'; }
   function fsKapat(){
     if(document.fullscreenElement||document.webkitFullscreenElement){
       (document.exitFullscreen||document.webkitExitFullscreen).call(document);
-    } else if(sahte){ sahte=false; document.documentElement.style.overflow=''; fsCiz(false); }
+    } else if(sahte){ sahte=false; document.documentElement.style.overflow=''; document.body.classList.remove('cd-kilit'); fsCiz(false); }
   }
-  bFs.addEventListener('click',function(){ turFs=false; wrap.classList.contains('cd-fs')?fsKapat():fsAc(); });
+  bFs.addEventListener('click',function(){
+    if(MOBIL && wrap.classList.contains('cd-fs') && (adim>=0||son)){ adim=-1; son=false; post({t:'clr'}); turuCiz(); }
+    turFs=false; wrap.classList.contains('cd-fs')?fsKapat():fsAc();
+  });
+  bTeklif.addEventListener('click',function(){
+    if(adim>=0||son){ adim=-1; son=false; post({t:'clr'}); turuCiz(); }
+    turFs=false; if(wrap.classList.contains('cd-fs')) fsKapat(); teklifeGit();
+  });
   function fsDegisti(){
     var acik=document.fullscreenElement===wrap||document.webkitFullscreenElement===wrap;
     if(acik) fsCiz(true); else if(!sahte){ fsCiz(false); turFs=false; }
@@ -2047,7 +2108,7 @@ onScroll();
 
   /* telefondan bağlanan: yalnız telefon görünümü, cihaz seçici gizli, açıklama notu görünür */
   if(MOBIL){
-    stage.dataset.dev='telefon';
+    stage.dataset.dev='telefon'; wrap.classList.add('cd-mob');
     kok.querySelectorAll('[data-dev]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.dev==='telefon'))});
     var cd=kok.querySelector('.cd-dev'); if(cd) cd.hidden=true;
     var nt=document.getElementById('cd-mobil'); if(nt) nt.hidden=false;
