@@ -794,6 +794,8 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 .cd-fs .cd-bar{margin:0;grid-column:1/-1}
 #canli .cd-mobil{margin:0 0 16px;padding:12px 16px;border:1px solid var(--line3);border-radius:10px;background:var(--bg3);font-size:14px;color:var(--t2);max-width:520px}
 #canli .cd-mobil[hidden]{display:none}
+.cd-fs .cd-mobil{display:none}
+.cd-fs .cd-stage[data-dev=telefon] .cd-view{height:auto}
 .cd-fs .cd-stage{grid-column:1;grid-row:2;display:flex;flex-direction:column;min-height:0;width:100%;max-width:none;margin:0}
 .cd-fs .cd-stage[data-dev=telefon]{max-width:420px;margin:0 auto}
 .cd-fs .cd-view{flex:1 1 auto;height:auto;min-height:0}
@@ -810,6 +812,14 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 }
 @media(max-width:700px){
   .cd-seg{flex:1 1 100%}.cd-seg button{flex:1}
+  /* telefonda tam ekran tur: üst kontroller gizlenir (Turu bitir kartta), panel ekranın çoğunu alır */
+  #canli .cd-fs.cd-turda .cd-bar{display:none}
+  .cd-fs.cd-turda{grid-template-rows:minmax(0,1fr) auto;padding:8px;gap:8px}
+  .cd-fs.cd-turda .cd-stage{grid-row:1}
+  .cd-fs.cd-turda .cd-tour{grid-row:2;max-height:32vh;overflow:auto;padding:12px 14px;gap:10px}
+  .cd-fs.cd-turda .cd-tour h3{font-size:18px}
+  .cd-fs.cd-turda .cd-tour p{font-size:14px;line-height:1.5}
+  .cd-fs.cd-turda .cd-tour ul{margin-top:8px;gap:6px}
   .cd-pal{flex:1 1 100%;justify-content:center}
   .cd-dev{display:none}
   .cd-fsb{margin-left:0;flex:1 1 100%;justify-content:center}
