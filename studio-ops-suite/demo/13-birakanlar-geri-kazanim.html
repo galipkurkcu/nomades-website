@@ -246,6 +246,7 @@ body.ag-bekle .ana-ust::after{content:"";position:absolute;left:0;right:0;bottom
 .ortu{position:fixed;inset:0;background:rgba(30,26,22,.55);backdrop-filter:blur(2px);display:flex;
       align-items:center;justify-content:center;padding:16px;z-index:50;overflow:hidden}
 .ortu[hidden]{display:none}
+.ajans-sekme[hidden]{display:none}
 .pencere{background:#fff;border-radius:20px;padding:24px;width:100%;max-width:600px;
          max-height:90vh;max-height:90dvh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
          box-shadow:0 30px 70px rgba(0,0,0,.28)}
@@ -643,7 +644,7 @@ details.tk-filtre[open]>summary{color:var(--metin,#2a2420)}
   .paket-satir>button{grid-column:span 1}
 }
 
-.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}@media (min-width:900px){.fin-kpi8{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.logo-yer{font-family:var(--font-govde);font-weight:600;font-size:1.05rem;letter-spacing:.08em;color:#8a7a65}.ana{max-width:none}@media (min-width:900px){.fin-kpi8{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 .fin-ust{display:grid;gap:12px 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end;margin:8px 0 8px}
 .fin-ust>*{min-width:0}
@@ -717,11 +718,11 @@ i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin
         <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="kaynaklar" aria-selected="false">Salonlar ve cihazlar</button>
         <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="erisim" aria-selected="false">Erişim</button>
         <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="mailler" aria-selected="false">Mailler</button>
-        <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="esikler" aria-selected="false">Eşikler ve saatler</button>
-        <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="rozet" aria-selected="false">Rozetler</button>
-        <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="yedekler" aria-selected="false">Yedekler</button>
+        <button class="alt-sekme ajans-sekme" type="button" data-sayfa="ayarlar" data-alt="esikler" aria-selected="false" hidden>Eşikler ve saatler</button>
+        <button class="alt-sekme ajans-sekme" type="button" data-sayfa="ayarlar" data-alt="rozet" aria-selected="false" hidden>Rozetler</button>
+        <button class="alt-sekme ajans-sekme" type="button" data-sayfa="ayarlar" data-alt="yedekler" aria-selected="false" hidden>Yedekler</button>
         <button class="alt-sekme" type="button" data-sayfa="ayarlar" data-alt="geriAlma" aria-selected="false">Geri alınabilir işlemler</button>
-        <button class="alt-sekme" type="button" data-sayfa="form" data-alt="" aria-selected="false">Form</button>
+        <button class="alt-sekme ajans-sekme" type="button" data-sayfa="form" data-alt="" aria-selected="false" hidden>Form</button>
       </div>
     </div>
       </nav>
@@ -746,7 +747,7 @@ i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin
 .nb{white-space:nowrap}
 </style><script>
 (function () {
-  var CFG = {"id":"13-birakanlar-geri-kazanim","open":{},"kapali":["esikler", "rozet", "yedekler", "mailler"]};
+  var CFG = {"id":"13-birakanlar-geri-kazanim","open":{},"kapali":[]};
   var tm;
   function send(o) { o.cd = 1; try { parent.postMessage(o, '*'); } catch (e) {} }
   function toast(m) {
@@ -787,6 +788,15 @@ i.fin-nokta{display:inline-block;width:10px;height:10px;border-radius:3px;margin
   document.addEventListener('click', function (e) {
     var t = e.target; if (!t || !t.closest) return;
     if (t.closest('[aria-disabled=true]')) { e.preventDefault(); e.stopPropagation(); return; }
+    var md = t.closest('button.mail-durum');
+    if (md) {
+      e.preventDefault();
+      var ac = md.getAttribute('aria-pressed') !== 'true';
+      md.setAttribute('aria-pressed', String(ac)); md.textContent = ac ? 'Açık' : 'Kapalı';
+      md.classList.toggle('mail-acik', ac); md.classList.toggle('mail-kapali', !ac);
+      toast(ac ? 'Mail açıldı: üyeye gider. Önizlemede kaydedilmez.' : 'Mail kapatıldı: üyeye gitmez. Önizlemede kaydedilmez.');
+      return;
+    }
     var ks = t.closest('.kart-sekme');
     if (ks) { e.preventDefault(); kartSekmeAc(ks.textContent.trim()); return; }
     var yb = t.closest('#yan-menu');

@@ -734,6 +734,7 @@ html[data-theme=light] footer img{filter:invert(1)}
 .cd-seg{display:inline-flex;border:1px solid var(--line3);border-radius:8px;overflow:hidden;background:var(--bg3)}
 .cd-seg button{padding:11px 18px;font-size:14px;font-weight:600;color:var(--t2);transition:background .2s,color .2s}
 .cd-seg button+button{border-left:1px solid var(--line3)}
+.cd-seg[hidden]{display:none}
 .cd-seg button[aria-pressed=true]{background:var(--amber);color:#1a1200}
 .cd-seg button:not([aria-pressed=true]):hover{color:var(--ink)}
 .cd-pal{display:inline-flex;align-items:center;gap:8px;padding:0 4px}
@@ -791,6 +792,8 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 .cd-wrap.cd-fs{background:var(--void);padding:14px;margin:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:12px;overflow:auto;width:100%;height:100%}
 .cd-wrap.cd-sahte{position:fixed;inset:0;z-index:300;height:auto}
 .cd-fs .cd-bar{margin:0;grid-column:1/-1}
+#canli .cd-mobil{margin:0 0 16px;padding:12px 16px;border:1px solid var(--line3);border-radius:10px;background:var(--bg3);font-size:14px;color:var(--t2);max-width:520px}
+#canli .cd-mobil[hidden]{display:none}
 .cd-fs .cd-stage{grid-column:1;grid-row:2;display:flex;flex-direction:column;min-height:0;width:100%;max-width:none;margin:0}
 .cd-fs .cd-stage[data-dev=telefon]{max-width:420px;margin:0 auto}
 .cd-fs .cd-view{flex:1 1 auto;height:auto;min-height:0}
@@ -927,7 +930,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
   <div class="wrap">
     <span class="lbl rv">CANLI DEMO</span>
     <h2 class="rv">Paneli açın. <br>Kendiniz deneyin.</h2>
-    <p class="lead rv">Aşağıdaki, gerçek panelin arayüzüdür; yalnız veriler kurgudur. Menüde gezin, takvimde bir derse ya da listede bir üyeye tıklayın, panelin rengini markanıza yaklaştırın; ya da rehberli turla bütün ekranları sırayla görün.</p>
+    <p class="lead rv">Aşağıdaki, gerçek panelin arayüzüdür; yalnız veriler kurgudur. Menüde gezin, takvimde bir derse ya da listede bir üyeye tıklayın, mail düğmelerini açıp kapatın, panelin rengini markanıza yaklaştırın; ya da rehberli turla bütün ekranları sırayla görün.</p>
   </div>
   <div class="cd-band rv" id="cd-band">
     <div class="wrap">
@@ -939,7 +942,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
         </div>
         <div class="cd-acts2">
           <button class="btn btn-a" type="button" data-start="studyo">Stüdyo panelini gez <small>13 adım · yaklaşık 4 dk</small></button>
-          <button class="btn btn-g" type="button" data-start="egitmen">Eğitmen panelini gez <small>6 adım · yaklaşık 2 dk</small></button>
+          <button class="btn btn-g" type="button" data-start="egitmen">Eğitmen panelini gez <small>11 adım · yaklaşık 3 dk</small></button>
         </div>
       </div>
     </div>
@@ -966,6 +969,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span id="cd-fs-t">Tam ekran</span>
         </button>
       </div>
+      <p class="cd-mobil" id="cd-mobil" hidden>Şu an mobilde olduğunuz için sadece mobil canlı demoyu görebiliyorsunuz.</p>
       <div class="cd-stage rv" id="cd-stage" data-dev="masaustu">
         <div class="cd-chrome"><i></i><i></i><i></i><span id="cd-title">STÜDYO PANELİ · ÖRNEK VERİ</span></div>
         <div class="cd-view" id="cd-view">
@@ -1168,7 +1172,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
   <div class="wrap">
     <span class="lbl rv">STÜDYO PANELİ</span>
     <h2 class="rv">Elektronik tablo açmadan <br>stüdyonuzu yönetin.</h2>
-    <p class="lead rv">Yönetici dosyayı hiç açmaz. Her veri, her ayar ve kayıt formunuzun soruları bile panelden görülür ve düzenlenir.</p>
+    <p class="lead rv">Yönetici dosyayı hiç açmaz. Üyeler, dersler, ödemeler, paketler ve ayarlar panelden görülür ve düzenlenir; kayıt formu, eşikler ve mail metinleri gibi kurulum ayarlarını ajansınız sizin için hazırlar.</p>
     <div class="tabs rv" role="tablist" id="tabs">
       <button class="tab" role="tab" aria-selected="true" data-i="0">Genel Bakış</button>
       <button class="tab" role="tab" aria-selected="false" data-i="1">Takvim</button>
@@ -1177,8 +1181,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
       <button class="tab" role="tab" aria-selected="false" data-i="4">Hak ediş</button>
       <button class="tab" role="tab" aria-selected="false" data-i="5">Finans</button>
       <button class="tab" role="tab" aria-selected="false" data-i="6">Mailler</button>
-      <button class="tab" role="tab" aria-selected="false" data-i="7">Kayıt formu</button>
-      <button class="tab" role="tab" aria-selected="false" data-i="8">Paketler</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="7">Paketler</button>
     </div>
     <div id="tpanels">
       <div class="tp on"><div><h3>Sabah açın, ne yapılacağını görün.</h3><p>Dikkat isteyen her şey tek ekranda toplanır; satıra tıklayınca üyenin kartı açılır.</p><ul><li>Ödeme bekleyenler ve kaç gündür beklediği</li><li>Mükerrer e-posta uyarıları</li><li>Stüdyoya ve üyelere bırakılan açık notlar</li></ul></div><div class="shot" data-z="img/ss-genel-bakis.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>GENEL BAKIŞ</span></div><div class="zin"><img src="img/ss-genel-bakis.webp" alt="Genel Bakış ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
@@ -1187,8 +1190,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
       <div class="tp"><div><h3>Kim geride kaldı, tek bakışta.</h3><p>Paketin haftası ilerlerken hedefin gerisinde kalanları, son haftadakileri ve süresi dolanları ayrı ayrı görürsünüz.</p><ul><li>Kaç dersin eksik olduğu rakamla yazar</li><li>Planlanan dersler ve son gün yanında durur</li><li>Süresi dolanda kalan ders sayısı yazar</li></ul></div><div class="shot" data-z="img/ss-takip.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>TAKİP</span></div><div class="zin"><img src="img/ss-takip.webp" alt="Takip ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
       <div class="tp"><div><h3>Hak ediş tartışma bırakmaz.</h3><p>Ders yapıldığı gün hesap donar. Sonradan değişen fiyat ya da oran geçmişi bozmaz.</p><ul><li>Ders bazlı hesap, fiyat ve oran tarihçesiyle</li><li>Haftalık dönem kilidi</li><li>İndirilebilir PDF rapor</li></ul></div><div class="shot" data-z="img/ss-hak-edis.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>HAK EDİŞ</span><span>FİNANS</span></div><div class="zin"><img src="img/ss-hak-edis.webp" alt="Hak ediş ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
       <div class="tp"><div><h3>Gelir ile tahsilat ayrı okunur.</h3><p>Ders geliri dersin yapıldığı ya da planlandığı takvim ayına yazılır; kasaya giren para ayrı satırda durur. Eğitmen hak edişi düşülünce stüdyonun payı görünür.</p><ul><li>Aylık ders geliri, hak ediş, gider ve kaba net</li><li>Kira ve faturalar tek kayıtla her aya yayılır</li><li>Yıl karşılaştırması ve muhasebeci için CSV</li></ul></div><div class="shot" data-z="img/ss-finans.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>FİNANS</span></div><div class="zin"><img src="img/ss-finans.webp" alt="Finans ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
-      <div class="tp"><div><h3>Doğru mesaj, doğru anda.</h3><p>Üyeye giden mailler stüdyonuzun görünümüyle çıkar. Metinleri panelden siz düzenlersiniz.</p><ul><li>Karşılama, onay, hatırlatma, iptal ve doğum günü</li><li>Metinler panelden düzenlenir</li><li>Teslim edilemeyen adresler size bildirilir</li></ul></div><div class="shot" data-z="img/ss-mailler.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>AYARLAR · MAİLLER</span></div><div class="zin"><img src="img/ss-mailler.webp" alt="Mail şablonları ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
-      <div class="tp"><div><h3>Kayıt formu sizin sorularınızla.</h3><p>Soru eklemek, sırasını değiştirmek ya da metni düzeltmek için kod gerekmez. Panelden yapılır.</p><ul><li>Soru ekleyin, kaldırın, sıralayın</li><li>Onay maddeleri panelden yönetilir</li><li>Değişiklik forma yansır</li></ul></div><div class="shot" data-z="img/ss-form.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>AYARLAR · FORM</span></div><div class="zin"><img src="img/ss-form.webp" alt="Kayıt formu ayarları" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
+      <div class="tp"><div><h3>Doğru mesaj, doğru anda.</h3><p>Üyeye giden mailler stüdyonuzun görünümüyle çıkar. Hangi maillerin gideceğini siz seçer, Önizle ile nasıl göründüğüne bakarsınız; metinleri ajansınız hazırlar.</p><ul><li>Karşılama, onay, hatırlatma, iptal ve doğum günü</li><li>Her mail tek tıkla açılır ya da kapanır</li><li>Teslim edilemeyen adresler size bildirilir</li></ul></div><div class="shot" data-z="img/ss-mailler.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>AYARLAR · MAİLLER</span></div><div class="zin"><img src="img/ss-mailler.webp" alt="Mail şablonları ekranı" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
       <div class="tp"><div><h3>Yeni paket mi? Bir satır.</h3><p>Paket adı, ders adedi, fiyat ve kişi sayısı panelden eklenir. Takvimde ders tipi bu listeden seçilir.</p><ul><li>Bire bir, duet, trio</li><li>Her paketin kontenjanı tanımlanır</li><li>Kod değişmez, bekleme yok</li></ul></div><div class="shot" data-z="img/ss-paketler.webp"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>AYARLAR · PAKETLER</span></div><div class="zin"><img src="img/ss-paketler.webp" alt="Paket ayarları" loading="lazy"></div></div><span class="zh">BÜYÜT</span></div></div>
     </div>
   </div>
@@ -1792,14 +1794,17 @@ onScroll();
       liEl=document.getElementById('cd-li'),
       bPrev=document.getElementById('cd-prev'), bNext=document.getElementById('cd-next'), bEnd=document.getElementById('cd-end'),
       bar=document.getElementById('cd-bar'), bFs=document.getElementById('cd-fs'), fsT=document.getElementById('cd-fs-t');
-  /* Eşikler ve saatler, Rozetler, Yedekler, Mailler önizlemede kapalıdır (menüde soluk, tıklanamaz). */
-  var AYAR={paketler:'20-ayarlar-paketler',kaynaklar:'21-ayarlar-salonlar-cihazlar',erisim:'22-ayarlar-erisim',geriAlma:'27-ayarlar-geri-alinabilir-islemler'};
+  /* Stüdyo Ayarlar menüsü gerçek panelle aynı: Paketler, Salonlar ve cihazlar, Erişim, Mailler, Geri alınabilir işlemler.
+     Eşikler ve saatler, Rozetler, Yedekler ve Form ajans bölümüdür, stüdyo menüsünde yoktur. */
+  var AYAR={paketler:'20-ayarlar-paketler',kaynaklar:'21-ayarlar-salonlar-cihazlar',erisim:'22-ayarlar-erisim',mailler:'23-ayarlar-mailler',geriAlma:'27-ayarlar-geri-alinabilir-islemler'};
+  /* Telefondan bağlanan ziyaretçi yalnız mobil demoyu görür (masaüstü görünümü ve cihaz seçici yok). */
+  var MOBIL=matchMedia('(max-width:760px)').matches||(matchMedia('(hover:none) and (pointer:coarse)').matches&&Math.min(screen.width,screen.height)<=820);
   var ROL={
     studyo:{ad:'STÜDYO PANELİ',ilk:'01-genel-bakis',
-      nav:{genel:'01-genel-bakis',takvim:'03-takvim',studyo:'10-studyo-gunu',uyeler:'11-uyeler',birakanlar:'13-birakanlar-geri-kazanim',karaliste:'14-kara-liste',takip:'15-takip',egitmenler:'16-egitmenler',dersler:'17-dersler',hakedis:'18-hak-edis',finans:'37-finans',notlar:'19-notlar',form:'28-ayarlar-form'},
-      geri:{'07-ders-penceresi':'03-takvim','08-ders-formu':'03-takvim','12-uye-karti':'11-uyeler'},
+      nav:{genel:'01-genel-bakis',takvim:'03-takvim',studyo:'10-studyo-gunu',uyeler:'11-uyeler',birakanlar:'13-birakanlar-geri-kazanim',karaliste:'14-kara-liste',takip:'15-takip',egitmenler:'16-egitmenler',dersler:'17-dersler',hakedis:'18-hak-edis',finans:'37-finans',notlar:'19-notlar'},
+      geri:{'07-ders-penceresi':'03-takvim','08-ders-formu':'03-takvim','12-uye-karti':'11-uyeler','43-mail-onizleme':'23-ayarlar-mailler'},
       tur:[
-        {id:'01-genel-bakis',sel:'#yan-sekmeler|#yan-menu',t:'Her iş bu menüde',p:'Yönetici dosyayı hiç açmaz. Her veri, her ayar ve kayıt formunuzun soruları bile panelden görülür ve düzenlenir.',li:['Takvim, üyeler, takip, hak ediş, finans, ayarlar','Telefonda menü sol üstteki düğmeden açılır','Eğitmen için ayrı panel, ayrı yetki']},
+        {id:'01-genel-bakis',sel:'#yan-sekmeler|#yan-menu',t:'Her iş bu menüde',p:'Yönetici dosyayı hiç açmaz. Üyeler, dersler, ödemeler, paketler ve ayarlar panelden görülür ve düzenlenir.',li:['Takvim, üyeler, takip, hak ediş, finans, ayarlar','Telefonda menü sol üstteki düğmeden açılır','Eğitmen için ayrı panel, ayrı yetki']},
         {id:'01-genel-bakis',sel:'.sayfa > div:nth-child(2) > .kart:nth-child(1)',t:'Sabah açın, ne yapılacağını görün',p:'Dikkat isteyen her şey tek ekranda toplanır; satıra tıklayınca üyenin kartı açılır.',li:['Ödeme bekleyenler ve kaç gündür beklediği','Mükerrer e-posta uyarıları','Stüdyoya ve üyelere bırakılan açık notlar']},
         {id:'12-uye-karti',sel:'.pencere',t:'Üyenin bütün hikâyesi tek kartta',p:'Paket, ödeme, ders geçmişi, notlar ve kayıt akışı aynı pencerede. Sekmelerden Dersler, Notlar ve Kayıt akışı açılır.',li:['Paket haftası, eksik ders ve son gün','Kalan tutar ve paket işlemleri','Notlar, kayıt akışı ve rozetler']},
         {id:'12-uye-karti',sel:'.kart-govde',tab:'Dersler',t:'Dersler sekmesinde ders geçmişi',p:'Yapılan ve iptal edilen dersler sırayla, yaklaşan dersler altında durur.',li:['Yanlış kaydı satırdan silersiniz; iz kalır','Yaklaşan dersler takvimden okunur','Satıra dokunun: ders açılır']},
@@ -1809,19 +1814,24 @@ onScroll();
         {id:'15-takip',sel:'.paket-takip',t:'Kim geride kaldı, tek bakışta',p:'Paketin haftası ilerlerken hedefin gerisinde kalanları, son haftadakileri ve süresi dolanları ayrı ayrı görürsünüz.',li:['Kaç dersin eksik olduğu rakamla yazar','Planlanan dersler ve son gün yanında durur','Süresi dolanda kalan ders sayısı yazar']},
         {id:'18-hak-edis',sel:'.sayfa .kart',t:'Hak ediş tartışma bırakmaz',p:'Ders yapıldığı gün hesap donar. Sonradan değişen fiyat ya da oran geçmişi bozmaz.',li:['Ders bazlı hesap, fiyat ve oran tarihçesiyle','Haftalık dönem kilidi','İndirilebilir PDF rapor']},
         {id:'37-finans',sel:'.kart-sekmeli',t:'Gelir ile tahsilat ayrı okunur',p:'Ders geliri dersin yapıldığı ya da planlandığı takvim ayına yazılır; kasaya giren para ayrı satırda durur. Eğitmen hak edişi düşülünce stüdyonun payı görünür.',li:['Aylık ders geliri, hak ediş, gider ve kaba net','Kira ve faturalar tek kayıtla her aya yayılır','Yıl karşılaştırması ve muhasebeci için CSV']},
-        {id:'28-ayarlar-form',sel:'.form-kart',t:'Kayıt formu sizin sorularınızla',p:'Soru eklemek, sırasını değiştirmek ya da metni düzeltmek için kod gerekmez. Panelden yapılır.',li:['Soru ekleyin, kaldırın, sıralayın','Onay maddeleri panelden yönetilir','Değişiklik forma yansır']},
         {id:'20-ayarlar-paketler',sel:'.sayfa .kart',t:'Yeni paket mi? Bir satır.',p:'Paket adı, ders adedi, fiyat ve kişi sayısı panelden eklenir. Takvimde ders tipi bu listeden seçilir.',li:['Bire bir, duet, trio','Her paketin kontenjanı tanımlanır','Kod değişmez, bekleme yok']},
-        {id:'20-ayarlar-paketler',sel:'#ayar-alt .alt-sekme[data-alt=mailler]',t:'Doğru mesaj, doğru anda',p:'Üyeye giden mailler stüdyonuzun görünümüyle çıkar. Metinleri Ayarlar altındaki Mailler bölümünden siz düzenlersiniz.',li:['Karşılama, onay, hatırlatma, iptal ve doğum günü','Metinler panelden düzenlenir','Teslim edilemeyen adresler size bildirilir']}
+        {id:'23-ayarlar-mailler',sel:'.sayfa .kart',t:'Hangi mail gitsin, siz seçin',p:'Üyeye giden mailler stüdyonuzun görünümüyle çıkar. Her mail için Açık ya da Kapalı seçersiniz; Önizle mailin üyeye nasıl görüneceğini gösterir. Metinleri ajansınız sizin sesinizle hazırlar.',li:['Karşılama, onay, hatırlatma, iptal ve doğum günü','Düğmeye basın: mail açılır ya da kapanır','Teslim edilemeyen adresler size bildirilir']},
+        {id:'27-ayarlar-geri-alinabilir-islemler',sel:'.sayfa .kart',t:'Yanlış tıklama kalıcı olmaz',p:'Yaptığınız işlemler 7 gün boyunca listelenir ve tek tıkla geri alınır. Geri almanın kendisi de kayda geçer.',li:['Ödeme, paket, fiyat ve üye durumu gibi işlemler','Kim, ne zaman, neyi değiştirdi görünür','Süresi dolan işlem listede kalır, geri alınmaz']}
       ]},
     egitmen:{ad:'EĞİTMEN PANELİ',ilk:'29-egitmen-takvim',
-      nav:{takvim:'29-egitmen-takvim',takip:'30-egitmen-takip',studyo:'31-egitmen-studyo-gunu',uyeler:'32-egitmen-uyeler',notlarim:'33-egitmen-notlarim'},
-      geri:{},
+      nav:{takvim:'29-egitmen-takvim',takip:'30-egitmen-takip',studyo:'31-egitmen-studyo-gunu',uyeler:'32-egitmen-uyeler',birakanlar:'41-egitmen-birakanlar',karaliste:'42-egitmen-kara-liste',notlarim:'33-egitmen-notlarim'},
+      geri:{'38-egitmen-ders-penceresi':'29-egitmen-takvim','39-egitmen-ders-formu':'29-egitmen-takvim','40-egitmen-uye-karti':'32-egitmen-uyeler'},
       tur:[
-        {id:'29-egitmen-takvim',sel:'#yan-sekmeler|#yan-menu',dev:'masaustu',t:'Ayrı panel, ayrı yetki',p:'Gününü görür, notunu bırakır; gerisi stüdyonun kararındadır.',li:['Menüde yalnız takvim, takip, stüdyo, üyeler ve notlar var','Hak ediş, finans ve ayarlar eğitmen menüsünde yoktur','Telefonda ve masaüstünde aynı panel']},
-        {id:'29-egitmen-takvim',sel:'.sayfa > .kart:nth-child(1)',dev:'masaustu',t:'Günün dersleri bir bakışta',p:'Bugünkü dersler takvimin üstünde, önümüzdeki 14 günlük plan altında durur.',li:['Bugünün her dersi saat, tip, salon ve üyelerle yazar','Takvim rengini eğitmen kendi panelinden değiştirebilir']},
+        {id:'29-egitmen-takvim',sel:'#yan-sekmeler|#yan-menu',dev:'masaustu',t:'Ayrı panel, ayrı yetki',p:'Gününü görür, dersini açar, notunu bırakır; gerisi stüdyonun kararındadır.',li:['Menüde yalnız takvim, takip, stüdyo, üyeler ve notlar var','Hak ediş, finans ve ayarlar eğitmen menüsünde yoktur','Telefonda ve masaüstünde aynı panel']},
+        {id:'29-egitmen-takvim',sel:'.sayfa > .kart:nth-child(1)',dev:'masaustu',t:'Günün dersleri bir bakışta',p:'Bugünkü dersler takvimin üstünde, önümüzdeki 14 günlük plan altında durur.',li:['Bugünün her dersi saat, tip, salon ve üyelerle yazar','Bir derse tıklayınca ayrıntısı açılır','Takvim rengini eğitmen kendi panelinden değiştirebilir']},
+        {id:'39-egitmen-ders-formu',sel:'.pencere',dev:'masaustu',t:'Ders açmak bir form',p:'Eğitmen kendi adına ders açar: ders tipi, tarih, saat, salon ve üyeleri seçer; isterse ders her hafta kendiliğinden tekrar eder.',li:['Ders kendi adına açılır, eğitmen seçmek gerekmez','Salon ve cihaz çakışmasını sistem yakalar','Geçmiş tarihe ders eklemek yalnız stüdyodadır']},
+        {id:'38-egitmen-ders-penceresi',sel:'.pencere',dev:'masaustu',t:'Dersin ayrıntısı bir tık uzakta',p:'Kendi dersini düzenler, iptal eder, üyeyi başka derse taşır ya da dersten çıkarır. Başkasının dersini yalnız görüntüler.',li:['Eğitmen, salon, doluluk ve tekrar bilgisi','Üyeye giden mail otomatiktir','Eğitmeni değiştirmek stüdyodadır']},
         {id:'30-egitmen-takip',sel:'.paket-takip',dev:'masaustu',t:'Geride kalan üyeyi görür',p:'Eksik ders sayısı, planlanan dersler ve son gün yan yana durur. Ders ayrıntıları rolüne göre açılır.',li:['Eksik ders sayısı rakamla yazar','Geride kalanlar, son haftadakiler ve süresi dolanlar ayrı gruplanır']},
+        {id:'32-egitmen-uyeler',sel:'.sayfa',dev:'masaustu',t:'Üyelerin hepsi görünür',p:'Aktifler, Bırakanlar ve Kara Liste ayrı alt başlıklarda durur; satıra tıklayınca üyenin kartı açılır.',li:['Rozetler ve paket durumu listede görünür','Kalan ders ve paket haftası bir bakışta','Bilgiler eğitmen için salt okunurdur']},
+        {id:'40-egitmen-uye-karti',sel:'.pencere',dev:'masaustu',t:'Üye kartı eğitmene açık, düzenlemeye kapalı',p:'Genel, Dersler, Ödemeler ve Notlar sekmeleri eğitmenin okuyacağı kadarını gösterir. Fiyat ve iletişim bilgisinin görünüp görünmeyeceğine stüdyo karar verir.',li:['Düzeltme gerekiyorsa eğitmen stüdyoya not yazar','Ödemeler salt okunurdur','Notlar sekmesinden üye notu bırakılır']},
+        {id:'41-egitmen-birakanlar',sel:'.sayfa',dev:'masaustu',t:'Bırakanlar listesi',p:'Paketi bitirip ayrılan üyeler ayrı listede durur; eğitmen kimlerin bıraktığını görür.',li:['Üye no, ad ve son paket yazar','Geri alma ve geri kazanım aramaları stüdyodadır']},
+        {id:'42-egitmen-kara-liste',sel:'.sayfa',dev:'masaustu',t:'Kara liste: yalnız kim olduğu',p:'Eğitmen kimin listede olduğunu görür; sebep, kim aldı ve başvuru denemeleri stüdyoda kalır.',li:['Soru olursa eğitmen üyeyi stüdyoya yönlendirir','Kara listedeki kişiye mail gitmez']},
         {id:'33-egitmen-notlarim',sel:'.kart-sekmeli',dev:'masaustu',t:'Not bırakır, stüdyo görür',p:'Üye notu ve stüdyoya not. Notlar Genel Bakış\'ta stüdyonun önüne düşer.',li:['Üye notu ve stüdyoya not ayrı sekmelerde durur','Notlar stüdyonun Genel Bakış ekranında açık not olarak görünür','Stüdyo notu kapatınca eğitmen kapandığını görür']},
-        {id:'32-egitmen-uyeler',sel:'.sayfa',dev:'masaustu',t:'Yetki stüdyoda',p:'Fiyat ve iletişim bilgisinin eğitmene görünüp görünmeyeceğine stüdyo karar verir.',li:['Üye bilgileri eğitmen için salt okunurdur','Düzeltme gerekiyorsa eğitmen stüdyoya not yazar','Eğitmen paneli stüdyo tarafından tek tuşla kapatılabilir']},
         {id:'33-egitmen-notlarim',sel:'.kart-sekmeli',dev:'telefon',t:'Telefonda da aynı panel',p:'Eğitmen paneli telefonda ve masaüstünde aynıdır; menü ve tablolar telefon düzenine kendiliğinden geçer.',li:['Aynı panel, aynı yetki','Menü sol üstteki düğmeden açılır','Tablolar telefonda satır kartlarına dönüşür']}
       ]}
   };
@@ -1833,7 +1843,7 @@ onScroll();
     siyah:{birincil:'#1f1f23',vurgu:'#c9c9c9',arka:'#f6f6f4',metin:'#141416',ikincil:'#6e6e74'}
   };
   var tema='adacayi';
-  var rol='studyo', cihaz='masaustu', cihazTur=null, sayfa=null, adim=-1, bekleyenHl=null, yuklendi=false, hazir=false, yigin=[], turFs=false, son=false;
+  var rol='studyo', cihaz=MOBIL?'telefon':'masaustu', cihazTur=null, sayfa=null, adim=-1, bekleyenHl=null, yuklendi=false, hazir=false, yigin=[], turFs=false, son=false;
 
   /* Sığdırma: masaüstünde panel 1366 px mantıksal genişlikte çizilir, alan darsa oranla küçülür;
      böylece tablolar ve takvim sağa sola kaymaz. Alan 1366 px ve üstüyse olduğu gibi (tam ekranda gerçek boyut),
@@ -1895,7 +1905,8 @@ onScroll();
   }
   function adimaGit(i){
     var r=ROL[rol], a=r.tur[i]; adim=i; son=false;
-    if(a.dev && a.dev!==cihaz){ if(cihazTur===null) cihazTur=cihaz; cihazDegis(a.dev); }
+    if(MOBIL){ /* telefonda tur da telefon görünümünde kalır */ }
+    else if(a.dev && a.dev!==cihaz){ if(cihazTur===null) cihazTur=cihaz; cihazDegis(a.dev); }
     else if(!a.dev && cihazTur!==null){ var c=cihazTur; cihazTur=null; cihazDegis(c); }
     turuCiz(); yigin=[]; git(a.id,{sel:a.sel,tab:a.tab});
   }
@@ -1913,7 +1924,7 @@ onScroll();
     ekranBasligi(); turuCiz(); git(ROL[rol].ilk,null);
   }
   function cihazDegis(c){
-    if(c===cihaz) return; cihaz=c; stage.dataset.dev=c;
+    if(c===cihaz || (MOBIL && c!=='telefon')) return; cihaz=c; stage.dataset.dev=c;
     kok.querySelectorAll('[data-dev]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.dev===c))});
     sigdir();
     if(adim>=0){ var a=ROL[rol].tur[adim]; setTimeout(function(){hlGonder({sel:a.sel,tab:a.tab})},350); }
@@ -2004,6 +2015,13 @@ onScroll();
   document.addEventListener('webkitfullscreenchange',fsDegisti);
   addEventListener('keydown',function(e){ if(e.key==='Escape' && sahte){ turFs=false; fsKapat(); } });
 
+  /* telefondan bağlanan: yalnız telefon görünümü, cihaz seçici gizli, açıklama notu görünür */
+  if(MOBIL){
+    stage.dataset.dev='telefon';
+    kok.querySelectorAll('[data-dev]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.dev==='telefon'))});
+    var cd=kok.querySelector('.cd-dev'); if(cd) cd.hidden=true;
+    var nt=document.getElementById('cd-mobil'); if(nt) nt.hidden=false;
+  }
   /* ilk ekran yalnız seksiyon görünürlüğe yaklaşınca yüklenir */
   ekranBasligi(); turuCiz(); sigdir();
   var io=new IntersectionObserver(function(es){
