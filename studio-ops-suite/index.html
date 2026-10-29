@@ -851,7 +851,9 @@ body.cd-kilit #canli>.wrap{z-index:auto}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-step{display:none}
   .cd-wrap.cd-mob.cd-fs .cd-tour>div:last-child{order:1}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts{order:2;flex-wrap:nowrap;align-items:stretch}
-  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:none}
+  .cd-wrap.cd-mob.cd-fs.cd-turda .cd-tour{position:relative}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:inline-flex;position:absolute;top:2px;right:6px;flex:none;width:auto;padding:6px 8px;border:0;background:transparent;font-size:12px;font-weight:600;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour h3{padding-right:76px}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-next{flex:1.4 1 0}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-sayac{display:flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:54px;font-size:13px;font-weight:700;color:var(--amber-t);letter-spacing:.04em;white-space:nowrap}
   .cd-wrap.cd-mob.cd-fs .cd-tour.cd-son .cd-sayac{display:none}
@@ -888,7 +890,9 @@ body.cd-kilit #canli>.wrap{z-index:auto}
   .cd-wrap.cd-mob.cd-fs .cd-tour li{font-size:12.5px}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts{order:2;flex-wrap:nowrap;flex:none}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts .btn{padding:8px 6px;font-size:12.5px}
-  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:none}
+  .cd-wrap.cd-mob.cd-fs.cd-turda .cd-tour{position:relative}
+  .cd-wrap.cd-mob.cd-fs .cd-tour .cd-acts #cd-end{display:inline-flex;position:absolute;top:2px;right:6px;flex:none;width:auto;padding:6px 8px;border:0;background:transparent;font-size:12px;font-weight:600;color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+  .cd-wrap.cd-mob.cd-fs .cd-tour h3{padding-right:76px}
   .cd-wrap.cd-mob.cd-fs .cd-tour .cd-sayac{display:flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:46px;font-size:12.5px;font-weight:700;color:var(--amber-t);white-space:nowrap}
   .cd-wrap.cd-mob.cd-fs .cd-tour.cd-son .cd-sayac{display:none}
 }
@@ -1940,9 +1944,10 @@ onScroll();
   function post(o){ o.cd=1; try{frame.contentWindow.postMessage(o,'*')}catch(e){} }
   function hlGonder(a){ if(a) post({t:'hl',sel:a.sel,tab:a.tab||''}); }
   function temaGonder(){ post({t:'tema',v:TEMA[tema]}); }
-  function git(id,hl){
+  function git(id,hl,ctx){
     sayfa=id; bekleyenHl=hl||null; yuklendi=true;
-    var yeni='demo/'+id+'.html';
+    /* ctx: tıklanan üye / ders / mail; sayfa #c=... ile alır ve içeriğini ona göre değiştirir */
+    var yeni='demo/'+id+'.html'+(ctx?'#c='+encodeURIComponent(JSON.stringify(ctx)):'');
     if(frame.getAttribute('src')===yeni){
       /* aynı sayfa: yüklüyse hemen vurgula, yükleniyorsa 'ready' gelince vurgulanır */
       if(hl && hazir){ hlGonder(hl); bekleyenHl=null; }
@@ -1992,18 +1997,21 @@ onScroll();
     else if(!a.dev && cihazTur!==null){ var c=cihazTur; cihazTur=null; cihazDegis(c); }
     turuCiz(); yigin=[]; git(a.id,{sel:a.sel,tab:a.tab});
   }
-  function turuBitir(){
+  function turuBitir(kal){
     adim=-1; son=false; post({t:'clr'});
     if(cihazTur!==null){ var c=cihazTur; cihazTur=null; cihazDegis(c); }
     turuCiz();
-    if(turFs){ turFs=false; if(wrap.classList.contains('cd-fs')) fsKapat(); }
+    /* kal: telefonda "Turu kapat" yalnız turu bitirir, demo tam ekranda gezilmeye devam eder */
+    if(turFs && !kal){ turFs=false; if(wrap.classList.contains('cd-fs')) fsKapat(); }
   }
   function ekranBasligi(){ baslik.textContent=ROL[rol].ad+' \u00b7 ÖRNEK VERİ'; }
   function rolDegis(r){
-    if(r===rol) return; rol=r; adim=-1; son=false; yigin=[];
+    if(r===rol) return; var turdaydi=adim>=0||son; rol=r; adim=-1; son=false; yigin=[];
     if(cihazTur!==null){ var c=cihazTur; cihazTur=null; cihazDegis(c); }
     kok.querySelectorAll('[data-role]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.role===r))});
-    ekranBasligi(); turuCiz(); git(ROL[rol].ilk,null);
+    ekranBasligi();
+    /* tur sürerken panel değişirse tur diğer panelin 1. adımından devam eder (kart kaybolmaz) */
+    if(turdaydi) adimaGit(0); else { turuCiz(); git(ROL[rol].ilk,null); }
   }
   function cihazDegis(c){
     if(c===cihaz || (MOBIL && c!=='telefon')) return; cihaz=c; stage.dataset.dev=c;
@@ -2032,7 +2040,7 @@ onScroll();
       if(h2){ git(h2,null); }
       else { post({t:'toast',m:'Bu ekran önizlemede yok. Menüden başka bir sayfa seçebilirsiniz.'}); }
     } else if(m.t==='open'){
-      yigin.push(sayfa); git(m.to,null);
+      yigin.push(sayfa); git(m.to,null,m.ctx);
     } else if(m.t==='back'){
       var onceki=yigin.pop()||ROL[rol].geri[sayfa]||ROL[rol].ilk;
       git(onceki,null);
@@ -2066,7 +2074,7 @@ onScroll();
     var h=document.documentElement; h.style.scrollBehavior='auto'; kok.scrollIntoView(); h.style.scrollBehavior='';
     basla('studyo');
   })});
-  bEnd.addEventListener('click',turuBitir);
+  bEnd.addEventListener('click',function(){ turuBitir(MOBIL); });
 
   /* TAM EKRAN: yerel Fullscreen API; yoksa (iOS Safari vb.) sayfa üstü sahte tam ekran. Esc ile çıkılır. */
   var sahte=false;
