@@ -794,6 +794,11 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 .cd-fs .cd-bar{margin:0;grid-column:1/-1}
 #canli .cd-mobil{margin:0 0 16px;padding:12px 16px;border:1px solid var(--line3);border-radius:10px;background:var(--bg3);font-size:14px;color:var(--t2);max-width:520px}
 #canli .cd-mobil[hidden]{display:none}
+.cd-more{display:none}
+.cd-open{display:none;position:absolute;inset:0;z-index:5;align-items:flex-end;justify-content:center;padding:0 0 18px;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(20,16,10,.38));cursor:pointer;width:100%}
+.cd-open span{background:var(--amber);color:#1a1200;font-weight:700;font-size:15px;padding:12px 22px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.cd-fs .cd-open{display:none!important}
+.cd-open[hidden]{display:none!important}
 .cd-fs .cd-mobil{display:none}
 .cd-fs .cd-stage[data-dev=telefon] .cd-view{height:auto}
 .cd-fs .cd-stage{grid-column:1;grid-row:2;display:flex;flex-direction:column;min-height:0;width:100%;max-width:none;margin:0}
@@ -812,14 +817,27 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
 }
 @media(max-width:700px){
   .cd-seg{flex:1 1 100%}.cd-seg button{flex:1}
-  /* telefonda tam ekran tur: üst kontroller gizlenir (Turu bitir kartta), panel ekranın çoğunu alır */
-  #canli .cd-fs.cd-turda .cd-bar{display:none}
-  .cd-fs.cd-turda{grid-template-rows:minmax(0,1fr) auto;padding:8px;gap:8px}
-  .cd-fs.cd-turda .cd-stage{grid-row:1}
-  .cd-fs.cd-turda .cd-tour{grid-row:2;max-height:32vh;overflow:auto;padding:12px 14px;gap:10px}
-  .cd-fs.cd-turda .cd-tour h3{font-size:18px}
-  .cd-fs.cd-turda .cd-tour p{font-size:14px;line-height:1.5}
-  .cd-fs.cd-turda .cd-tour ul{margin-top:8px;gap:6px}
+  /* TELEFON: demo tam ekranda açılır. Üstte tek satır (panel seçimi + Kapat), ortada panel (kaydırılır), tur varsa altta küçük kart. */
+  .cd-fs{padding:8px;gap:8px}
+  .cd-fs .cd-bar{flex-wrap:nowrap;gap:8px}
+  .cd-fs .cd-bar .cd-seg{flex:1 1 auto}
+  .cd-fs .cd-seg button{padding:10px 8px;font-size:13px}
+  .cd-fs .cd-pal{display:none}
+  .cd-fs .cd-fsb{flex:0 0 auto;margin-left:0;padding:10px 14px}
+  .cd-fs .cd-chrome{display:none}
+  .cd-fs .cd-stage[data-dev=telefon]{max-width:none;border-radius:12px;border-width:1px;margin:0}
+  .cd-fs .cd-stage[data-dev=telefon] .cd-view{height:auto}
+  .cd-fs.cd-turda{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+  .cd-fs.cd-turda .cd-stage{grid-row:2}
+  .cd-fs.cd-turda .cd-tour{grid-row:3;max-height:34vh;overflow:auto;padding:10px 12px;gap:8px}
+  .cd-fs.cd-turda .cd-tour h3{font-size:17px;margin-bottom:4px}
+  .cd-fs.cd-turda .cd-acts .btn{padding:8px 6px;font-size:13px}
+  .cd-fs.cd-turda .cd-tour{gap:6px}
+  .cd-tour .cd-more{display:inline-flex;padding:0;margin:0 0 6px;color:var(--amber-t);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .cd-tour:not(.cd-acik) p,.cd-tour:not(.cd-acik) ul{display:none}
+  .cd-tour.cd-son p{display:block}
+  /* satır içi önizleme: dokununca tam ekran açılır */
+  .cd-open{display:flex}
   .cd-pal{flex:1 1 100%;justify-content:center}
   .cd-dev{display:none}
   .cd-fsb{margin-left:0;flex:1 1 100%;justify-content:center}
@@ -984,6 +1002,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
         <div class="cd-chrome"><i></i><i></i><i></i><span id="cd-title">STÜDYO PANELİ · ÖRNEK VERİ</span></div>
         <div class="cd-view" id="cd-view">
           <iframe id="cd-frame" title="Studio Ops Suite panel önizlemesi, örnek verili" src="about:blank"></iframe>
+          <button type="button" class="cd-open" id="cd-open" hidden aria-label="Canlı demoyu tam ekranda aç"><span>Tam ekranda aç</span></button>
         </div>
       </div>
       <div class="card cd-tour" id="cd-tour" aria-live="polite">
@@ -996,6 +1015,7 @@ html:not([data-theme=light]) .cd-acts2 .btn-g{background:rgba(255,255,255,.04)}
         <div class="cd-prog" aria-hidden="true"><i id="cd-bar"></i></div>
         <div>
           <h3 id="cd-t"></h3>
+          <button type="button" class="cd-more" id="cd-more" hidden>Ayrıntıyı göster</button>
           <p id="cd-p"></p>
           <ul id="cd-li"></ul>
         </div>
@@ -2000,7 +2020,7 @@ onScroll();
   var sahte=false;
   function fsCiz(ac){
     wrap.classList.toggle('cd-fs',ac); if(!ac) wrap.classList.remove('cd-sahte');
-    bFs.setAttribute('aria-pressed',String(ac)); fsT.textContent=ac?'Tam ekrandan çık':'Tam ekran';
+    bFs.setAttribute('aria-pressed',String(ac)); fsT.textContent=ac?(MOBIL?'Kapat':'Tam ekrandan çık'):'Tam ekran';
     setTimeout(sigdir,60);
   }
   function fsAc(){
@@ -2031,6 +2051,10 @@ onScroll();
     kok.querySelectorAll('[data-dev]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.dev==='telefon'))});
     var cd=kok.querySelector('.cd-dev'); if(cd) cd.hidden=true;
     var nt=document.getElementById('cd-mobil'); if(nt) nt.hidden=false;
+    var op=document.getElementById('cd-open'); if(op){ op.hidden=false; op.addEventListener('click',function(){ turFs=false; fsAc(); }); }
+    var mo=document.getElementById('cd-more');
+    if(mo){ mo.hidden=false; mo.addEventListener('click',function(){
+      var ac=tur.classList.toggle('cd-acik'); mo.textContent=ac?'Ayrıntıyı gizle':'Ayrıntıyı göster'; }); }
   }
   /* ilk ekran yalnız seksiyon görünürlüğe yaklaşınca yüklenir */
   ekranBasligi(); turuCiz(); sigdir();
