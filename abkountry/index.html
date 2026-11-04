@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abkountry · RAH</title>
+<meta name="description" content="Abkountry: Ankara çıkışlı bağımsız müzisyen ve söz yazarı. Anadolu ezgisi, alternatif rock, country ve saykedelik. Debut albüm RAH şimdi tüm platformlarda.">
+<meta property="og:title" content="Abkountry · RAH">
+<meta property="og:description" content="Nasıl okunacağı belli olmayan, söylendiğinde nasıl yazılacağı belli olmayan. Farklı.">
+<meta property="og:image" content="assets/img/kapak-rah.webp">
+<meta name="theme-color" content="#0a0807">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%230a0807'/><text x='32' y='46' font-size='40' text-anchor='middle' fill='%23c23b1e' font-family='serif'>A</text></svg>">
+<link rel="preload" href="assets/fonts/rye-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/hero-sahne.webp" as="image">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+<!-- Ön yükleyici -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__word">
+    <span>A</span><span>B</span><span>K</span><span>O</span><span>U</span><span>N</span><span>T</span><span>R</span><span>Y</span>
+  </div>
+  <div class="loader__meta">
+    <span class="loader__label">SES AÇILIYOR</span>
+    <span class="loader__count" id="loaderCount">000</span>
+  </div>
+  <div class="loader__bar"><i id="loaderBar"></i></div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursorLabel"></span></div>
+
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" data-cursor="YUKARI">Abkountry</a>
+  <nav class="nav__links" aria-label="Ana menü">
+    <a href="#rah" data-scramble>RAH</a>
+    <a href="#klipler" data-scramble>Klipler</a>
+    <a href="#yol" data-scramble>Yol</a>
+    <a href="#sahne" data-scramble>Sahne</a>
+    <a href="#duvar" data-scramble>Duvar</a>
+    <a href="#iletisim" data-scramble>İletişim</a>
+  </nav>
+  <a class="nav__cta" href="https://open.spotify.com/album/1NTx1MgoYoteRZaNK6VMJX" target="_blank" rel="noopener" data-cursor="DİNLE">RAH’ı dinle</a>
+  <button class="nav__burger" id="burger" aria-label="Menüyü aç" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__media">
+    <video class="hero__video" id="heroVideo" muted loop playsinline preload="auto" poster="assets/video/hero-klip-poster.jpg" aria-hidden="true"><source src="assets/video/hero-klip.mp4" type="video/mp4"></video>
+    <img src="assets/img/hero-sahne.webp" alt="Abkountry sahnede, arkada boğa kafatası bayrağı" class="hero__img">
+    <div class="hero__lit" aria-hidden="true"><img src="assets/img/hero-sahne.webp" alt="" class="hero__img"></div>
+    <div class="hero__flicker"></div>
+    <div class="hero__vignette"></div>
+  </div>
+  <canvas class="hero__canvas" id="dust" aria-hidden="true"></canvas>
+  <i class="crop crop--tl" aria-hidden="true"></i><i class="crop crop--tr" aria-hidden="true"></i><i class="crop crop--bl" aria-hidden="true"></i><i class="crop crop--br" aria-hidden="true"></i>
+  <div class="hero__meta" aria-hidden="true"><span>N° 01 · RAH · 2026</span><span>ANKARA · 39°55′ K · 32°51′ D</span></div>
+  <p class="hero__kicker" aria-hidden="true">YENİ ALBÜM · RAH · ŞİMDİ ÇIKTI</p>
+  <h1 class="hero__title" id="heroTitle" aria-label="Abkountry"><span class="ch" aria-hidden="true"><i style="--i:0">A</i></span><span class="ch" aria-hidden="true"><i style="--i:1">B</i></span><span class="ch" aria-hidden="true"><i style="--i:2">K</i></span><span class="ch" aria-hidden="true"><i style="--i:3">O</i></span><span class="ch" aria-hidden="true"><i style="--i:4">U</i></span><span class="ch" aria-hidden="true"><i style="--i:5">N</i></span><span class="ch" aria-hidden="true"><i style="--i:6">T</i></span><span class="ch" aria-hidden="true"><i style="--i:7">R</i></span><span class="ch" aria-hidden="true"><i style="--i:8">Y</i></span></h1>
+  <div class="hero__actions">
+    <button class="btn btn--red" id="heroPlay" type="button" data-cursor="ÇAL"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg><span id="heroPlayLabel">RAH’ı dinle</span></button>
+    <button class="btn btn--ghost" type="button" data-yt="HCxWjP4lyfw" data-cursor="İZLE">Klibi izle</button>
+  </div>
+  <p class="hero__credit" aria-hidden="true">Görüntüler: Bir Alt Katın Şeytanı ft. Ethnique Punch (yön. Reha Kip)</p>
+  <button class="seal" id="heroSeal" type="button" data-cursor="ÇAL" aria-label="RAH albümünü çal">
+    <svg class="seal__ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="sealPath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#sealPath" textLength="498" lengthAdjust="spacing">RAH · İLK ALBÜM · ŞİMDİ ÇAL · RAH · İLK ALBÜM · ŞİMDİ ÇAL ·</textPath></text></svg>
+    <span class="seal__disc" aria-hidden="true"><img src="assets/img/kapak-rah.webp" alt=""></span>
+    <span class="seal__icon" aria-hidden="true"><svg class="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></span>
+  </button>
+
+  <div class="hero__top">
+    <span class="tag">ANKARA · 2019’DAN BERİ</span>
+    <span class="tag tag--red">YENİ ALBÜM · RAH</span>
+  </div>
+  <p class="hero__hint" id="heroHint" aria-hidden="true"></p>
+
+  <div class="hero__bottom">
+    <p class="hero__quote">
+      “Nasıl okunacağı belli olmayan, söylendiğinde nasıl yazılacağı belli olmayan.”
+      <strong>FARKLI.</strong>
+    </p>
+    <div class="hero__genre">
+      <span class="hero__genre-k">TÜR</span>
+      <span class="hero__genre-v" id="genre">ANADOLU EZGİSİ</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__band marquee__band--red">
+    <div class="marquee__track">
+      <span>ŞİMDİLİK RAHINROL</span><b>✶</b><span>DUMPSTAR REBELLION</span><b>✶</b><span>BİR ALT KATIN ŞEYTANI</span><b>✶</b><span>ANKARA YERALTI</span><b>✶</b>
+      <span>ŞİMDİLİK RAHINROL</span><b>✶</b><span>DUMPSTAR REBELLION</span><b>✶</b><span>BİR ALT KATIN ŞEYTANI</span><b>✶</b><span>ANKARA YERALTI</span><b>✶</b>
+    </div>
+  </div>
+  <div class="marquee__band marquee__band--bone">
+    <div class="marquee__track marquee__track--rev">
+      <span>MİHRAK</span><b>/</b><span>MUHABBET BAĞINDA</span><b>/</b><span>DERDİM</span><b>/</b><span>KURTAYİN</span><b>/</b><span>NEDEN OLDU</span><b>/</b><span>SERSERİ</span><b>/</b><span>OUTRO</span><b>/</b>
+      <span>MİHRAK</span><b>/</b><span>MUHABBET BAĞINDA</span><b>/</b><span>DERDİM</span><b>/</b><span>KURTAYİN</span><b>/</b><span>NEDEN OLDU</span><b>/</b><span>SERSERİ</span><b>/</b><span>OUTRO</span><b>/</b>
+    </div>
+  </div>
+</div>
+
+<!-- RAH -->
+<section class="rah" id="rah">
+  <div class="rah__stage" id="rahStage">
+    <div class="rah__sleeve">
+      <div class="rah__vinyl" id="vinyl"><div class="rah__label"><img src="assets/img/kapak-rah.webp" alt=""></div></div>
+      <img class="rah__cover" src="assets/img/kapak-rah.webp" alt="RAH albüm kapağı">
+    </div>
+  </div>
+
+  <div class="rah__info">
+    <p class="kicker">İLK ALBÜM · 26.06.2026 · PORTAL CO.</p>
+    <h2 class="rah__title">RAH</h2>
+    <p class="rah__lead">“Hep bir albümüm olsun istemiştim. Hakikatim, yolum, RAH sonunda sizlerle buluşuyor.”</p>
+    <p class="rah__note">8 şarkı · 34 dakika. Yılların emeği; ses, imge ve anlatının iç içe geçtiği, döngüsel bir yolculuk.</p>
+
+    <ol class="tracks" id="tracks">
+      <li data-cursor="ÇAL" data-uri="spotify:track:5gpstZuGkg808uhWGfxvO6"><span class="tracks__n">01</span><span class="tracks__t" data-scramble>Mihrak</span><span class="tracks__d">3:57</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:6BFmhFeGvkxSRkAtBp1xFn"><span class="tracks__n">02</span><span class="tracks__t" data-scramble>Muhabbet Bağında</span><span class="tracks__d">4:15</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:39yufULhxJFWY9KP3AFwyk"><span class="tracks__n">03</span><span class="tracks__t" data-scramble>Derdim</span><span class="tracks__d">3:59</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:166SA43Gu6fbRUqYhf2ntQ"><span class="tracks__n">04</span><span class="tracks__t" data-scramble>Kurtayin</span><span class="tracks__f">ft. AGAB</span><span class="tracks__d">4:22</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:10xNSzLdAf0AeoWBBuEQg2"><span class="tracks__n">05</span><span class="tracks__t" data-scramble>Bir Alt Katın Şeytanı</span><span class="tracks__f">ft. Ethnique Punch</span><span class="tracks__d">4:17</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:4JEWmLLgskCMw73dRf9zkf"><span class="tracks__n">06</span><span class="tracks__t" data-scramble>Neden Oldu</span><span class="tracks__d">4:33</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:6AImuQeHGosqZ5dfbVU7XI"><span class="tracks__n">07</span><span class="tracks__t" data-scramble>Serseri</span><span class="tracks__d">4:19</span></li>
+      <li data-cursor="ÇAL" data-uri="spotify:track:5r2RoM9fduX5zk4LJ35dPr"><span class="tracks__n">08</span><span class="tracks__t" data-scramble>Outro</span><span class="tracks__f">ft. Sercan Debeleç</span><span class="tracks__d">4:23</span></li>
+    </ol>
+
+    <div class="rah__player" id="player">
+      <div class="deck" id="deck">
+        <button class="deck__btn deck__btn--sm" id="deckPrev" type="button" aria-label="Önceki parça" data-cursor="ÖNCEKİ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+        <button class="deck__btn deck__play" id="deckPlay" type="button" aria-label="Çal / duraklat" data-cursor="ÇAL"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button>
+        <button class="deck__btn deck__btn--sm" id="deckNext" type="button" aria-label="Sonraki parça" data-cursor="SONRAKİ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+        <div class="deck__info">
+          <span class="deck__now" id="deckNow">RAH · 8 şarkı</span>
+          <div class="deck__bar" id="deckBar" data-cursor="SAR"><i id="deckFill"></i></div>
+          <span class="deck__time" id="deckTime">Bir parçaya ya da çal düğmesine bas</span>
+        </div>
+      </div>
+      <div class="deck__embed"><div id="spotifyEmbed"></div><button class="deck__shield" id="deckShield" type="button" aria-label="Çal / duraklat" data-cursor="ÇAL"></button></div>
+      <p class="deck__note">Spotify’a bu tarayıcıda giriş yapılmışsa şarkının tamamı, yapılmamışsa 30 saniyelik önizlemesi çalar.</p>
+      <div class="rah__links">
+        <a href="https://open.spotify.com/album/1NTx1MgoYoteRZaNK6VMJX" target="_blank" rel="noopener" class="chip" data-cursor="AÇ">Spotify</a>
+        <a href="https://music.apple.com/tr/artist/abkountry/919090569" target="_blank" rel="noopener" class="chip" data-cursor="AÇ">Apple Music</a>
+        <a href="https://www.youtube.com/channel/UCqL_vE2_kuTPAYUYlhvVeGA" target="_blank" rel="noopener" class="chip" data-cursor="AÇ">YouTube</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANİFESTO -->
+<section class="manifesto" id="manifesto">
+  <p class="kicker kicker--center">ABKOUNTRY’NİN KENDİ SÖZLERİYLE</p>
+  <p class="manifesto__text" id="manifestoText">Arayışım yol oldu, kayboluşlarım arayış. Dostlarım bilir beni, samimiyetten bahsederim hep. Derin kuytularda ararım hakikati.</p>
+  <p class="manifesto__sign">· Abkountry, RAH çıkış gecesi</p>
+</section>
+
+<!-- KLİPLER -->
+<section class="reel" id="klipler">
+  <div class="reel__sticky">
+    <div class="reel__head">
+      <p class="kicker">KLİPLER · 2019 → 2026</p>
+      <h2 class="h-display">Gözle <br>dinle.</h2>
+      <p class="reel__hint">Kaydır, seç, oynat.</p>
+    </div>
+    <div class="reel__track" id="reelTrack">
+      <button class="vcard" data-yt="HCxWjP4lyfw" data-cursor="İZLE">
+        <img src="assets/img/yt-HCxWjP4lyfw.webp" alt="" loading="lazy">
+        <span class="vcard__year">2026</span>
+        <span class="vcard__title">Bir Alt Katın Şeytanı</span>
+        <span class="vcard__meta">ft. Ethnique Punch · Yön. Reha Kip</span>
+      </button>
+      <button class="vcard" data-yt="_DBnmtjo-yE" data-cursor="İZLE">
+        <img src="assets/img/yt-_DBnmtjo-yE.webp" alt="" loading="lazy">
+        <span class="vcard__year">2026</span>
+        <span class="vcard__title">Neden Oldu</span>
+        <span class="vcard__meta">“Yeniden başla, yeniden kaybet.”</span>
+      </button>
+      <button class="vcard" data-yt="XK-o-G44tM0" data-cursor="İZLE">
+        <img src="assets/img/yt-XK-o-G44tM0.webp" alt="" loading="lazy">
+        <span class="vcard__year">2024</span>
+        <span class="vcard__title">Serseri</span>
+        <span class="vcard__meta">Yön. Reha Kip · Kreamark Studio</span>
+      </button>
+      <button class="vcard" data-yt="7hsAJWQl2ho" data-cursor="İZLE">
+        <img src="assets/img/yt-7hsAJWQl2ho.webp" alt="" loading="lazy">
+        <span class="vcard__year">2023</span>
+        <span class="vcard__title">Yoldayım</span>
+        <span class="vcard__meta">Sofar Sounds Ankara · Cam Piramit</span>
+      </button>
+      <button class="vcard" data-yt="PXSSsG3I0Uk" data-cursor="İZLE">
+        <img src="assets/img/yt-PXSSsG3I0Uk.webp" alt="" loading="lazy">
+        <span class="vcard__year">2021</span>
+        <span class="vcard__title">Daha Kaç Çeşit Hoşçakal</span>
+        <span class="vcard__meta">Surf Arabesk 1.1 · Fırat Ağacık &amp; Abkountry</span>
+      </button>
+      <button class="vcard" data-yt="QX8fAX-Too4" data-cursor="İZLE">
+        <img src="assets/img/yt-QX8fAX-Too4.webp" alt="" loading="lazy">
+        <span class="vcard__year">2021</span>
+        <span class="vcard__title">Sen Bana Mecbur Değilsin</span>
+        <span class="vcard__meta">Surf Arabesk 1.2</span>
+      </button>
+      <button class="vcard" data-yt="vvRLyq4Q1OU" data-cursor="İZLE">
+        <img src="assets/img/yt-vvRLyq4Q1OU.webp" alt="" loading="lazy">
+        <span class="vcard__year">2020</span>
+        <span class="vcard__title">Kızıl</span>
+        <span class="vcard__meta">İnorganik Müzik</span>
+      </button>
+      <button class="vcard" data-yt="IygCvt_RpqQ" data-cursor="İZLE">
+        <img src="assets/img/yt-IygCvt_RpqQ.webp" alt="" loading="lazy">
+        <span class="vcard__year">2020</span>
+        <span class="vcard__title">Yaşa</span>
+        <span class="vcard__meta">“Büyüdükçe, küçülüyoruz.”</span>
+      </button>
+      <button class="vcard" data-yt="f1KCliBwwco" data-cursor="İZLE">
+        <img src="assets/img/yt-f1KCliBwwco.webp" alt="" loading="lazy">
+        <span class="vcard__year">2019</span>
+        <span class="vcard__title">Beni Bulun</span>
+        <span class="vcard__meta">İlk solo adım</span>
+      </button>
+    </div>
+    <div class="reel__progress"><i id="reelProgress"></i></div>
+  </div>
+</section>
+
+<!-- RAKAMLAR -->
+<section class="numbers" id="rakamlar">
+  <p class="kicker">RAKAMLAR · KASIM 2026</p>
+  <div class="numbers__grid">
+    <div class="num">
+      <span class="num__v" data-count="4.8" data-dec="1">0</span><span class="num__u">Mn+</span>
+      <span class="num__k">Daha Kaç Çeşit Hoşçakal, Spotify dinlenmesi</span>
+    </div>
+    <div class="num">
+      <span class="num__v" data-count="98.6" data-dec="1">0</span><span class="num__u">bin</span>
+      <span class="num__k">Aylık Spotify dinleyicisi</span>
+    </div>
+    <div class="num">
+      <span class="num__v" data-count="880" data-dec="0">0</span><span class="num__u">bin+</span>
+      <span class="num__k">Surf Arabesk klipleri, YouTube izlenmesi</span>
+    </div>
+    <div class="num">
+      <span class="num__v" data-count="136" data-dec="0">0</span><span class="num__u">ülke</span>
+      <span class="num__k">Dinlendiği ülke sayısı (Spotify Wrapped 2022)</span>
+    </div>
+  </div>
+  <p class="numbers__foot">Reklamla değil, kulaktan kulağa büyüyen bir dinleyici kitlesi.</p>
+</section>
+
+<!-- YOL -->
+<section class="road" id="yol">
+  <div class="road__head">
+    <p class="kicker">YOL</p>
+    <h2 class="h-display">Türler onu<br>takip ediyor.</h2>
+  </div>
+  <div class="panels" id="panels">
+    <article class="panel is-open" style="--bg:url('../assets/img/kapak-rah.webp')" tabindex="0">
+      <span class="panel__year">2026</span>
+      <div class="panel__body">
+        <h3>RAH</h3>
+        <p>İlk albüm 26 Haziran’da Portal Co. etiketiyle çıktı. 1 Ağustos’ta Unite’ta lansman, sergi ve söyleşi. Ekimde “Bir Alt Katın Şeytanı” klibi yayında.</p>
+      </div>
+    </article>
+    <article class="panel" style="--bg:url('../assets/img/odul-radyo-bogazici.webp')" tabindex="0">
+      <span class="panel__year">2025</span>
+      <div class="panel__body">
+        <h3>Ödül ve gece</h3>
+        <p>AGAB ile kaydedilen türler arası parça, Radyo Boğaziçi Müzik Ödülleri’nde “En İyi Düet” seçiliyor. Ottoman Vampires olarak Zorlu PSM’de MIXFEST sahnesi.</p>
+      </div>
+    </article>
+    <article class="panel" style="--bg:url('../assets/img/kapak-serseri.webp')" tabindex="0">
+      <span class="panel__year">2024</span>
+      <div class="panel__body">
+        <h3>Serseri</h3>
+        <p>Uzun bir aradan sonra ilk solo tekli. Yönetmen Reha Kip, sanat yönetmeni Ekin Başak Akgül. Aynı yıl Zorlu PSM’de AGAB ile tarihi bir konser.</p>
+      </div>
+    </article>
+    <article class="panel" style="--bg:url('../assets/img/yt-7hsAJWQl2ho.webp')" tabindex="0">
+      <span class="panel__year">2023</span>
+      <div class="panel__body">
+        <h3>Cam Piramit</h3>
+        <p>Sofar Sounds Ankara’da “Yoldayım”. Duygu yoğunluğu yüksek gitar riffleri, orb.one’ın ritimleriyle birleşiyor.</p>
+      </div>
+    </article>
+    <article class="panel" style="--bg:url('../assets/img/surf-arabesk-kalpler.webp')" tabindex="0">
+      <span class="panel__year">2021</span>
+      <div class="panel__body">
+        <h3>Surf Arabesk</h3>
+        <p>Fırat Ağacık ile Universal Music etiketinde dört parçalık seri. “Daha Kaç Çeşit Hoşçakal” milyonlarca dinlenmeye ulaşıyor.</p>
+      </div>
+    </article>
+    <article class="panel" style="--bg:url('../assets/img/gravur-portre.webp')" tabindex="0">
+      <span class="panel__year">2019</span>
+      <div class="panel__body">
+        <h3>Beni Bulun</h3>
+        <p>“Abkountry” doğuyor. İnorganik Müzik’ten “Beni Bulun”, “Okült”; Yiğit Seferoğlu ve Fırat Ağacık ile Life is Peachy serisi.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PROJELER -->
+<section class="crew" id="projeler">
+  <p class="kicker">YAN YOLLAR</p>
+  <h2 class="h-display crew__title">Çeteler.</h2>
+  <ul class="crew__list" id="crew">
+    <li data-img="assets/img/surf-arabesk-logo.webp"><a class="crew__link" href="https://www.instagram.com/surfarabesk/" target="_blank" rel="noopener" data-cursor="AÇ"><span class="crew__n">I</span><span class="crew__t">Surf Arabesk <i class="crew__arrow" aria-hidden="true">↗</i></span><span class="crew__d">Fırat Ağacık ile · Universal Music</span></a></li>
+    <li data-img="assets/img/grape-kapak.webp"><button class="crew__link" type="button" data-yt="7EKPjfEYa2o" data-cursor="İZLE"><span class="crew__n">II</span><span class="crew__t">Life is Peachy <i class="crew__arrow" aria-hidden="true">▶</i></span><span class="crew__d">P.E.A.C.H. · C.H.E.R.R.Y. · G.R.A.P.E.</span></button></li>
+    <li data-img="assets/img/sahne-zorlu.webp"><a class="crew__link" href="https://www.instagram.com/agab.ando/" target="_blank" rel="noopener" data-cursor="AÇ"><span class="crew__n">III</span><span class="crew__t">Agabando <i class="crew__arrow" aria-hidden="true">↗</i></span><span class="crew__d">AGAB ile sahne · Babylon, IF, Zorlu PSM</span></a></li>
+    <li data-img="assets/img/kirmizi-sahne.webp"><a class="crew__link" href="https://www.instagram.com/ottomanvampires/" target="_blank" rel="noopener" data-cursor="AÇ"><span class="crew__n">IV</span><span class="crew__t" lang="en">Ottoman Vampires <i class="crew__arrow" aria-hidden="true">↗</i></span><span class="crew__d">Darkwave · NEUNORM · MIXFEST ’25</span></a></li>
+  </ul>
+  <div class="crew__float" id="crewFloat" aria-hidden="true"><img src="" alt=""></div>
+</section>
+
+<!-- SAHNE: 3D DUVAR -->
+<section class="wall" id="sahne">
+  <div class="wall__head">
+    <p class="kicker">SAHNE</p>
+    <h2 class="h-display">Ter, duman,<br>riff.</h2>
+  </div>
+  <div class="wall__viewport" aria-label="Sahne fotoğrafları">
+    <div class="wall__plane">
+      <div class="wall__col"><div class="wall__inner">
+        <figure><img src="assets/img/sahne-gitar.webp" alt="Sahnede gitar" loading="lazy"><figcaption>Blind İstanbul</figcaption></figure>
+        <figure><img src="assets/img/kamyon.webp" alt="Eski kamyonun önünde" loading="lazy"><figcaption>Look at you now.</figcaption></figure>
+        <figure><img src="assets/img/kirmizi-sahne.webp" alt="Kırmızı ışıkta sahne" loading="lazy"><figcaption>MIXFEST ’25 · Zorlu PSM</figcaption></figure>
+        <figure><img src="assets/img/sahne-gitar.webp" alt="" loading="lazy"><figcaption>Blind İstanbul</figcaption></figure>
+        <figure><img src="assets/img/kamyon.webp" alt="" loading="lazy"><figcaption>Look at you now.</figcaption></figure>
+        <figure><img src="assets/img/kirmizi-sahne.webp" alt="" loading="lazy"><figcaption>MIXFEST ’25 · Zorlu PSM</figcaption></figure>
+      </div></div>
+      <div class="wall__col wall__col--rev"><div class="wall__inner">
+        <figure><img src="assets/img/sahne-zorlu.webp" alt="Zorlu PSM sahnesi" loading="lazy"><figcaption>24.02.24 · Zorlu PSM</figcaption></figure>
+        <figure><img src="assets/img/katakomp.webp" alt="Kafataslarıyla dolu duvar önünde portre" loading="lazy"><figcaption>Neden Oldu</figcaption></figure>
+        <figure><img src="assets/img/akustik.webp" alt="Akustik gitarla" loading="lazy"><figcaption>Rolestreet Discovery</figcaption></figure>
+        <figure><img src="assets/img/sahne-zorlu.webp" alt="" loading="lazy"><figcaption>24.02.24 · Zorlu PSM</figcaption></figure>
+        <figure><img src="assets/img/katakomp.webp" alt="" loading="lazy"><figcaption>Neden Oldu</figcaption></figure>
+        <figure><img src="assets/img/akustik.webp" alt="" loading="lazy"><figcaption>Rolestreet Discovery</figcaption></figure>
+      </div></div>
+      <div class="wall__col"><div class="wall__inner">
+        <figure><img src="assets/img/sahne-kirmizi.webp" alt="Elektro gitarla sahne" loading="lazy"><figcaption>Babylon Soundgarden</figcaption></figure>
+        <figure><img src="assets/img/kalabalik.webp" alt="Kalabalık önünde eğilmiş" loading="lazy"><figcaption>Akbank Caz Festivali</figcaption></figure>
+        <figure><img src="assets/img/mavi-portre.webp" alt="Mavi ışıkta portre" loading="lazy"><figcaption>Razor Invader</figcaption></figure>
+        <figure><img src="assets/img/sahne-kirmizi.webp" alt="" loading="lazy"><figcaption>Babylon Soundgarden</figcaption></figure>
+        <figure><img src="assets/img/kalabalik.webp" alt="" loading="lazy"><figcaption>Akbank Caz Festivali</figcaption></figure>
+        <figure><img src="assets/img/mavi-portre.webp" alt="" loading="lazy"><figcaption>Razor Invader</figcaption></figure>
+      </div></div>
+      <div class="wall__col wall__col--rev"><div class="wall__inner">
+        <figure><img src="assets/img/sahne-golge.webp" alt="Işık hüzmesinde siluet" loading="lazy"><figcaption>Hangout PSM · İzmir</figcaption></figure>
+        <figure><img src="assets/img/portre-sb.webp" alt="Siyah beyaz portre" loading="lazy"><figcaption lang="en">Whiskey y’all</figcaption></figure>
+        <figure><img src="assets/img/yesil-sahne.webp" alt="Yeşil ışıkta sahne" loading="lazy"><figcaption>14.04.23 · Babylon</figcaption></figure>
+        <figure><img src="assets/img/sahne-golge.webp" alt="" loading="lazy"><figcaption>Hangout PSM · İzmir</figcaption></figure>
+        <figure><img src="assets/img/portre-sb.webp" alt="" loading="lazy"><figcaption lang="en">Whiskey y’all</figcaption></figure>
+        <figure><img src="assets/img/yesil-sahne.webp" alt="" loading="lazy"><figcaption>14.04.23 · Babylon</figcaption></figure>
+      </div></div>
+      <div class="wall__col"><div class="wall__inner">
+        <figure><img src="assets/img/sahne-isik.webp" alt="Işıklar altında gitar" loading="lazy"><figcaption>01.03.24 · IF Performance</figcaption></figure>
+        <figure><img src="assets/img/afis-rah-lansman.webp" alt="RAH lansman afişi" loading="lazy"><figcaption>01.08.26 · Unite</figcaption></figure>
+        <figure><img src="assets/img/mavi-sahne.webp" alt="Mavi sahne" loading="lazy"><figcaption>14.07.23 · IF Beşiktaş</figcaption></figure>
+        <figure><img src="assets/img/sahne-isik.webp" alt="" loading="lazy"><figcaption>01.03.24 · IF Performance</figcaption></figure>
+        <figure><img src="assets/img/afis-rah-lansman.webp" alt="" loading="lazy"><figcaption>01.08.26 · Unite</figcaption></figure>
+        <figure><img src="assets/img/mavi-sahne.webp" alt="" loading="lazy"><figcaption>14.07.23 · IF Beşiktaş</figcaption></figure>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DUVAR: YORUMLAR -->
+<section class="board" id="duvar">
+  <div class="board__head">
+    <p class="kicker">DUVARDAKİ YAZILAR</p>
+    <h2 class="h-display">“Kimse<br>keşfetmesin.”</h2>
+    <p class="board__sub">Dinleyiciler yorumlara bunu yazdı. Geç kaldılar. Notları sürükle, karıştır.</p>
+  </div>
+  <div class="board__area" id="board">
+    <div data-cursor="SÜRÜKLE" class="note">kimse keşfetmesin lütfen lütfen lütfen lütfen<small>Beni Bulun</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--red">Harbiden başkentin suyu bir başka oluyor.<small>Kızıl</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">bilinmesin sadece bize kalsın :)<small>Yaşa</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--dark">Kaliteli müzikle izlenme sayısının hiç alakasının olmadığını kanıtlayan bir şarkı daha.<small>Neden Oldu</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">zamanın ötesinde, şimdi ve ebediyen<small>Yaşa</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--red">vaziyet alın burası değerlenecek<small>Sen Bana Mecbur Değilsin</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">Gitarının teline kurban<small>Yaşa</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--dark">hepimiz birer serseriyiz.<small>Serseri</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">Dinlediğim en tuhaf ve güzel parçalardan olabilir<small>Beni Bulun</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--red">Aranan kan bulundu<small>Kızıl</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">Riffler mükemmel<small>Yoldayım · Sofar Ankara</small></div>
+    <div data-cursor="SÜRÜKLE" class="note note--dark">İlerde dolacak buralar.<small>Yaşa</small></div>
+    <div data-cursor="SÜRÜKLE" class="note">Buldum seni ;)<small>Beni Bulun</small></div>
+  </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section class="contact" id="iletisim">
+  <div class="contact__bg" aria-hidden="true"><img src="assets/img/bogakafatasi.webp" alt=""></div>
+  <p class="kicker kicker--center">KONSER · KAYIT · İŞBİRLİĞİ</p>
+  <a class="contact__big" href="https://www.instagram.com/abkountry/" target="_blank" rel="noopener" data-cursor="YAZ">
+    <span class="contact__line">Sahneye</span>
+    <span class="contact__line contact__line--out">çağır.</span>
+  </a>
+  <p class="contact__sub">Konser, festival ve işbirliği talepleri için Instagram üzerinden yazın.</p>
+  <div class="contact__links">
+    <a href="https://www.instagram.com/abkountry/" target="_blank" rel="noopener" data-cursor="AÇ">Instagram</a>
+    <a href="https://open.spotify.com/artist/5aqQNbKTyAIbtWysPRhF2S" target="_blank" rel="noopener" data-cursor="AÇ">Spotify</a>
+    <a href="https://www.youtube.com/channel/UCqL_vE2_kuTPAYUYlhvVeGA" target="_blank" rel="noopener" data-cursor="AÇ">YouTube</a>
+    <a href="https://music.apple.com/tr/artist/abkountry/919090569" target="_blank" rel="noopener" data-cursor="AÇ">Apple Music</a>
+    <a href="https://www.threads.net/@abkountry" target="_blank" rel="noopener" data-cursor="AÇ">Threads</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p class="footer__wish">Bir gün bu çürümenin sağlıklı bir ekosisteme dönüşmesi dileğiyle.</p>
+  <p class="footer__big">ŞİMDİLİK RAHINROL</p>
+  <div class="footer__row">
+    <span>© 2026 Abkountry · Ankara</span>
+    <a href="#top" data-cursor="YUKARI">Başa dön ↑</a>
+  </div>
+</footer>
+
+<!-- Video modalı -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Video oynatıcı" hidden>
+  <button class="modal__close" id="modalClose" aria-label="Kapat" data-cursor="KAPAT">✕</button>
+  <div class="modal__frame" id="modalFrame"></div>
+  <a class="modal__yt" id="modalYt" href="#" target="_blank" rel="noopener" data-cursor="AÇ">Video açılmazsa YouTube’da izle ↗</a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
