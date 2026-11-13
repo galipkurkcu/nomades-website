@@ -5294,3 +5294,12 @@ html[data-cursor] :is(.cursor-dot, .cursor-ring) { display: none; }
 
 /* Hero: kivilcim katmani */
 #hero-embers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+
+/* Hero basligi: italik harflerin sola/saga tasan kuyruklari kesilmesin
+   (satir maskesi + yaziya kirpilan parlama, ikisi de kutuyu genisletir) */
+.hero-h1 .line { padding-left: .14em; padding-right: .14em; margin-left: -.14em; margin-right: -.14em; }
+.hero-h1 em {
+  padding: 0 .14em; margin: 0 -.14em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}

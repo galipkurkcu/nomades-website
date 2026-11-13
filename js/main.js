@@ -905,7 +905,7 @@ function initContactForm() {
 
     const HOT = 'a, button, [data-agent-id], .drag-scroll, .trio-panel:not(.is-active), .creed-row, .diff-row, .stat-item';
     const LABELS = {
-      story: { en: 'Read story', tr: 'Hikâyeyi oku' },
+      story: { en: 'Read story', tr: 'Hikayeyi oku' },
       drag:  { en: 'Drag', tr: 'Sürükle' },
       send:  { en: 'Send', tr: 'Gönder' },
       open:  { en: 'Open', tr: 'Aç' },
