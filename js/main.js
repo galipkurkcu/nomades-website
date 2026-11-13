@@ -772,3 +772,439 @@ function initContactForm() {
   }, { threshold: 0.12 });
   io.observe(list);
 })();
+
+
+/* ═══════════════════════════════════════
+   2026-11 · Bolum davranislari + Sinyal imleci
+═══════════════════════════════════════ */
+
+(function () {
+  const root = document.documentElement;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = window.matchMedia('(hover: none)').matches;
+
+
+  /* ── 2a · Hizmetler: uc panel ───────────────────────────── */
+
+  function initTrio() {
+    const trio = document.querySelector('[data-trio]');
+    if (!trio) return;
+    const panels = Array.from(trio.querySelectorAll('.trio-panel'));
+    const wide = window.matchMedia('(min-width: 901px)');
+    let timer = null;
+
+    const activate = p => panels.forEach(x => x.classList.toggle('is-active', x === p));
+    const stopAuto = () => { trio.classList.remove('is-auto', 'is-running'); clearInterval(timer); timer = null; };
+
+    panels.forEach(p => {
+      p.addEventListener('mouseenter', () => { if (wide.matches) { stopAuto(); activate(p); } });
+      p.addEventListener('focus', () => { stopAuto(); activate(p); });
+      p.addEventListener('click', () => { stopAuto(); activate(p); });
+      // Acik panelin gorseli fareyi hafifce izler
+      if (!noHover && !reduced) {
+        p.addEventListener('mousemove', e => {
+          const r = p.getBoundingClientRect();
+          p.style.setProperty('--mx', ((e.clientX - r.left) / r.width - .5).toFixed(3));
+          p.style.setProperty('--my', ((e.clientY - r.top) / r.height - .5).toFixed(3));
+        });
+        p.addEventListener('mouseleave', () => { p.style.setProperty('--mx', 0); p.style.setProperty('--my', 0); });
+      }
+    });
+
+    // Kullanici dokunana kadar paneller sirayla kendiliginden acilir (yalniz ekrandayken)
+    if (reduced || !('IntersectionObserver' in window)) { stopAuto(); return; }
+    new IntersectionObserver(entries => {
+      if (!trio.classList.contains('is-auto')) return;
+      const on = entries[0].isIntersecting && wide.matches;
+      trio.classList.toggle('is-running', on);
+      clearInterval(timer); timer = null;
+      if (on) timer = setInterval(() => {
+        const i = panels.findIndex(x => x.classList.contains('is-active'));
+        activate(panels[(i + 1) % panels.length]);
+      }, 6500);
+    }, { threshold: 0.45 }).observe(trio);
+  }
+
+
+  /* ── 2b · Surec: kaydirdikca dolan hat ──────────────────── */
+
+  function initRail() {
+    const rail = document.querySelector('[data-rail]');
+    if (!rail) return;
+    const steps = Array.from(rail.querySelectorAll('.rail-step'));
+    let queued = false;
+
+    function update() {
+      queued = false;
+      const r = rail.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const vertical = parseFloat(getComputedStyle(rail).borderLeftWidth) > 0;
+      // Yatay hat: bolum ekrana girdikce dolar ve 05'in dugumunde biter.
+      // Dikey hat: ekranin ortasina kadar olan kisim dolar.
+      let p = vertical ? (vh * 0.62 - r.top) / r.height : (vh * 0.86 - r.top) / (vh * 0.5);
+      p = Math.max(0, Math.min(1, p));
+      rail.style.setProperty('--p', p.toFixed(4));
+      steps.forEach((s, i) => {
+        const at = vertical ? (s.offsetTop + 24) / rail.offsetHeight : i / (steps.length - 1) - 0.004;
+        s.classList.toggle('is-lit', p > 0 && p >= at);
+      });
+    }
+    const ask = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', ask, { passive: true });
+    window.addEventListener('resize', ask, { passive: true });
+    update();
+  }
+
+
+  /* ── 2c · Biz Kimiz: satirlarda 3B egim (Ordu kartlariyla ayni his) ── */
+
+  function initCreedTilt() {
+    if (noHover || reduced) return;
+    document.querySelectorAll('.creed-row').forEach(row => {
+      row.addEventListener('mouseenter', () => { row.style.transition = 'transform .1s linear'; });
+      row.addEventListener('mousemove', e => {
+        const r = row.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width * .5)) / (r.width * .5);
+        const dy = (e.clientY - (r.top + r.height * .5)) / (r.height * .5);
+        row.style.transform = `perspective(1100px) rotateX(${(dy * -5).toFixed(2)}deg) rotateY(${(dx * 2).toFixed(2)}deg) translateZ(8px)`;
+      });
+      row.addEventListener('mouseleave', () => {
+        row.style.transition = 'transform .65s cubic-bezier(.22,1,.36,1)';
+        row.style.transform = '';
+        setTimeout(() => { row.style.transition = ''; }, 700);
+      });
+    });
+  }
+
+
+  /* ── 3 · Imlec: Sinyal ──────────────────────────────────── */
+
+  function initCursor() {
+    if (noHover) { delete root.dataset.cursor; return; }
+
+    const cur = document.createElement('div');
+    cur.id = 'dr-cur';
+    cur.className = 'is-out';
+    cur.setAttribute('aria-hidden', 'true');
+    cur.innerHTML = `
+      <div class="dc-core"><svg viewBox="0 0 30 30" fill="none" stroke="#F0AA00" stroke-width="1.5">
+        <path d="M15 2v9M15 19v9M2 15h9M19 15h9"/><circle cx="15" cy="15" r="1.7" fill="#F0AA00" stroke="none"/>
+      </svg></div>
+      <div class="dc-label"></div>`;
+    document.body.appendChild(cur);
+    const core = cur.querySelector('.dc-core');
+    const label = cur.querySelector('.dc-label');
+
+    document.addEventListener('mousemove', e => {
+      cur.classList.remove('is-out');
+      const t = `translate3d(${e.clientX}px,${e.clientY}px,0)`;
+      core.style.transform = t;
+      label.style.transform = t;
+    });
+    document.documentElement.addEventListener('mouseleave', () => cur.classList.add('is-out'));
+
+    const HOT = 'a, button, [data-agent-id], .drag-scroll, .trio-panel:not(.is-active), .creed-row, .diff-row, .stat-item';
+    const LABELS = {
+      story: { en: 'Read story', tr: 'Hikâyeyi oku' },
+      drag:  { en: 'Drag', tr: 'Sürükle' },
+      send:  { en: 'Send', tr: 'Gönder' },
+      open:  { en: 'Open', tr: 'Aç' },
+      go:    { en: 'Go', tr: 'Git' }
+    };
+    document.addEventListener('mouseover', e => {
+      const t = e.target instanceof Element ? e.target : null;
+      if (!t) return;
+      cur.classList.toggle('is-text', !!t.closest('input, textarea, select'));
+      const hot = t.closest(HOT);
+      cur.classList.toggle('is-hover', !!hot);
+      let key = null;
+      if (hot) {
+        if (t.closest('[data-agent-id]')) key = 'story';
+        else if (t.closest('.cf-submit')) key = 'send';
+        else if (t.closest('a[href]')) key = 'go';
+        else if (t.closest('.trio-panel')) key = 'open';
+        else if (t.closest('.drag-scroll')) key = 'drag';
+      }
+      cur.classList.toggle('has-label', !!key);
+      if (key) label.textContent = LABELS[key][root.lang === 'tr' ? 'tr' : 'en'];
+    });
+
+    document.addEventListener('mousedown', e => {
+      cur.classList.add('is-down');
+      for (let i = 0; i < 2; i++) {
+        const p = document.createElement('div');
+        p.className = 'dc-pulse';
+        p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+        document.body.appendChild(p);
+        p.addEventListener('animationend', () => p.remove());
+      }
+    });
+    document.addEventListener('mouseup', () => cur.classList.remove('is-down'));
+  }
+
+  // panellerin nasil acilacagina (kaydirma ya da uzerine gelme) sahne kodu karar verir
+  window.__trioHover = initTrio;
+  document.addEventListener('DOMContentLoaded', () => { initRail(); initCreedTilt(); initCursor(); });
+})();
+
+
+/* ═══════════════════════════════════════
+   2026-11 · Canli hero, sabitlenen hizmet sahnesi, basliklar
+═══════════════════════════════════════ */
+
+(function () {
+  const root = document.documentElement;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const noHover = window.matchMedia('(hover: none)').matches;
+  const lang = () => (root.lang === 'tr' ? 'tr' : 'en');
+  const tr = key => (TRANSLATIONS[lang()] || TRANSLATIONS.en)[key] || TRANSLATIONS.en[key] || '';
+  // Sayfa koordinati: gorunme animasyonlarinin gecici kaydirmasindan etkilenmez
+  const pageBox = el => {
+    let x = 0, y = 0, n = el;
+    while (n) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+    return { x, y, w: el.offsetWidth, h: el.offsetHeight };
+  };
+
+
+  /* ── 4 · Sabitlenen hizmet sahnesi ──────────────────────── */
+
+  function initPin() {
+    const pin = document.querySelector('[data-trio-pin]');
+    const trio = pin && pin.querySelector('.trio');
+    if (!trio) return;
+    const hint = document.querySelector('.trio-hint');
+    const panels = Array.from(trio.querySelectorAll('.trio-panel'));
+    const navH = parseInt(getComputedStyle(root).getPropertyValue('--nav-h'), 10) || 96;
+
+    // Sahne yalniz yeterince genis ve yuksek ekranda kilitlenir; degilse onceki
+    // davranis (uzerine gelince acilma, mobilde alt alta) aynen calisir.
+    const fits = () => innerWidth > 900 && innerHeight >= 800 && !reduced;
+    if (!fits()) { if (window.__trioHover) window.__trioHover(); return; }
+
+    pin.classList.add('is-pinned');
+    trio.classList.remove('is-auto');
+    if (hint) { hint.dataset.i18n = 'trio.hint.pin'; hint.textContent = tr('trio.hint.pin'); }
+
+    let top = 0, h = 0;
+    function measure() {
+      h = Math.min(800, Math.max(620, innerHeight - navH - 44));
+      top = navH + Math.max(12, (innerHeight - navH - h) / 2);
+      pin.style.setProperty('--trio-h', h + 'px');
+      pin.style.setProperty('--trio-top', top + 'px');
+      pin.classList.toggle('is-short', innerHeight < 860);
+    }
+    function update() {
+      const r = pin.getBoundingClientRect();
+      const span = r.height - h;
+      const p = Math.max(0, Math.min(0.9999, (top - r.top) / span));
+      const i = Math.floor(p * panels.length);
+      panels.forEach((x, k) => {
+        x.classList.toggle('is-active', k === i);
+        if (k === i) x.style.setProperty('--sp', (p * panels.length - i).toFixed(3));
+      });
+    }
+    // Kapali panele tiklamak o panelin kaydirma konumuna goturur
+    panels.forEach((x, k) => {
+      const go = () => {
+        if (x.classList.contains('is-active')) return;
+        const r = pin.getBoundingClientRect();
+        const span = r.height - h;
+        window.scrollTo({ top: r.top + scrollY - top + span * ((k + 0.12) / panels.length), behavior: 'smooth' });
+      };
+      x.addEventListener('click', go);
+      x.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+    measure(); update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
+  }
+
+
+  /* ── 2 · Parazitten sinyale basliklar ───────────────────── */
+
+  function initScramble() {
+    if (reduced) return;
+    const heads = document.querySelectorAll('.hero-h1, .services-headline, .process-headline, .army-section-title, .manifesto-display, .signal-h2, .diff-headline, .cta-headline');
+
+    function run(leaf) {
+      const final = leaf.textContent;
+      const pool = Array.from(final.replace(/\s/g, ''));
+      if (pool.length < 2) return;
+      const startLang = root.lang;
+      const dur = 520 + final.length * 34;
+      const t0 = performance.now();
+      let last = 0;
+      (function tick(now) {
+        if (root.lang !== startLang) return;                 // dil degistiyse yeni metne dokunma
+        const t = Math.min(1, (now - t0) / dur);
+        if (t >= 1) { leaf.textContent = final; return; }
+        if (now - last > 45) {
+          last = now;
+          const fixed = Math.floor(t * final.length);
+          let out = '';
+          for (let i = 0; i < final.length; i++) {
+            out += (i < fixed || /\s/.test(final[i])) ? final[i] : pool[(Math.random() * pool.length) | 0];
+          }
+          leaf.textContent = out;
+        }
+        requestAnimationFrame(tick);
+      })(t0);
+    }
+    function play(h) {
+      h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
+      const leaves = h.querySelectorAll('[data-i18n]');
+      (leaves.length ? leaves : [h]).forEach((leaf, i) => {
+        if (leaf.children.length) return;                    // yalniz duz metin tasiyan ogeler
+        setTimeout(() => run(leaf), i * 160);
+      });
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        setTimeout(() => play(e.target), e.target.classList.contains('hero-h1') ? 700 : 120);
+      });
+    }, { threshold: 0.45 });
+    heads.forEach(h => io.observe(h));
+  }
+
+
+  /* ── 3 · Canli hero ─────────────────────────────────────── */
+
+  function initHeroLive() {
+    const hero = document.querySelector('.hero');
+    const host = document.querySelector('.hero-parallax');
+    const fog = document.querySelector('.hero-pax-fog');
+    if (!hero || !host || reduced) return;
+
+    const cv = document.createElement('canvas');
+    cv.id = 'hero-live';
+    cv.setAttribute('aria-hidden', 'true');
+    const gl = cv.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
+    if (!gl) return;                                         // WebGL yoksa sabit gorsel kalir
+
+    const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+    const FS = `
+      precision mediump float;
+      uniform vec2 r; uniform float t;
+      float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+      float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+        return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}
+      float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}
+      void main(){
+        vec2 p=(gl_FragCoord.xy-.5*r)/r.y;
+        // yavasca akan bulut: imlecten bagimsiz, hic bukulmez
+        vec2 q=p*1.55+vec2(t*.030,-t*.018);
+        vec2 w=vec2(fbm(q+vec2(0.,t*.05)),fbm(q+vec2(5.2,1.3)-t*.04));
+        float f=fbm(q+2.3*w);
+        float cloud=smoothstep(.40,.95,f);
+        vec3 col=mix(vec3(.62,.09,.04),vec3(.94,.62,.02),smoothstep(.48,.9,f))*cloud*.50;
+        col+=vec3(1.,.78,.36)*pow(cloud,5.)*.55;
+        gl_FragColor=vec4(col,1.);
+      }`;
+    function sh(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+    }
+    const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) return;
+    const pr = gl.createProgram();
+    gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+    gl.useProgram(pr);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const U = {}; ['r', 't'].forEach(k => { U[k] = gl.getUniformLocation(pr, k); });
+
+    host.insertBefore(cv, fog || null);
+
+    const SCALE = 0.5;                                       // yari cozunurluk: bulut zaten yumusak, pil dostu
+    let W = 0, H = 0;
+    let visible = true, raf = 0;
+    function resize() {
+      W = Math.max(2, Math.round(hero.clientWidth * SCALE));
+      H = Math.max(2, Math.round(hero.clientHeight * SCALE));
+      cv.width = W; cv.height = H;
+      gl.viewport(0, 0, W, H);
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    function frame(now) {
+      raf = 0;
+      if (!visible || document.hidden) return;
+      const t = now / 1000;
+      gl.uniform2f(U.r, W, H);
+      gl.uniform1f(U.t, t);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      raf = requestAnimationFrame(frame);
+    }
+    const kick = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame); };
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; kick(); }).observe(hero);
+    document.addEventListener('visibilitychange', kick);
+    kick();
+    requestAnimationFrame(() => cv.classList.add('is-on'));
+    initEmbers(hero, host, fog);
+  }
+
+  // Kivilcim: yukari suzulen korlar; imlece yaklasinca yavasca kenara cekilirler
+  function initEmbers(hero, host, fog) {
+    const cv = document.createElement('canvas');
+    cv.id = 'hero-embers';
+    cv.setAttribute('aria-hidden', 'true');
+    host.insertBefore(cv, fog || null);
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, mx = -999, my = -999, visible = true, raf = 0;
+    const P = [];
+    const seed = (p, fresh) => {
+      p.x = Math.random() * W; p.y = fresh ? Math.random() * H : H + 10;
+      p.vy = -(.12 + Math.random() * .38); p.sway = Math.random() * 6.28; p.r = .6 + Math.random() * 1.7;
+      p.a = .25 + Math.random() * .6; p.ox = 0; p.oy = 0;
+    };
+    function resize() {
+      W = cv.width = hero.clientWidth; H = cv.height = hero.clientHeight;
+      const want = Math.round(Math.min(110, W / 13));
+      while (P.length < want) { const p = {}; seed(p, true); P.push(p); }
+      P.length = want;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    hero.addEventListener('mousemove', e => { const b = hero.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; });
+    hero.addEventListener('mouseleave', () => { mx = my = -999; });
+    function frame() {
+      raf = 0;
+      ctx.clearRect(0, 0, W, H);
+      if (!visible || document.hidden) return;
+      ctx.globalCompositeOperation = 'lighter';
+      for (const p of P) {
+        p.sway += .012;
+        p.y += p.vy; p.x += Math.sin(p.sway) * .18;
+        const dx = p.x + p.ox - mx, dy = p.y + p.oy - my, d = Math.hypot(dx, dy);
+        const push = d < 150 ? (1 - d / 150) * 26 : 0;         // yumusak itme, sicrama yok
+        p.ox += ((d ? dx / d : 0) * push - p.ox) * .05;
+        p.oy += ((d ? dy / d : 0) * push - p.oy) * .05;
+        if (p.y < -12) seed(p, false);
+        const fade = Math.min(1, (H - p.y) / 160) * Math.min(1, p.y / 220);
+        ctx.fillStyle = `rgba(255,${150 + Math.round(p.a * 70)},60,${(p.a * fade).toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(p.x + p.ox, p.y + p.oy, p.r, 0, 6.2832); ctx.fill();
+        ctx.fillStyle = `rgba(240,140,20,${(p.a * fade * .18).toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(p.x + p.ox, p.y + p.oy, p.r * 4, 0, 6.2832); ctx.fill();
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; kick(); }).observe(hero);
+    document.addEventListener('visibilitychange', kick);
+    kick();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initPin();
+    initHeroLive();
+    initScramble();
+  });
+})();
